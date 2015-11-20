@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Good Weather</string>
+    <string name="input_city_hint">Input city</string>
+    <string name="test">dfdsfsdfs<br>dsadsa</br></string>
+</resources>
