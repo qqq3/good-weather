@@ -16,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/test"/>
+        android:text="@string/test"
+        android:textSize="30dp"
+        android:textColor="#FFFFFF"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,15 +26,17 @@
         android:orientation="vertical"
         android:layout_marginTop="50dp"
         android:layout_alignParentBottom="true"
-        android:isScrollContainer="true"
-        >
+        android:isScrollContainer="true">
 
         <EditText
             android:id="@+id/input_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_city_hint" />
+            android:hint="@string/input_city_hint"
+            android:focusableInTouchMode="false"
+            android:focusable="false"/>
         <Button
+            android:id="@+id/buttonSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
