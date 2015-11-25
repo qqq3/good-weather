@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class WeatherPageFragment extends Fragment
 
     private TextView mTextView;
     private BackgroundLoadWeather mLoadWeather;
+    SwipeRefreshLayout mNewRequest;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -38,7 +40,22 @@ public class WeatherPageFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fragment_main, parent, false);
 
+        mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
+
         mTextView = (TextView) v.findViewById(R.id.textView_label);
+
+        mNewRequest.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+
+            }
+        });
+
+        mNewRequest.setColorSchemeColors(R.color.swipe_red,
+                R.color.swipe_green,
+                R.color.swipe_blue);
 
         //mLoadWeather = new BackgroundLoadWeather();
         //mLoadWeather.execute();
