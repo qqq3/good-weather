@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBackground">#8ADCB3</color>
+    <color name="swipe_red">#ff000d</color>
+    <color name="swipe_green">#04ff00</color>
+    <color name="swipe_blue">#0004ff</color>
 </resources>
