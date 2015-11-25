@@ -22,7 +22,6 @@ public class WeatherPageFragment extends Fragment
     private static final String TAG = "WeatherPageFragment";
 
     private TextView mTextView;
-    private Button mSearchButton;
     private BackgroundLoadWeather mLoadWeather;
 
     @Override
@@ -41,16 +40,8 @@ public class WeatherPageFragment extends Fragment
 
         mTextView = (TextView) v.findViewById(R.id.textView_label);
 
-        mSearchButton = (Button) v.findViewById(R.id.buttonSearch);
-        mSearchButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                mLoadWeather = new BackgroundLoadWeather();
-                mLoadWeather.execute();
-            }
-        });
+        //mLoadWeather = new BackgroundLoadWeather();
+        //mLoadWeather.execute();
 
         return v;
     }
