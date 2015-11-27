@@ -72,14 +72,7 @@ public class WeatherPageFragment extends Fragment
         @Override
         protected String doInBackground(String... params)
         {
-            String result;
-            try {
-                result = new WeatherRequest()
-                        .getUrl("http://api.openweathermap.org/data/2.5/weather?q=London&APPID=7b1eaeea7795f54d52027369812383d0");
-                return result;
-            } catch (IOException e) {
-                Log.e(TAG, "Fail!!!");
-            }
+            new WeatherRequest().getItems();
             return null;
         }
 
