@@ -1,14 +1,13 @@
 package org.asdtm.goodweather;
 
-import android.util.JsonReader;
-import android.util.JsonToken;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class WeatherJSONParser
 {
+    private static final String TAG = "WeatherJSONParser";
+
     public static Weather getWeather(String data) throws JSONException
     {
         Weather weather = new Weather();
@@ -18,9 +17,10 @@ public class WeatherJSONParser
 
         JSONArray jWeatherArray = jWeatherData.getJSONArray("weather");
 
-        JSONObject weatherOdj = jWeatherArray.getJSONObject(0);
-        weather.currentWeather.setDescription(getString("description", weatherOdj));
-        weather.currentWeather.setIdIcon(getString("icon", weatherOdj));
+        JSONObject weatherObj = jWeatherArray.getJSONObject(0);
+        //weather.currentWeather.setDescription(getString("description", weatherOdj));
+        weather.currentWeather.setDescription(weatherObj.getString("description"));
+        weather.currentWeather.setIdIcon(getString("icon", weatherObj));
 
         JSONObject mainObj = jWeatherData.getJSONObject("main");
         weather.temperature.setTemp(getFloat("temp", mainObj));
