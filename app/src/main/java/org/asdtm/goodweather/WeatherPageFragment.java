@@ -24,7 +24,7 @@ public class WeatherPageFragment extends Fragment
 
     private TextView mTextView;
     private BackgroundLoadWeather mLoadWeather;
-    SwipeRefreshLayout mNewRequest;
+    private SwipeRefreshLayout mNewRequest;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -40,42 +40,33 @@ public class WeatherPageFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fragment_main, parent, false);
 
-        mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
-
         mTextView = (TextView) v.findViewById(R.id.textView_label);
+
+        mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
+        mNewRequest.setColorSchemeResources(R.color.swipe_red,
+                R.color.swipe_green,
+                R.color.swipe_blue);
 
         mNewRequest.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
             @Override
             public void onRefresh()
             {
-
+                mLoadWeather = new BackgroundLoadWeather();
+                mLoadWeather.execute();
             }
         });
-
-        mNewRequest.setColorSchemeColors(R.color.swipe_red,
-                R.color.swipe_green,
-                R.color.swipe_blue);
-
-        //mLoadWeather = new BackgroundLoadWeather();
-        //mLoadWeather.execute();
 
         return v;
     }
 
     class BackgroundLoadWeather extends AsyncTask<String, Void, String>
     {
-        private ProgressDialog mProgress;
-
         @Override
         protected void onPreExecute()
         {
             super.onPreExecute();
-            mProgress = new ProgressDialog(getActivity());
-            mProgress.setMessage(getResources().getString(R.string.progress_dialog_label));
-            mProgress.setIndeterminate(true);
-            mProgress.setCancelable(true);
-            mProgress.show();
+            mNewRequest.setRefreshing(true);
         }
 
         @Override
@@ -86,8 +77,7 @@ public class WeatherPageFragment extends Fragment
                 result = new WeatherRequest()
                         .getUrl("http://api.openweathermap.org/data/2.5/weather?q=London&APPID=7b1eaeea7795f54d52027369812383d0");
                 return result;
-            } catch (IOException e)
-            {
+            } catch (IOException e) {
                 Log.e(TAG, "Fail!!!");
             }
             return null;
@@ -97,8 +87,16 @@ public class WeatherPageFragment extends Fragment
         protected void onPostExecute(String result)
         {
             super.onPostExecute(result);
-            mProgress.dismiss();
+            mNewRequest.setRefreshing(false);
             mTextView.setText(result);
         }
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        mLoadWeather = new BackgroundLoadWeather();
+        mLoadWeather.execute();
     }
 }
