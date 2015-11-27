@@ -26,14 +26,14 @@ public class WeatherRequest
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             InputStream inputStream = connection.getInputStream();
 
-            if (connection.getResponseCode() != connection.HTTP_OK) {
+            if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 return null;
             }
 
             int bytesRead = 0;
             byte[] buffer = new byte[1024];
 
-            while ((bytesRead = inputStream.read()) > 0)
+            while ((bytesRead = inputStream.read(buffer)) > 0)
             {
                 outputStream.write(buffer, 0, bytesRead);
             }
@@ -44,7 +44,6 @@ public class WeatherRequest
             connection.disconnect();
         }
     }
-
 
     public String getUrl(String url) throws IOException
     {
