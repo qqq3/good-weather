@@ -1,6 +1,9 @@
 package org.asdtm.goodweather;
 
 
+import android.net.Uri;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,9 +14,11 @@ import java.net.URL;
 
 public class WeatherRequest
 {
+    private static final String TAG = "WeatherRequest";
     //http://api.openweathermap.org/data/2.5/weather?q=london&units=metric&APPID=7b1eaeea7795f54d52027369812383d0
-    private final static String QUERY = "api.openweathermap.org/data/2.5/weather?q=";
-    private final static String APPID = "7b1eaeea7795f54d52027369812383d0";
+    private static final String ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
+    private static final String QUERY = "London";
+    private static final String APPID = "7b1eaeea7795f54d52027369812383d0";
 
     byte[] getWeatherByte(String location) throws IOException
     {
@@ -48,5 +53,20 @@ public class WeatherRequest
     public String getUrl(String url) throws IOException
     {
         return new String(getWeatherByte(url));
+    }
+
+    public void getItems()
+    {
+        try {
+            String url = Uri.parse(ENDPOINT).buildUpon()
+                    .appendQueryParameter("query", QUERY)
+                    .appendQueryParameter("api_key", APPID)
+                    .build()
+                    .toString();
+            String jsonObj = getUrl(url);
+        } catch (IOException e)
+        {
+            Log.e(TAG, "Fail!!!");
+        }
     }
 }
