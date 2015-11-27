@@ -1,22 +1,18 @@
 package org.asdtm.goodweather;
 
 import android.app.Fragment;
-import android.app.ProgressDialog;
-import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.concurrent.TimeUnit;
 
 public class WeatherPageFragment extends Fragment
 {
@@ -60,7 +56,7 @@ public class WeatherPageFragment extends Fragment
         return v;
     }
 
-    class BackgroundLoadWeather extends AsyncTask<String, Void, String>
+    class BackgroundLoadWeather extends AsyncTask<Void, Void, Weather>
     {
         @Override
         protected void onPreExecute()
@@ -70,18 +66,28 @@ public class WeatherPageFragment extends Fragment
         }
 
         @Override
-        protected String doInBackground(String... params)
+        protected Weather doInBackground(Void... params)
         {
-            new WeatherRequest().getItems();
-            return null;
+            Weather weather = new Weather();
+
+            try {
+                String data = new WeatherRequest().getItems();
+                weather = WeatherJSONParser.getWeather(data);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return weather;
         }
 
         @Override
-        protected void onPostExecute(String result)
+        protected void onPostExecute(Weather res)
         {
-            super.onPostExecute(result);
+            super.onPostExecute(res);
             mNewRequest.setRefreshing(false);
-            mTextView.setText(result);
+
+            mTextView.setText(res.currentWeather.getDescription());
         }
     }
 
