@@ -22,6 +22,7 @@ public class WeatherRequest
     private static final String ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
     private String QUERY = "London";
     private static final String APPID = "7b1eaeea7795f54d52027369812383d0";
+    private static final String UNITS = "metric";
 
     byte[] getWeatherByte(String location) throws IOException
     {
@@ -62,6 +63,7 @@ public class WeatherRequest
         String url = Uri.parse(ENDPOINT).buildUpon()
                 .appendQueryParameter("q", QUERY)
                 .appendQueryParameter("APPID", APPID)
+                .appendQueryParameter("units", UNITS)
                 .build()
                 .toString();
         return getUrl(url);
