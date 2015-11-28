@@ -14,7 +14,6 @@ public class WeatherJSONParser
 
         JSONObject jWeatherData = new JSONObject(data);
 
-
         JSONArray jWeatherArray = jWeatherData.getJSONArray("weather");
 
         JSONObject weatherObj = jWeatherArray.getJSONObject(0);
@@ -24,6 +23,8 @@ public class WeatherJSONParser
 
         JSONObject mainObj = jWeatherData.getJSONObject("main");
         weather.temperature.setTemp(getFloat("temp", mainObj));
+        weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
+        weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
         weather.currentCondition.setPressure(getFloat("pressure", mainObj));
         weather.currentCondition.setHumidity(mainObj.getInt("humidity"));
 
