@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Good Weather</string>
     <string name="input_city_hint">Input city</string>
-    <string name="progress_dialog_label">Load weather...</string>
 </resources>
