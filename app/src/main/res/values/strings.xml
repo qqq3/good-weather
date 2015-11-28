@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Good Weather</string>
     <string name="input_city_hint">Input city</string>
+    <string name="temperature_degree">\u00B0</string>
 </resources>
