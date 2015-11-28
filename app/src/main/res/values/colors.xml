@@ -7,4 +7,5 @@
     <color name="swipe_red">#df5e65</color>
     <color name="swipe_green">#42c25e</color>
     <color name="swipe_blue">#4447da</color>
+    <color name="text_color">#FFFFFF</color>
 </resources>
