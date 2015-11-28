@@ -11,15 +11,35 @@ public class Weather
     public class Temperature
     {
         private float mTemp;
+        private float mMinTemp;
+        private float mMaxTemp;
 
         public float getTemp()
         {
             return mTemp;
         }
-
         public void setTemp(float temp)
         {
             mTemp = temp;
+        }
+
+        public float getMinTemp()
+        {
+            return mMinTemp;
+        }
+        public void setMinTemp(float minTemp)
+        {
+            mMinTemp = minTemp;
+        }
+
+        public float getMaxTemp()
+        {
+            return mMaxTemp;
+        }
+
+        public void setMaxTemp(float maxTemp)
+        {
+            mMaxTemp = maxTemp;
         }
     }
 
