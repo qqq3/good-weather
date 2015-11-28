@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -18,7 +19,8 @@ public class WeatherPageFragment extends Fragment
 {
     private static final String TAG = "WeatherPageFragment";
 
-    private TextView mTextView;
+    private TextView mTemperatureView;
+    private TextView mDescription;
     private BackgroundLoadWeather mLoadWeather;
     private SwipeRefreshLayout mNewRequest;
 
@@ -36,7 +38,9 @@ public class WeatherPageFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fragment_main, parent, false);
 
-        mTextView = (TextView) v.findViewById(R.id.textView_label);
+        mTemperatureView = (TextView) v.findViewById(R.id.temperature);
+        mDescription = (TextView) v.findViewById(R.id.weather_description);
+
 
         mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
         mNewRequest.setColorSchemeResources(R.color.swipe_red,
@@ -82,12 +86,15 @@ public class WeatherPageFragment extends Fragment
         }
 
         @Override
-        protected void onPostExecute(Weather res)
+        protected void onPostExecute(Weather weather)
         {
-            super.onPostExecute(res);
+            super.onPostExecute(weather);
             mNewRequest.setRefreshing(false);
 
-            mTextView.setText(res.currentWeather.getDescription());
+            mTemperatureView
+                    .setText(Math.round(weather.temperature.getTemp() * 100.0) / 100.0 + "\u00B0");
+            mDescription
+                    .setText(weather.currentWeather.getDescription());
         }
     }
 
