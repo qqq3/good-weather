@@ -1,6 +1,7 @@
 package org.asdtm.goodweather;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +22,12 @@ public class WeatherPageFragment extends Fragment
 
     private TextView mTemperatureView;
     private TextView mDescription;
+    private TextView mMinMaxTemperature;
+    private TextView mHumidity;
+    private TextView mWindSpeed;
+    private TextView mPressure;
+    private TextView mClouds;
+
     private BackgroundLoadWeather mLoadWeather;
     private SwipeRefreshLayout mNewRequest;
 
@@ -40,7 +47,10 @@ public class WeatherPageFragment extends Fragment
 
         mTemperatureView = (TextView) v.findViewById(R.id.temperature);
         mDescription = (TextView) v.findViewById(R.id.weather_description);
-
+        mPressure = (TextView) v.findViewById(R.id.pressure);
+        mHumidity = (TextView) v.findViewById(R.id.humidity);
+        mWindSpeed = (TextView) v.findViewById(R.id.wind_speed);
+        mClouds = (TextView) v.findViewById(R.id.clouds);
 
         mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
         mNewRequest.setColorSchemeResources(R.color.swipe_red,
@@ -92,9 +102,17 @@ public class WeatherPageFragment extends Fragment
             mNewRequest.setRefreshing(false);
 
             mTemperatureView
-                    .setText(Math.round(weather.temperature.getTemp() * 100.0) / 100.0 + "\u00B0");
+                    .setText(Math.round(weather.temperature.getTemp() * 100) / 100 + "\u00B0");
             mDescription
                     .setText(weather.currentWeather.getDescription());
+            mHumidity
+                    .setText(weather.currentCondition.getHumidity() + "%");
+            mPressure
+                    .setText(weather.currentCondition.getPressure() + "hpa");
+            mWindSpeed
+                    .setText(weather.wind.getSpeed() + "m/s");
+            mClouds
+                    .setText(weather.cloud.getClouds() + "%");
         }
     }
 
