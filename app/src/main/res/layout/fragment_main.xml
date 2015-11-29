@@ -16,41 +16,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
             <LinearLayout
+                android:id="@+id/main_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/weather_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="100sp"
-                    android:textColor="@color/text_color"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif-thin"/>
-
-                <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <TableRow >
-                        <ImageView
-                            android:id="@+id/weather_icon"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_clear"/>
-                    </TableRow>
-                    <TableRow android:paddingTop="10dp"
-                              android:paddingBottom="10dp">
-                        <TextView
-                            android:id="@+id/weather_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textColor="@color/text_color"
-                            android:textSize="20sp"
-                            android:text="lol2"
-                            android:gravity="center"/>
-                    </TableRow>
-                </TableLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/weather_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
         </RelativeLayout>
