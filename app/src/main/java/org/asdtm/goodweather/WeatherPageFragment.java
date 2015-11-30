@@ -3,8 +3,10 @@ package org.asdtm.goodweather;
 import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -32,9 +34,13 @@ public class WeatherPageFragment extends Fragment
     private SwipeRefreshLayout mNewRequest;
     private Toolbar mToolbar;
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private CharSequence mDrawerTitle;
+    private CharSequence mTitle;
+
     private BackgroundLoadWeather mLoadWeather;
-
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
