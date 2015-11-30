@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 
 public class WeatherPageFragment extends Fragment
 {
@@ -101,8 +102,15 @@ public class WeatherPageFragment extends Fragment
             super.onPostExecute(weather);
             mNewRequest.setRefreshing(false);
 
+            float getTemp = weather.temperature.getTemp();
+            NumberFormat oneDigit = NumberFormat.getNumberInstance();
+            oneDigit.setMinimumFractionDigits(1);
+            oneDigit.setMaximumFractionDigits(1);
+            String setTemp = oneDigit.format(getTemp);
+
             mTemperatureView
-                    .setText(Math.round(weather.temperature.getTemp() * 100) / 100 + "\u00B0");
+                    .setText(setTemp + "\u00B0");
+
             mDescription
                     .setText(weather.currentWeather.getDescription());
             mHumidity
