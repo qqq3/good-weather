@@ -1,11 +1,11 @@
 package org.asdtm.goodweather;
 
 import android.app.Fragment;
-import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +28,11 @@ public class WeatherPageFragment extends Fragment
     private TextView mWindSpeed;
     private TextView mPressure;
     private TextView mClouds;
+    private SwipeRefreshLayout mNewRequest;
+    private Toolbar mToolbar;
 
     private BackgroundLoadWeather mLoadWeather;
-    private SwipeRefreshLayout mNewRequest;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -45,6 +47,9 @@ public class WeatherPageFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fragment_main, parent, false);
+
+        mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
+        ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
 
         mTemperatureView = (TextView) v.findViewById(R.id.temperature);
         mDescription = (TextView) v.findViewById(R.id.weather_description);
