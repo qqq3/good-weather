@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/new_request"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/new_request"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context="org.asdtm.goodweather.MainActivity">
-
-    <include layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,14 +14,20 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"/>
 
             <LinearLayout
                 android:id="@+id/main_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_below="@id/toolbar">
 
                 <ImageView
                     android:id="@+id/weather_icon"
@@ -47,7 +51,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/main_info">
+
                 <TableRow>
+
                     <TextView
                         android:id="@+id/humidity"
                         android:layout_width="match_parent"
@@ -60,6 +66,7 @@
                         android:layout_height="wrap_content"
                         android:text="test"/>
                 </TableRow>
+
                 <TableRow>
 
                     <TextView
