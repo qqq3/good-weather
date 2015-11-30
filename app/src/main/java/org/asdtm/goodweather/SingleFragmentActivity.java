@@ -1,7 +1,7 @@
 package org.asdtm.goodweather;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -16,7 +16,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
         setContentView(R.layout.activity_fragment);
 
         // Получаем доступ к менеджеру фрагментов
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         // Запрашиваем у FragmentManager фрагмент с идентификатором контейнерного представления
         // если этот фрагмент уже находится в списке, FragmentManager возвращает его
