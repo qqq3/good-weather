@@ -9,11 +9,17 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
 {
     protected abstract Fragment createNewFragment();
 
+    // Возвращает айди макета, заполняемого активность
+    protected int getIdLayout()
+    {
+        return R.layout.activity_fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
+        setContentView(getIdLayout());
 
         // Получаем доступ к менеджеру фрагментов
         FragmentManager fragmentManager = getSupportFragmentManager();
