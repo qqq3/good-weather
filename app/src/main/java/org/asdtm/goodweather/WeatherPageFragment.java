@@ -1,5 +1,6 @@
 package org.asdtm.goodweather;
 
+import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
@@ -178,5 +179,12 @@ public class WeatherPageFragment extends Fragment
         super.onStart();
         mLoadWeather = new BackgroundLoadWeather();
         mLoadWeather.execute();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 }
