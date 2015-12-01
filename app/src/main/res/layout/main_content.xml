@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/new_request"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="org.asdtm.goodweather.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"/>
+            <LinearLayout
+                android:id="@+id/main_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/weather_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/temperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="test"/>
+
+                <TextView
+                    android:id="@+id/weather_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="test"/>
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/main_info">
+
+                <TableRow android:layout_width="match_parent"
+                          android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/humidity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="test"/>
+
+                    <TextView
+                        android:id="@+id/wind_speed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="test"/>
+                </TableRow>
+
+                <TableRow android:layout_width="match_parent"
+                          android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/pressure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="test"/>
+
+                    <TextView
+                        android:id="@+id/clouds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="test"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
