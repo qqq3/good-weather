@@ -1,21 +1,24 @@
 package org.asdtm.goodweather;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONException;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -36,11 +39,9 @@ public class WeatherPageFragment extends Fragment
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
 
     private BackgroundLoadWeather mLoadWeather;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -53,14 +54,46 @@ public class WeatherPageFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
     {
-        View v = inflater.inflate(R.layout.fragment_main, parent, false);
+        View v = inflater.inflate(R.layout.fargment_main, parent, false);
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(mToolbar);
 
+        mDrawerLayout = (DrawerLayout) v.findViewById(R.id.drawer_layout);
+        mDrawerToggle = new ActionBarDrawerToggle(getActivity(),
+                mDrawerLayout,
+                mToolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
 
+        NavigationView navigationView = (NavigationView) v.findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView
+                .OnNavigationItemSelectedListener()
+        {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item)
+            {
+                int itemId = item.getItemId();
+                switch (itemId) {
+                    case R.id.nav_settings:
+                        getActivity().setTitle(R.string.nav_menu_settings);
+                        break;
+                    case R.id.nav_faq:
+                        getActivity().setTitle(R.string.nav_menu_faq);
+                        break;
+                    case R.id.nav_about:
+                        getActivity().setTitle(R.string.nav_menu_about);
+                        break;
+                }
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+        
         mTemperatureView = (TextView) v.findViewById(R.id.temperature);
         mDescription = (TextView) v.findViewById(R.id.weather_description);
         mPressure = (TextView) v.findViewById(R.id.pressure);
@@ -149,4 +182,11 @@ public class WeatherPageFragment extends Fragment
         mLoadWeather = new BackgroundLoadWeather();
         mLoadWeather.execute();
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+    }
+
 }
