@@ -4,4 +4,7 @@
     <string name="temperature_degree">\u00B0</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_menu_settings">Settings</string>
+    <string name="nav_menu_faq">Good Weather FAQ</string>
+    <string name="nav_menu_about">About Good Weather</string>
 </resources>
