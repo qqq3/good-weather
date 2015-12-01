@@ -14,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -93,14 +91,13 @@ public class WeatherPageFragment extends Fragment
                 return true;
             }
         });
-        
+
         mTemperatureView = (TextView) v.findViewById(R.id.temperature);
         mDescription = (TextView) v.findViewById(R.id.weather_description);
         mPressure = (TextView) v.findViewById(R.id.pressure);
         mHumidity = (TextView) v.findViewById(R.id.humidity);
         mWindSpeed = (TextView) v.findViewById(R.id.wind_speed);
         mClouds = (TextView) v.findViewById(R.id.clouds);
-
 
         mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
         int top_to_padding = 150;
@@ -182,11 +179,4 @@ public class WeatherPageFragment extends Fragment
         mLoadWeather = new BackgroundLoadWeather();
         mLoadWeather.execute();
     }
-
-    @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-    }
-
 }
