@@ -28,9 +28,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
             fragment = createNewFragment();
 
             // Создаем новую транзакцию, которая добавляет фрагмент в список
-            fragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragmentContainer, fragment)
+                    .addToBackStack(null)
+                    .commit();
         }
-
-
     }
 }
