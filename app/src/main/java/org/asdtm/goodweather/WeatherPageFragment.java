@@ -44,7 +44,7 @@ public class WeatherPageFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
+        MainActivity.stateFragment = "WeatherPageFragment";
         // Save fragment
         setRetainInstance(true);
     }
