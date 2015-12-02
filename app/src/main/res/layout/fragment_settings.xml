@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorAccent"/>
-    <TextView
+    <AutoCompleteTextView
+        android:id="@+id/autoComplete_search_city"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/navigation_drawer_close"/>
+        android:layout_height="wrap_content"/>
 </LinearLayout>
