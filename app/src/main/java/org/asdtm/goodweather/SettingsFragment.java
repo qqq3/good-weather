@@ -16,6 +16,8 @@ public class SettingsFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -27,7 +29,7 @@ public class SettingsFragment extends Fragment
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(mToolbar);
-
+        appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return v;
     }
 }
