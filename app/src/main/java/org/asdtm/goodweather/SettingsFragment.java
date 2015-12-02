@@ -40,8 +40,11 @@ public class SettingsFragment extends Fragment
     {
         switch (item.getItemId()) {
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(getActivity());
-                return true;
+                if (NavUtils.getParentActivityName(getActivity()) != null)
+                {
+                    NavUtils.navigateUpFromSameTask(getActivity());
+                    return true;
+                }
         }
 
         return super.onOptionsItemSelected(item);
