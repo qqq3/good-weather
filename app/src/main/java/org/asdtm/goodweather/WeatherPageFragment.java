@@ -79,14 +79,11 @@ public class WeatherPageFragment extends Fragment
                 int itemId = item.getItemId();
                 switch (itemId) {
                     case R.id.nav_settings:
-                        getActivity().setTitle(R.string.nav_menu_settings);
-                        break;
+
                     case R.id.nav_faq:
-                        getActivity().setTitle(R.string.nav_menu_faq);
-                        break;
+
                     case R.id.nav_about:
-                        getActivity().setTitle(R.string.nav_menu_about);
-                        break;
+                       
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 return true;
