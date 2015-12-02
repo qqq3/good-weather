@@ -1,5 +1,6 @@
 package org.asdtm.goodweather;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -79,12 +80,11 @@ public class WeatherPageFragment extends Fragment
                 int itemId = item.getItemId();
                 switch (itemId) {
                     case R.id.nav_settings:
-
-                    case R.id.nav_faq:
-
-                    case R.id.nav_about:
-                       
+                        Intent goToSettings = new Intent(getActivity(), SettingsActivity.class);
+                        startActivity(goToSettings);
+                        break;
                 }
+                
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
