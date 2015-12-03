@@ -12,8 +12,7 @@
     <TextView
         android:id="@+id/currentCity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Current city: "/>
+        android:layout_height="wrap_content"/>
     <AutoCompleteTextView
         android:id="@+id/autoComplete_search_city"
         android:layout_width="match_parent"
