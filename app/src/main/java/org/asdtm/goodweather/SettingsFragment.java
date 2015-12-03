@@ -30,7 +30,8 @@ public class SettingsFragment extends Fragment
     private SharedPreferences mPreferences;
 
     final String APP_SETTINGS = "config";
-    final String APP_SETTINGS_CITY = "CurrentCity";
+    final String APP_SETTINGS_CITY = "City";
+    final String APP_SETTINGS_COUNTRY = "Country";
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -58,7 +59,8 @@ public class SettingsFragment extends Fragment
 
         final TextView mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
         String city = mPreferences.getString(APP_SETTINGS_CITY, "Sidney");
-        mCurrentCity.setText("Current city: " + city);
+        String country = mPreferences.getString(APP_SETTINGS_COUNTRY, null);
+        mCurrentCity.setText("Current city: " + city + ", " + country);
 
         mSearchCity.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -69,6 +71,7 @@ public class SettingsFragment extends Fragment
                 mCurrentCity.setText("Current city: " + result);
                 SharedPreferences.Editor editor = mPreferences.edit();
                 editor.putString(APP_SETTINGS_CITY, result.getCityName());
+                editor.putString(APP_SETTINGS_COUNTRY, result.getCountry());
                 editor.apply();
             }
         });
