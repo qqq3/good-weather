@@ -37,7 +37,6 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
             fragmentManager
                     .beginTransaction()
                     .add(R.id.fragmentContainer, fragment)
-                    .addToBackStack(null)
                     .commit();
         }
     }
