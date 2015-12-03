@@ -3,6 +3,7 @@ package org.asdtm.goodweather;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,9 @@ public class SettingsFragment extends Fragment
     private Toolbar mToolbar;
     private SharedPreferences mPreferences;
 
+    final String APP_SETTINGS = "config";
+    final String APP_SETTINGS_CITY = "CurrentCity";
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -40,6 +44,7 @@ public class SettingsFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fragment_settings, parent, false);
+        mPreferences = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
@@ -52,13 +57,19 @@ public class SettingsFragment extends Fragment
         mSearchCity.setAdapter(cityAdapter);
 
         final TextView mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
+        String city = mPreferences.getString(APP_SETTINGS_CITY, "Sidney");
+        mCurrentCity.setText("Current city: " + city);
+
         mSearchCity.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 CitySearch result = (CitySearch) parent.getItemAtPosition(position);
-                mCurrentCity.setText("Current city: " + result.getCityName());
+                mCurrentCity.setText("Current city: " + result);
+                SharedPreferences.Editor editor = mPreferences.edit();
+                editor.putString(APP_SETTINGS_CITY, result.getCityName());
+                editor.commit();
             }
         });
         return v;
