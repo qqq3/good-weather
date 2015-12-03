@@ -69,7 +69,7 @@ public class SettingsFragment extends Fragment
                 mCurrentCity.setText("Current city: " + result);
                 SharedPreferences.Editor editor = mPreferences.edit();
                 editor.putString(APP_SETTINGS_CITY, result.getCityName());
-                editor.commit();
+                editor.apply();
             }
         });
         return v;
