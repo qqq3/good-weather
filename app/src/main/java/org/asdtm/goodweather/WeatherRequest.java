@@ -1,18 +1,10 @@
 package org.asdtm.goodweather;
 
-
 import android.net.Uri;
-import android.util.JsonReader;
-import android.util.Log;
 
-import org.json.JSONException;
-import org.json.JSONTokener;
-
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -20,7 +12,6 @@ public class WeatherRequest
 {
     private static final String TAG = "WeatherRequest";
     private static final String ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
-    private String QUERY = "Orsha";
     private static final String APPID = "7b1eaeea7795f54d52027369812383d0";
     private static final String UNITS = "metric";
 
@@ -58,10 +49,11 @@ public class WeatherRequest
         return new String(getWeatherByte(url));
     }
 
-    public String getItems() throws IOException
+    public String getItems(String city) throws IOException
     {
+
         String url = Uri.parse(ENDPOINT).buildUpon()
-                .appendQueryParameter("q", QUERY)
+                .appendQueryParameter("q", city)
                 .appendQueryParameter("APPID", APPID)
                 .appendQueryParameter("units", UNITS)
                 .build()
