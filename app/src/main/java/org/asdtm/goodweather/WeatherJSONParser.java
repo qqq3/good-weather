@@ -22,9 +22,11 @@ public class WeatherJSONParser
         weather.currentWeather.setIdIcon(getString("icon", weatherObj));
 
         JSONObject mainObj = jWeatherData.getJSONObject("main");
-        weather.temperature.setTemp(getFloat("temp", mainObj));
-        weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
-        weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
+        if (mainObj.has("temp")){
+            weather.temperature.setTemp(getFloat("temp", mainObj));
+        }
+        //weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
+        //weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
         weather.currentCondition.setPressure(getFloat("pressure", mainObj));
         weather.currentCondition.setHumidity(mainObj.getInt("humidity"));
 
