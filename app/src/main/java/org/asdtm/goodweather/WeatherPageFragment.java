@@ -1,7 +1,11 @@
 package org.asdtm.goodweather;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
@@ -37,6 +41,9 @@ public class WeatherPageFragment extends Fragment
     private SwipeRefreshLayout mNewRequest;
     private Toolbar mToolbar;
 
+    final String APP_SETTINGS = "config";
+    final String APP_SETTINGS_CITY = "CurrentCity";
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -55,6 +62,9 @@ public class WeatherPageFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fargment_main, parent, false);
+
+        SharedPreferences mSharedPreferences
+                = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
@@ -97,6 +107,10 @@ public class WeatherPageFragment extends Fragment
         mWindSpeed = (TextView) v.findViewById(R.id.wind_speed);
         mClouds = (TextView) v.findViewById(R.id.clouds);
 
+        final String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sidney");
+        TextView currentCity = (TextView) v.findViewById(R.id.currentCity);
+        currentCity.setText(city);
+
         mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
         int top_to_padding = 150;
         mNewRequest.setProgressViewOffset(false, 0, top_to_padding);
@@ -110,14 +124,14 @@ public class WeatherPageFragment extends Fragment
             public void onRefresh()
             {
                 mLoadWeather = new BackgroundLoadWeather();
-                mLoadWeather.execute();
+                mLoadWeather.execute(new String[]{city});
             }
         });
 
         return v;
     }
 
-    class BackgroundLoadWeather extends AsyncTask<Void, Void, Weather>
+    class BackgroundLoadWeather extends AsyncTask<String , Void, Weather>
     {
         @Override
         protected void onPreExecute()
@@ -127,12 +141,11 @@ public class WeatherPageFragment extends Fragment
         }
 
         @Override
-        protected Weather doInBackground(Void... params)
+        protected Weather doInBackground(String... params)
         {
             Weather weather = new Weather();
-
             try {
-                String data = new WeatherRequest().getItems();
+                String data = new WeatherRequest().getItems(params[0]);
                 weather = WeatherJSONParser.getWeather(data);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -171,11 +184,17 @@ public class WeatherPageFragment extends Fragment
     }
 
     @Override
-    public void onStart()
+    public void onResume()
     {
-        super.onStart();
+        super.onResume();
+        SharedPreferences mSharedPreferences
+                = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+        String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sidney");
         mLoadWeather = new BackgroundLoadWeather();
-        mLoadWeather.execute();
+        mLoadWeather.execute(new String[]{city});
+
+        TextView currentCity = (TextView) getActivity().findViewById(R.id.currentCity);
+        currentCity.setText(city);
     }
 
     @Override
