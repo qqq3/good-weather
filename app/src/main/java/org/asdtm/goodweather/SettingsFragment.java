@@ -1,6 +1,7 @@
 package org.asdtm.goodweather;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
@@ -16,7 +17,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.asdtm.goodweather.model.CitySearch;
 
@@ -26,6 +26,7 @@ import java.util.List;
 public class SettingsFragment extends Fragment
 {
     private Toolbar mToolbar;
+    private SharedPreferences mPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
