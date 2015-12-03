@@ -84,7 +84,7 @@ public class WeatherPageFragment extends Fragment
                         startActivity(goToSettings);
                         break;
                 }
-                
+
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -123,7 +123,7 @@ public class WeatherPageFragment extends Fragment
         protected void onPreExecute()
         {
             super.onPreExecute();
-            mNewRequest.setRefreshing(true);
+            //mNewRequest.setRefreshing(true);
         }
 
         @Override
