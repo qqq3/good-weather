@@ -20,7 +20,7 @@ public class WeatherRequest
 {
     private static final String TAG = "WeatherRequest";
     private static final String ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
-    private String QUERY = "London";
+    private String QUERY = "Orsha";
     private static final String APPID = "7b1eaeea7795f54d52027369812383d0";
     private static final String UNITS = "metric";
 
