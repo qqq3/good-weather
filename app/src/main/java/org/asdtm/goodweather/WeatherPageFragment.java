@@ -16,6 +16,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +43,7 @@ public class WeatherPageFragment extends Fragment
     private Toolbar mToolbar;
 
     final String APP_SETTINGS = "config";
-    final String APP_SETTINGS_CITY = "CurrentCity";
+    final String APP_SETTINGS_CITY = "City";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -54,6 +55,8 @@ public class WeatherPageFragment extends Fragment
     {
         super.onCreate(savedInstanceState);
         MainActivity.stateFragment = "WeatherPageFragment";
+
+        Log.i(TAG, "onCreate!!!");
         // Save fragment
         setRetainInstance(true);
     }
@@ -63,7 +66,7 @@ public class WeatherPageFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fargment_main, parent, false);
 
-        SharedPreferences mSharedPreferences
+        final SharedPreferences mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
@@ -107,10 +110,6 @@ public class WeatherPageFragment extends Fragment
         mWindSpeed = (TextView) v.findViewById(R.id.wind_speed);
         mClouds = (TextView) v.findViewById(R.id.clouds);
 
-        final String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sidney");
-        TextView currentCity = (TextView) v.findViewById(R.id.currentCity);
-        currentCity.setText(city);
-
         mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
         int top_to_padding = 150;
         mNewRequest.setProgressViewOffset(false, 0, top_to_padding);
@@ -123,11 +122,13 @@ public class WeatherPageFragment extends Fragment
             @Override
             public void onRefresh()
             {
+                String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sidney");
                 mLoadWeather = new BackgroundLoadWeather();
-                mLoadWeather.execute(new String[]{city});
+                mLoadWeather.execute(city);
             }
         });
 
+        Log.i(TAG, "onCreateView!!!");
         return v;
     }
 
@@ -191,12 +192,19 @@ public class WeatherPageFragment extends Fragment
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
         String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sidney");
         mLoadWeather = new BackgroundLoadWeather();
-        mLoadWeather.execute(new String[]{city});
+        mLoadWeather.execute(city);
 
         TextView currentCity = (TextView) getActivity().findViewById(R.id.currentCity);
         currentCity.setText(city);
+        Log.i(TAG, "onResume!!!");
     }
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        Log.i(TAG, "onStart!!!");
+    }
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
