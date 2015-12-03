@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,8 @@ import java.util.List;
 
 public class SettingsFragment extends Fragment
 {
+    private static final String TAG = "SettingsFragment";
+
     private Toolbar mToolbar;
     private SharedPreferences mPreferences;
 
@@ -38,6 +41,7 @@ public class SettingsFragment extends Fragment
     {
         super.onCreate(savedInstanceState);
 
+        Log.i(TAG, "onCreate!!!");
         setHasOptionsMenu(true);
     }
 
@@ -75,6 +79,8 @@ public class SettingsFragment extends Fragment
                 editor.apply();
             }
         });
+
+        Log.i(TAG, "onCreateView!!!");
         return v;
     }
 
