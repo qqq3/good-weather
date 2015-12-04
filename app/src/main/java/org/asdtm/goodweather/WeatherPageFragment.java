@@ -134,7 +134,7 @@ public class WeatherPageFragment extends Fragment
             @Override
             public void onRefresh()
             {
-                String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sidney");
+                String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
                 mLoadWeather = new BackgroundLoadWeather();
                 mLoadWeather.execute(city);
             }
@@ -244,7 +244,7 @@ public class WeatherPageFragment extends Fragment
 
         SharedPreferences mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
-        String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sidney");
+        String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
         mLoadWeather = new BackgroundLoadWeather();
         mLoadWeather.execute(city);
 
