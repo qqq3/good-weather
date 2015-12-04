@@ -1,4 +1,4 @@
-package org.asdtm.goodweather;
+package org.asdtm.goodweather.model;
 
 public class Weather
 {
