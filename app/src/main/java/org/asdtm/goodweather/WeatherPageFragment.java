@@ -125,7 +125,6 @@ public class WeatherPageFragment extends Fragment
 
         isInternetConnection = false;
         connectionDetector = new ConnectionDetector(getContext());
-        isInternetConnection = connectionDetector.connectToInternet();
 
         mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
         int top_to_padding = 150;
@@ -140,6 +139,8 @@ public class WeatherPageFragment extends Fragment
             @Override
             public void onRefresh()
             {
+                isInternetConnection = connectionDetector.connectToInternet();
+
                 String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
                 if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
@@ -148,6 +149,7 @@ public class WeatherPageFragment extends Fragment
                     Toast.makeText(getActivity(),
                             R.string.connection_not_found,
                             Toast.LENGTH_LONG).show();
+                    mNewRequest.setRefreshing(false);
                 }
             }
         });
