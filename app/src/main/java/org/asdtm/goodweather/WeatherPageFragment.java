@@ -41,7 +41,8 @@ public class WeatherPageFragment extends Fragment
     private TextView mClouds;
     private SwipeRefreshLayout mNewRequest;
     private Toolbar mToolbar;
-    ConnectionDetector connectionDetector;
+    private ConnectionDetector connectionDetector;
+    private Boolean isInternetConnection;
 
     private SharedPreferences mPrefWeather;
     final String WEATHER_DATA = "weather";
@@ -122,7 +123,7 @@ public class WeatherPageFragment extends Fragment
         mWindSpeed = (TextView) v.findViewById(R.id.wind_speed);
         mClouds = (TextView) v.findViewById(R.id.clouds);
 
-        Boolean isInternetConnection = false;
+        isInternetConnection = false;
         connectionDetector = new ConnectionDetector(getContext());
         isInternetConnection = connectionDetector.connectToInternet();
 
@@ -133,20 +134,20 @@ public class WeatherPageFragment extends Fragment
                 R.color.swipe_green,
                 R.color.swipe_blue);
 
-        final Boolean finalIsInternetConnection = isInternetConnection;
+
         mNewRequest.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
             @Override
             public void onRefresh()
             {
-                if (finalIsInternetConnection) {
-                    String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
+                String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
+                if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
                     mLoadWeather.execute(city);
                 } else {
                     Toast.makeText(getActivity(),
-                                   R.string.connection_not_found,
-                                   Toast.LENGTH_LONG);
+                            R.string.connection_not_found,
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -155,7 +156,7 @@ public class WeatherPageFragment extends Fragment
         return v;
     }
 
-    class BackgroundLoadWeather extends AsyncTask<String , Void, Weather>
+    class BackgroundLoadWeather extends AsyncTask<String, Void, Weather>
     {
         @Override
         protected void onPreExecute()
@@ -227,7 +228,7 @@ public class WeatherPageFragment extends Fragment
     {
         super.onResume();
 
-        Boolean isInternetConnection = false;
+        isInternetConnection = false;
         connectionDetector = new ConnectionDetector(getContext());
         isInternetConnection = connectionDetector.connectToInternet();
 
@@ -267,8 +268,8 @@ public class WeatherPageFragment extends Fragment
             mLoadWeather.execute(city);
         } else {
             Toast.makeText(getActivity(),
-                           R.string.connection_not_found,
-                           Toast.LENGTH_LONG).show();
+                    R.string.connection_not_found,
+                    Toast.LENGTH_LONG).show();
         }
 
         TextView currentCity = (TextView) getActivity().findViewById(R.id.currentCity);
@@ -282,6 +283,7 @@ public class WeatherPageFragment extends Fragment
         super.onStart();
         Log.i(TAG, "onStart!!!");
     }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
