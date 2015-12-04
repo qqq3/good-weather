@@ -81,8 +81,10 @@ public class WeatherPageFragment extends Fragment
 
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
+        String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "Good Weather");
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
+        appCompatActivity.setTitle(title);
         appCompatActivity.setSupportActionBar(mToolbar);
 
         mDrawerLayout = (DrawerLayout) v.findViewById(R.id.drawer_layout);
