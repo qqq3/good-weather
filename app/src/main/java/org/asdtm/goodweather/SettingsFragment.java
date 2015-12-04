@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -76,8 +76,6 @@ public class SettingsFragment extends Fragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                mSearchCity.setText("");
-
                 CitySearch result = (CitySearch) parent.getItemAtPosition(position);
                 mCurrentCity.setText("Current city: " + result);
                 SharedPreferences.Editor editor = mPreferences.edit();
@@ -88,6 +86,11 @@ public class SettingsFragment extends Fragment
                 mSearchCity.clearFocus();
                 mCurrentCity.requestFocus();
 
+                mSearchCity.setText("");
+
+                InputMethodManager iMM = ((InputMethodManager) getActivity()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE));
+                iMM.hideSoftInputFromWindow(mCurrentCity.getWindowToken(), 0);
             }
         });
 
