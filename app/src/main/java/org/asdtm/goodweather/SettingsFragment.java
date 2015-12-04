@@ -12,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.asdtm.goodweather.model.CitySearch;
@@ -32,6 +34,7 @@ public class SettingsFragment extends Fragment
     private SharedPreferences mPreferences;
     private AutoCompleteTextView mSearchCity;
     private TextView mCurrentCity;
+    private LinearLayout mSettingsLayout;
 
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "City";
@@ -53,6 +56,7 @@ public class SettingsFragment extends Fragment
         mPreferences = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
+        mSettingsLayout = (LinearLayout) v.findViewById(R.id.settings);
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(mToolbar);
@@ -72,6 +76,8 @@ public class SettingsFragment extends Fragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                mSearchCity.setText("");
+                
                 CitySearch result = (CitySearch) parent.getItemAtPosition(position);
                 mCurrentCity.setText("Current city: " + result);
                 SharedPreferences.Editor editor = mPreferences.edit();
@@ -79,6 +85,8 @@ public class SettingsFragment extends Fragment
                 editor.putString(APP_SETTINGS_COUNTRY, result.getCountry());
                 editor.apply();
 
+                mSearchCity.clearFocus();
+                mCurrentCity.requestFocus();
 
             }
         });
