@@ -42,6 +42,14 @@ public class WeatherPageFragment extends Fragment
     private SwipeRefreshLayout mNewRequest;
     private Toolbar mToolbar;
 
+    final String WEATHER_DATA = "weather";
+    final String WEATHER_DATA_TEMPERATURE = "temperature";
+    final String WEATHER_DATA_DESCRIPTION = "description";
+    final String WEATHER_DATA_PRESSURE = "pressure";
+    final String WEATHER_DATA_HUMIDITY = "humidity";
+    final String WEATHER_DATA_WIND_SPEED = "wind_speed";
+    final String WEATHER_DATA_CLOUDS = "clouds";
+
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "City";
 
