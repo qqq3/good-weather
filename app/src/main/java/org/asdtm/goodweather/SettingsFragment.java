@@ -77,7 +77,7 @@ public class SettingsFragment extends Fragment
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 mSearchCity.setText("");
-                
+
                 CitySearch result = (CitySearch) parent.getItemAtPosition(position);
                 mCurrentCity.setText("Current city: " + result);
                 SharedPreferences.Editor editor = mPreferences.edit();
