@@ -42,6 +42,8 @@ public class WeatherPageFragment extends Fragment
     private SwipeRefreshLayout mNewRequest;
     private Toolbar mToolbar;
 
+
+    private SharedPreferences mPrefWeather;
     final String WEATHER_DATA = "weather";
     final String WEATHER_DATA_TEMPERATURE = "temperature";
     final String WEATHER_DATA_DESCRIPTION = "description";
@@ -76,6 +78,7 @@ public class WeatherPageFragment extends Fragment
 
         final SharedPreferences mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
@@ -170,6 +173,9 @@ public class WeatherPageFragment extends Fragment
             super.onPostExecute(weather);
             mNewRequest.setRefreshing(false);
 
+            mPrefWeather = getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = mPrefWeather.edit();
+
             float getTemp = weather.temperature.getTemp();
             NumberFormat oneDigit = NumberFormat.getNumberInstance();
             oneDigit.setMinimumFractionDigits(1);
@@ -178,17 +184,29 @@ public class WeatherPageFragment extends Fragment
 
             mTemperatureView
                     .setText(setTemp + "\u00B0");
+            editor.putString(WEATHER_DATA_TEMPERATURE, setTemp);
 
             mDescription
                     .setText(weather.currentWeather.getDescription());
+            editor.putString(WEATHER_DATA_DESCRIPTION, weather.currentWeather.getDescription());
+
             mHumidity
                     .setText(weather.currentCondition.getHumidity() + "%");
+            editor.putInt(WEATHER_DATA_HUMIDITY, weather.currentCondition.getHumidity());
+
             mPressure
                     .setText(weather.currentCondition.getPressure() + "hpa");
+            editor.putFloat(WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
+
             mWindSpeed
                     .setText(weather.wind.getSpeed() + "m/s");
+            editor.putFloat(WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
+
             mClouds
                     .setText(weather.cloud.getClouds() + "%");
+            editor.putInt(WEATHER_DATA_CLOUDS, weather.cloud.getClouds());
+
+            editor.apply();
         }
     }
 
@@ -196,6 +214,33 @@ public class WeatherPageFragment extends Fragment
     public void onResume()
     {
         super.onResume();
+        mPrefWeather = getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
+
+        mTemperatureView = (TextView) getActivity().findViewById(R.id.temperature);
+        mDescription = (TextView) getActivity().findViewById(R.id.weather_description);
+        mPressure = (TextView) getActivity().findViewById(R.id.pressure);
+        mHumidity = (TextView) getActivity().findViewById(R.id.humidity);
+        mWindSpeed = (TextView) getActivity().findViewById(R.id.wind_speed);
+        mClouds = (TextView) getActivity().findViewById(R.id.clouds);
+
+        String temperature = mPrefWeather.getString(WEATHER_DATA_TEMPERATURE, null);
+        mTemperatureView.setText(temperature + "\u00B0");
+
+        String description = mPrefWeather.getString(WEATHER_DATA_DESCRIPTION, null);
+        mDescription.setText(description);
+
+        int humidity = mPrefWeather.getInt(WEATHER_DATA_HUMIDITY, 0);
+        mHumidity.setText(humidity + "%");
+
+        float pressure = mPrefWeather.getFloat(WEATHER_DATA_PRESSURE, 0);
+        mPressure.setText(pressure + "hpa");
+
+        float wind_speed = mPrefWeather.getFloat(WEATHER_DATA_WIND_SPEED, 0);
+        mWindSpeed.setText(wind_speed + "m/s");
+
+        int clouds = mPrefWeather.getInt(WEATHER_DATA_CLOUDS, 0);
+        mClouds.setText(clouds + "%");
+
         SharedPreferences mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
         String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sidney");
