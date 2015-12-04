@@ -1,5 +1,6 @@
 package org.asdtm.goodweather;
 
+import org.asdtm.goodweather.model.Weather;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
