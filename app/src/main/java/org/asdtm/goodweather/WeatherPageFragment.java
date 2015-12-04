@@ -266,7 +266,9 @@ public class WeatherPageFragment extends Fragment
             mLoadWeather = new BackgroundLoadWeather();
             mLoadWeather.execute(city);
         } else {
-            Toast.makeText(getActivity(), R.string.connection_not_found, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),
+                           R.string.connection_not_found,
+                           Toast.LENGTH_LONG).show();
         }
 
         TextView currentCity = (TextView) getActivity().findViewById(R.id.currentCity);
