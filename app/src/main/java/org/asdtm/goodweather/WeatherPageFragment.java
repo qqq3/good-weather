@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.asdtm.goodweather.model.Weather;
 import org.json.JSONException;
@@ -215,6 +216,11 @@ public class WeatherPageFragment extends Fragment
     public void onResume()
     {
         super.onResume();
+
+        Boolean isInternetConnection = false;
+        ConnectionDetector connectionDetector = new ConnectionDetector(getContext());
+        isInternetConnection = connectionDetector.connectToInternet();
+
         mPrefWeather = getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
 
         mTemperatureView = (TextView) getActivity().findViewById(R.id.temperature);
@@ -245,8 +251,13 @@ public class WeatherPageFragment extends Fragment
         SharedPreferences mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
         String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
-        mLoadWeather = new BackgroundLoadWeather();
-        mLoadWeather.execute(city);
+
+        if (isInternetConnection) {
+            mLoadWeather = new BackgroundLoadWeather();
+            mLoadWeather.execute(city);
+        } else {
+            Toast.makeText(getActivity(), R.string.connection_not_found, Toast.LENGTH_SHORT).show();
+        }
 
         TextView currentCity = (TextView) getActivity().findViewById(R.id.currentCity);
         currentCity.setText(city);
@@ -265,4 +276,6 @@ public class WeatherPageFragment extends Fragment
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+
+
 }
