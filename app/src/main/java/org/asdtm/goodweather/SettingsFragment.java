@@ -30,6 +30,8 @@ public class SettingsFragment extends Fragment
 
     private Toolbar mToolbar;
     private SharedPreferences mPreferences;
+    private AutoCompleteTextView mSearchCity;
+    private TextView mCurrentCity;
 
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "City";
@@ -56,12 +58,12 @@ public class SettingsFragment extends Fragment
         appCompatActivity.setSupportActionBar(mToolbar);
         appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        AutoCompleteTextView mSearchCity = (AutoCompleteTextView) v.findViewById(R.id.autoComplete_search_city);
+        mSearchCity = (AutoCompleteTextView) v.findViewById(R.id.autoComplete_search_city);
         CityAdapter cityAdapter = new CityAdapter(getActivity(), null);
         mSearchCity.setAdapter(cityAdapter);
 
-        final TextView mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
-        String city = mPreferences.getString(APP_SETTINGS_CITY, "Sidney");
+        mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
+        String city = mPreferences.getString(APP_SETTINGS_CITY, "Sydney");
         String country = mPreferences.getString(APP_SETTINGS_COUNTRY, "Australia");
         mCurrentCity.setText("Current city: " + city + ", " + country);
 
@@ -76,6 +78,8 @@ public class SettingsFragment extends Fragment
                 editor.putString(APP_SETTINGS_CITY, result.getCityName());
                 editor.putString(APP_SETTINGS_COUNTRY, result.getCountry());
                 editor.apply();
+
+
             }
         });
 
