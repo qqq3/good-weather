@@ -41,7 +41,7 @@ public class WeatherPageFragment extends Fragment
     private TextView mClouds;
     private SwipeRefreshLayout mNewRequest;
     private Toolbar mToolbar;
-
+    ConnectionDetector connectionDetector;
 
     private SharedPreferences mPrefWeather;
     final String WEATHER_DATA = "weather";
@@ -78,7 +78,6 @@ public class WeatherPageFragment extends Fragment
 
         final SharedPreferences mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
-
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "Good Weather");
@@ -123,6 +122,10 @@ public class WeatherPageFragment extends Fragment
         mWindSpeed = (TextView) v.findViewById(R.id.wind_speed);
         mClouds = (TextView) v.findViewById(R.id.clouds);
 
+        Boolean isInternetConnection = false;
+        connectionDetector = new ConnectionDetector(getContext());
+        isInternetConnection = connectionDetector.connectToInternet();
+
         mNewRequest = (SwipeRefreshLayout) v.findViewById(R.id.new_request);
         int top_to_padding = 150;
         mNewRequest.setProgressViewOffset(false, 0, top_to_padding);
@@ -130,14 +133,21 @@ public class WeatherPageFragment extends Fragment
                 R.color.swipe_green,
                 R.color.swipe_blue);
 
+        final Boolean finalIsInternetConnection = isInternetConnection;
         mNewRequest.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
             @Override
             public void onRefresh()
             {
-                String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
-                mLoadWeather = new BackgroundLoadWeather();
-                mLoadWeather.execute(city);
+                if (finalIsInternetConnection) {
+                    String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
+                    mLoadWeather = new BackgroundLoadWeather();
+                    mLoadWeather.execute(city);
+                } else {
+                    Toast.makeText(getActivity(),
+                                   R.string.connection_not_found,
+                                   Toast.LENGTH_LONG);
+                }
             }
         });
 
@@ -218,7 +228,7 @@ public class WeatherPageFragment extends Fragment
         super.onResume();
 
         Boolean isInternetConnection = false;
-        ConnectionDetector connectionDetector = new ConnectionDetector(getContext());
+        connectionDetector = new ConnectionDetector(getContext());
         isInternetConnection = connectionDetector.connectToInternet();
 
         mPrefWeather = getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
