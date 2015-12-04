@@ -3,7 +3,6 @@ package org.asdtm.goodweather;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -63,7 +62,7 @@ public class SettingsFragment extends Fragment
 
         final TextView mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
         String city = mPreferences.getString(APP_SETTINGS_CITY, "Sidney");
-        String country = mPreferences.getString(APP_SETTINGS_COUNTRY, null);
+        String country = mPreferences.getString(APP_SETTINGS_COUNTRY, "Australia");
         mCurrentCity.setText("Current city: " + city + ", " + country);
 
         mSearchCity.setOnItemClickListener(new AdapterView.OnItemClickListener()
