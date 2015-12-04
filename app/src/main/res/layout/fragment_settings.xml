@@ -17,5 +17,6 @@
         android:id="@+id/autoComplete_search_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_city_hint"/>
+        android:hint="@string/enter_city_hint"
+        android:focusableInTouchMode="true"/>
 </LinearLayout>
