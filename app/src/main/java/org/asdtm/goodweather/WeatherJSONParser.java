@@ -19,24 +19,38 @@ public class WeatherJSONParser
 
         JSONObject weatherObj = jWeatherArray.getJSONObject(0);
         //weather.currentWeather.setDescription(getString("description", weatherOdj));
-        weather.currentWeather.setDescription(weatherObj.getString("description"));
-        weather.currentWeather.setIdIcon(getString("icon", weatherObj));
+        if (weatherObj.has("description")) {
+            weather.currentWeather.setDescription(weatherObj.getString("description"));
+        }
+        if (weatherObj.has("icon")) {
+            weather.currentWeather.setIdIcon(getString("icon", weatherObj));
+        }
 
         JSONObject mainObj = jWeatherData.getJSONObject("main");
-        if (mainObj.has("temp")){
+        if (mainObj.has("temp")) {
             weather.temperature.setTemp(getFloat("temp", mainObj));
         }
         //weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
         //weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
-        weather.currentCondition.setPressure(getFloat("pressure", mainObj));
-        weather.currentCondition.setHumidity(mainObj.getInt("humidity"));
+        if (mainObj.has("pressure")) {
+            weather.currentCondition.setPressure(getFloat("pressure", mainObj));
+        }
+        if (mainObj.has("humidity")) {
+            weather.currentCondition.setHumidity(mainObj.getInt("humidity"));
+        }
 
         JSONObject windObj = jWeatherData.getJSONObject("wind");
-        weather.wind.setSpeed(getFloat("speed", windObj));
-        weather.wind.setDirection(getFloat("deg", windObj));
+        if (windObj.has("speed")) {
+            weather.wind.setSpeed(getFloat("speed", windObj));
+        }
+        if (windObj.has("deg")) {
+            weather.wind.setDirection(getFloat("deg", windObj));
+        }
 
         JSONObject cloudsObj = getObject("clouds", jWeatherData);
-        weather.cloud.setClouds(getInt("all", cloudsObj));
+        if (cloudsObj.has("all")) {
+            weather.cloud.setClouds(getInt("all", cloudsObj));
+        }
 
         return weather;
     }
