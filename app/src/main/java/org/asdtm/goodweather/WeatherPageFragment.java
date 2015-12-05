@@ -148,7 +148,7 @@ public class WeatherPageFragment extends Fragment
                 } else {
                     Toast.makeText(getActivity(),
                             R.string.connection_not_found,
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                     mNewRequest.setRefreshing(false);
                 }
             }
@@ -271,7 +271,7 @@ public class WeatherPageFragment extends Fragment
         } else {
             Toast.makeText(getActivity(),
                     R.string.connection_not_found,
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
         }
 
         TextView currentCity = (TextView) getActivity().findViewById(R.id.currentCity);
