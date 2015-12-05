@@ -37,8 +37,8 @@ public class SettingsFragment extends Fragment
     private LinearLayout mSettingsLayout;
 
     final String APP_SETTINGS = "config";
-    final String APP_SETTINGS_CITY = "City";
-    final String APP_SETTINGS_COUNTRY = "Country";
+    final String APP_SETTINGS_CITY = "city";
+    final String APP_SETTINGS_COUNTRY = "country";
 
     @Override
     public void onCreate(Bundle savedInstanceState)
