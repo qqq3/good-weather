@@ -141,7 +141,7 @@ public class WeatherPageFragment extends Fragment
             {
                 isInternetConnection = connectionDetector.connectToInternet();
 
-                String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
+                String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
                 if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
                     mLoadWeather.execute(city);
@@ -263,7 +263,7 @@ public class WeatherPageFragment extends Fragment
 
         SharedPreferences mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
-        String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "Sydney");
+        String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
 
         if (isInternetConnection) {
             mLoadWeather = new BackgroundLoadWeather();
