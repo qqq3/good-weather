@@ -54,7 +54,7 @@ public class WeatherPageFragment extends Fragment
     final String WEATHER_DATA_CLOUDS = "clouds";
 
     final String APP_SETTINGS = "config";
-    final String APP_SETTINGS_CITY = "City";
+    final String APP_SETTINGS_CITY = "city";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
