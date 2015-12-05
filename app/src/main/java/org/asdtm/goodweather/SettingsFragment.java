@@ -67,8 +67,8 @@ public class SettingsFragment extends Fragment
         mSearchCity.setAdapter(cityAdapter);
 
         mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
-        String city = mPreferences.getString(APP_SETTINGS_CITY, "Sydney");
-        String country = mPreferences.getString(APP_SETTINGS_COUNTRY, "Australia");
+        String city = mPreferences.getString(APP_SETTINGS_CITY, "London");
+        String country = mPreferences.getString(APP_SETTINGS_COUNTRY, "United Kingdom");
         mCurrentCity.setText("Current city: " + city + ", " + country);
 
         mSearchCity.setOnItemClickListener(new AdapterView.OnItemClickListener()
