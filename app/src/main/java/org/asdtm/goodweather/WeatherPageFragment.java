@@ -273,9 +273,6 @@ public class WeatherPageFragment extends Fragment
                     R.string.connection_not_found,
                     Toast.LENGTH_SHORT).show();
         }
-
-        TextView currentCity = (TextView) getActivity().findViewById(R.id.currentCity);
-        currentCity.setText(city);
         Log.i(TAG, "onResume!!!");
     }
 
