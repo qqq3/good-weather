@@ -42,20 +42,24 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/activity_vertical_margin">
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:weightSum="1">
 
                 <ImageView
                     android:id="@+id/weather_icon"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_clear_sky_01d"/>
 
                 <TextView
                     android:id="@+id/temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:fontFamily="sans-serif-light"
-                    android:gravity="center"
+                    android:gravity="top"
                     android:text="666"
                     android:textColor="@color/text_color"
                     android:textSize="70sp"/>
