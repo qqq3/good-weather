@@ -67,7 +67,7 @@
                     android:fontFamily="sans-serif-light"
                     android:gravity="center"
                     android:text="test"
-                    android:textColor="@color/text_color"
+                    android:textColor="#FFFFFF"
                     android:textSize="30sp"/>
             </LinearLayout>
 
