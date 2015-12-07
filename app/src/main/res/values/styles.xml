@@ -6,10 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/DrawerToggle</item>
     </style>
 
     <style name="tableRow">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="DrawerToggle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">#FFFFFF</item>
     </style>
 </resources>
