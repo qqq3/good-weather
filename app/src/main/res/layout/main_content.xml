@@ -24,7 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:titleTextColor="@color/textColorPrimary"
-                android:background="?attr/colorPrimary"/>
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"/>
 
             <LinearLayout
                 android:id="@+id/main_info"
