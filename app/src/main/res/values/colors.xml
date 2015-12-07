@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#00897b</color>
     <color name="colorPrimaryDark">#004d40</color>
+    <color name="textColorPrimary">#FFFFFF</color>
     <color name="colorAccent">#FF4081</color>
     <color name="windowBackground">#4db6ac</color>
     <color name="swipe_red">#df5e65</color>
