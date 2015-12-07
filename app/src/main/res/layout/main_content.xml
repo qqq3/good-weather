@@ -88,11 +88,11 @@
                         android:id="@+id/ic_wind_speed"
                         android:layout_width="30dp"
                         android:layout_height="45dp"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_weight="0.2"
                         android:adjustViewBounds="true"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_wind_speed"/>
 
                     <TextView
@@ -137,11 +137,15 @@
                     android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:id="@+id/ic_pressure"
+                        android:layout_width="30dp"
+                        android:layout_height="45dp"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_weight="0.2"/>
+                        android:layout_weight="0.2"
+                        android:adjustViewBounds="true"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_pressure"/>
 
                     <TextView
                         android:id="@+id/pressure"
