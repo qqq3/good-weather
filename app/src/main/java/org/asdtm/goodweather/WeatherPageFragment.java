@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class WeatherPageFragment extends Fragment
 {
     private static final String TAG = "WeatherPageFragment";
 
+    private ImageView mIconWeather;
     private TextView mTemperatureView;
     private TextView mDescription;
     private TextView mMinMaxTemperature;
@@ -124,6 +126,7 @@ public class WeatherPageFragment extends Fragment
             }
         });
 
+        mIconWeather = (ImageView) v.findViewById(R.id.weather_icon);
         mTemperatureView = (TextView) v.findViewById(R.id.temperature);
         mDescription = (TextView) v.findViewById(R.id.weather_description);
         mPressure = (TextView) v.findViewById(R.id.pressure);
@@ -297,6 +300,5 @@ public class WeatherPageFragment extends Fragment
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-
-
+    
 }
