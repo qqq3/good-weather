@@ -56,6 +56,7 @@ public class WeatherPageFragment extends Fragment
     final String WEATHER_DATA_HUMIDITY = "humidity";
     final String WEATHER_DATA_WIND_SPEED = "wind_speed";
     final String WEATHER_DATA_CLOUDS = "clouds";
+    final String WEATHER_DATA_ICON = "icon";
 
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "city";
