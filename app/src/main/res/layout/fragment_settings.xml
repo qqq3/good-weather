@@ -9,16 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorAccent"/>
-    <TextView
-        android:id="@+id/currentCity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"/>
-    <AutoCompleteTextView
-        android:id="@+id/autoComplete_search_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_city_hint"/>
+        android:background="@color/colorPrimary"/>
+    
+    <include layout="@layout/settings_content"/>
 </LinearLayout>
