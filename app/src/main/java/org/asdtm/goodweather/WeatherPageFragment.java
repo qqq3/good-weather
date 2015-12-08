@@ -257,6 +257,12 @@ public class WeatherPageFragment extends Fragment
         mWindSpeed = (TextView) getActivity().findViewById(R.id.wind_speed);
         mClouds = (TextView) getActivity().findViewById(R.id.clouds);
         mIconWeather = (ImageView) getActivity().findViewById(R.id.weather_icon);
+
+        String iconId = mPrefWeather.getString(WEATHER_DATA_ICON, null);
+        mIconWeather
+                .setImageResource(getResources().getIdentifier(iconId,
+                                                                "drawable",
+                                                                getActivity().getPackageName()));
         
         String temperature = mPrefWeather.getString(WEATHER_DATA_TEMPERATURE, null);
         mTemperatureView.setText(temperature + "\u00B0");
