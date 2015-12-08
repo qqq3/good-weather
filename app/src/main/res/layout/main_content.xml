@@ -100,8 +100,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="test"/>
+                        android:gravity="center_vertical"/>
                 </TableRow>
 
                 <TableRow
@@ -126,8 +125,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="test"/>
+                        android:gravity="center_vertical"/>
                 </TableRow>
 
                 <TableRow
@@ -152,8 +150,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="test"/>
+                        android:gravity="center_vertical"/>
                 </TableRow>
 
                 <TableRow
@@ -178,8 +175,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="test"/>
+                        android:gravity="center_vertical"/>
                 </TableRow>
 
             </TableLayout>
