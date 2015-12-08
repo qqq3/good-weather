@@ -209,6 +209,7 @@ public class WeatherPageFragment extends Fragment
             String setTemp = oneDigit.format(getTemp);
 
             setIconWeather(weather.currentWeather.getIdIcon());
+            editor.putString(WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
 
             mTemperatureView
                     .setText(setTemp + "\u00B0");
@@ -255,7 +256,8 @@ public class WeatherPageFragment extends Fragment
         mHumidity = (TextView) getActivity().findViewById(R.id.humidity);
         mWindSpeed = (TextView) getActivity().findViewById(R.id.wind_speed);
         mClouds = (TextView) getActivity().findViewById(R.id.clouds);
-
+        mIconWeather = (ImageView) getActivity().findViewById(R.id.weather_icon);
+        
         String temperature = mPrefWeather.getString(WEATHER_DATA_TEMPERATURE, null);
         mTemperatureView.setText(temperature + "\u00B0");
 
