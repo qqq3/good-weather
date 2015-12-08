@@ -20,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +29,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.HashMap;
 
 public class WeatherPageFragment extends Fragment
 {
@@ -126,7 +126,6 @@ public class WeatherPageFragment extends Fragment
             }
         });
 
-        mIconWeather = (ImageView) v.findViewById(R.id.weather_icon);
         mTemperatureView = (TextView) v.findViewById(R.id.temperature);
         mDescription = (TextView) v.findViewById(R.id.weather_description);
         mPressure = (TextView) v.findViewById(R.id.pressure);
@@ -207,6 +206,8 @@ public class WeatherPageFragment extends Fragment
             oneDigit.setMinimumFractionDigits(1);
             oneDigit.setMaximumFractionDigits(1);
             String setTemp = oneDigit.format(getTemp);
+
+            setIconWeather(weather.currentWeather.getIdIcon());
 
             mTemperatureView
                     .setText(setTemp + "\u00B0");
@@ -300,5 +301,38 @@ public class WeatherPageFragment extends Fragment
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-    
+
+    public String setIconWeather(String iconId)
+    {
+        mIconWeather = (ImageView) getActivity().findViewById(R.id.weather_icon);
+        HashMap<String, String> iconMap = new HashMap<String, String>();
+        iconMap.put("01d", "ic_clear_sky_01d");
+        iconMap.put("01n", "ic_clear_sky_01n");
+        iconMap.put("02d", "ic_few_clouds_02d");
+        iconMap.put("02n", "ic_few_clouds_02n");
+        iconMap.put("03d", "ic_scattered_clouds_03");
+        iconMap.put("03n", "ic_scattered_clouds_03");
+        iconMap.put("04d", "ic_broken_clouds_04");
+        iconMap.put("04n", "ic_broken_clouds_04");
+        iconMap.put("09d", "ic_shower_rain09");
+        iconMap.put("09n", "ic_shower_rain09");
+        iconMap.put("10d", "ic_rain_10d");
+        iconMap.put("10n", "ic_rain_10n");
+        iconMap.put("11d", "ic_thunderstorm_11");
+        iconMap.put("11n", "ic_thunderstorm_11");
+        iconMap.put("13d", "ic_snow_13d");
+        iconMap.put("13n", "ic_snow_13n");
+        iconMap.put("50d", "ic_mist_50");
+        iconMap.put("50n", "ic_mist_50");
+
+        String icon = null;
+        for (String iconKey : iconMap.keySet()) {
+            if (iconKey.equals(iconId)) {
+                icon = iconMap.get(iconKey);
+            }
+        }
+        mIconWeather.setImageResource(getResources().getIdentifier(icon, "drawable", getActivity().getPackageName()));
+
+        return "";
+    }
 }
