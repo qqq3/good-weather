@@ -185,9 +185,7 @@ public class WeatherPageFragment extends Fragment
             try {
                 String data = new WeatherRequest().getItems(params[0]);
                 weather = WeatherJSONParser.getWeather(data);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
             return weather;
@@ -224,11 +222,11 @@ public class WeatherPageFragment extends Fragment
             editor.putInt(WEATHER_DATA_HUMIDITY, weather.currentCondition.getHumidity());
 
             mPressure
-                    .setText(weather.currentCondition.getPressure() + "hpa");
+                    .setText(weather.currentCondition.getPressure() + " hpa");
             editor.putFloat(WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
 
             mWindSpeed
-                    .setText(weather.wind.getSpeed() + "m/s");
+                    .setText(weather.wind.getSpeed() + " m/s");
             editor.putFloat(WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
 
             mClouds
@@ -271,10 +269,10 @@ public class WeatherPageFragment extends Fragment
         mHumidity.setText(humidity + "%");
 
         float pressure = mPrefWeather.getFloat(WEATHER_DATA_PRESSURE, 0);
-        mPressure.setText(pressure + "hpa");
+        mPressure.setText(pressure + " hpa");
 
         float wind_speed = mPrefWeather.getFloat(WEATHER_DATA_WIND_SPEED, 0);
-        mWindSpeed.setText(wind_speed + "m/s");
+        mWindSpeed.setText(wind_speed + " m/s");
 
         int clouds = mPrefWeather.getInt(WEATHER_DATA_CLOUDS, 0);
         mClouds.setText(clouds + "%");
