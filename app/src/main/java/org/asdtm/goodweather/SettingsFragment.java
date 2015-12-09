@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -65,6 +66,9 @@ public class SettingsFragment extends Fragment
         mSearchCity = (AutoCompleteTextView) v.findViewById(R.id.autoComplete_search_city);
         CityAdapter cityAdapter = new CityAdapter(getActivity(), null);
         mSearchCity.setAdapter(cityAdapter);
+
+        CardView mCardCity = (CardView) v.findViewById(R.id.card_view_city);
+        mCardCity.setContentPadding(25, 15, 25, 15);
 
         mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
         String city = mPreferences.getString(APP_SETTINGS_CITY, "London");
