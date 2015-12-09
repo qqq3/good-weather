@@ -102,7 +102,10 @@ public class SettingsFragment extends Fragment
         });
 
         mTemperatureGroup = (RadioGroup) v.findViewById(R.id.temperature_radioGroup);
-        //int checkedTempUnits = mTemperatureGroup.getCheckedRadioButtonId();
+        mCelUnit = (RadioButton) v.findViewById(R.id.radioButton_celsius);
+        mFahrUnit = (RadioButton) v.findViewById(R.id.radioButton_fahrenheit);
+
+        int checkedTempUnits = mTemperatureGroup.getCheckedRadioButtonId();
 
         mTemperatureGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -115,10 +118,12 @@ public class SettingsFragment extends Fragment
                     case R.id.radioButton_celsius:
                         editor.putString(APP_SETTINGS_UNITS, "metric");
                         editor.apply();
+                        mCelUnit.setChecked(true);
                         break;
                     case R.id.radioButton_fahrenheit:
                         editor.putString(APP_SETTINGS_UNITS, "imperial");
                         editor.apply();
+                        mFahrUnit.setChecked(true);
                         break;
                 }
             }
