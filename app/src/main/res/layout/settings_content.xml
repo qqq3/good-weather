@@ -51,16 +51,20 @@
         android:textColor="@color/settings_content_color"/>
 
     <RadioGroup
+        android:id="@+id/temperature_radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/settings_content_marginBottom">
 
         <RadioButton
+            android:id="@+id/radioButton_celsius"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/unit_celsius"/>
+            android:text="@string/unit_celsius"
+            android:checked="true"/>
 
         <RadioButton
+            android:id="@+id/radioButton_fahrenheit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/unit_fahrenheit"/>
