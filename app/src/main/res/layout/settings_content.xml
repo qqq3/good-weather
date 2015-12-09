@@ -4,29 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:showIn="@layout/fragment_settings"
-    android:orientation="vertical">
+    tools:showIn="@layout/fragment_settings">
 
     <LinearLayout
         android:id="@+id/city_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:elevation="5dp"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
         <TextView
             android:id="@+id/label_currentCity"
+            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/settings_content_color"
             android:text="@string/label_current_city"
-            style="?android:listSeparatorTextViewStyle"/>
+            android:textColor="@color/settings_content_color"/>
 
         <TextView
             android:id="@+id/currentCity"
@@ -38,16 +38,35 @@
 
         <TextView
             android:id="@+id/label_choose_city"
+            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/settings_content_color"
             android:text="@string/label_current_city"
-            style="?android:listSeparatorTextViewStyle"/>
-        
+            android:textColor="@color/settings_content_color"/>
+
         <AutoCompleteTextView
             android:id="@+id/autoComplete_search_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_city_hint"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/label_temperature"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_temperature"
+            android:textColor="@color/settings_content_color"/>
     </LinearLayout>
 </LinearLayout>
