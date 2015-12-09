@@ -9,12 +9,20 @@
     tools:showIn="@layout/fragment_settings"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:id="@+id/card_view_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:elevation="5dp">
+
+        <TextView
+            android:id="@+id/label_currentCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:text="@string/label_current_city"/>
 
         <TextView
             android:id="@+id/currentCity"
@@ -28,5 +36,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_city_hint"/>
-    </android.support.v7.widget.CardView>
+    </LinearLayout>
 </LinearLayout>
