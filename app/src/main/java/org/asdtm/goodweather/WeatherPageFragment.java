@@ -60,6 +60,7 @@ public class WeatherPageFragment extends Fragment
 
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "city";
+    final String APP_SETTINGS_UNITS = "units";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -153,9 +154,11 @@ public class WeatherPageFragment extends Fragment
                 isInternetConnection = connectionDetector.connectToInternet();
 
                 String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
+                String units = mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
+
                 if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
-                    mLoadWeather.execute(city);
+                    mLoadWeather.execute(city, units);
                 } else {
                     Toast.makeText(getActivity(),
                             R.string.connection_not_found,
@@ -182,8 +185,9 @@ public class WeatherPageFragment extends Fragment
         protected Weather doInBackground(String... params)
         {
             Weather weather = new Weather();
+
             try {
-                String data = new WeatherRequest().getItems(params[0]);
+                String data = new WeatherRequest().getItems(params[0], params[1]);
                 weather = WeatherJSONParser.getWeather(data);
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
@@ -280,10 +284,11 @@ public class WeatherPageFragment extends Fragment
         SharedPreferences mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
         String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
+        String units = mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
 
         if (isInternetConnection) {
             mLoadWeather = new BackgroundLoadWeather();
-            mLoadWeather.execute(city);
+            mLoadWeather.execute(city, units);
         } else {
             Toast.makeText(getActivity(),
                     R.string.connection_not_found,
