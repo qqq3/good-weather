@@ -47,16 +47,16 @@
                     android:id="@+id/weather_icon"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:adjustViewBounds="true"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"/>
 
                 <TextView
                     android:id="@+id/temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
                     android:fontFamily="sans-serif-light"
                     android:gravity="top"
+                    android:textAlignment="center"
                     android:textColor="@color/text_color"
                     android:textSize="70sp"/>
 
@@ -73,9 +73,9 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_weight="1">
 
                 <TableRow
@@ -87,11 +87,11 @@
                         android:id="@+id/ic_wind_speed"
                         android:layout_width="30dp"
                         android:layout_height="45dp"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_weight="0.2"
                         android:adjustViewBounds="true"
-                        android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_wind_speed"/>
 
                     <TextView
@@ -137,11 +137,11 @@
                         android:id="@+id/ic_pressure"
                         android:layout_width="30dp"
                         android:layout_height="45dp"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_weight="0.2"
                         android:adjustViewBounds="true"
-                        android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_pressure"/>
 
                     <TextView
