@@ -46,6 +46,9 @@ public class SettingsFragment extends Fragment
     final String APP_SETTINGS_CITY = "city";
     final String APP_SETTINGS_COUNTRY = "country";
     final String APP_SETTINGS_UNITS = "units";
+    final String APP_SETTINGS_CELSIUS = "celsius";
+    final String APP_SETTINGS_FAHRENHEIT = "fahrenheit";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -102,8 +105,8 @@ public class SettingsFragment extends Fragment
         });
 
         mTemperatureGroup = (RadioGroup) v.findViewById(R.id.temperature_radioGroup);
-        mCelUnit = (RadioButton) v.findViewById(R.id.radioButton_celsius);
-        mFahrUnit = (RadioButton) v.findViewById(R.id.radioButton_fahrenheit);
+        mCelUnit = (RadioButton) mTemperatureGroup.findViewById(R.id.radioButton_celsius);
+        mFahrUnit = (RadioButton) mTemperatureGroup.findViewById(R.id.radioButton_fahrenheit);
 
         int checkedTempUnits = mTemperatureGroup.getCheckedRadioButtonId();
 
@@ -117,13 +120,15 @@ public class SettingsFragment extends Fragment
                 switch (checkedId) {
                     case R.id.radioButton_celsius:
                         editor.putString(APP_SETTINGS_UNITS, "metric");
+                        editor.putBoolean(APP_SETTINGS_CELSIUS, mCelUnit.isChecked());
+                        editor.putBoolean(APP_SETTINGS_FAHRENHEIT, false);
                         editor.apply();
-                        mCelUnit.setChecked(true);
                         break;
                     case R.id.radioButton_fahrenheit:
                         editor.putString(APP_SETTINGS_UNITS, "imperial");
+                        editor.putBoolean(APP_SETTINGS_FAHRENHEIT, mFahrUnit.isChecked());
+                        editor.putBoolean(APP_SETTINGS_CELSIUS, false);
                         editor.apply();
-                        mFahrUnit.setChecked(true);
                         break;
                 }
             }
@@ -234,5 +239,23 @@ public class SettingsFragment extends Fragment
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mPreferences = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+        boolean cels = mPreferences.getBoolean(APP_SETTINGS_CELSIUS, false);
+        boolean fahr = mPreferences.getBoolean(APP_SETTINGS_FAHRENHEIT, false);
+
+        mCelUnit = (RadioButton) mTemperatureGroup.findViewById(R.id.radioButton_celsius);
+        mFahrUnit = (RadioButton) mTemperatureGroup.findViewById(R.id.radioButton_fahrenheit);
+
+        if(cels) {
+            mCelUnit.toggle();
+        } else {
+            mFahrUnit.toggle();
+        }
     }
 }
