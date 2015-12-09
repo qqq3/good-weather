@@ -6,66 +6,61 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:showIn="@layout/fragment_settings">
 
-    <LinearLayout
-        android:id="@+id/city_layout"
+    <TextView
+        android:id="@+id/label_currentCity"
+        style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:text="@string/label_current_city"
+        android:textColor="@color/settings_content_color"/>
 
-        <TextView
-            android:id="@+id/label_currentCity"
-            style="?android:listSeparatorTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_current_city"
-            android:textColor="@color/settings_content_color"/>
+    <TextView
+        android:id="@+id/currentCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/settings_content_marginBottom"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
-        <TextView
-            android:id="@+id/currentCity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:focusable="true"
-            android:focusableInTouchMode="true"/>
+    <TextView
+        android:id="@+id/label_choose_city"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_current_city"
+        android:textColor="@color/settings_content_color"/>
 
-        <TextView
-            android:id="@+id/label_choose_city"
-            style="?android:listSeparatorTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_current_city"
-            android:textColor="@color/settings_content_color"/>
+    <AutoCompleteTextView
+        android:id="@+id/autoComplete_search_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_city_hint"
+        android:layout_marginBottom="@dimen/settings_content_marginBottom"/>
 
-        <AutoCompleteTextView
-            android:id="@+id/autoComplete_search_city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_city_hint"/>
+    <TextView
+        android:id="@+id/label_temperature"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_temperature"
+        android:textColor="@color/settings_content_color"/>
 
-        <TextView
-            android:id="@+id/label_temperature"
-            style="?android:listSeparatorTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_temperature"
-            android:textColor="@color/settings_content_color"/>
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RadioGroup>
-    </LinearLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/settings_content_marginBottom">
 
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
 </LinearLayout>
