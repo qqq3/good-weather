@@ -114,9 +114,12 @@ public class SettingsFragment extends Fragment
                 switch (checkedId) {
                     case R.id.radioButton_celsius:
                         editor.putString(APP_SETTINGS_UNITS, "metric");
+                        editor.apply();
                         break;
                     case R.id.radioButton_fahrenheit:
                         editor.putString(APP_SETTINGS_UNITS, "imperial");
+                        editor.apply();
+                        break;
                 }
             }
         });
