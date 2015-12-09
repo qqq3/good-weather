@@ -68,5 +68,15 @@
             android:layout_height="wrap_content"
             android:text="@string/label_temperature"
             android:textColor="@color/settings_content_color"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
     </LinearLayout>
 </LinearLayout>
