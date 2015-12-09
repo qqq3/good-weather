@@ -3,10 +3,11 @@
     <color name="colorPrimary">#00897b</color>
     <color name="colorPrimaryDark">#004d40</color>
     <color name="textColorPrimary">#FFFFFF</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#e65788</color>
     <color name="windowBackground">#4db6ac</color>
     <color name="swipe_red">#df5e65</color>
     <color name="swipe_green">#42c25e</color>
     <color name="swipe_blue">#4447da</color>
     <color name="text_color">#212121</color>
+    <color name="settings_content_color">#000000</color>
 </resources>
