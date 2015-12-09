@@ -20,6 +20,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.asdtm.goodweather.model.CitySearch;
@@ -36,10 +38,14 @@ public class SettingsFragment extends Fragment
     private AutoCompleteTextView mSearchCity;
     private TextView mCurrentCity;
     private LinearLayout mSettingsLayout;
+    private RadioGroup mTemperatureGroup;
+    private RadioButton mCelUnit;
+    private RadioButton mFahrUnit;
 
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "city";
     final String APP_SETTINGS_COUNTRY = "country";
+    final String APP_SETTINGS_UNITS = "units";
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -66,7 +72,7 @@ public class SettingsFragment extends Fragment
         mSearchCity = (AutoCompleteTextView) v.findViewById(R.id.autoComplete_search_city);
         CityAdapter cityAdapter = new CityAdapter(getActivity(), null);
         mSearchCity.setAdapter(cityAdapter);
-        
+
         mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
         String city = mPreferences.getString(APP_SETTINGS_CITY, "London");
         String country = mPreferences.getString(APP_SETTINGS_COUNTRY, "United Kingdom");
@@ -78,7 +84,7 @@ public class SettingsFragment extends Fragment
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 CitySearch result = (CitySearch) parent.getItemAtPosition(position);
-                mCurrentCity.setText("Current city: " + result);
+                mCurrentCity.setText("" + result);
                 SharedPreferences.Editor editor = mPreferences.edit();
                 editor.putString(APP_SETTINGS_CITY, result.getCityName());
                 editor.putString(APP_SETTINGS_COUNTRY, result.getCountry());
@@ -92,6 +98,22 @@ public class SettingsFragment extends Fragment
                 InputMethodManager iMM = ((InputMethodManager) getActivity()
                         .getSystemService(Context.INPUT_METHOD_SERVICE));
                 iMM.hideSoftInputFromWindow(mCurrentCity.getWindowToken(), 0);
+            }
+        });
+
+        mTemperatureGroup = (RadioGroup) v.findViewById(R.id.temperature_radioGroup);
+
+        int checkedTempUnits = mTemperatureGroup.getCheckedRadioButtonId();
+
+        mTemperatureGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                switch (checkedId) {
+                    case R.id.radioButton_celsius:
+
+                }
             }
         });
 
