@@ -66,14 +66,11 @@ public class SettingsFragment extends Fragment
         mSearchCity = (AutoCompleteTextView) v.findViewById(R.id.autoComplete_search_city);
         CityAdapter cityAdapter = new CityAdapter(getActivity(), null);
         mSearchCity.setAdapter(cityAdapter);
-
-        CardView mCardCity = (CardView) v.findViewById(R.id.card_view_city);
-        mCardCity.setContentPadding(25, 15, 25, 15);
-
+        
         mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
         String city = mPreferences.getString(APP_SETTINGS_CITY, "London");
         String country = mPreferences.getString(APP_SETTINGS_COUNTRY, "United Kingdom");
-        mCurrentCity.setText("Current city: " + city + ", " + country);
+        mCurrentCity.setText(city + ", " + country);
 
         mSearchCity.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
