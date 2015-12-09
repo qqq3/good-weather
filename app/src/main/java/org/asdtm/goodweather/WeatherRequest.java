@@ -13,7 +13,6 @@ public class WeatherRequest
     private static final String TAG = "WeatherRequest";
     private static final String ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
     private static final String APPID = "7b1eaeea7795f54d52027369812383d0";
-    private static final String UNITS = "metric";
 
     byte[] getWeatherByte(String location) throws IOException
     {
@@ -49,13 +48,13 @@ public class WeatherRequest
         return new String(getWeatherByte(url));
     }
 
-    public String getItems(String city) throws IOException
+    public String getItems(String city, String units) throws IOException
     {
 
         String url = Uri.parse(ENDPOINT).buildUpon()
                 .appendQueryParameter("q", city)
                 .appendQueryParameter("APPID", APPID)
-                .appendQueryParameter("units", UNITS)
+                .appendQueryParameter("units", units)
                 .build()
                 .toString();
         return getUrl(url);
