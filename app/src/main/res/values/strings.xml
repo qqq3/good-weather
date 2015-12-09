@@ -11,4 +11,6 @@
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
     <string name="label_temperature">Temperature</string>
+    <string name="unit_celsius">°C</string>
+    <string name="unit_fahrenheit">°F</string>
 </resources>
