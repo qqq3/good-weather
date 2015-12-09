@@ -10,4 +10,5 @@
     <color name="swipe_blue">#4447da</color>
     <color name="text_color">#212121</color>
     <color name="settings_content_color">#000000</color>
+    <color name="settings_windowBackground">#e4e2e2</color>
 </resources>
