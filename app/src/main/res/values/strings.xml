@@ -10,4 +10,5 @@
     <string name="connection_not_found">Check your internet connection</string>
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
+    <string name="label_temperature">Temperature</string>
 </resources>
