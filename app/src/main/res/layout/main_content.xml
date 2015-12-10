@@ -27,12 +27,6 @@
                 android:elevation="4dp"
                 app:titleTextColor="@color/textColorPrimary"/>
 
-            <View
-                android:id="@+id/toolbar_shadow"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="@drawable/toolbar_dropshadow"/>
-
             <LinearLayout
                 android:id="@+id/main_info"
                 android:layout_width="match_parent"
