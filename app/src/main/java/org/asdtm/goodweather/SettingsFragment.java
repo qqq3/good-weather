@@ -73,12 +73,10 @@ public class SettingsFragment extends Fragment
         appCompatActivity.setSupportActionBar(mToolbar);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(
-                    getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha, null)
-            );
+                    getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha, null));
         } else {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(
-               getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha)
-            );
+               getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
         }
         appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -256,7 +254,7 @@ public class SettingsFragment extends Fragment
     {
         super.onResume();
         mPreferences = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
-        boolean cels = mPreferences.getBoolean(APP_SETTINGS_CELSIUS, false);
+        boolean cels = mPreferences.getBoolean(APP_SETTINGS_CELSIUS, true);
         boolean fahr = mPreferences.getBoolean(APP_SETTINGS_FAHRENHEIT, false);
 
         mCelUnit = (RadioButton) mTemperatureGroup.findViewById(R.id.radioButton_celsius);
