@@ -121,6 +121,10 @@ public class WeatherPageFragment extends Fragment
                         Intent goToSettings = new Intent(getActivity(), SettingsActivity.class);
                         startActivity(goToSettings);
                         break;
+                    case R.id.nav_about:
+                        Intent goToAbout = new Intent(getActivity(), AboutActivity.class);
+                        startActivity(goToAbout);
+                        break;
                 }
 
                 mDrawerLayout.closeDrawer(GravityCompat.START);
