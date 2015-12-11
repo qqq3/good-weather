@@ -1,6 +1,7 @@
 package org.asdtm.goodweather;
 
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,17 @@ public class AboutActivity extends AppCompatActivity
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         this.setSupportActionBar(mToolbar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getSupportActionBar()
+                    .setHomeAsUpIndicator(getResources()
+                                            .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha, null));
+        } else {
+            getSupportActionBar()
+                    .setHomeAsUpIndicator(getResources()
+                                            .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
+        }
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         try {
             String versionName = getPackageManager()
