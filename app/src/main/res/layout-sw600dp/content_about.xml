@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/image_sun"
-        android:layout_width="120dp"
-        android:layout_height="120sp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/sun"/>
 
@@ -25,25 +25,27 @@
         android:fontFamily="sans-serif"
         android:text="@string/text_about"
         android:textColor="@color/text_color"
-        android:textSize="15sp"/>
+        android:textSize="25sp"/>
 
     <TextView
         android:id="@+id/data_openweathermap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_about"
-        android:layout_marginTop="15dp"
-        android:textSize="14sp"
-        android:text="@string/openweathermap_data"/>
+        android:layout_marginTop="30dp"
+        android:gravity="end"
+        android:text="@string/openweathermap_data"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/yahoo_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/data_openweathermap"
-        android:textSize="14sp"
-        android:text="@string/yahoo_data"/>
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:text="@string/yahoo_data"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/program_version_textView"
@@ -51,5 +53,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:textSize="14sp"/>
+        android:textSize="20sp"/>
 </RelativeLayout>
