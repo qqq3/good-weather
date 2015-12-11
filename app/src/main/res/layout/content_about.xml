@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/image_sun"
-        android:layout_width="150dp"
-        android:layout_height="150sp"
+        android:layout_width="120dp"
+        android:layout_height="120sp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/sun"/>
 
