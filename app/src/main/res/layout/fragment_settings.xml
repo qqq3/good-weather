@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/windowBackground">
+    android:background="@color/windowBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:elevation="4dp"/>
+        android:elevation="4dp"
+        app:titleTextColor="@color/textColorPrimary"/>
 
     <include layout="@layout/settings_content"/>
 </LinearLayout>
