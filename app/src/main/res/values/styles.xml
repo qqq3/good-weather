@@ -15,6 +15,6 @@
     </style>
 
     <style name="DrawerToggle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">#FFFFFF</item>
+        <item name="color">#f9efef</item>
     </style>
 </resources>
