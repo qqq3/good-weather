@@ -10,11 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:showIn="@layout/activity_about">
 
+
     <TextView
         android:id="@+id/text_about"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_about"/>
+        android:text="@string/text_about"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"/>
 
     <TextView
         android:id="@+id/program_version_textView"
