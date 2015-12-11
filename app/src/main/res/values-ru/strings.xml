@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Good Weather</string>
+    <string name="activity_label">О программе</string>
+    <string name="connection_not_found">Отсутсвует подключение к интернету</string>
+    <string name="enter_city_hint">Введите город</string>
+    <string name="label_choose_city">Выбрать город</string>
+    <string name="label_current_city">Текущий город</string>
+    <string name="label_temperature">Температура</string>
+    <string name="nav_menu_about">О программе</string>
+    <string name="nav_menu_faq"></string>
+    <string name="nav_menu_settings">Настройки</string>
+    <string name="openweathermap_data">Метеорологическая информация предоставлена OpenWeatherMap</string>
+    <string name="wind_speed_meters">" м/с"</string>
+    <string name="wind_speed_miles">" миля/ч"</string>
+    <string name="yahoo_data">Список городов предоставлен Yahoo! GeoPlanet</string><string name="text_about"><b>Good weather</b> - бесплатно онлайн приложение для проверки погоды.
+        С помощью приложения вы получите актуальную информацию, о погодных
+        условиях более чем в 200.000 городах. </string>
+</resources>
