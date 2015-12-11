@@ -14,4 +14,6 @@
     <string name="label_temperature">Temperature</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit">°F</string>
+    <string name="text_about">Good weather - free app for online checking weather.
+        With the app, you can check weather conditions in more then 200.000 cities. Thanks!</string>
 </resources>
