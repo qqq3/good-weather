@@ -2,6 +2,7 @@ package org.asdtm.goodweather;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
@@ -70,6 +71,15 @@ public class SettingsFragment extends Fragment
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(mToolbar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(
+                    getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha, null)
+            );
+        } else {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(
+               getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha)
+            );
+        }
         appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mSearchCity = (AutoCompleteTextView) v.findViewById(R.id.autoComplete_search_city);
