@@ -281,7 +281,7 @@ public class WeatherPageFragment extends Fragment
         String iconId = mPrefWeather.getString(WEATHER_DATA_ICON, "01n");
         setIconWeather(iconId);
 
-        String temperature = mPrefWeather.getString(WEATHER_DATA_TEMPERATURE, null);
+        String temperature = mPrefWeather.getString(WEATHER_DATA_TEMPERATURE, "0");
         mTemperatureView.setText(temperature + "\u00B0");
 
         String description = mPrefWeather.getString(WEATHER_DATA_DESCRIPTION, null);
