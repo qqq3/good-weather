@@ -21,7 +21,7 @@ public class AboutActivity extends AppCompatActivity
             String versionName = getPackageManager()
                     .getPackageInfo(getPackageName(), 0)
                     .versionName;
-            mAppVersion.setText(versionName);
+            mAppVersion.setText(getResources().getText(R.string.version_label) + versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
