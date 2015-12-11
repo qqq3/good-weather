@@ -49,6 +49,7 @@ public class WeatherPageFragment extends Fragment
     private Boolean isInternetConnection;
 
     private SharedPreferences mPrefWeather;
+    private SharedPreferences mSharedPreferences;
     final String WEATHER_DATA = "weather";
     final String WEATHER_DATA_TEMPERATURE = "temperature";
     final String WEATHER_DATA_DESCRIPTION = "description";
@@ -89,11 +90,11 @@ public class WeatherPageFragment extends Fragment
                     .setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        final SharedPreferences mSharedPreferences
+        mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "Good Weather");
+        String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setTitle(title);
@@ -205,7 +206,10 @@ public class WeatherPageFragment extends Fragment
             super.onPostExecute(weather);
             mNewRequest.setRefreshing(false);
 
-            mPrefWeather = getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
+            mSharedPreferences =
+                    getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+            mPrefWeather =
+                    getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mPrefWeather.edit();
 
             float getTemp = weather.temperature.getTemp();
@@ -233,8 +237,15 @@ public class WeatherPageFragment extends Fragment
                     .setText(weather.currentCondition.getPressure() + " hpa");
             editor.putFloat(WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
 
-            mWindSpeed
-                    .setText(weather.wind.getSpeed() + " m/s");
+            String weather_unit =
+                    mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
+
+            if (weather_unit.equals("metric")) {
+                mWindSpeed
+                        .setText(weather.wind.getSpeed() + getResources().getString(R.string.wind_speed_meters));
+            } else if (weather_unit.equals("imperial")){
+                mWindSpeed.setText(weather.wind.getSpeed() + getResources().getString(R.string.wind_speed_miles));
+            }
             editor.putFloat(WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
 
             mClouds
@@ -254,7 +265,10 @@ public class WeatherPageFragment extends Fragment
         connectionDetector = new ConnectionDetector(getContext());
         isInternetConnection = connectionDetector.connectToInternet();
 
-        mPrefWeather = getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
+        mSharedPreferences
+                = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+        mPrefWeather =
+                getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
 
         mTemperatureView = (TextView) getActivity().findViewById(R.id.temperature);
         mDescription = (TextView) getActivity().findViewById(R.id.weather_description);
@@ -279,14 +293,20 @@ public class WeatherPageFragment extends Fragment
         float pressure = mPrefWeather.getFloat(WEATHER_DATA_PRESSURE, 0);
         mPressure.setText(pressure + " hpa");
 
+        String weather_unit =
+                mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
+
         float wind_speed = mPrefWeather.getFloat(WEATHER_DATA_WIND_SPEED, 0);
-        mWindSpeed.setText(wind_speed + " m/s");
+        if (weather_unit.equals("metric")) {
+            mWindSpeed
+                    .setText(wind_speed + getResources().getString(R.string.wind_speed_meters));
+        } else if (weather_unit.equals("imperial")){
+            mWindSpeed.setText(wind_speed + getResources().getString(R.string.wind_speed_miles));
+        }
 
         int clouds = mPrefWeather.getInt(WEATHER_DATA_CLOUDS, 0);
         mClouds.setText(clouds + "%");
 
-        SharedPreferences mSharedPreferences
-                = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
         String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
         String units = mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
 
