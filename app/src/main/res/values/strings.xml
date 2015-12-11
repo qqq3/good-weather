@@ -20,4 +20,6 @@
         With help of the app, you can check weather conditions in more than 200.000 cities.
         Thanks!</string>
     <string name="version_label">v</string>
+    <string name="openweathermap_data">Weather data provided by OpenWeatherMap</string>
+    <string name="yahoo_data">Cities data provided by Yahoo! GeoPlanet</string>
 </resources>
