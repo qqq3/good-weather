@@ -17,7 +17,7 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="text_about"><b>Good weather</b> - free app for online checking weather.
-        With help of the app, you can check weather conditions in more then 200.000 cities.
+        With help of the app, you can check weather conditions in more than 200.000 cities.
         Thanks!</string>
     <string name="version_label">v</string>
 </resources>
