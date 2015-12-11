@@ -30,12 +30,21 @@
     <TextView
         android:id="@+id/data_openweathermap"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_about"
+        android:layout_marginTop="35dp"
+        android:textSize="14sp"
+        android:gravity="end"
+        android:text="@string/openweathermap_data"/>
 
     <TextView
         android:id="@+id/yahoo_data"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/data_openweathermap"
+        android:textSize="14sp"
+        android:gravity="end"
+        android:text="@string/yahoo_data"/>
 
     <TextView
         android:id="@+id/program_version_textView"
