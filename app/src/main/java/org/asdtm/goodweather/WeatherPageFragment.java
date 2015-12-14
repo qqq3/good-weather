@@ -84,12 +84,6 @@ public class WeatherPageFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fargment_main, parent, false);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getActivity()
-                    .getWindow()
-                    .setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
-
         mSharedPreferences
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
 
