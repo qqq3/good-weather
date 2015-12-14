@@ -8,6 +8,7 @@
     <string name="activity_label">About</string>
     <string name="nav_menu_faq">FAQ</string>
     <string name="nav_menu_about">About</string>
+    <string name="nav_feedback">Feedback</string>
     <string name="connection_not_found">Check your internet connection</string>
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
