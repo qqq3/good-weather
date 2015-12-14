@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nav_settings"
-          android:icon="@drawable/ic_menu_settings"
-          android:title="@string/nav_menu_settings"/>
-    <item android:id="@+id/nav_feedback"
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/nav_menu_settings"/>
+    </group>
+    <group android:checkableBehavior="none"
+        android:id="@+id/nav_menu_communication">
+        <item
+            android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_feedback"
-          android:title="@string/nav_feedback"/>
-    <item android:id="@+id/nav_about"
-          android:icon="@drawable/ic_menu_info"
-          android:title="@string/nav_menu_about"/>
+            android:title="@string/nav_feedback"/>
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_info"
+            android:title="@string/nav_menu_about"/>
+    </group>
 </menu>
