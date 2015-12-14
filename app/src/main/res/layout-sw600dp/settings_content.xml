@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_current_city"
+        android:textSize="25sp"
         android:textColor="@color/settings_content_color"/>
 
     <TextView
@@ -25,6 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/settings_content_marginBottom"
         android:focusable="true"
+        android:textSize="20sp"
+        android:text="dasdas"
         android:focusableInTouchMode="true"/>
 
     <TextView
@@ -33,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_choose_city"
+        android:textSize="25sp"
         android:textColor="@color/settings_content_color"/>
 
     <AutoCompleteTextView
@@ -40,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_city_hint"
+        android:textSize="20sp"
         android:layout_marginBottom="@dimen/settings_content_marginBottom"/>
 
     <TextView
@@ -48,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_temperature"
+        android:textSize="25sp"
         android:textColor="@color/settings_content_color"/>
 
     <RadioGroup
@@ -60,12 +66,14 @@
             android:id="@+id/radioButton_celsius"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:text="@string/unit_celsius"/>
 
         <RadioButton
             android:id="@+id/radioButton_fahrenheit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:text="@string/unit_fahrenheit"/>
     </RadioGroup>
 </LinearLayout>
