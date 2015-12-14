@@ -120,6 +120,21 @@ public class WeatherPageFragment extends Fragment
                         Intent goToAbout = new Intent(getActivity(), AboutActivity.class);
                         startActivity(goToAbout);
                         break;
+                    case R.id.nav_feedback:
+                        Intent sendMessage = new Intent(Intent.ACTION_SEND);
+                        sendMessage.setType("message/rfc822");
+                        sendMessage.putExtra(Intent.EXTRA_EMAIL,
+                                new String[] {getResources().getString(R.string.feedback_email)});
+                        sendMessage.putExtra(Intent.EXTRA_TEXT,
+                                            getResources().getString(R.string.feedback_text));
+                        try {
+                            startActivity(Intent.createChooser(sendMessage, "Send feedback"));
+                        } catch (android.content.ActivityNotFoundException e) {
+                            Toast.makeText(getActivity(),
+                                            "Communication app not found",
+                                            Toast.LENGTH_SHORT).show();
+                        }
+                        break;
                 }
 
                 mDrawerLayout.closeDrawer(GravityCompat.START);
