@@ -125,8 +125,6 @@ public class WeatherPageFragment extends Fragment
                         sendMessage.setType("message/rfc822");
                         sendMessage.putExtra(Intent.EXTRA_EMAIL,
                                 new String[] {getResources().getString(R.string.feedback_email)});
-                        sendMessage.putExtra(Intent.EXTRA_TEXT,
-                                            getResources().getString(R.string.feedback_text));
                         try {
                             startActivity(Intent.createChooser(sendMessage, "Send feedback"));
                         } catch (android.content.ActivityNotFoundException e) {
