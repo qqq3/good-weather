@@ -23,4 +23,6 @@
     <string name="version_label">v</string>
     <string name="openweathermap_data">Weather data provided by OpenWeatherMap</string>
     <string name="yahoo_data">Cities data provided by Yahoo! GeoPlanet</string>
+    <string name="feedback_email">asdtm.mobile@gmail.com</string>
+    <string name="feedback_text">\n ————\n Regards, AsdTm</string>
 </resources>
