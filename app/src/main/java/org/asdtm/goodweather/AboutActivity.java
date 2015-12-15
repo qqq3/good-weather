@@ -46,14 +46,14 @@ public class AboutActivity extends AppCompatActivity
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        try {
+        /* try {
             String versionName = getPackageManager()
                     .getPackageInfo(getPackageName(), 0)
                     .versionName;
             mAppVersion.setText(getResources().getText(R.string.version_label) + versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-        }
+        } */
     }
 
     @Override
