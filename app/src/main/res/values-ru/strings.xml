@@ -12,9 +12,11 @@
     <string name="nav_menu_settings">Настройки</string>
     <string name="openweathermap_data">Метеорологическая информация предоставлена OpenWeatherMap</string>
     <string name="wind_speed_meters">" м/с"</string>
-    <string name="wind_speed_miles">" миля/ч"</string>
+    <string name="wind_speed_miles">" м/ч"</string>
     <string name="yahoo_data">Список городов предоставлен Yahoo! GeoPlanet</string>
     <string name="text_about"><b>Good weather</b> - бесплатное онлайн приложение для проверки погоды.
         С помощью приложения вы получите актуальную информацию, о погодных
         условиях более чем в 200.000 городах. </string>
+    <string name="nav_feedback">Обратная связь</string>
+    <string name="version_label">в</string>
 </resources>
