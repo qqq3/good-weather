@@ -1,71 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:showIn="@layout/fragment_settings">
 
-    <TextView
-        android:id="@+id/label_currentCity"
-        style="?android:listSeparatorTextViewStyle"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_current_city"
-        android:textColor="@color/settings_content_color"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/currentCity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/settings_content_marginBottom"
-        android:focusable="true"
-        android:focusableInTouchMode="true"/>
-
-    <TextView
-        android:id="@+id/label_choose_city"
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_choose_city"
-        android:textColor="@color/settings_content_color"/>
-
-    <AutoCompleteTextView
-        android:id="@+id/autoComplete_search_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_city_hint"
-        android:layout_marginBottom="@dimen/settings_content_marginBottom"/>
-
-    <TextView
-        android:id="@+id/label_temperature"
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_temperature"
-        android:textColor="@color/settings_content_color"/>
-
-    <RadioGroup
-        android:id="@+id/temperature_radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/settings_content_marginBottom">
-
-        <RadioButton
-            android:id="@+id/radioButton_celsius"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/label_currentCity"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/unit_celsius"/>
+            android:text="@string/label_current_city"
+            android:textColor="@color/settings_content_color"/>
 
-        <RadioButton
-            android:id="@+id/radioButton_fahrenheit"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/currentCity"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/unit_fahrenheit"/>
-    </RadioGroup>
-</LinearLayout>
+            android:layout_marginBottom="@dimen/settings_content_marginBottom"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
+
+        <TextView
+            android:id="@+id/label_choose_city"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_choose_city"
+            android:textColor="@color/settings_content_color"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/autoComplete_search_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/settings_content_marginBottom"
+            android:hint="@string/enter_city_hint"/>
+
+        <TextView
+            android:id="@+id/label_temperature"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_temperature"
+            android:textColor="@color/settings_content_color"/>
+
+        <RadioGroup
+            android:id="@+id/temperature_radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/settings_content_marginBottom">
+
+            <RadioButton
+                android:id="@+id/radioButton_celsius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unit_celsius"/>
+
+            <RadioButton
+                android:id="@+id/radioButton_fahrenheit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unit_fahrenheit"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"/>
+</RelativeLayout>
