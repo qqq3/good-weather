@@ -9,6 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class AboutActivity extends AppCompatActivity
 {
     private TextView mAppVersion;
@@ -22,6 +25,13 @@ public class AboutActivity extends AppCompatActivity
 
         mAppVersion = (TextView) findViewById(R.id.program_version_textView);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+
+        AdRequest mAdRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("BABC04D75F37693A3A243EA37AF6DE5F")
+                .build();
+        mAdView.loadAd(mAdRequest);
 
         this.setSupportActionBar(mToolbar);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
