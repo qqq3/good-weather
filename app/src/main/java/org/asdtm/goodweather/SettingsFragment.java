@@ -25,6 +25,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import org.asdtm.goodweather.model.CitySearch;
 
 import java.util.ArrayList;
@@ -68,6 +71,13 @@ public class SettingsFragment extends Fragment
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         mSettingsLayout = (LinearLayout) v.findViewById(R.id.settings);
+        AdView mAdView = (AdView) v.findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("BABC04D75F37693A3A243EA37AF6DE5F")
+                .build();
+        mAdView.loadAd(adRequest);
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(mToolbar);
