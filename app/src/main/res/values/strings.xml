@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Good Weather</string>
     <string name="enter_city_hint">Enter city</string>
-    <string name="temperature_degree">\u00B0</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="temperature_degree" translatable="false">\u00B0</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_menu_settings">Settings</string>
     <string name="activity_label">About</string>
     <string name="nav_menu_faq">FAQ</string>
@@ -15,14 +15,13 @@
     <string name="label_temperature">Temperature</string>
     <string name="wind_speed_meters">" m/s"</string>
     <string name="wind_speed_miles">" m/h"</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_fahrenheit">°F</string>
+    <string name="unit_celsius" translatable="false">°C</string>
+    <string name="unit_fahrenheit" translatable="false">°F</string>
     <string name="text_about"><b>Good weather</b> - free app for online checking weather.
         With help of the app, you can check weather conditions in more than 200.000 cities.
         Thanks!</string>
     <string name="version_label">v</string>
     <string name="openweathermap_data">Weather data provided by OpenWeatherMap</string>
     <string name="yahoo_data">Cities data provided by Yahoo! GeoPlanet</string>
-    <string name="feedback_email">asdtm.mobile@gmail.com</string>
-    <string name="feedback_text">\n ————\n Regards, AsdTm</string>
+    <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
 </resources>
