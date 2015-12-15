@@ -74,8 +74,6 @@ public class SettingsFragment extends Fragment
         AdView mAdView = (AdView) v.findViewById(R.id.adView);
 
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("BABC04D75F37693A3A243EA37AF6DE5F")
                 .build();
         mAdView.loadAd(adRequest);
 
