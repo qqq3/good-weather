@@ -8,7 +8,6 @@
     <string name="label_current_city">Текущий город</string>
     <string name="label_temperature">Температура</string>
     <string name="nav_menu_about">О программе</string>
-    <string name="nav_menu_faq"></string>
     <string name="nav_menu_settings">Настройки</string>
     <string name="openweathermap_data">Метеорологическая информация предоставлена OpenWeatherMap</string>
     <string name="wind_speed_meters">" м/с"</string>
@@ -18,5 +17,5 @@
         С помощью приложения вы получите актуальную информацию, о погодных
         условиях более чем в 200.000 городах. </string>
     <string name="nav_feedback">Обратная связь</string>
-    <string name="version_label">в</string>
+    <string name="version_label">"версия "</string>
 </resources>
