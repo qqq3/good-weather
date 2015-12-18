@@ -4,11 +4,11 @@ public class CitySearch
 {
     private String mCityName;
     private String mCountry;
-    private float mLatitude;
-    private float mLongitude;
+    private String mLatitude;
+    private String mLongitude;
 
     public CitySearch(){}
-    public CitySearch(String cityName, String country, float latitude, float longitude)
+    public CitySearch(String cityName, String country, String latitude, String longitude)
     {
         mCityName = cityName;
         mCountry = country;
@@ -36,22 +36,22 @@ public class CitySearch
         mCountry = country;
     }
 
-    public float getLatitude()
+    public String getLatitude()
     {
         return mLatitude;
     }
 
-    public void setLatitude(float latitude)
+    public void setLatitude(String latitude)
     {
         mLatitude = latitude;
     }
 
-    public float getLongitude()
+    public String getLongitude()
     {
         return mLongitude;
     }
 
-    public void setLongitude(float longitude)
+    public void setLongitude(String longitude)
     {
         mLongitude = longitude;
     }
