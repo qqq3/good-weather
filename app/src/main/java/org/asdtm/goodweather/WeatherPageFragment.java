@@ -17,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +78,9 @@ public class WeatherPageFragment extends Fragment
         super.onCreate(savedInstanceState);
         MainActivity.stateFragment = "WeatherPageFragment";
 
+
         Log.i(TAG, "onCreate!!!");
+        setHasOptionsMenu(true);
         // Save fragment
         setRetainInstance(true);
     }
@@ -378,5 +382,13 @@ public class WeatherPageFragment extends Fragment
         mIconWeather.setImageResource(getResources().getIdentifier(icon, "drawable", getActivity().getPackageName()));
 
         return "";
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.toolbar_menu, menu);
+
     }
 }
