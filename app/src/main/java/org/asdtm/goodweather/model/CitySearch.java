@@ -59,6 +59,6 @@ public class CitySearch
     @Override
     public String toString()
     {
-        return mCityName + ", " + mCountry;
+        return mCityName;
     }
 }
