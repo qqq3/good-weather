@@ -62,6 +62,8 @@ public class WeatherPageFragment extends Fragment
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "city";
     final String APP_SETTINGS_UNITS = "units";
+    final String APP_SETTINGS_LATITUDE = "latitude";
+    final String APP_SETTINGS_LONGITUDE = "longitude";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -165,12 +167,13 @@ public class WeatherPageFragment extends Fragment
             {
                 isInternetConnection = connectionDetector.connectToInternet();
 
-                String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
+                String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
+                String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
                 String units = mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
 
                 if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
-                    mLoadWeather.execute(city, units);
+                    mLoadWeather.execute(latitude, longitude, units);
                 } else {
                     Toast.makeText(getActivity(),
                             R.string.connection_not_found,
