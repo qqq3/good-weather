@@ -1,7 +1,5 @@
 package org.asdtm.goodweather;
 
-import android.util.Log;
-
 import org.asdtm.goodweather.model.CitySearch;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -11,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +53,12 @@ public class YahooParser
                     } else if ("country".equals(currentTag)) {
                         assert citySearch != null;
                         citySearch.setCountry(pullParser.getText());
+                    } else if ("latitude".equals(currentTag)) {
+                        assert citySearch != null;
+                        citySearch.setLatitude(pullParser.getText());
+                    } else if ("longitude".equals(currentTag)) {
+                        assert citySearch != null;
+                        citySearch.setLongitude(pullParser.getText());
                     }
                 } else if (event == XmlPullParser.END_TAG) {
                     if ("place".equals(tagName)) {
@@ -65,12 +68,19 @@ public class YahooParser
 
                 event = pullParser.next();
             }
-        } catch (IOException | XmlPullParserException e) {
+        } catch (IOException |
+                XmlPullParserException e
+                )
+
+        {
             e.printStackTrace();
-        } finally {
+        } finally
+
+        {
             assert whereConnection != null;
             whereConnection.disconnect();
         }
+
         return resultSearch;
     }
 
