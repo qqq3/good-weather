@@ -202,7 +202,7 @@ public class WeatherPageFragment extends Fragment
             Weather weather = new Weather();
 
             try {
-                String data = new WeatherRequest().getItems(params[0], params[1]);
+                String data = new WeatherRequest().getItems(params[0], params[1], params[2]);
                 weather = WeatherJSONParser.getWeather(data);
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
@@ -317,12 +317,13 @@ public class WeatherPageFragment extends Fragment
         int clouds = mPrefWeather.getInt(WEATHER_DATA_CLOUDS, 0);
         mClouds.setText(clouds + "%");
 
-        String city = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
+        String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
+        String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
         String units = mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
 
         if (isInternetConnection) {
             mLoadWeather = new BackgroundLoadWeather();
-            mLoadWeather.execute(city, units);
+            mLoadWeather.execute(latitude, longitude, units);
         } else {
             Toast.makeText(getActivity(),
                     R.string.connection_not_found,
