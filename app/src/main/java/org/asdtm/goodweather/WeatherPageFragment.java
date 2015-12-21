@@ -485,5 +485,7 @@ public class WeatherPageFragment extends Fragment
                 dialog.cancel();
             }
         });
+
+        settingsAlert.show();
     }
 }
