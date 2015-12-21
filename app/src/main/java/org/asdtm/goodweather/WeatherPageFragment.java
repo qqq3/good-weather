@@ -452,5 +452,12 @@ public class WeatherPageFragment extends Fragment
 
         }
     };
-    
+
+    public void showSettingsAlert()
+    {
+        AlertDialog.Builder settingsAlert = new AlertDialog.Builder(getContext());
+        settingsAlert.setTitle(R.string.alertDialog_gps_title);
+        settingsAlert.setMessage(R.string.alertDialog_gps_message);
+
+    }
 }
