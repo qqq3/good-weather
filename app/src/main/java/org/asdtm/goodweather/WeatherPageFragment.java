@@ -475,5 +475,15 @@ public class WeatherPageFragment extends Fragment
                     startActivity(goToSettings);
                 }
         });
+
+        settingsAlert.setNegativeButton(R.string.alertDialog_gps_negativeButton,
+                                        new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.cancel();
+            }
+        });
     }
 }
