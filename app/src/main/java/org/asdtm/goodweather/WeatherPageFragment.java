@@ -437,8 +437,17 @@ public class WeatherPageFragment extends Fragment
         @Override
         public void onLocationChanged(Location location)
         {
+            mSharedPreferences = getActivity().getSharedPreferences(APP_SETTINGS,
+                                                                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+
             String latitude = String.format("%1$.2f", location.getLatitude());
             String longitude = String.format("%1$.2f", location.getLongitude());
+
+            editor.putString(APP_SETTINGS_LATITUDE, latitude);
+            editor.putString(APP_SETTINGS_LONGITUDE, longitude);
+            editor.apply();
+
             Log.d(TAG, "Current location: " + latitude + ";" + longitude);
 
             locationManager.removeUpdates(mLocationListener);
