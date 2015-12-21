@@ -54,6 +54,7 @@ public class WeatherPageFragment extends Fragment
     private TextView mWindSpeed;
     private TextView mPressure;
     private TextView mClouds;
+    private String mTitle;
     private SwipeRefreshLayout mNewRequest;
     private Toolbar mToolbar;
     private ConnectionDetector connectionDetector;
@@ -238,6 +239,8 @@ public class WeatherPageFragment extends Fragment
 
             mSharedPreferences =
                     getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+            SharedPreferences.Editor configEditor = mSharedPreferences.edit();
+
             mPrefWeather =
                     getActivity().getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mPrefWeather.edit();
@@ -283,8 +286,12 @@ public class WeatherPageFragment extends Fragment
             mClouds
                     .setText(weather.cloud.getClouds() + "%");
             editor.putInt(WEATHER_DATA_CLOUDS, weather.cloud.getClouds());
+            
+            getActivity().setTitle(weather.location.getCityName());
+            configEditor.putString(APP_SETTINGS_CITY, weather.location.getCityName());
 
             editor.apply();
+            configEditor.apply();
         }
     }
 
@@ -338,6 +345,10 @@ public class WeatherPageFragment extends Fragment
 
         int clouds = mPrefWeather.getInt(WEATHER_DATA_CLOUDS, 0);
         mClouds.setText(clouds + "%");
+
+        mTitle = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
+        getActivity().setTitle(mTitle);
+
 
         String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
         String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
