@@ -456,9 +456,9 @@ public class WeatherPageFragment extends Fragment
             }
             locationManager.removeUpdates(mLocationListener);
 
-            /* isInternetConnection = false;
+            isInternetConnection = false;
             connectionDetector = new ConnectionDetector(getContext());
-            isInternetConnection = connectionDetector.connectToInternet();*/
+            isInternetConnection = connectionDetector.connectToInternet();
 
             mSharedPreferences = getActivity().getSharedPreferences(APP_SETTINGS,
                                                                     Context.MODE_PRIVATE);
@@ -466,6 +466,15 @@ public class WeatherPageFragment extends Fragment
             editor.putString(APP_SETTINGS_LATITUDE, latitude);
             editor.putString(APP_SETTINGS_LONGITUDE, longitude);
             editor.apply();
+
+            if (isInternetConnection) {
+                mLoadWeather = new BackgroundLoadWeather();
+                mLoadWeather.execute(latitude, longitude, "metric");
+            } else {
+                Toast.makeText(getActivity(),
+                               R.string.connection_not_found,
+                               Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
