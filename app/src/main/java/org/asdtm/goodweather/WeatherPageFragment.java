@@ -424,7 +424,7 @@ public class WeatherPageFragment extends Fragment
                                                            0,
                                                            mLocationListener);
                 } else {
-
+                    showSettingsAlert();
                 }
         }
 
