@@ -2,6 +2,7 @@ package org.asdtm.goodweather.model;
 
 public class Weather
 {
+    public CitySearch location;
     public Temperature temperature = new Temperature();
     public Wind wind = new Wind();
     public CurrentWeather currentWeather = new CurrentWeather();
