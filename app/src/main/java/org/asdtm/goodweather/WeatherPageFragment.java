@@ -414,11 +414,12 @@ public class WeatherPageFragment extends Fragment
 
         switch (item.getItemId()) {
             case R.id.menu_find_location:
-                if (isGPSEnabled || isNetworkEnabled) {
+                if (isGPSEnabled) {
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                                                            0,
                                                            0,
                                                            mLocationListener);
+                } else if (isNetworkEnabled){
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
                                                            0,
                                                            0,
@@ -436,8 +437,11 @@ public class WeatherPageFragment extends Fragment
         @Override
         public void onLocationChanged(Location location)
         {
-            Toast.makeText(getActivity(), "Current lat: " + location.getLatitude(),
-                           Toast.LENGTH_SHORT).show();
+            String latitude = String.format("%1$.2f", location.getLatitude());
+            String longitude = String.format("%1$.2f", location.getLongitude());
+            Log.d(TAG, "Current location: " + latitude + ";" + longitude);
+
+            locationManager.removeUpdates(mLocationListener);
         }
 
         @Override
