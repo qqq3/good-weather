@@ -1,17 +1,18 @@
 package org.asdtm.goodweather;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -112,10 +113,10 @@ public class WeatherPageFragment extends Fragment
 
         mDrawerLayout = (DrawerLayout) v.findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(),
-                mDrawerLayout,
-                mToolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
+                                                  mDrawerLayout,
+                                                  mToolbar,
+                                                  R.string.navigation_drawer_open,
+                                                  R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
@@ -140,13 +141,14 @@ public class WeatherPageFragment extends Fragment
                         Intent sendMessage = new Intent(Intent.ACTION_SEND);
                         sendMessage.setType("message/rfc822");
                         sendMessage.putExtra(Intent.EXTRA_EMAIL,
-                                new String[] {getResources().getString(R.string.feedback_email)});
+                                             new String[]{getResources().getString(
+                                                     R.string.feedback_email)});
                         try {
                             startActivity(Intent.createChooser(sendMessage, "Send feedback"));
                         } catch (android.content.ActivityNotFoundException e) {
                             Toast.makeText(getActivity(),
-                                            "Communication app not found",
-                                            Toast.LENGTH_SHORT).show();
+                                           "Communication app not found",
+                                           Toast.LENGTH_SHORT).show();
                         }
                         break;
                 }
@@ -170,8 +172,8 @@ public class WeatherPageFragment extends Fragment
         int top_to_padding = 150;
         mNewRequest.setProgressViewOffset(false, 0, top_to_padding);
         mNewRequest.setColorSchemeResources(R.color.swipe_red,
-                R.color.swipe_green,
-                R.color.swipe_blue);
+                                            R.color.swipe_green,
+                                            R.color.swipe_blue);
 
 
         mNewRequest.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
@@ -190,8 +192,8 @@ public class WeatherPageFragment extends Fragment
                     mLoadWeather.execute(latitude, longitude, units);
                 } else {
                     Toast.makeText(getActivity(),
-                            R.string.connection_not_found,
-                            Toast.LENGTH_SHORT).show();
+                                   R.string.connection_not_found,
+                                   Toast.LENGTH_SHORT).show();
                     mNewRequest.setRefreshing(false);
                 }
             }
@@ -266,9 +268,11 @@ public class WeatherPageFragment extends Fragment
 
             if (weather_unit.equals("metric")) {
                 mWindSpeed
-                        .setText(weather.wind.getSpeed() + getResources().getString(R.string.wind_speed_meters));
-            } else if (weather_unit.equals("imperial")){
-                mWindSpeed.setText(weather.wind.getSpeed() + getResources().getString(R.string.wind_speed_miles));
+                        .setText(weather.wind.getSpeed() + getResources().getString(
+                                R.string.wind_speed_meters));
+            } else if (weather_unit.equals("imperial")) {
+                mWindSpeed.setText(weather.wind.getSpeed() + getResources().getString(
+                        R.string.wind_speed_miles));
             }
             editor.putFloat(WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
 
@@ -324,7 +328,7 @@ public class WeatherPageFragment extends Fragment
         if (weather_unit.equals("metric")) {
             mWindSpeed
                     .setText(wind_speed + getResources().getString(R.string.wind_speed_meters));
-        } else if (weather_unit.equals("imperial")){
+        } else if (weather_unit.equals("imperial")) {
             mWindSpeed.setText(wind_speed + getResources().getString(R.string.wind_speed_miles));
         }
 
@@ -340,8 +344,8 @@ public class WeatherPageFragment extends Fragment
             mLoadWeather.execute(latitude, longitude, units);
         } else {
             Toast.makeText(getActivity(),
-                    R.string.connection_not_found,
-                    Toast.LENGTH_SHORT).show();
+                           R.string.connection_not_found,
+                           Toast.LENGTH_SHORT).show();
         }
         Log.i(TAG, "onResume!!!");
     }
@@ -389,7 +393,8 @@ public class WeatherPageFragment extends Fragment
                 icon = iconMap.get(iconKey);
             }
         }
-        mIconWeather.setImageResource(getResources().getIdentifier(icon, "drawable", getActivity().getPackageName()));
+        mIconWeather.setImageResource(
+                getResources().getIdentifier(icon, "drawable", getActivity().getPackageName()));
 
         return "";
     }
@@ -431,7 +436,8 @@ public class WeatherPageFragment extends Fragment
         @Override
         public void onLocationChanged(Location location)
         {
-            Toast.makeText(getActivity(), "Current lat: " + location.getLatitude(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Current lat: " + location.getLatitude(),
+                           Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -459,5 +465,15 @@ public class WeatherPageFragment extends Fragment
         settingsAlert.setTitle(R.string.alertDialog_gps_title);
         settingsAlert.setMessage(R.string.alertDialog_gps_message);
 
+        settingsAlert.setPositiveButton(R.string.alertDialog_gps_positiveButton,
+                                        new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+                {
+                    Intent goToSettings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(goToSettings);
+                }
+        });
     }
 }
