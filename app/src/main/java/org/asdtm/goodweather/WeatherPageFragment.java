@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,6 +16,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -50,6 +54,10 @@ public class WeatherPageFragment extends Fragment
     private ConnectionDetector connectionDetector;
     private Boolean isInternetConnection;
 
+    private boolean isGPSEnabled = false;
+    private boolean isNetworkEnabled = false;
+    LocationManager locationManager;
+
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
     final String WEATHER_DATA = "weather";
@@ -78,11 +86,13 @@ public class WeatherPageFragment extends Fragment
         super.onCreate(savedInstanceState);
         MainActivity.stateFragment = "WeatherPageFragment";
 
-
         Log.i(TAG, "onCreate!!!");
         setHasOptionsMenu(true);
         // Save fragment
         setRetainInstance(true);
+
+        locationManager =
+                (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
     }
 
     @Override
@@ -389,6 +399,58 @@ public class WeatherPageFragment extends Fragment
     {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.toolbar_menu, menu);
-
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        switch (item.getItemId()) {
+            case R.id.menu_find_location:
+                if (isGPSEnabled || isNetworkEnabled) {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                                                           0,
+                                                           0,
+                                                           mLocationListener);
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                                                           0,
+                                                           0,
+                                                           mLocationListener);
+                } else {
+
+                }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private LocationListener mLocationListener = new LocationListener()
+    {
+        @Override
+        public void onLocationChanged(Location location)
+        {
+            Toast.makeText(getActivity(), "Current lat: " + location.getLatitude(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras)
+        {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider)
+        {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider)
+        {
+
+        }
+    };
+    
 }
