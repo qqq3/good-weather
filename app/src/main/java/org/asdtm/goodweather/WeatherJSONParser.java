@@ -1,5 +1,6 @@
 package org.asdtm.goodweather;
 
+import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.model.Weather;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,6 +13,7 @@ public class WeatherJSONParser
     public static Weather getWeather(String data) throws JSONException
     {
         Weather weather = new Weather();
+        CitySearch location = new CitySearch();
 
         JSONObject jWeatherData = new JSONObject(data);
 
@@ -51,6 +53,9 @@ public class WeatherJSONParser
         if (cloudsObj.has("all")) {
             weather.cloud.setClouds(getInt("all", cloudsObj));
         }
+
+        location.setCityName(jWeatherData.getString("name"));
+        weather.location = location;
 
         return weather;
     }
