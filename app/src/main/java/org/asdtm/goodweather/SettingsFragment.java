@@ -48,6 +48,7 @@ public class SettingsFragment extends Fragment
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "city";
     final String APP_SETTINGS_COUNTRY = "country";
+    final String APP_SETTINGS_COUNTRY_CODE = "country_code";
     final String APP_SETTINGS_UNITS = "units";
     final String APP_SETTINGS_CELSIUS = "celsius";
     final String APP_SETTINGS_FAHRENHEIT = "fahrenheit";
@@ -94,8 +95,8 @@ public class SettingsFragment extends Fragment
 
         mCurrentCity = (TextView) v.findViewById(R.id.currentCity);
         String city = mPreferences.getString(APP_SETTINGS_CITY, "London");
-        String country = mPreferences.getString(APP_SETTINGS_COUNTRY, "United Kingdom");
-        mCurrentCity.setText(city);
+        String country_code = mPreferences.getString(APP_SETTINGS_COUNTRY_CODE, "GB");
+        mCurrentCity.setText(city + " (" + country_code + ")");
 
         mSearchCity.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -107,6 +108,7 @@ public class SettingsFragment extends Fragment
                 SharedPreferences.Editor editor = mPreferences.edit();
                 editor.putString(APP_SETTINGS_CITY, result.getCityName());
                 editor.putString(APP_SETTINGS_COUNTRY, result.getCountry());
+                editor.putString(APP_SETTINGS_COUNTRY_CODE, result.getCountryCode());
                 editor.putString(APP_SETTINGS_LATITUDE, result.getLatitude());
                 editor.putString(APP_SETTINGS_LONGITUDE, result.getLongitude());
                 editor.apply();
