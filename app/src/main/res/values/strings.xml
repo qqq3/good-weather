@@ -29,4 +29,7 @@
         Do you want to go to settings menu?</string>
     <string name="alertDialog_gps_positiveButton">Settings</string>
     <string name="alertDialog_gps_negativeButton">Cancel</string>
+    <string name="progressDialog_gps_locate">Find current location</string>
+
+    <string name="banner_ad_unit_id">sda</string>
 </resources>
