@@ -54,7 +54,9 @@ public class WeatherJSONParser
             weather.cloud.setClouds(getInt("all", cloudsObj));
         }
 
-        location.setCityName(jWeatherData.getString("name"));
+        if (jWeatherData.has("name")) {
+            location.setCityName(jWeatherData.getString("name"));
+        }
         weather.location = location;
 
         return weather;
