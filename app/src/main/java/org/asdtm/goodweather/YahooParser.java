@@ -1,5 +1,7 @@
 package org.asdtm.goodweather;
 
+import android.util.Log;
+
 import org.asdtm.goodweather.model.CitySearch;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -44,13 +46,15 @@ public class YahooParser
                 if (event == XmlPullParser.START_TAG) {
                     if (tagName.equals("place")) {
                         citySearch = new CitySearch();
+                    } else if (tagName.equalsIgnoreCase("country")) {
+                        citySearch.setCountryCode(pullParser.getAttributeValue(null, "code"));
                     }
                     currentTag = tagName;
                 } else if (event == XmlPullParser.TEXT) {
                     if ("name".equals(currentTag)) {
                         assert citySearch != null;
                         citySearch.setCityName(pullParser.getText());
-                    } else if ("country".equals(currentTag)) {
+                    } else if (currentTag.equalsIgnoreCase("country")) {
                         assert citySearch != null;
                         citySearch.setCountry(pullParser.getText());
                     } else if (currentTag.equalsIgnoreCase("latitude")) {
