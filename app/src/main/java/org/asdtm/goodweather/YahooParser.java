@@ -53,12 +53,16 @@ public class YahooParser
                     } else if ("country".equals(currentTag)) {
                         assert citySearch != null;
                         citySearch.setCountry(pullParser.getText());
-                    } else if ("latitude".equals(currentTag)) {
-                        assert citySearch != null;
-                        citySearch.setLatitude(pullParser.getText());
-                    } else if ("longitude".equals(currentTag)) {
-                        assert citySearch != null;
-                        citySearch.setLongitude(pullParser.getText());
+                    } else if (currentTag.equalsIgnoreCase("latitude")) {
+                        if (pullParser.getDepth() == 4) {
+                            assert citySearch != null;
+                            citySearch.setLatitude(pullParser.getText());
+                        }
+                    }  else if (currentTag.equalsIgnoreCase("longitude")) {
+                        if (pullParser.getDepth() == 4) {
+                            assert citySearch != null;
+                            citySearch.setLongitude(pullParser.getText());
+                        }
                     }
                 } else if (event == XmlPullParser.END_TAG) {
                     if ("place".equals(tagName)) {
