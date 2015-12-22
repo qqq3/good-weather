@@ -1,6 +1,7 @@
 package org.asdtm.goodweather;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -59,7 +60,7 @@ public class WeatherPageFragment extends Fragment
     private Toolbar mToolbar;
     private ConnectionDetector connectionDetector;
     private Boolean isInternetConnection;
-
+    private ProgressDialog mProgressDialog;
     private boolean isGPSEnabled = false;
     private boolean isNetworkEnabled = false;
     LocationManager locationManager;
@@ -111,11 +112,14 @@ public class WeatherPageFragment extends Fragment
                 = getActivity().getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
+
+        final String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setTitle(title);
         appCompatActivity.setSupportActionBar(mToolbar);
+
+
 
         mDrawerLayout = (DrawerLayout) v.findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(),
@@ -227,7 +231,8 @@ public class WeatherPageFragment extends Fragment
                 String data = new WeatherRequest().getItems(params[0], params[1], params[2]);
                 weather = WeatherJSONParser.getWeather(data);
             } catch (IOException | JSONException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
             }
             return weather;
         }
@@ -429,12 +434,17 @@ public class WeatherPageFragment extends Fragment
     {
         isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setIndeterminate(true);
 
         switch (item.getItemId()) {
             case R.id.menu_find_location:
                 if (isGPSEnabled && isNetworkEnabled) {
                     gpsRequestLocation();
                     networkRequestLocation();
+                    mProgressDialog.show();
                 } else {
                     showSettingsAlert();
                 }
@@ -448,6 +458,7 @@ public class WeatherPageFragment extends Fragment
         @Override
         public void onLocationChanged(Location location)
         {
+            mProgressDialog.hide();
             String latitude = String.format("%1$.2f", location.getLatitude());
             String longitude = String.format("%1$.2f", location.getLongitude());
 
