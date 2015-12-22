@@ -6,6 +6,7 @@ public class CitySearch
     private String mCountry;
     private String mLatitude;
     private String mLongitude;
+    private String mCountryCode;
 
     public CitySearch(){}
     public CitySearch(String cityName, String country, String latitude, String longitude)
@@ -54,6 +55,16 @@ public class CitySearch
     public void setLongitude(String longitude)
     {
         mLongitude = longitude;
+    }
+
+    public String getCountryCode()
+    {
+        return mCountryCode;
+    }
+
+    public void setCountryCode(String countryCode)
+    {
+        mCountryCode = countryCode;
     }
 
     @Override
