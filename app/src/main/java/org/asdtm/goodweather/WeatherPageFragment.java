@@ -291,6 +291,8 @@ public class WeatherPageFragment extends Fragment
             getActivity().setTitle(weather.location.getCityName());
             configEditor.putString(APP_SETTINGS_CITY, weather.location.getCityName());
 
+            configEditor.putString(APP_SETTINGS_COUNTRY_CODE, weather.location.getCountryCode());
+
             editor.apply();
             configEditor.apply();
         }
