@@ -22,5 +22,4 @@
     <string name="alertDialog_gps_negativeButton">Отмена</string>
     <string name="alertDialog_gps_positiveButton">Настройки</string>
     <string name="alertDialog_gps_message">Служба GPS не активна. Желаете перейти в меню настроек?</string>
-    <string name="alertDialog_gps_title"></string>
 </resources>
