@@ -441,8 +441,10 @@ public class WeatherPageFragment extends Fragment
 
         switch (item.getItemId()) {
             case R.id.menu_find_location:
-                if (isGPSEnabled && isNetworkEnabled) {
+                if (isGPSEnabled) {
                     gpsRequestLocation();
+                    mProgressDialog.show();
+                } else if(isNetworkEnabled){
                     networkRequestLocation();
                     mProgressDialog.show();
                 } else {
