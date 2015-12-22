@@ -57,6 +57,11 @@ public class WeatherJSONParser
         if (jWeatherData.has("name")) {
             location.setCityName(jWeatherData.getString("name"));
         }
+
+        JSONObject sysObj = jWeatherData.getJSONObject("sys");
+        if (sysObj.has("country")) {
+            location.setCountryCode(sysObj.getString("country"));
+        }
         weather.location = location;
 
         return weather;
