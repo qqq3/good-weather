@@ -77,6 +77,7 @@ public class WeatherPageFragment extends Fragment
 
     final String APP_SETTINGS = "config";
     final String APP_SETTINGS_CITY = "city";
+    final String APP_SETTINGS_COUNTRY_CODE = "country_code";
     final String APP_SETTINGS_UNITS = "units";
     final String APP_SETTINGS_LATITUDE = "latitude";
     final String APP_SETTINGS_LONGITUDE = "longitude";
@@ -286,7 +287,7 @@ public class WeatherPageFragment extends Fragment
             mClouds
                     .setText(weather.cloud.getClouds() + "%");
             editor.putInt(WEATHER_DATA_CLOUDS, weather.cloud.getClouds());
-            
+
             getActivity().setTitle(weather.location.getCityName());
             configEditor.putString(APP_SETTINGS_CITY, weather.location.getCityName());
 
