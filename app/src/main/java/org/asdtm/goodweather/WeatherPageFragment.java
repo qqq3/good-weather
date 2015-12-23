@@ -432,8 +432,11 @@ public class WeatherPageFragment extends Fragment
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+                        && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
+                            && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -444,11 +447,13 @@ public class WeatherPageFragment extends Fragment
                 if (isGPSEnabled) {
                     gpsRequestLocation();
                     mProgressDialog.show();
-                } else if(isNetworkEnabled){
-                    networkRequestLocation();
-                    mProgressDialog.show();
                 } else {
                     showSettingsAlert();
+                }
+
+                if (isNetworkEnabled) {
+                    networkRequestLocation();
+                    mProgressDialog.show();
                 }
         }
 
