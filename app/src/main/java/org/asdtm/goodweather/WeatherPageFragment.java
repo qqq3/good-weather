@@ -41,7 +41,9 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class WeatherPageFragment extends Fragment
 {
@@ -82,6 +84,7 @@ public class WeatherPageFragment extends Fragment
     final String APP_SETTINGS_UNITS = "units";
     final String APP_SETTINGS_LATITUDE = "latitude";
     final String APP_SETTINGS_LONGITUDE = "longitude";
+    final String APP_SETTINGA_LOCALE = "locale";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -357,6 +360,11 @@ public class WeatherPageFragment extends Fragment
         mTitle = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
         getActivity().setTitle(mTitle);
 
+        String currentLocale = Locale.getDefault().getLanguage();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+
+        editor.putString(APP_SETTINGA_LOCALE, currentLocale);
+        editor.apply();
 
         String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
         String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
