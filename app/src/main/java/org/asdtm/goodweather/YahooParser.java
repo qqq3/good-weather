@@ -1,5 +1,6 @@
 package org.asdtm.goodweather;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.asdtm.goodweather.model.CitySearch;
@@ -21,6 +22,10 @@ public class YahooParser
     private static String BASE_URL = "http://where.yahooapis.com/v1/";
     private static String APPID = "";
     private static int COUNT_CITY = 10;
+
+    private SharedPreferences mConfig;
+    private final String APP_SETTINGS = "config";
+    private final String APP_SETTINGS_LOCALE = "locale";
 
     public static List<CitySearch> getCity(String city)
     {

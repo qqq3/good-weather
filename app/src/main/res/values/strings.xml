@@ -24,9 +24,11 @@
     <string name="openweathermap_data">Weather data provided by OpenWeatherMap</string>
     <string name="yahoo_data">Cities data provided by Yahoo! GeoPlanet</string>
     <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
-    <string name="alertDialog_gps_title">GPS is settings</string>
-    <string name="alertDialog_gps_message">GPS is not enabled.
-        Do you want to go to settings menu?</string>
+    <string name="alertDialog_gps_title" translatable="false">GPS is settings</string>
+    <string name="alertDialog_gps_message">GPS is not enabled. Do you want to go to settings menu?</string>
     <string name="alertDialog_gps_positiveButton">Settings</string>
     <string name="alertDialog_gps_negativeButton">Cancel</string>
+    <string name="progressDialog_gps_locate">Find current location</string>
+
+    <string name="banner_ad_unit_id" translatable="false">dsf</string>
 </resources>

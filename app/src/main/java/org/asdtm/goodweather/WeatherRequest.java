@@ -48,7 +48,7 @@ public class WeatherRequest
         return new String(getWeatherByte(url));
     }
 
-    public String getItems(String lat, String lon, String units) throws IOException
+    public String getItems(String lat, String lon, String units, String lang) throws IOException
     {
 
         String url = Uri.parse(ENDPOINT).buildUpon()
@@ -56,6 +56,7 @@ public class WeatherRequest
                 .appendQueryParameter("lon", lon)
                 .appendQueryParameter("APPID", APPID)
                 .appendQueryParameter("units", units)
+                .appendQueryParameter("lang", lang)
                 .build()
                 .toString();
         return getUrl(url);

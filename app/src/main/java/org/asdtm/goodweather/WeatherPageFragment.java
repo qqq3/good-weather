@@ -41,6 +41,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -508,7 +509,6 @@ public class WeatherPageFragment extends Fragment
             editor.apply();
 
             String currentLocal = mSharedPreferences.getString(APP_SETTINGS_LOCALE, "en");
-
             if (isInternetConnection) {
                 mLoadWeather = new BackgroundLoadWeather();
                 mLoadWeather.execute(latitude, longitude, "metric", currentLocal);

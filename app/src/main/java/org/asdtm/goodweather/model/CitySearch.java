@@ -70,6 +70,6 @@ public class CitySearch
     @Override
     public String toString()
     {
-        return mCityName;
+        return mCityName + " (" + mCountryCode + ")";
     }
 }

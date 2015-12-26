@@ -18,4 +18,8 @@
         условиях более чем в 200.000 городах. </string>
     <string name="nav_feedback">Обратная связь</string>
     <string name="version_label">"версия "</string>
+    <string name="progressDialog_gps_locate">Определяем текущее местоположение</string>
+    <string name="alertDialog_gps_negativeButton">Отмена</string>
+    <string name="alertDialog_gps_positiveButton">Настройки</string>
+    <string name="alertDialog_gps_message">Служба GPS не активна. Желаете перейти в меню настроек?</string>
 </resources>
