@@ -231,7 +231,7 @@ public class WeatherPageFragment extends Fragment
             Weather weather = new Weather();
 
             try {
-                String data = new WeatherRequest().getItems(params[0], params[1], params[2]);
+                String data = new WeatherRequest().getItems(params[0], params[1], params[2], params[3]);
                 weather = WeatherJSONParser.getWeather(data);
             } catch (IOException | JSONException e) {
                 //e.printStackTrace();
@@ -372,7 +372,7 @@ public class WeatherPageFragment extends Fragment
 
         if (isInternetConnection) {
             mLoadWeather = new BackgroundLoadWeather();
-            mLoadWeather.execute(latitude, longitude, units);
+            mLoadWeather.execute(latitude, longitude, units, currentLocale);
         } else {
             Toast.makeText(getActivity(),
                            R.string.connection_not_found,
