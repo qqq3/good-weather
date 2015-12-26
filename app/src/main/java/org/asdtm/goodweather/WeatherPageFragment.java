@@ -508,9 +508,11 @@ public class WeatherPageFragment extends Fragment
             editor.putString(APP_SETTINGS_LONGITUDE, longitude);
             editor.apply();
 
+            String currentLocal = mSharedPreferences.getString(APP_SETTINGA_LOCALE, "en");
+
             if (isInternetConnection) {
                 mLoadWeather = new BackgroundLoadWeather();
-                mLoadWeather.execute(latitude, longitude, "metric");
+                mLoadWeather.execute(latitude, longitude, "metric", currentLocal);
             } else {
                 Toast.makeText(getActivity(),
                                R.string.connection_not_found,
