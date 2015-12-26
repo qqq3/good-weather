@@ -199,10 +199,11 @@ public class WeatherPageFragment extends Fragment
                 String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
                 String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
                 String units = mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
+                String currentLocale = mSharedPreferences.getString(APP_SETTINGA_LOCALE, "en");
 
                 if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
-                    mLoadWeather.execute(latitude, longitude, units);
+                    mLoadWeather.execute(latitude, longitude, units, currentLocale);
                 } else {
                     Toast.makeText(getActivity(),
                                    R.string.connection_not_found,
