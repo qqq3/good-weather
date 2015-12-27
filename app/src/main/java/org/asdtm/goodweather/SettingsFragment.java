@@ -54,6 +54,7 @@ public class SettingsFragment extends Fragment
     final String APP_SETTINGS_FAHRENHEIT = "fahrenheit";
     final String APP_SETTINGS_LATITUDE = "latitude";
     final String APP_SETTINGS_LONGITUDE = "longitude";
+    final String APP_SETTINGS_LOCALE = "locale";
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -220,14 +221,16 @@ public class SettingsFragment extends Fragment
         {
             Filter cityFilter = new Filter()
             {
+
                 @Override
                 protected FilterResults performFiltering(CharSequence constraint)
                 {
                     FilterResults filterResults = new FilterResults();
                     if (constraint == null || constraint.length() < 3)
                         return filterResults;
+                    String currentLocale = mPreferences.getString(APP_SETTINGS_LOCALE, "en");
 
-                    List<CitySearch> citySearchList = YahooParser.getCity(constraint.toString());
+                    List<CitySearch> citySearchList = YahooParser.getCity(constraint.toString(), currentLocale);
                     filterResults.values = citySearchList;
                     filterResults.count = citySearchList.size();
 
