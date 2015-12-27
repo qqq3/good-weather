@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Good Weather</string>
+    <string name="app_name" translatable="false">Good Weather</string>
     <string name="enter_city_hint">Enter city</string>
     <string name="temperature_degree" translatable="false">\u00B0</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
