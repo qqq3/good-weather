@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_label">Über</string>
+    <string name="nav_menu_settings">Einstellungen</string>
+    <string name="text_about"><b> Gutes Wetter </b> - kostenlose App für Online-Prüfung Wetter.
+         Mit Hilfe der App können Sie Wetterbedingungen in mehr als 200.000 Städten zu überprüfen.
+         Vielen Dank!</string>
+    <string name="alertDialog_gps_message">GPS ist nicht aktiviert. Wollen Sie, um die Einstellungen im Menü zu gehen?</string>
+    <string name="alertDialog_gps_negativeButton">Absagen</string>
+    <string name="alertDialog_gps_positiveButton">Einstellungen</string>
+    <string name="connection_not_found"> Überprüfen Sie Ihre Internetverbindung</string>
+    <string name="enter_city_hint">Stadt betreten</string>
+    <string name="label_choose_city">Wählen Sie die Stadt</string>
+    <string name="label_current_city">Aktuelle Stadt</string>
+    <string name="label_temperature">Temperatur</string>
+    <string name="nav_feedback">Feedback</string>
+    <string name="nav_menu_about">Über</string>
+    <string name="version_label">v</string>
+    <string name="openweathermap_data">Wetterdaten bereitgestellt von OpenWeatherMap</string>
+    <string name="progressDialog_gps_locate">Finden Sie aktuelle Position</string>
+    <string name="wind_speed_meters">" Meter je Sekunde"</string>
+    <string name="wind_speed_miles">" Meilen pro Stunde"</string>
+    <string name="yahoo_data">Cities Daten durch Yahoo! GeoPlanet bereitgestellt</string>
+</resources>
