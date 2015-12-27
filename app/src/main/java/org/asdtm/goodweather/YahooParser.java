@@ -1,7 +1,6 @@
 package org.asdtm.goodweather;
 
-import android.content.SharedPreferences;
-import android.util.Log;
+import android.net.Uri;
 
 import org.asdtm.goodweather.model.CitySearch;
 import org.xmlpull.v1.XmlPullParser;
@@ -23,16 +22,12 @@ public class YahooParser
     private static String APPID = "";
     private static int COUNT_CITY = 10;
 
-    private SharedPreferences mConfig;
-    private final String APP_SETTINGS = "config";
-    private final String APP_SETTINGS_LOCALE = "locale";
-
-    public static List<CitySearch> getCity(String city)
+    public static List<CitySearch> getCity(String city, String locale)
     {
         List<CitySearch> resultSearch = new ArrayList<CitySearch>();
         HttpURLConnection whereConnection = null;
         try {
-            String query = buildSearchQuery(city);
+            String query = buildSearchQuery(city, locale);
             URL urlQuery = new URL(query);
             whereConnection = (HttpURLConnection) urlQuery.openConnection();
             InputStream inputStream = whereConnection.getInputStream();
@@ -97,9 +92,13 @@ public class YahooParser
         return resultSearch;
     }
 
-    private static String buildSearchQuery(String city)
+    private static String buildSearchQuery(String city, String locale)
     {
         city = city.replaceAll(" ", "%20");
-        return BASE_URL + "places.q(" + city + "%2A);count=" + COUNT_CITY + "?appid=" + APPID;
+
+        return BASE_URL
+                + "places.q(" + Uri.encode(city) + "%2A);count=" + COUNT_CITY
+                + "?appid=" + APPID
+                + "&lang=" + locale;
     }
 }
