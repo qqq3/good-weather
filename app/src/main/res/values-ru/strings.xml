@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Good Weather</string>
     <string name="activity_label">О программе</string>
     <string name="connection_not_found">Отсутсвует подключение к интернету</string>
     <string name="enter_city_hint">Введите город</string>
