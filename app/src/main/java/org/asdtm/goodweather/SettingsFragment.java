@@ -77,7 +77,7 @@ public class SettingsFragment extends Fragment
 
         AdRequest adRequest = new AdRequest.Builder()
                 .build();
-        //mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(mToolbar);
