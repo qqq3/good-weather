@@ -1,2 +1,8 @@
 # Good Weather
-Check weather with app for android
+Weather app for Android.
+
+
+### To-Do
+
+- [ ] Change Preference Screen
+- [ ] Add widgets
