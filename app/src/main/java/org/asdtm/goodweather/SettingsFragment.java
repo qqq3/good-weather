@@ -24,9 +24,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import org.asdtm.goodweather.model.CitySearch;
 
 import java.util.ArrayList;
@@ -73,20 +70,15 @@ public class SettingsFragment extends Fragment
 
         mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         mSettingsLayout = (LinearLayout) v.findViewById(R.id.settings);
-        AdView mAdView = (AdView) v.findViewById(R.id.adView);
-
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(mToolbar);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(
-                    getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha, null));
+                    getResources().getDrawable(R.drawable.abc_ic_ab_back_material, null));
         } else {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(
-               getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
+               getResources().getDrawable(R.drawable.abc_ic_ab_back_material));
         }
         appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

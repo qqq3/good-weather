@@ -1,6 +1,5 @@
 package org.asdtm.goodweather;
 
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -8,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 public class AboutActivity extends AppCompatActivity
 {
@@ -25,33 +21,18 @@ public class AboutActivity extends AppCompatActivity
 
         mAppVersion = (TextView) findViewById(R.id.program_version_textView);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-
-        AdRequest mAdRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(mAdRequest);
 
         this.setSupportActionBar(mToolbar);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getSupportActionBar()
                     .setHomeAsUpIndicator(getResources()
-                                            .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha, null));
+                                            .getDrawable(R.drawable.abc_ic_ab_back_material, null));
         } else {
             getSupportActionBar()
                     .setHomeAsUpIndicator(getResources()
-                                            .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
+                                            .getDrawable(R.drawable.abc_ic_ab_back_material));
         }
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        /* try {
-            String versionName = getPackageManager()
-                    .getPackageInfo(getPackageName(), 0)
-                    .versionName;
-            mAppVersion.setText(getResources().getText(R.string.version_label) + versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } */
     }
 
     @Override
