@@ -2,6 +2,7 @@ package org.asdtm.goodweather;
 
 import android.net.Uri;
 
+import org.asdtm.goodweather.Utils.ApiKeys;
 import org.asdtm.goodweather.model.CitySearch;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -19,7 +20,7 @@ public class YahooParser
 {
     private static final String TAG = "YahooParser";
     private static String BASE_URL = "http://where.yahooapis.com/v1/";
-    private static String APPID = "";
+    private static String APPID = ApiKeys.WHERE_YAHOO_API_KEY;
     private static int COUNT_CITY = 10;
 
     public static List<CitySearch> getCity(String city, String locale)

@@ -2,6 +2,8 @@ package org.asdtm.goodweather;
 
 import android.net.Uri;
 
+import org.asdtm.goodweather.Utils.ApiKeys;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +14,7 @@ public class WeatherRequest
 {
     private static final String TAG = "WeatherRequest";
     private static final String ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
-    private static final String APPID = "";
+    private static final String APPID = ApiKeys.OPEN_WEATHER_MAP_API_KEY;
 
     byte[] getWeatherByte(String location) throws IOException
     {
