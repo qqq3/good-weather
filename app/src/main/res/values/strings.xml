@@ -29,4 +29,17 @@
     <string name="alertDialog_gps_positiveButton">Settings</string>
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
+
+    <!-- Preference Screen string -->
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_title_temperature">Temperature</string>
+    <string-array name="pref_temperature_list_title">
+        <item>°C</item>
+        <item>°F</item>
+    </string-array>
+    <string-array name="pref_temperature_list_value">
+        <item>metric</item>
+        <item>imperial</item>
+    </string-array>
 </resources>
