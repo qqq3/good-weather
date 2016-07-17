@@ -19,6 +19,7 @@ android {
         versionCode 3
         versionName "1.2"
         signingConfig signingConfigs.config
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {

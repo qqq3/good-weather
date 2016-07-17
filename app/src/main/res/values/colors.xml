@@ -3,7 +3,8 @@
     <color name="colorPrimary">#00897b</color>
     <color name="colorPrimaryDark">#004d40</color>
     <color name="textColorPrimary">#FFFFFF</color>
-    <color name="colorAccent">#e65788</color>
+    <color name="textColorHint">#d4d4d4</color>
+    <color name="colorAccent">#de454e</color>
     <color name="windowBackground">#4db6ac</color>
     <color name="swipe_red">#df5e65</color>
     <color name="swipe_green">#42c25e</color>

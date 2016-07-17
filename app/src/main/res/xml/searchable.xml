@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<searchable
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:hint="@string/hint_activity_search"
+    android:label="@string/title_activity_search"
+    android:inputType="textFilter"
+    android:imeOptions="actionSearch">
+</searchable>

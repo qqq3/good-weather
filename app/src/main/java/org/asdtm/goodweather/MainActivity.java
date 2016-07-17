@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -32,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.asdtm.goodweather.Utils.Preferences;
 import org.asdtm.goodweather.model.Weather;
 import org.json.JSONException;
 
@@ -61,9 +64,12 @@ public class MainActivity extends AppCompatActivity {
     private boolean isGPSEnabled = false;
     private boolean isNetworkEnabled = false;
     private LocationManager locationManager;
+    private String mUnits;
 
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
+    private Preferences mDefaultSharedPref;
+
     final String WEATHER_DATA = "weather";
     final String WEATHER_DATA_TEMPERATURE = "temperature";
     final String WEATHER_DATA_DESCRIPTION = "description";
@@ -95,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         mSharedPreferences
                 = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+        mDefaultSharedPref = new Preferences(MainActivity.this, APP_SETTINGS);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         final String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
@@ -170,12 +177,13 @@ public class MainActivity extends AppCompatActivity {
 
                 String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
                 String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
-                String units = mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
                 String currentLocale = mSharedPreferences.getString(APP_SETTINGS_LOCALE, "en");
+
+                mUnits = mDefaultSharedPref.getUnit();
 
                 if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
-                    mLoadWeather.execute(latitude, longitude, units, currentLocale);
+                    mLoadWeather.execute(latitude, longitude, mUnits, currentLocale);
                 } else {
                     Toast.makeText(MainActivity.this,
                                    R.string.connection_not_found,
@@ -309,14 +317,13 @@ public class MainActivity extends AppCompatActivity {
         float pressure = mPrefWeather.getFloat(WEATHER_DATA_PRESSURE, 0);
         mPressure.setText(pressure + " hpa");
 
-        String weather_unit =
-                mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
+        mUnits = mDefaultSharedPref.getUnit();
 
         float wind_speed = mPrefWeather.getFloat(WEATHER_DATA_WIND_SPEED, 0);
-        if (weather_unit.equals("metric")) {
+        if (mUnits.equals("metric")) {
             mWindSpeed
                     .setText(wind_speed + getResources().getString(R.string.wind_speed_meters));
-        } else if (weather_unit.equals("imperial")) {
+        } else if (mUnits.equals("imperial")) {
             mWindSpeed.setText(wind_speed + getResources().getString(R.string.wind_speed_miles));
         }
 
@@ -334,11 +341,10 @@ public class MainActivity extends AppCompatActivity {
 
         String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
         String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
-        String units = mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
 
         if (isInternetConnection) {
             mLoadWeather = new BackgroundLoadWeather();
-            mLoadWeather.execute(latitude, longitude, units, currentLocale);
+            mLoadWeather.execute(latitude, longitude, mUnits, currentLocale);
         } else {
             Toast.makeText(MainActivity.this,
                            R.string.connection_not_found,
@@ -352,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    public String setIconWeather(String iconId) {
+    public void setIconWeather(String iconId) {
         mIconWeather = (ImageView) findViewById(R.id.weather_icon);
         HashMap<String, String> iconMap = new HashMap<String, String>();
         iconMap.put("01d", "ic_clear_sky_01d");
@@ -380,10 +386,15 @@ public class MainActivity extends AppCompatActivity {
                 icon = iconMap.get(iconKey);
             }
         }
-        mIconWeather.setImageResource(
-                getResources().getIdentifier(icon, "drawable", getPackageName()));
 
-        return "";
+        if (iconId != null) {
+            mIconWeather.setImageResource(
+                    getResources().getIdentifier(icon, "drawable", getPackageName()));
+        } else {
+            Drawable defaultIconId = ResourcesCompat.getDrawable(getResources(),
+                                                                 R.drawable.ic_clear_sky_01d, null);
+            mIconWeather.setImageDrawable(defaultIconId);
+        }
     }
 
     @Override
@@ -420,6 +431,11 @@ public class MainActivity extends AppCompatActivity {
                     networkRequestLocation();
                     mProgressDialog.show();
                 }
+                return true;
+            case R.id.main_menu_search_city:
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
