@@ -417,6 +417,7 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(false);
 
         switch (item.getItemId()) {
             case R.id.menu_find_location:
@@ -444,7 +445,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            mProgressDialog.hide();
+            mProgressDialog.cancel();
             String latitude = String.format("%1$.2f", location.getLatitude());
             String longitude = String.format("%1$.2f", location.getLongitude());
 
@@ -482,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
             String currentLocal = mSharedPreferences.getString(APP_SETTINGS_LOCALE, "en");
             if (isInternetConnection) {
                 mLoadWeather = new BackgroundLoadWeather();
-                mLoadWeather.execute(latitude, longitude, "metric", currentLocal);
+                mLoadWeather.execute(latitude, longitude, mUnits, currentLocal);
             } else {
                 Toast.makeText(MainActivity.this,
                                R.string.connection_not_found,
