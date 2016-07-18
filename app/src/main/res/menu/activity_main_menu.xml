@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_find_location"
-        android:icon="@drawable/ic_menu_gps"
-        android:title="locate"
-        app:showAsAction="ifRoom"/>
-    <item
         android:id="@+id/main_menu_search_city"
         android:icon="@drawable/ic_search_black"
-        android:title="search"
+        android:title="@string/hint_activity_search"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/main_menu_find_location"
+        android:icon="@drawable/ic_menu_gps"
+        android:title="locate"
         app:showAsAction="always"/>
 </menu>

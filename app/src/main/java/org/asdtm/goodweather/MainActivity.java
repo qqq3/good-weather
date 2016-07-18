@@ -400,7 +400,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.toolbar_menu, menu);
+        menuInflater.inflate(R.menu.activity_main_menu, menu);
 
         return true;
     }
@@ -420,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog.setCancelable(false);
 
         switch (item.getItemId()) {
-            case R.id.menu_find_location:
+            case R.id.main_menu_find_location:
                 if (isGPSEnabled) {
                     gpsRequestLocation();
                     mProgressDialog.show();
