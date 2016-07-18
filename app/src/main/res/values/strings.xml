@@ -36,11 +36,11 @@
     <string name="title_activity_settings">Settings</string>
 
     <string name="pref_title_temperature">Temperature</string>
-    <string-array name="pref_temperature_list_title">
+    <string-array name="pref_temperature_list_title" translatable="false">
         <item>°C</item>
         <item>°F</item>
     </string-array>
-    <string-array name="pref_temperature_list_value">
+    <string-array name="pref_temperature_list_value" translatable="false">
         <item>metric</item>
         <item>imperial</item>
     </string-array>
