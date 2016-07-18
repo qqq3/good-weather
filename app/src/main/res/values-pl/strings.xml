@@ -21,4 +21,8 @@
     <string name="wind_speed_miles">" mil na godzinę"</string>
     <string name="wind_speed_meters">" metrów na sekundę"</string>
     <string name="yahoo_data">Dane dostarczone przez Yahoo! GeoPlanet</string>
+    <string name="hint_activity_search">Szukanie</string>
+    <string name="pref_title_temperature">Temperatura</string>
+    <string name="title_activity_settings">Ustawienia</string>
+    <string name="title_activity_search">Szukanie</string>
 </resources>

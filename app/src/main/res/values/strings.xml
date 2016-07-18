@@ -15,8 +15,6 @@
     <string name="label_temperature">Temperature</string>
     <string name="wind_speed_meters">" m/s"</string>
     <string name="wind_speed_miles">" m/h"</string>
-    <string name="unit_celsius" translatable="false">°C</string>
-    <string name="unit_fahrenheit" translatable="false">°F</string>
     <string name="text_about"><b>Good weather</b> - free app for online checking weather.
         With help of the app, you can check weather conditions in more than 200.000 cities.
         Thanks!</string>
