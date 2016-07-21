@@ -1,4 +1,4 @@
-package org.asdtm.goodweather.Utils;
+package org.asdtm.goodweather.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

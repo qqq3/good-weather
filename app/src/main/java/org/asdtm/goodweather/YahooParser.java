@@ -2,7 +2,7 @@ package org.asdtm.goodweather;
 
 import android.net.Uri;
 
-import org.asdtm.goodweather.Utils.ApiKeys;
+import org.asdtm.goodweather.utils.ApiKeys;
 import org.asdtm.goodweather.model.CitySearch;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

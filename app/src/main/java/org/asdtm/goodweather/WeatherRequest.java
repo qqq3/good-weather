@@ -2,7 +2,7 @@ package org.asdtm.goodweather;
 
 import android.net.Uri;
 
-import org.asdtm.goodweather.Utils.ApiKeys;
+import org.asdtm.goodweather.utils.ApiKeys;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

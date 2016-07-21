@@ -34,7 +34,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.asdtm.goodweather.Utils.Preferences;
+import org.asdtm.goodweather.utils.Preferences;
 import org.asdtm.goodweather.model.Weather;
 import org.json.JSONException;
 

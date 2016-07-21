@@ -24,7 +24,7 @@ import android.widget.Filterable;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import org.asdtm.goodweather.Utils.Preferences;
+import org.asdtm.goodweather.utils.Preferences;
 import org.asdtm.goodweather.model.CitySearch;
 
 import java.util.ArrayList;
