@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         mNewRequest.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                isInternetConnection = connectionDetector.connectToInternet();
+                isInternetConnection = connectionDetector.isNetworkAvailableAndConnected();
 
                 String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
                 String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
 
         isInternetConnection = false;
         connectionDetector = new ConnectionDetector(MainActivity.this);
-        isInternetConnection = connectionDetector.connectToInternet();
+        isInternetConnection = connectionDetector.isNetworkAvailableAndConnected();
 
         mSharedPreferences
                 = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
@@ -471,7 +471,7 @@ public class MainActivity extends AppCompatActivity {
 
             isInternetConnection = false;
             connectionDetector = new ConnectionDetector(MainActivity.this);
-            isInternetConnection = connectionDetector.connectToInternet();
+            isInternetConnection = connectionDetector.isNetworkAvailableAndConnected();
 
             mSharedPreferences = getSharedPreferences(APP_SETTINGS,
                                                       Context.MODE_PRIVATE);
