@@ -24,7 +24,7 @@ import android.widget.Filterable;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import org.asdtm.goodweather.utils.Preferences;
+import org.asdtm.goodweather.utils.PrefKeys;
 import org.asdtm.goodweather.model.CitySearch;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private List<CitySearch> mCites;
     private SearchCityAdapter mSearchCityAdapter;
     private SharedPreferences mCityPref;
-    private Preferences mPreferences;
+    private PrefKeys mPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mPreferences = new Preferences(SearchActivity.this, APP_SETTINGS_NAME);
+        mPreferences = new PrefKeys(SearchActivity.this, APP_SETTINGS_NAME);
         mCityPref = getSharedPreferences(APP_SETTINGS_NAME, 0);
         setCurrentLocale();
 

@@ -34,7 +34,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.asdtm.goodweather.utils.Preferences;
+import org.asdtm.goodweather.utils.PrefKeys;
 import org.asdtm.goodweather.model.Weather;
 import org.json.JSONException;
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
-    private Preferences mDefaultSharedPref;
+    private PrefKeys mDefaultSharedPref;
 
     final String WEATHER_DATA = "weather";
     final String WEATHER_DATA_TEMPERATURE = "temperature";
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         mSharedPreferences
                 = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
-        mDefaultSharedPref = new Preferences(MainActivity.this, APP_SETTINGS);
+        mDefaultSharedPref = new PrefKeys(MainActivity.this, APP_SETTINGS);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         final String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");

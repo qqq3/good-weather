@@ -6,17 +6,19 @@ import android.preference.PreferenceManager;
 
 import org.asdtm.goodweather.SettingsActivity;
 
-public class Preferences {
+public class PrefKeys {
 
     private final SharedPreferences mPreferences;
     private final SharedPreferences mPublicPreferences;
 
     private static final String APP_SETTINGS_LOCALE = "locale";
     public static final String APP_SETTINGS_NAME = "config";
+    public static final String APP_SETTINGS_LATITUDE = "latitude";
+    public static final String APP_SETTINGS_LONGITUDE = "longitude";
 
     private Context mContext;
 
-    public Preferences(Context context, String publicPrefName) {
+    public PrefKeys(Context context, String publicPrefName) {
         this.mContext = context;
         mPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         mPublicPreferences = mContext.getSharedPreferences(publicPrefName, Context.MODE_PRIVATE);
