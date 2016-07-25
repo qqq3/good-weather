@@ -107,11 +107,15 @@ public class MainActivity extends AppCompatActivity {
         final String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
         setTitle(title);
         setSupportActionBar(mToolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this,
                                                   mDrawerLayout,
+                                                  mToolbar,
                                                   R.string.navigation_drawer_open,
                                                   R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
