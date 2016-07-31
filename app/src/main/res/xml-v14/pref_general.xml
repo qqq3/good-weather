@@ -10,7 +10,7 @@
     <PreferenceCategory
         android:key="notification_category_pref_key"
         android:title="@string/pref_title_category_notification">
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="false"
             android:key="notification_pref_key"
             android:title="@string/pref_title_notification"/>
@@ -22,7 +22,7 @@
             android:entryValues="@array/notification_refresh_interval_values"
             android:key="notification_interval_pref_key"
             android:title="@string/pref_title_notification_refresh_interval"/>
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="false"
             android:dependency="notification_pref_key"
             android:key="notification_vibrate_pref_key"

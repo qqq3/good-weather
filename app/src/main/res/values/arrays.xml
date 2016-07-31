@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_temperature_entries" translatable="false">
+        <item>°C</item>
+        <item>°F</item>
+    </string-array>
+    <string-array name="pref_temperature_values" translatable="false">
+        <item>metric</item>
+        <item>imperial</item>
+    </string-array>
+
+    <string-array name="notification_refresh_intervals_entries">
+        <item>@string/refresh_interval_15min</item>
+        <item>@string/refresh_interval_30min</item>
+        <item>@string/refresh_interval_1hour</item>
+        <item>@string/refresh_interval_12hours</item>
+        <item>@string/refresh_interval_24hours</item>
+    </string-array>
+    <string-array name="notification_refresh_interval_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+</resources>

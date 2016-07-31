@@ -4,16 +4,21 @@ import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
+
+import org.asdtm.goodweather.service.NotificationsService;
+import org.asdtm.goodweather.utils.PrefKeys;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
-    public static final String KEY_PREF_TEMPERATURE = "temperature_pref_key";
+    private static final String TAG = "SettingsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +46,55 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static class GeneralPreferenceFragment extends PreferenceFragment implements
             SharedPreferences.OnSharedPreferenceChangeListener {
 
-        SharedPreferences mPreferences;
-
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
             setHasOptionsMenu(true);
 
-            mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
+                    PrefKeys.KEY_PREF_IS_NOTIFICATION_ENABLED);
+            notificationSwitch.setOnPreferenceChangeListener(notificationListener);
+
         }
+
+        Preference.OnPreferenceChangeListener notificationListener =
+                new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object o) {
+                        boolean isEnabled = (boolean) o;
+                        NotificationsService.setNotificationServiceAlarm(getActivity(),
+                                                                         isEnabled);
+                        return true;
+                    }
+                };
+
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             switch (key) {
-                case KEY_PREF_TEMPERATURE:
-                    Preference temperaturePref = findPreference(key);
-                    temperaturePref.setSummary(sharedPreferences.getString(key, "metric")
-                                                                .equals("metric") ? "°C" : "°F");
+                case PrefKeys.KEY_PREF_TEMPERATURE:
+                    setSummary();
+                    break;
+                case PrefKeys.KEY_PREF_INTERVAL_NOTIFICATION:
+                    Preference pref = findPreference(key);
+                    NotificationsService.setNotificationServiceAlarm(getActivity(),
+                                                                     pref.isEnabled());
+                    Log.i(TAG, "Interval was enabled: " + pref.isEnabled());
+                    setSummary();
+                    break;
             }
+        }
+
+        private void setSummary() {
+            Preference temperaturePref = findPreference(PrefKeys.KEY_PREF_TEMPERATURE);
+            ListPreference temperatureListPref = (ListPreference) temperaturePref;
+            temperaturePref.setSummary(temperatureListPref.getEntry());
+
+            Preference notificationIntervalPref = findPreference(
+                    PrefKeys.KEY_PREF_INTERVAL_NOTIFICATION);
+            ListPreference notificationIntervalListPref = (ListPreference) notificationIntervalPref;
+            notificationIntervalPref.setSummary(notificationIntervalListPref.getEntry());
         }
 
         @Override
@@ -67,10 +102,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onResume();
             getPreferenceScreen().getSharedPreferences()
                                  .registerOnSharedPreferenceChangeListener(this);
-            Preference temperaturePref = findPreference(KEY_PREF_TEMPERATURE);
-            temperaturePref.setSummary(
-                    mPreferences.getString(KEY_PREF_TEMPERATURE, "metric")
-                                .equals("metric") ? "°C" : "°F");
+            setSummary();
         }
 
         @Override
