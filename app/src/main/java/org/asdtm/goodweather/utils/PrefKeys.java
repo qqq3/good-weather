@@ -43,14 +43,4 @@ public class PrefKeys {
     public boolean isNotificationEnabled() {
         return mPreferences.getBoolean(KEY_PREF_IS_NOTIFICATION_ENABLED, false);
     }
-
-    public static String getInterval(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                                .getString(KEY_PREF_INTERVAL_NOTIFICATION, "60");
-    }
-
-    public static String getTemperatureUnit(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(
-                KEY_PREF_TEMPERATURE, "metric");
-    }
 }
