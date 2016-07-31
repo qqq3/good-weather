@@ -25,4 +25,18 @@
     <string name="pref_title_temperature">Temperatur</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="title_activity_search">Suche nach Standort</string>
+    <string name="notification_cloudiness_label">"Trübung: "</string>
+    <string name="notification_humidity_label">"Feuchtigkeit: "</string>
+    <string name="notification_pressure_label">"Druck: "</string>
+    <string name="notification_wind_label">"Wind: "</string>
+    <string name="pref_title_category_notification">Benachrichtigungen</string>
+    <string name="pref_title_notification">Benachrichtigungen aktivieren</string>
+    <string name="pref_title_notification_refresh_interval">Aktualisierungsintervall</string>
+    <string name="pref_title_vibrate">Vibrieren</string>
+    <string name="pressure_measurement">hPa</string>
+    <string name="refresh_interval_12hours">12 Stunden</string>
+    <string name="refresh_interval_15min">15 Minuten</string>
+    <string name="refresh_interval_1hour">Jede Stunde</string>
+    <string name="refresh_interval_24hours">24 Stunden</string>
+    <string name="refresh_interval_30min">30 Minuten</string>
 </resources>

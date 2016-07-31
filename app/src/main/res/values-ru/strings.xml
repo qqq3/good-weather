@@ -10,7 +10,7 @@
     <string name="nav_menu_settings">Настройки</string>
     <string name="openweathermap_data">Метеорологическая информация предоставлена OpenWeatherMap</string>
     <string name="wind_speed_meters">" м/с"</string>
-    <string name="wind_speed_miles">" м/ч"</string>
+    <string name="wind_speed_miles">" миль/ч"</string>
     <string name="yahoo_data">Список городов предоставлен Yahoo! GeoPlanet</string>
     <string name="text_about"><b>Good weather</b> - бесплатное онлайн приложение для проверки погоды.
         С помощью приложения вы получите актуальную информацию, о погодных
@@ -25,4 +25,18 @@
     <string name="pref_title_temperature">Температура</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_search">Поиск</string>
+    <string name="notification_cloudiness_label">"Облачность: "</string>
+    <string name="notification_humidity_label">"Влажность: "</string>
+    <string name="notification_pressure_label">"Давление: "</string>
+    <string name="notification_wind_label">"Ветер: "</string>
+    <string name="pref_title_category_notification">Уведомления</string>
+    <string name="pref_title_notification">Уведомления</string>
+    <string name="pref_title_notification_refresh_interval">Интервал обновления</string>
+    <string name="pref_title_vibrate">Вибрация</string>
+    <string name="pressure_measurement">гПа</string>
+    <string name="refresh_interval_12hours">12 часов</string>
+    <string name="refresh_interval_15min">15 минут</string>
+    <string name="refresh_interval_1hour">Каждый час</string>
+    <string name="refresh_interval_24hours">24 часа</string>
+    <string name="refresh_interval_30min">30 минут</string>
 </resources>

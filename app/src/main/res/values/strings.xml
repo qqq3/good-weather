@@ -26,11 +26,11 @@
     <string name="progressDialog_gps_locate">Find current location</string>
 
     <!-- Units and Measurement-->
-    <string name="percent_sign">\u0025</string>
+    <string name="percent_sign" translatable="false">\u0025</string>
     <string name="temperature_degree" translatable="false">\u00B0</string>
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">" m/s"</string>
-    <string name="wind_speed_miles">" m/h"</string>
+    <string name="wind_speed_miles">" mph"</string>
 
     <!-- Search Screen strings -->
     <string name="title_activity_search">Search Location</string>
@@ -39,8 +39,8 @@
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Settings</string>
     <string name="pref_title_temperature">Temperature</string>
-    <string name="pref_title_category_notification">Notification</string>
-    <string name="pref_title_notification">Enable Notification</string>
+    <string name="pref_title_category_notification">Notifications</string>
+    <string name="pref_title_notification">Enable Notifications</string>
     <string name="pref_title_notification_refresh_interval">Refresh Interval</string>
     <string name="refresh_interval_15min">15 minutes</string>
     <string name="refresh_interval_30min">30 minutes</string>
