@@ -24,9 +24,9 @@ import android.widget.Filterable;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.PrefKeys;
-import org.asdtm.goodweather.model.CitySearch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,8 +61,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }
 
         mCityPref = getSharedPreferences(APP_SETTINGS_NAME, 0);
-        locale = AppPreference.getLocale(this, PrefKeys.APP_SETTINGS_NAME);
-        setCurrentLocale();
 
         mFoundCityRecyclerView = (RecyclerView) findViewById(R.id.search_city_recycler_view);
         mFoundCityRecyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
@@ -72,6 +70,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         mFoundCityRecyclerView.setAdapter(mSearchCityAdapter);
 
         loadLastFoundCity();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setCurrentLocale();
+        locale = AppPreference.getLocale(this, PrefKeys.APP_SETTINGS_NAME);
     }
 
     private class SearchCityHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
