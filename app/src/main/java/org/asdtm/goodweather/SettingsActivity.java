@@ -13,7 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
 
-import org.asdtm.goodweather.service.NotificationsService;
+import org.asdtm.goodweather.service.NotificationService;
 import org.asdtm.goodweather.utils.PrefKeys;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
@@ -63,8 +63,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object o) {
                         boolean isEnabled = (boolean) o;
-                        NotificationsService.setNotificationServiceAlarm(getActivity(),
-                                                                         isEnabled);
+                        NotificationService.setNotificationServiceAlarm(getActivity(),
+                                                                        isEnabled);
                         return true;
                     }
                 };
@@ -78,8 +78,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     break;
                 case PrefKeys.KEY_PREF_INTERVAL_NOTIFICATION:
                     Preference pref = findPreference(key);
-                    NotificationsService.setNotificationServiceAlarm(getActivity(),
-                                                                     pref.isEnabled());
+                    NotificationService.setNotificationServiceAlarm(getActivity(),
+                                                                    pref.isEnabled());
                     Log.i(TAG, "Interval was enabled: " + pref.isEnabled());
                     setSummary();
                     break;

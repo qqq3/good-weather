@@ -25,14 +25,14 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.text.NumberFormat;
 
-public class NotificationsService extends IntentService {
+public class NotificationService extends IntentService {
 
     private static final String TAG = "NotificationsService";
 
     private SharedPreferences preferences;
     private PrefKeys pref;
 
-    public NotificationsService() {
+    public NotificationService() {
         super(TAG);
     }
 
@@ -62,12 +62,12 @@ public class NotificationsService extends IntentService {
     }
 
     public static Intent newIntent(Context context) {
-        return new Intent(context, NotificationsService.class);
+        return new Intent(context, NotificationService.class);
     }
 
     public static void setNotificationServiceAlarm(Context context,
                                                    boolean isNotificationEnable) {
-        Intent intent = NotificationsService.newIntent(context);
+        Intent intent = NotificationService.newIntent(context);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent,
                                                                PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
