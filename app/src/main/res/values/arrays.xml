@@ -16,7 +16,7 @@
         <item>@string/refresh_interval_12hours</item>
         <item>@string/refresh_interval_24hours</item>
     </string-array>
-    <string-array name="notification_refresh_interval_values">
+    <string-array name="notification_refresh_interval_values" translatable="false">
         <item>15</item>
         <item>30</item>
         <item>60</item>
