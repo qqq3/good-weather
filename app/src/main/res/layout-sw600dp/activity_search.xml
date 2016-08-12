@@ -24,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/search_activity_layout"
+        app:layout_constraintLeft_toLeftOf="@id/search_activity_layout"
         app:layout_constraintRight_toRightOf="@id/search_activity_layout"
-        app:layout_constraintTop_toBottomOf="@id/search_activity_toolbar"
-        app:layout_constraintTop_toTopOf="@id/search_activity_layout"/>
+        app:layout_constraintTop_toBottomOf="@id/search_activity_toolbar"/>
 </android.support.constraint.ConstraintLayout>
