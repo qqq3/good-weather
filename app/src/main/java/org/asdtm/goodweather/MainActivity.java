@@ -34,8 +34,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.asdtm.goodweather.utils.PrefKeys;
 import org.asdtm.goodweather.model.Weather;
+import org.asdtm.goodweather.utils.AppPreference;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
-    private PrefKeys mDefaultSharedPref;
 
     final String WEATHER_DATA = "weather";
     final String WEATHER_DATA_TEMPERATURE = "temperature";
@@ -101,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
         mSharedPreferences
                 = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
-        mDefaultSharedPref = new PrefKeys(MainActivity.this, APP_SETTINGS);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         final String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
@@ -182,8 +180,6 @@ public class MainActivity extends AppCompatActivity {
                 String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
                 String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
                 String currentLocale = mSharedPreferences.getString(APP_SETTINGS_LOCALE, "en");
-
-                mUnits = mDefaultSharedPref.getUnit();
 
                 if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
@@ -321,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         float pressure = mPrefWeather.getFloat(WEATHER_DATA_PRESSURE, 0);
         mPressure.setText(pressure + " hpa");
 
-        mUnits = mDefaultSharedPref.getUnit();
+        mUnits = AppPreference.getTemperatureUnit(this);
 
         float wind_speed = mPrefWeather.getFloat(WEATHER_DATA_WIND_SPEED, 0);
         if (mUnits.equals("metric")) {

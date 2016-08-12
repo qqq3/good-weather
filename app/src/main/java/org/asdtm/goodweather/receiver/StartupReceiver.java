@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.asdtm.goodweather.service.NotificationService;
-import org.asdtm.goodweather.utils.PrefKeys;
+import org.asdtm.goodweather.utils.AppPreference;
 
 public class StartupReceiver extends BroadcastReceiver {
 
@@ -13,8 +13,7 @@ public class StartupReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        PrefKeys preference = new PrefKeys(context, null);
-        boolean isNotificationEnabled = preference.isNotificationEnabled();
+        boolean isNotificationEnabled = AppPreference.isNotificationEnabled(context);
         NotificationService.setNotificationServiceAlarm(context, isNotificationEnabled);
     }
 }

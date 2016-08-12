@@ -24,6 +24,7 @@ import android.widget.Filterable;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.PrefKeys;
 import org.asdtm.goodweather.model.CitySearch;
 
@@ -42,11 +43,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private final String APP_SETTINGS_LATITUDE = "latitude";
     private final String APP_SETTINGS_LONGITUDE = "longitude";
 
+    private String locale;
     private RecyclerView mFoundCityRecyclerView;
     private List<CitySearch> mCites;
     private SearchCityAdapter mSearchCityAdapter;
     private SharedPreferences mCityPref;
-    private PrefKeys mPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,8 +60,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mPreferences = new PrefKeys(SearchActivity.this, APP_SETTINGS_NAME);
         mCityPref = getSharedPreferences(APP_SETTINGS_NAME, 0);
+        locale = AppPreference.getLocale(this, PrefKeys.APP_SETTINGS_NAME);
         setCurrentLocale();
 
         mFoundCityRecyclerView = (RecyclerView) findViewById(R.id.search_city_recycler_view);
@@ -141,7 +142,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                     FilterResults filterResults = new FilterResults();
 
                     List<CitySearch> citySearchList = YahooParser.getCity(charSequence.toString(),
-                                                                          mPreferences.getLocale());
+                                                                          locale);
                     filterResults.values = citySearchList;
                     filterResults.count = citySearchList.size();
 
@@ -242,6 +243,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         } else {
             currentLocale = Locale.getDefault().getLanguage();
         }
-        mPreferences.setLocale(currentLocale);
+        AppPreference.setLocale(this, PrefKeys.APP_SETTINGS_NAME, currentLocale);
     }
 }

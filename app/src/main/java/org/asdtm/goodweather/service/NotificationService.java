@@ -29,9 +29,6 @@ public class NotificationService extends IntentService {
 
     private static final String TAG = "NotificationsService";
 
-    private SharedPreferences preferences;
-    private PrefKeys pref;
-
     public NotificationService() {
         super(TAG);
     }
@@ -43,12 +40,11 @@ public class NotificationService extends IntentService {
             return;
         }
 
-        preferences = getSharedPreferences(PrefKeys.APP_SETTINGS_NAME, 0);
-        pref = new PrefKeys(this, PrefKeys.APP_SETTINGS_NAME);
+        SharedPreferences preferences = getSharedPreferences(PrefKeys.APP_SETTINGS_NAME, 0);
         String latitude = preferences.getString(PrefKeys.APP_SETTINGS_LATITUDE, "51.51");
         String longitude = preferences.getString(PrefKeys.APP_SETTINGS_LONGITUDE, "-0.13");
-        String locale = pref.getLocale();
-        String units = pref.getUnit();
+        String locale = AppPreference.getLocale(this, PrefKeys.APP_SETTINGS_NAME);
+        String units = AppPreference.getTemperatureUnit(this);
 
         Weather weather = new Weather();
         try {
