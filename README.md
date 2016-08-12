@@ -7,6 +7,7 @@ Open Source weather app for Android.
 
 - [x] Remove Ads
 - [x] Change Preference Screen
+- [x] Add notifications
 - [ ] Add widgets
-- [ ] Add notifications
+- [ ] Grant permissions on Android 6.0 and above
 - [ ] Change API > 21 theme
