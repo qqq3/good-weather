@@ -9,4 +9,3 @@ out/
 release.properties
 gradle.properties
 local.properties
-app/src/main/java/org/asdtm/goodweather/utils/ApiKeys.java
