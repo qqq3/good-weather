@@ -1,8 +1,6 @@
 package org.asdtm.goodweather;
 
-import android.annotation.TargetApi;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -42,7 +40,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class GeneralPreferenceFragment extends PreferenceFragment implements
             SharedPreferences.OnSharedPreferenceChangeListener {
 
