@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import org.asdtm.goodweather.model.Weather;
+
 import static org.asdtm.goodweather.utils.PrefKeys.APP_SETTINGS_LOCALE;
 
 public class AppPreference {
@@ -40,6 +42,21 @@ public class AppPreference {
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(APP_SETTINGS_LOCALE, locale);
+        editor.apply();
+    }
+
+    public static void setWeather(Context context, String publicPrefName, Weather weather) {
+        SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
+                                                                     Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putFloat(PrefKeys.WEATHER_DATA_TEMPERATURE, weather.temperature.getTemp());
+        editor.putString(PrefKeys.WEATHER_DATA_DESCRIPTION,
+                         weather.currentWeather.getDescription());
+        editor.putFloat(PrefKeys.WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
+        editor.putInt(PrefKeys.WEATHER_DATA_HUMIDITY, weather.currentCondition.getHumidity());
+        editor.putFloat(PrefKeys.WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
+        editor.putInt(PrefKeys.WEATHER_DATA_CLOUDS, weather.cloud.getClouds());
+        editor.putString(PrefKeys.WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
         editor.apply();
     }
 }
