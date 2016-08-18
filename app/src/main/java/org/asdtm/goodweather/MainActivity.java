@@ -39,7 +39,6 @@ import org.asdtm.goodweather.utils.AppPreference;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -230,17 +229,14 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = mPrefWeather.edit();
 
             float getTemp = weather.temperature.getTemp();
-            NumberFormat oneDigit = NumberFormat.getNumberInstance();
-            oneDigit.setMinimumFractionDigits(1);
-            oneDigit.setMaximumFractionDigits(1);
-            String setTemp = oneDigit.format(getTemp);
+            String setTemp = String.format(Locale.getDefault(), "%.1f", getTemp);
 
             setIconWeather(weather.currentWeather.getIdIcon());
             editor.putString(WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
 
             mTemperatureView
-                    .setText(setTemp + "\u00B0");
-            editor.putString(WEATHER_DATA_TEMPERATURE, setTemp);
+                    .setText(getString(R.string.temperature_with_degree, setTemp));
+            editor.putFloat(WEATHER_DATA_TEMPERATURE, getTemp);
 
             mDescription
                     .setText(weather.currentWeather.getDescription());
@@ -305,8 +301,9 @@ public class MainActivity extends AppCompatActivity {
         String iconId = mPrefWeather.getString(WEATHER_DATA_ICON, "01n");
         setIconWeather(iconId);
 
-        String temperature = mPrefWeather.getString(WEATHER_DATA_TEMPERATURE, "0");
-        mTemperatureView.setText(temperature + "\u00B0");
+        float temperature = mPrefWeather.getFloat(WEATHER_DATA_TEMPERATURE, 0);
+        String setTemp = String.format(Locale.getDefault(), "%.1f", temperature);
+        mTemperatureView.setText(getString(R.string.temperature_with_degree, setTemp));
 
         String description = mPrefWeather.getString(WEATHER_DATA_DESCRIPTION, null);
         mDescription.setText(description);
