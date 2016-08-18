@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import org.asdtm.goodweather.model.Weather;
 import org.asdtm.goodweather.utils.AppPreference;
+import org.asdtm.goodweather.utils.PrefKeys;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
 
-    final String WEATHER_DATA = "weather";
     final String WEATHER_DATA_TEMPERATURE = "temperature";
     final String WEATHER_DATA_DESCRIPTION = "description";
     final String WEATHER_DATA_PRESSURE = "pressure";
@@ -220,39 +220,26 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(weather);
             mNewRequest.setRefreshing(false);
 
+            AppPreference.setWeather(MainActivity.this, PrefKeys.PREF_WEATHER_NAME, weather);
+
             mSharedPreferences =
                     getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
             SharedPreferences.Editor configEditor = mSharedPreferences.edit();
-
-            mPrefWeather =
-                    getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = mPrefWeather.edit();
 
             float getTemp = weather.temperature.getTemp();
             String setTemp = String.format(Locale.getDefault(), "%.1f", getTemp);
 
             setIconWeather(weather.currentWeather.getIdIcon());
-            editor.putString(WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
-
             mTemperatureView
                     .setText(getString(R.string.temperature_with_degree, setTemp));
-            editor.putFloat(WEATHER_DATA_TEMPERATURE, getTemp);
-
             mDescription
                     .setText(weather.currentWeather.getDescription());
-            editor.putString(WEATHER_DATA_DESCRIPTION, weather.currentWeather.getDescription());
-
             mHumidity
                     .setText(weather.currentCondition.getHumidity() + "%");
-            editor.putInt(WEATHER_DATA_HUMIDITY, weather.currentCondition.getHumidity());
-
             mPressure
                     .setText(weather.currentCondition.getPressure() + " hpa");
-            editor.putFloat(WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
-
             String weather_unit =
                     mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
-
             if (weather_unit.equals("metric")) {
                 mWindSpeed
                         .setText(weather.wind.getSpeed() + getResources().getString(
@@ -261,18 +248,12 @@ public class MainActivity extends AppCompatActivity {
                 mWindSpeed.setText(weather.wind.getSpeed() + getResources().getString(
                         R.string.wind_speed_miles));
             }
-            editor.putFloat(WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
-
             mClouds
                     .setText(weather.cloud.getClouds() + "%");
-            editor.putInt(WEATHER_DATA_CLOUDS, weather.cloud.getClouds());
 
             setTitle(weather.location.getCityName());
             configEditor.putString(APP_SETTINGS_CITY, weather.location.getCityName());
-
             configEditor.putString(APP_SETTINGS_COUNTRY_CODE, weather.location.getCountryCode());
-
-            editor.apply();
             configEditor.apply();
         }
     }
@@ -288,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         mSharedPreferences
                 = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
         mPrefWeather =
-                getSharedPreferences(WEATHER_DATA, Context.MODE_PRIVATE);
+                getSharedPreferences(PrefKeys.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
 
         mTemperatureView = (TextView) findViewById(R.id.temperature);
         mDescription = (TextView) findViewById(R.id.weather_description);
