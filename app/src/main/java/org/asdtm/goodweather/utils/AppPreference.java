@@ -59,4 +59,13 @@ public class AppPreference {
         editor.putString(PrefKeys.WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
         editor.apply();
     }
+
+    public static String[] getCityAndCode(Context context, String publicPrefName) {
+        SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
+                                                                     Context.MODE_PRIVATE);
+        String[] result = new String[2];
+        result[0] = preferences.getString(PrefKeys.APP_SETTINGS_NAME, "London");
+        result[1] = preferences.getString(PrefKeys.APP_SETTINGS_COUNTRY_CODE, "UK");
+        return result;
+    }
 }
