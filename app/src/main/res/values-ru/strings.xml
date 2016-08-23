@@ -39,4 +39,6 @@
     <string name="refresh_interval_1hour">Каждый час</string>
     <string name="refresh_interval_24hours">24 часа</string>
     <string name="refresh_interval_30min">30 минут</string>
+    <string name="widget_weather_icon_description">Иконка погоды</string>
+    <string name="widget_refresh_button">Кнопка обновления виджета</string>
 </resources>

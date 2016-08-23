@@ -25,9 +25,24 @@
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
 
+    <!-- Weather icons -->
+    <string name="icon_clear_sky_day" translatable="false">&#xf00d;</string>
+    <string name="icon_clear_sky_night" translatable="false">&#xf02e;</string>
+    <string name="icon_few_clouds_day" translatable="false">&#xf002;</string>
+    <string name="icon_few_clouds_night" translatable="false">&#xf086;</string>
+    <string name="icon_scattered_clouds" translatable="false">&#xf041;</string>
+    <string name="icon_broken_clouds" translatable="false">&#xf013;</string>
+    <string name="icon_shower_rain" translatable="false">&#xf01a;</string>
+    <string name="icon_rain_day" translatable="false">&#xf008;</string>
+    <string name="icon_rain_night" translatable="false">&#xf028;</string>
+    <string name="icon_thunderstorm" translatable="false">&#xf01e;</string>
+    <string name="icon_snow" translatable="false">&#xf01b;</string>
+    <string name="icon_mist" translatable="false">&#xf014;</string>
+    <string name="icon_weather_default" translatable="false">&#xf075;</string>
+
     <!-- Units and Measurement-->
     <string name="percent_sign" translatable="false">\u0025</string>
-    <string name="temperature_degree" translatable="false">\u00B0</string>
+    <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">" m/s"</string>
     <string name="wind_speed_miles">" mph"</string>
@@ -54,4 +69,8 @@
     <string name="notification_humidity_label">"Humidity: "</string>
     <string name="notification_pressure_label">"Pressure: "</string>
     <string name="notification_cloudiness_label">"Cloudiness: "</string>
+
+    <!-- Widgets strings -->
+    <string name="widget_weather_icon_description">Current weather icon</string>
+    <string name="widget_refresh_button">Widget refresh button</string>
 </resources>

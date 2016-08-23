@@ -39,4 +39,6 @@
     <string name="refresh_interval_1hour">Jede Stunde</string>
     <string name="refresh_interval_24hours">24 Stunden</string>
     <string name="refresh_interval_30min">30 Minuten</string>
+    <string name="widget_weather_icon_description">Current weather icon</string>
+    <string name="widget_refresh_button">Widget refresh button</string>
 </resources>
