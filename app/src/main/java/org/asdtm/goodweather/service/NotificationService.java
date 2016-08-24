@@ -19,7 +19,7 @@ import org.asdtm.goodweather.WeatherJSONParser;
 import org.asdtm.goodweather.WeatherRequest;
 import org.asdtm.goodweather.model.Weather;
 import org.asdtm.goodweather.utils.AppPreference;
-import org.asdtm.goodweather.utils.PrefKeys;
+import org.asdtm.goodweather.utils.Constants;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -40,10 +40,10 @@ public class NotificationService extends IntentService {
             return;
         }
 
-        SharedPreferences preferences = getSharedPreferences(PrefKeys.APP_SETTINGS_NAME, 0);
-        String latitude = preferences.getString(PrefKeys.APP_SETTINGS_LATITUDE, "51.51");
-        String longitude = preferences.getString(PrefKeys.APP_SETTINGS_LONGITUDE, "-0.13");
-        String locale = AppPreference.getLocale(this, PrefKeys.APP_SETTINGS_NAME);
+        SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
+        String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
+        String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
+        String locale = AppPreference.getLocale(this, Constants.APP_SETTINGS_NAME);
         String units = AppPreference.getTemperatureUnit(this);
 
         Weather weather = new Weather();

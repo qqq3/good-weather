@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import org.asdtm.goodweather.service.NotificationService;
-import org.asdtm.goodweather.utils.PrefKeys;
+import org.asdtm.goodweather.utils.Constants;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
@@ -50,7 +50,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             setHasOptionsMenu(true);
 
             final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
-                    PrefKeys.KEY_PREF_IS_NOTIFICATION_ENABLED);
+                    Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
             notificationSwitch.setOnPreferenceChangeListener(notificationListener);
 
         }
@@ -70,10 +70,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             switch (key) {
-                case PrefKeys.KEY_PREF_TEMPERATURE:
+                case Constants.KEY_PREF_TEMPERATURE:
                     setSummary();
                     break;
-                case PrefKeys.KEY_PREF_INTERVAL_NOTIFICATION:
+                case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
                     Preference pref = findPreference(key);
                     NotificationService.setNotificationServiceAlarm(getActivity(),
                                                                     pref.isEnabled());
@@ -84,12 +84,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
 
         private void setSummary() {
-            Preference temperaturePref = findPreference(PrefKeys.KEY_PREF_TEMPERATURE);
+            Preference temperaturePref = findPreference(Constants.KEY_PREF_TEMPERATURE);
             ListPreference temperatureListPref = (ListPreference) temperaturePref;
             temperaturePref.setSummary(temperatureListPref.getEntry());
 
             Preference notificationIntervalPref = findPreference(
-                    PrefKeys.KEY_PREF_INTERVAL_NOTIFICATION);
+                    Constants.KEY_PREF_INTERVAL_NOTIFICATION);
             ListPreference notificationIntervalListPref = (ListPreference) notificationIntervalPref;
             notificationIntervalPref.setSummary(notificationIntervalListPref.getEntry());
         }

@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.utils.AppPreference;
-import org.asdtm.goodweather.utils.PrefKeys;
+import org.asdtm.goodweather.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     protected void onResume() {
         super.onResume();
         setCurrentLocale();
-        locale = AppPreference.getLocale(this, PrefKeys.APP_SETTINGS_NAME);
+        locale = AppPreference.getLocale(this, Constants.APP_SETTINGS_NAME);
     }
 
     private class SearchCityHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -247,6 +247,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         } else {
             currentLocale = Locale.getDefault().getLanguage();
         }
-        AppPreference.setLocale(this, PrefKeys.APP_SETTINGS_NAME, currentLocale);
+        AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME, currentLocale);
     }
 }

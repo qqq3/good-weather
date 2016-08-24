@@ -36,7 +36,7 @@ import android.widget.Toast;
 
 import org.asdtm.goodweather.model.Weather;
 import org.asdtm.goodweather.utils.AppPreference;
-import org.asdtm.goodweather.utils.PrefKeys;
+import org.asdtm.goodweather.utils.Constants;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(weather);
             mNewRequest.setRefreshing(false);
 
-            AppPreference.setWeather(MainActivity.this, PrefKeys.PREF_WEATHER_NAME, weather);
+            AppPreference.setWeather(MainActivity.this, Constants.PREF_WEATHER_NAME, weather);
 
             mSharedPreferences =
                     getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         mSharedPreferences
                 = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
         mPrefWeather =
-                getSharedPreferences(PrefKeys.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
+                getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
 
         mTemperatureView = (TextView) findViewById(R.id.temperature);
         mDescription = (TextView) findViewById(R.id.weather_description);

@@ -1,6 +1,6 @@
 package org.asdtm.goodweather.utils;
 
-public class PrefKeys {
+public class Constants {
 
     /**
      * SharedPreference names

@@ -6,29 +6,29 @@ import android.preference.PreferenceManager;
 
 import org.asdtm.goodweather.model.Weather;
 
-import static org.asdtm.goodweather.utils.PrefKeys.APP_SETTINGS_LOCALE;
+import static org.asdtm.goodweather.utils.Constants.APP_SETTINGS_LOCALE;
 
 public class AppPreference {
 
     public static String getTemperatureUnit(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
-                PrefKeys.KEY_PREF_TEMPERATURE, "metric");
+                Constants.KEY_PREF_TEMPERATURE, "metric");
     }
 
     public static String getInterval(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
-                                .getString(PrefKeys.KEY_PREF_INTERVAL_NOTIFICATION, "60");
+                                .getString(Constants.KEY_PREF_INTERVAL_NOTIFICATION, "60");
     }
 
     public static boolean isVibrateEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                PrefKeys.KEY_PREF_VIBRATE,
+                Constants.KEY_PREF_VIBRATE,
                 false);
     }
 
     public static boolean isNotificationEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                PrefKeys.KEY_PREF_IS_NOTIFICATION_ENABLED, false);
+                Constants.KEY_PREF_IS_NOTIFICATION_ENABLED, false);
     }
 
     public static String getLocale(Context context, String publicPrefName) {
@@ -49,14 +49,14 @@ public class AppPreference {
         SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putFloat(PrefKeys.WEATHER_DATA_TEMPERATURE, weather.temperature.getTemp());
-        editor.putString(PrefKeys.WEATHER_DATA_DESCRIPTION,
+        editor.putFloat(Constants.WEATHER_DATA_TEMPERATURE, weather.temperature.getTemp());
+        editor.putString(Constants.WEATHER_DATA_DESCRIPTION,
                          weather.currentWeather.getDescription());
-        editor.putFloat(PrefKeys.WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
-        editor.putInt(PrefKeys.WEATHER_DATA_HUMIDITY, weather.currentCondition.getHumidity());
-        editor.putFloat(PrefKeys.WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
-        editor.putInt(PrefKeys.WEATHER_DATA_CLOUDS, weather.cloud.getClouds());
-        editor.putString(PrefKeys.WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
+        editor.putFloat(Constants.WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
+        editor.putInt(Constants.WEATHER_DATA_HUMIDITY, weather.currentCondition.getHumidity());
+        editor.putFloat(Constants.WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
+        editor.putInt(Constants.WEATHER_DATA_CLOUDS, weather.cloud.getClouds());
+        editor.putString(Constants.WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
         editor.apply();
     }
 
@@ -64,8 +64,8 @@ public class AppPreference {
         SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
                                                                      Context.MODE_PRIVATE);
         String[] result = new String[2];
-        result[0] = preferences.getString(PrefKeys.APP_SETTINGS_CITY, "London");
-        result[1] = preferences.getString(PrefKeys.APP_SETTINGS_COUNTRY_CODE, "UK");
+        result[0] = preferences.getString(Constants.APP_SETTINGS_CITY, "London");
+        result[1] = preferences.getString(Constants.APP_SETTINGS_COUNTRY_CODE, "UK");
         return result;
     }
 }
