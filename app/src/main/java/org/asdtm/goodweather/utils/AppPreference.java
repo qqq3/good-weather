@@ -2,11 +2,12 @@ package org.asdtm.goodweather.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
 import org.asdtm.goodweather.model.Weather;
 
-import static org.asdtm.goodweather.utils.Constants.APP_SETTINGS_LOCALE;
+import java.util.Locale;
 
 public class AppPreference {
 
@@ -34,14 +35,25 @@ public class AppPreference {
     public static String getLocale(Context context, String publicPrefName) {
         SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
                                                                      Context.MODE_PRIVATE);
-        return preferences.getString(APP_SETTINGS_LOCALE, "en");
+        return preferences.getString(Constants.APP_SETTINGS_LOCALE, "en");
     }
 
-    public static void setLocale(Context context, String publicPrefName, String locale) {
+    public static void setLocale(Context context, String publicPrefName) {
+        String locale;
+        /**
+         * Check API version and based on this gets the current value of the default locale
+         * with specified Category or without
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locale = Locale.getDefault(Locale.Category.DISPLAY).getLanguage();
+        } else {
+            locale = Locale.getDefault().getLanguage();
+        }
+
         SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(APP_SETTINGS_LOCALE, locale);
+        editor.putString(Constants.APP_SETTINGS_LOCALE, locale);
         editor.apply();
     }
 

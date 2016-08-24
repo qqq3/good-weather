@@ -4,7 +4,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
@@ -30,7 +29,6 @@ import org.asdtm.goodweather.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -75,7 +73,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     protected void onResume() {
         super.onResume();
-        setCurrentLocale();
+        AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME);
         locale = AppPreference.getLocale(this, Constants.APP_SETTINGS_NAME);
     }
 
@@ -234,19 +232,5 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             CitySearch city = new CitySearch(lastCity, lastCountry, lastLat, lastLon);
             mCites.add(city);
         }
-    }
-
-    private void setCurrentLocale() {
-        String currentLocale;
-        /**
-         * Check API version and based on this gets the current value of the default locale
-         * with specified Category or without
-         */
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            currentLocale = Locale.getDefault(Locale.Category.DISPLAY).getLanguage();
-        } else {
-            currentLocale = Locale.getDefault().getLanguage();
-        }
-        AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME, currentLocale);
     }
 }
