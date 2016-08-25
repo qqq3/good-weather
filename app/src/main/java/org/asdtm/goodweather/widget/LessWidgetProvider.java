@@ -44,7 +44,6 @@ public class LessWidgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
 
-        context.startService(new Intent(context, LessWidgetService.class));
         for (int appWidgetId : appWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                                                       R.layout.widget_less_3x1);
@@ -64,6 +63,8 @@ public class LessWidgetProvider extends AppWidgetProvider {
 
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
+
+        context.startService(new Intent(context, LessWidgetService.class));
     }
 
     private void preLoadWeather(Context context, RemoteViews remoteViews) {

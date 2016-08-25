@@ -42,7 +42,6 @@ public class MoreWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        context.startService(new Intent(context, MoreWidgetService.class));
 
         for (int appWidgetId : appWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
@@ -63,6 +62,8 @@ public class MoreWidgetProvider extends AppWidgetProvider {
 
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
+
+        context.startService(new Intent(context, MoreWidgetService.class));
     }
 
     private void preLoadWeather(Context context, RemoteViews remoteViews) {
