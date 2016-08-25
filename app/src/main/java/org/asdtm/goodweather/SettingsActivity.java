@@ -1,18 +1,20 @@
 package org.asdtm.goodweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
 
 import org.asdtm.goodweather.service.NotificationService;
 import org.asdtm.goodweather.utils.Constants;
+
+import java.util.List;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
@@ -22,10 +24,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupActionBar();
+    }
 
-        getFragmentManager().beginTransaction()
-                            .replace(android.R.id.content, new GeneralPreferenceFragment())
-                            .commit();
+    @Override
+    public void onBuildHeaders(List<Header> target) {
+        super.onBuildHeaders(target);
+        loadHeadersFromResource(R.xml.pref_headers, target);
+    }
+
+    @Override
+    public boolean hasHeaders() {
+        return super.hasHeaders();
     }
 
     private void setupActionBar() {
@@ -37,7 +46,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
-                || GeneralPreferenceFragment.class.getName().equals(fragmentName);
+                || GeneralPreferenceFragment.class.getName().equals(fragmentName)
+                || WidgetPreferenceFragment.class.getName().equals(fragmentName)
+                || AboutPreferenceFragment.class.getName().equals(fragmentName);
     }
 
     public static class GeneralPreferenceFragment extends PreferenceFragment implements
@@ -113,10 +124,88 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case android.R.id.home:
-                    if (NavUtils.getParentActivityName(getActivity()) != null) {
-                        NavUtils.navigateUpFromSameTask(getActivity());
-                        return true;
-                    }
+                    startActivity(new Intent(getActivity(), SettingsActivity.class));
+                    return true;
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public static class WidgetPreferenceFragment extends PreferenceFragment implements
+            SharedPreferences.OnSharedPreferenceChangeListener {
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_widget);
+            setHasOptionsMenu(true);
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences()
+                                 .registerOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences()
+                                 .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case android.R.id.home:
+                    startActivity(new Intent(getActivity(), SettingsActivity.class));
+                    return true;
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public static class AboutPreferenceFragment extends PreferenceFragment implements
+            SharedPreferences.OnSharedPreferenceChangeListener {
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_about);
+            setHasOptionsMenu(true);
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences()
+                                 .registerOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences()
+                                 .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case android.R.id.home:
+                    startActivity(new Intent(getActivity(), SettingsActivity.class));
+                    return true;
             }
 
             return super.onOptionsItemSelected(item);

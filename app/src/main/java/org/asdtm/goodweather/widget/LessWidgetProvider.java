@@ -107,6 +107,5 @@ public class LessWidgetProvider extends AppWidgetProvider {
                            "setBackgroundColor", backgroundColorId);
         remoteViews.setTextColor(R.id.widget_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_description, textColorId);
-
     }
 }
