@@ -44,4 +44,5 @@
     <string name="preference_title_activity_about">O aplikacji</string>
     <string name="preference_title_activity_general">Ustawienia główne</string>
     <string name="preference_title_activity_widget">Ustawienia Widget</string>
+    <string name="preference_widget_light_theme">światło tematem</string>
 </resources>
