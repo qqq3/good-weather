@@ -144,6 +144,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            switch (key) {
+                case Constants.KEY_PREF_WIDGET_LIGHT_THEME:
+                    getActivity().sendBroadcast(
+                            new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED));
+            }
         }
 
         @Override
