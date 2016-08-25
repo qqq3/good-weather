@@ -35,4 +35,6 @@ public class Constants {
      */
     public static final String ACTION_FORCED_APPWIDGET_UPDATE =
             "org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE";
+    public static final String ACTION_APPWIDGET_THEME_CHANGED = "" +
+            "org.asdtm.goodweather.action.APPWIDGET_THEME_CHANGED";
 }

@@ -75,6 +75,7 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
                 <action android:name="org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.asdtm.goodweather.action.APPWIDGET_THEME_CHANGED"/>
             </intent-filter>
 
             <meta-data
@@ -86,6 +87,7 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
                 <action android:name="org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.asdtm.goodweather.action.APPWIDGET_THEME_CHANGED"/>
             </intent-filter>
 
             <meta-data
