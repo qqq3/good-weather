@@ -80,4 +80,9 @@ public class AppPreference {
         result[1] = preferences.getString(Constants.APP_SETTINGS_COUNTRY_CODE, "UK");
         return result;
     }
+
+    public static boolean isLightThemeEnabled(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_WIDGET_LIGHT_THEME, false);
+    }
 }

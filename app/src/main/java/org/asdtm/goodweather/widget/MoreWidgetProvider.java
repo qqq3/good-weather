@@ -3,9 +3,11 @@ package org.asdtm.goodweather.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.widget.RemoteViews;
 
 import org.asdtm.goodweather.MainActivity;
@@ -27,6 +29,11 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         } else if (intent.getAction().equalsIgnoreCase(Intent.ACTION_LOCALE_CHANGED)) {
             AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
             context.startService(new Intent(context, MoreWidgetService.class));
+        } else if (intent.getAction().equalsIgnoreCase(Constants.ACTION_APPWIDGET_THEME_CHANGED)) {
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            ComponentName componentName = new ComponentName(context, MoreWidgetProvider.class);
+            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
+            onUpdate(context, appWidgetManager, appWidgetIds);
         } else {
             super.onReceive(context, intent);
         }
@@ -40,6 +47,8 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         for (int appWidgetId : appWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                                                       R.layout.widget_more_3x3);
+
+            setWidgetTheme(context, remoteViews);
             preLoadWeather(context, remoteViews);
             Intent intentRefreshService = new Intent(context, MoreWidgetProvider.class);
             intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
@@ -88,5 +97,31 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_clouds, cloudiness + percentSign);
         remoteViews.setImageViewBitmap(R.id.widget_icon,
                                        Utils.createWeatherIcon(context, weatherIcon));
+    }
+
+    private void setWidgetTheme(Context context, RemoteViews remoteViews) {
+        int textColorId;
+        int backgroundColorId;
+
+        if (!AppPreference.isLightThemeEnabled(context)) {
+            backgroundColorId = ContextCompat.getColor(context,
+                                                       R.color.widget_darkTheme_colorBackground);
+            textColorId = ContextCompat.getColor(context,
+                                                 R.color.widget_darkTheme_textColorPrimary);
+        } else {
+            backgroundColorId = ContextCompat.getColor(context,
+                                                       R.color.widget_lightTheme_colorBackground);
+            textColorId = ContextCompat.getColor(context,
+                                                 R.color.widget_lightTheme_textColorPrimary);
+        }
+
+        remoteViews.setInt(R.id.widget_root, "setBackgroundColor", backgroundColorId);
+        remoteViews.setTextColor(R.id.widget_temperature,textColorId);
+        remoteViews.setTextColor(R.id.widget_description,textColorId);
+        remoteViews.setTextColor(R.id.widget_description, textColorId);
+        remoteViews.setTextColor(R.id.widget_wind, textColorId);
+        remoteViews.setTextColor(R.id.widget_humidity, textColorId);
+        remoteViews.setTextColor(R.id.widget_pressure, textColorId);
+        remoteViews.setTextColor(R.id.widget_clouds, textColorId);
     }
 }

@@ -3,9 +3,11 @@ package org.asdtm.goodweather.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.widget.RemoteViews;
 
 import org.asdtm.goodweather.MainActivity;
@@ -28,6 +30,11 @@ public class LessWidgetProvider extends AppWidgetProvider {
         } else if (intent.getAction().equalsIgnoreCase(Intent.ACTION_LOCALE_CHANGED)) {
             AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
             context.startService(new Intent(context, LessWidgetService.class));
+        } else if (intent.getAction().equalsIgnoreCase(Constants.ACTION_APPWIDGET_THEME_CHANGED)) {
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            ComponentName componentName = new ComponentName(context, LessWidgetProvider.class);
+            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
+            onUpdate(context, appWidgetManager, appWidgetIds);
         } else {
             super.onReceive(context, intent);
         }
@@ -42,6 +49,7 @@ public class LessWidgetProvider extends AppWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                                                       R.layout.widget_less_3x1);
 
+            setWidgetTheme(context, remoteViews);
             preLoadWeather(context, remoteViews);
 
             Intent intent = new Intent(context, LessWidgetProvider.class);
@@ -78,5 +86,27 @@ public class LessWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_description, description);
         remoteViews.setImageViewBitmap(R.id.widget_icon,
                                        Utils.createWeatherIcon(context, weatherIcon));
+    }
+
+    private void setWidgetTheme(Context context, RemoteViews remoteViews) {
+        int textColorId;
+        int backgroundColorId;
+
+        if (!AppPreference.isLightThemeEnabled(context)) {
+            backgroundColorId = ContextCompat.getColor(context,
+                                                       R.color.widget_darkTheme_colorBackground);
+            textColorId = ContextCompat.getColor(context,
+                                                 R.color.widget_darkTheme_textColorPrimary);
+        } else {
+            backgroundColorId = ContextCompat.getColor(context,
+                                                       R.color.widget_lightTheme_colorBackground);
+            textColorId = ContextCompat.getColor(context,
+                                                 R.color.widget_lightTheme_textColorPrimary);
+        }
+        remoteViews.setInt(R.id.widget_root,
+                           "setBackgroundColor", backgroundColorId);
+        remoteViews.setTextColor(R.id.widget_temperature, textColorId);
+        remoteViews.setTextColor(R.id.widget_description, textColorId);
+
     }
 }

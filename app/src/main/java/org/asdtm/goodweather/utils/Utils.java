@@ -17,11 +17,18 @@ public class Utils {
         Paint paint = new Paint();
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(),
                                                         "fonts/weathericons-regular-webfont.ttf");
+        int textColor;
+        if (!AppPreference.isLightThemeEnabled(context)) {
+            textColor = ContextCompat.getColor(context, R.color.widget_darkTheme_textColorPrimary);
+        } else {
+            textColor = ContextCompat.getColor(context, R.color.widget_lightTheme_textColorPrimary);
+        }
+
         paint.setAntiAlias(true);
         paint.setSubpixelText(true);
         paint.setTypeface(weatherFont);
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(ContextCompat.getColor(context, R.color.widget_darkTheme_textColorPrimary));
+        paint.setColor(textColor);
         paint.setTextSize(180);
         paint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(text, 128, 200, paint);
