@@ -23,7 +23,7 @@ import org.asdtm.goodweather.utils.Constants;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.text.NumberFormat;
+import java.util.Locale;
 
 public class NotificationService extends IntentService {
 
@@ -103,14 +103,6 @@ public class NotificationService extends IntentService {
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        /**
-         * Format temperature value to one digit after float (24.666 -> 24.6)
-         */
-        NumberFormat formatTemperatureValue = NumberFormat.getNumberInstance();
-        formatTemperatureValue.setMinimumFractionDigits(1);
-        formatTemperatureValue.setMaximumFractionDigits(1);
-        String temperature = formatTemperatureValue.format(weather.temperature.getTemp());
-
         String[] temperatureUnitsArray = getResources().getStringArray(
                 R.array.pref_temperature_entries);
         String temperatureUnitPref = AppPreference.getTemperatureUnit(this);
@@ -119,22 +111,32 @@ public class NotificationService extends IntentService {
         String windUnit = temperatureUnitPref.equals("metric") ?
                 getString(R.string.wind_speed_meters) : getString(R.string.wind_speed_miles);
 
-        StringBuilder notificationText = new StringBuilder(
-                getString(R.string.notification_wind_label))
-                .append(weather.wind.getSpeed())
+        String temperature = String.format(Locale.getDefault(), "%.1f",
+                                           weather.temperature.getTemp());
+
+        String wind = getString(R.string.wind_label, String.format(Locale.getDefault(),
+                                                                   "%.1f",
+                                                                   weather.wind.getSpeed()));
+        String humidity = getString(R.string.humidity_label,
+                                    String.valueOf(weather.currentCondition.getHumidity()));
+        String pressure = getString(R.string.pressure_label,
+                                    String.format(Locale.getDefault(), "%.1f",
+                                                  weather.currentCondition.getPressure()));
+        String cloudiness = getString(R.string.pressure_label,
+                                      String.valueOf(weather.cloud.getClouds()));
+
+        StringBuilder notificationText = new StringBuilder(wind)
+                .append(" ")
                 .append(windUnit)
                 .append("  ")
-                .append(getString(R.string.notification_humidity_label))
-                .append(weather.currentCondition.getHumidity())
+                .append(humidity)
                 .append(getString(R.string.percent_sign))
                 .append("  ")
-                .append(getString(R.string.notification_pressure_label))
-                .append(weather.currentCondition.getPressure())
+                .append(pressure)
                 .append(" ")
                 .append(getString(R.string.pressure_measurement))
                 .append("  ")
-                .append(getString(R.string.notification_cloudiness_label))
-                .append(weather.cloud.getClouds())
+                .append(cloudiness)
                 .append(getString(R.string.percent_sign));
 
         Notification notification = new NotificationCompat.Builder(this)
