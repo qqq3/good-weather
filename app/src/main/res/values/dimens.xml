@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="settings_content_marginBottom">30dp</dimen>
+    <dimen name="widget_3x3_text_size">14sp</dimen>
 </resources>

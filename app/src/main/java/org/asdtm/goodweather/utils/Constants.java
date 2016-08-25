@@ -8,6 +8,9 @@ public class Constants {
     public static final String APP_SETTINGS_NAME = "config";
     public static final String PREF_WEATHER_NAME = "weather_pref";
 
+    /**
+     * Preferences constants
+     */
     public static final String APP_SETTINGS_LOCALE = "locale";
     public static final String APP_SETTINGS_LATITUDE = "latitude";
     public static final String APP_SETTINGS_LONGITUDE = "longitude";
@@ -26,4 +29,10 @@ public class Constants {
     public static final String WEATHER_DATA_WIND_SPEED = "wind_speed";
     public static final String WEATHER_DATA_CLOUDS = "clouds";
     public static final String WEATHER_DATA_ICON = "icon";
+
+    /**
+     * Widget action constants
+     */
+    public static final String ACTION_FORCED_APPWIDGET_UPDATE =
+            "org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE";
 }

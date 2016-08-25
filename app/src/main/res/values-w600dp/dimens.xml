@@ -2,4 +2,5 @@
     <dimen name="activity_horizontal_margin">32dp</dimen>
     <dimen name="activity_vertical_margin">32dp</dimen>
     <dimen name="settings_content_marginBottom">64dp</dimen>
+    <dimen name="widget_3x3_text_size">28sp</dimen>
 </resources>

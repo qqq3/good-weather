@@ -70,7 +70,31 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
-        <service
-            android:name=".service.NotificationService"/>
+        <receiver android:name=".widget.LessWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_less"/>
+        </receiver>
+        <receiver android:name=".widget.MoreWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_more"/>
+        </receiver>
+
+        <service android:name=".service.NotificationService"/>
+        <service android:name=".widget.LessWidgetService"/>
+        <service android:name=".widget.MoreWidgetService"/>
     </application>
 </manifest>
