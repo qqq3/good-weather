@@ -2,6 +2,7 @@ package org.asdtm.goodweather;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -99,8 +100,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         @Override
         public void onClick(View v) {
             v.setBackgroundColor(Color.rgb(227, 227, 227));
-
             setCity(mCity);
+            sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
             finish();
         }
     }
