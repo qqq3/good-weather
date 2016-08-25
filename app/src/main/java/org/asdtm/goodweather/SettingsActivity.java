@@ -83,6 +83,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             switch (key) {
                 case Constants.KEY_PREF_TEMPERATURE:
                     setSummary();
+                    getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
                     break;
                 case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
                     Preference pref = findPreference(key);
