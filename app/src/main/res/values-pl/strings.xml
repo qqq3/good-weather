@@ -25,10 +25,10 @@
     <string name="pref_title_temperature">Temperatura</string>
     <string name="title_activity_settings">Ustawienia</string>
     <string name="title_activity_search">Szukanie</string>
-    <string name="notification_cloudiness_label">"Zmętnienie: "</string>
-    <string name="notification_humidity_label">"Wilgotność: "</string>
-    <string name="notification_pressure_label">"Nacisk: "</string>
-    <string name="notification_wind_label">"Wiatr: "</string>
+    <string name="cloudiness_label">Zmętnienie: %s</string>
+    <string name="humidity_label">Wilgotność: %s</string>
+    <string name="pressure_label">Nacisk: %s</string>
+    <string name="wind_label">Wiatr: %s</string>
     <string name="pref_title_category_notification">Powiadomienia</string>
     <string name="pref_title_notification">Włącz powiadomienia</string>
     <string name="pref_title_notification_refresh_interval">Częstotliwość odświeżania</string>

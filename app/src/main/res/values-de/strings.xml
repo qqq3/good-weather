@@ -25,10 +25,10 @@
     <string name="pref_title_temperature">Temperatur</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="title_activity_search">Suche nach Standort</string>
-    <string name="notification_cloudiness_label">"Trübung: "</string>
-    <string name="notification_humidity_label">"Feuchtigkeit: "</string>
-    <string name="notification_pressure_label">"Druck: "</string>
-    <string name="notification_wind_label">"Wind: "</string>
+    <string name="cloudiness_label">Trübung: %s</string>
+    <string name="humidity_label">Feuchtigkeit: %s</string>
+    <string name="pressure_label">Druck: %s</string>
+    <string name="wind_label">Wind: %s</string>
     <string name="pref_title_category_notification">Benachrichtigungen</string>
     <string name="pref_title_notification">Benachrichtigungen aktivieren</string>
     <string name="pref_title_notification_refresh_interval">Aktualisierungsintervall</string>
