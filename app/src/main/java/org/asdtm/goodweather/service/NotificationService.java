@@ -20,6 +20,7 @@ import org.asdtm.goodweather.WeatherRequest;
 import org.asdtm.goodweather.model.Weather;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
+import org.asdtm.goodweather.utils.Utils;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -103,13 +104,8 @@ public class NotificationService extends IntentService {
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        String[] temperatureUnitsArray = getResources().getStringArray(
-                R.array.pref_temperature_entries);
-        String temperatureUnitPref = AppPreference.getTemperatureUnit(this);
-        String temperatureUnit = temperatureUnitPref.equals("metric") ?
-                temperatureUnitsArray[0] : temperatureUnitsArray[1];
-        String windUnit = temperatureUnitPref.equals("metric") ?
-                getString(R.string.wind_speed_meters) : getString(R.string.wind_speed_miles);
+        String temperatureScale = Utils.getTemperatureScale(this);
+        String speedScale = Utils.getSpeedScale(this);
 
         String temperature = String.format(Locale.getDefault(), "%.1f",
                                            weather.temperature.getTemp());
@@ -127,7 +123,7 @@ public class NotificationService extends IntentService {
 
         StringBuilder notificationText = new StringBuilder(wind)
                 .append(" ")
-                .append(windUnit)
+                .append(speedScale)
                 .append("  ")
                 .append(humidity)
                 .append(getString(R.string.percent_sign))
@@ -143,13 +139,13 @@ public class NotificationService extends IntentService {
                 .setContentIntent(launchIntent)
                 .setSmallIcon(R.drawable.small_icon)
                 .setTicker(temperature
-                                   + temperatureUnit
+                                   + temperatureScale
                                    + "  "
                                    + weather.location.getCityName()
                                    + ", "
                                    + weather.location.getCountryCode())
                 .setContentTitle(temperature
-                                         + temperatureUnit
+                                         + temperatureScale
                                          + "  "
                                          + weather.currentWeather.getDescription())
                 .setContentText(notificationText)
