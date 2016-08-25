@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="activity_label">Informacje o programie</string>
+    <string name="activity_label">O aplikacji</string>
     <string name="nav_menu_settings">Ustawienia</string>
     <string name="text_about"><b> Dobra pogoda </b> - darmowa aplikacja dla pogody kontroli online.
          Przy pomocy aplikacji można sprawdzić warunki pogodowe w ponad 200.000 miast.
@@ -41,4 +41,7 @@
     <string name="refresh_interval_30min">30 minut</string>
     <string name="widget_weather_icon_description">Current weather icon</string>
     <string name="widget_refresh_button">Widget refresh button</string>
+    <string name="preference_title_activity_about">O aplikacji</string>
+    <string name="preference_title_activity_general">Ustawienia główne</string>
+    <string name="preference_title_activity_widget">Ustawienia Widget</string>
 </resources>

@@ -41,4 +41,7 @@
     <string name="refresh_interval_30min">30 Minuten</string>
     <string name="widget_weather_icon_description">Current weather icon</string>
     <string name="widget_refresh_button">Widget refresh button</string>
+    <string name="preference_title_activity_about">Über</string>
+    <string name="preference_title_activity_general">Allgemeine Einstellungen</string>
+    <string name="preference_title_activity_widget">Widget-Einstellungen</string>
 </resources>

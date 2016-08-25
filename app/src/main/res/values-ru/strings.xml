@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="activity_label">О программе</string>
+    <string name="activity_label">О приложении</string>
     <string name="connection_not_found">Отсутсвует подключение к интернету</string>
     <string name="enter_city_hint">Введите город</string>
     <string name="label_choose_city">Выбрать город</string>
@@ -41,4 +41,7 @@
     <string name="refresh_interval_30min">30 минут</string>
     <string name="widget_weather_icon_description">Иконка погоды</string>
     <string name="widget_refresh_button">Кнопка обновления виджета</string>
+    <string name="preference_title_activity_about">О приложении</string>
+    <string name="preference_title_activity_general">Главные настройки</string>
+    <string name="preference_title_activity_widget">Настройки виджетов</string>
 </resources>
