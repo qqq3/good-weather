@@ -80,12 +80,24 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         String temperature = String.format(Locale.getDefault(), "%.0f", weatherPref
                 .getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
         String description = weatherPref.getString(Constants.WEATHER_DATA_DESCRIPTION, "clear sky");
-        String wind = String.format(Locale.getDefault(), "%.0f", weatherPref
-                .getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
-        String humidity = String.valueOf(weatherPref.getInt(Constants.WEATHER_DATA_HUMIDITY, 0));
-        String pressure = String.format(Locale.getDefault(), "%.1f",
-                                        weatherPref.getFloat(Constants.WEATHER_DATA_PRESSURE, 0));
-        String cloudiness = String.valueOf(weatherPref.getInt(Constants.WEATHER_DATA_CLOUDS, 0));
+        String wind = context.getString(R.string.wind_label,
+                                        String.format(Locale.getDefault(), "%.0f", weatherPref
+                                                .getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0)));
+        String humidity =
+                context.getString(R.string.humidity_label,
+                                  String.valueOf(
+                                          weatherPref.getInt(Constants.WEATHER_DATA_HUMIDITY, 0)));
+        String pressure =
+                context.getString(R.string.pressure_label,
+                                  String.format(Locale.getDefault(),
+                                                "%.1f",
+                                                weatherPref
+                                                        .getFloat(Constants.WEATHER_DATA_PRESSURE,
+                                                                  0)));
+        String cloudiness =
+                context.getString(R.string.cloudiness_label,
+                                  String.valueOf(
+                                          weatherPref.getInt(Constants.WEATHER_DATA_CLOUDS, 0)));
         String iconId = weatherPref.getString(Constants.WEATHER_DATA_ICON, "01d");
         String weatherIcon = Utils.getStrIcon(context, iconId);
 
@@ -117,8 +129,8 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         }
 
         remoteViews.setInt(R.id.widget_root, "setBackgroundColor", backgroundColorId);
-        remoteViews.setTextColor(R.id.widget_temperature,textColorId);
-        remoteViews.setTextColor(R.id.widget_description,textColorId);
+        remoteViews.setTextColor(R.id.widget_temperature, textColorId);
+        remoteViews.setTextColor(R.id.widget_description, textColorId);
         remoteViews.setTextColor(R.id.widget_description, textColorId);
         remoteViews.setTextColor(R.id.widget_wind, textColorId);
         remoteViews.setTextColor(R.id.widget_humidity, textColorId);
