@@ -1,4 +1,4 @@
-package org.asdtm.goodweather.utils;//parse("File Header.java")
+package org.asdtm.goodweather.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;

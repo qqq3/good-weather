@@ -1,4 +1,4 @@
-package org.asdtm.goodweather.widget;//parse("File Header.java")
+package org.asdtm.goodweather.widget;
 
 import android.app.IntentService;
 import android.appwidget.AppWidgetManager;
