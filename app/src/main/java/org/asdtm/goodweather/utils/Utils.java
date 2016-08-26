@@ -6,8 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.text.format.DateFormat;
 
 import org.asdtm.goodweather.R;
+
+import java.util.Date;
 
 public class Utils {
 
@@ -112,5 +115,10 @@ public class Utils {
         return unitPref.equals("metric") ?
                 context.getString(R.string.wind_speed_meters) :
                 context.getString(R.string.wind_speed_miles);
+    }
+
+    public static String setLastUpdateTime(Context context, long lastUpdate) {
+        Date lastUpdateTime = new Date(lastUpdate);
+        return DateFormat.getTimeFormat(context).format(lastUpdateTime);
     }
 }

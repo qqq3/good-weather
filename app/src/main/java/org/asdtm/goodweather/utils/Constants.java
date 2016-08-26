@@ -31,6 +31,8 @@ public class Constants {
     public static final String WEATHER_DATA_CLOUDS = "clouds";
     public static final String WEATHER_DATA_ICON = "icon";
 
+    public static final String LAST_UPDATE_TIME_IN_MS = "last_update";
+
     /**
      * Widget action constants
      */
