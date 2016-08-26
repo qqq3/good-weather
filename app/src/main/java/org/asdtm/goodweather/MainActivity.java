@@ -69,22 +69,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
 
-    final String WEATHER_DATA_TEMPERATURE = "temperature";
-    final String WEATHER_DATA_DESCRIPTION = "description";
-    final String WEATHER_DATA_PRESSURE = "pressure";
-    final String WEATHER_DATA_HUMIDITY = "humidity";
-    final String WEATHER_DATA_WIND_SPEED = "wind_speed";
-    final String WEATHER_DATA_CLOUDS = "clouds";
-    final String WEATHER_DATA_ICON = "icon";
-
-    final String APP_SETTINGS = "config";
-    final String APP_SETTINGS_CITY = "city";
-    final String APP_SETTINGS_COUNTRY_CODE = "country_code";
-    final String APP_SETTINGS_UNITS = "units";
-    final String APP_SETTINGS_LATITUDE = "latitude";
-    final String APP_SETTINGS_LONGITUDE = "longitude";
-    final String APP_SETTINGS_LOCALE = "locale";
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -98,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         mSharedPreferences
-                = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+                = getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        final String title = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
+        final String title = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
         setTitle(title);
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
@@ -176,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
             public void onRefresh() {
                 isInternetConnection = connectionDetector.isNetworkAvailableAndConnected();
 
-                String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
-                String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
-                String currentLocale = mSharedPreferences.getString(APP_SETTINGS_LOCALE, "en");
+                String latitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
+                String longitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
+                String currentLocale = mSharedPreferences.getString(Constants.APP_SETTINGS_LOCALE, "en");
 
                 if (isInternetConnection) {
                     mLoadWeather = new BackgroundLoadWeather();
@@ -223,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             AppPreference.setWeather(MainActivity.this, Constants.PREF_WEATHER_NAME, weather);
 
             mSharedPreferences =
-                    getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+                    getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor configEditor = mSharedPreferences.edit();
 
             float getTemp = weather.temperature.getTemp();
@@ -238,8 +222,8 @@ public class MainActivity extends AppCompatActivity {
                     .setText(weather.currentCondition.getHumidity() + "%");
             mPressure
                     .setText(weather.currentCondition.getPressure() + " hpa");
-            String weather_unit =
-                    mSharedPreferences.getString(APP_SETTINGS_UNITS, "metric");
+            String weather_unit = mSharedPreferences.getString(
+                    AppPreference.getTemperatureUnit(MainActivity.this), "metric");
             if (weather_unit.equals("metric")) {
                 mWindSpeed
                         .setText(weather.wind.getSpeed() + getResources().getString(
@@ -248,12 +232,11 @@ public class MainActivity extends AppCompatActivity {
                 mWindSpeed.setText(weather.wind.getSpeed() + getResources().getString(
                         R.string.wind_speed_miles));
             }
-            mClouds
-                    .setText(weather.cloud.getClouds() + "%");
+            mClouds.setText(weather.cloud.getClouds() + "%");
 
             setTitle(weather.location.getCityName());
-            configEditor.putString(APP_SETTINGS_CITY, weather.location.getCityName());
-            configEditor.putString(APP_SETTINGS_COUNTRY_CODE, weather.location.getCountryCode());
+            configEditor.putString(Constants.APP_SETTINGS_CITY, weather.location.getCityName());
+            configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE, weather.location.getCountryCode());
             configEditor.apply();
         }
     }
@@ -267,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         isInternetConnection = connectionDetector.isNetworkAvailableAndConnected();
 
         mSharedPreferences
-                = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
+                = getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
         mPrefWeather =
                 getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
 
@@ -279,25 +262,25 @@ public class MainActivity extends AppCompatActivity {
         mClouds = (TextView) findViewById(R.id.clouds);
         mIconWeather = (ImageView) findViewById(R.id.weather_icon);
 
-        String iconId = mPrefWeather.getString(WEATHER_DATA_ICON, "01n");
+        String iconId = mPrefWeather.getString(Constants.WEATHER_DATA_ICON, "01n");
         setIconWeather(iconId);
 
-        float temperature = mPrefWeather.getFloat(WEATHER_DATA_TEMPERATURE, 0);
+        float temperature = mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0);
         String setTemp = String.format(Locale.getDefault(), "%.1f", temperature);
         mTemperatureView.setText(getString(R.string.temperature_with_degree, setTemp));
 
-        String description = mPrefWeather.getString(WEATHER_DATA_DESCRIPTION, null);
+        String description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION, null);
         mDescription.setText(description);
 
-        int humidity = mPrefWeather.getInt(WEATHER_DATA_HUMIDITY, 0);
+        int humidity = mPrefWeather.getInt(Constants.WEATHER_DATA_HUMIDITY, 0);
         mHumidity.setText(humidity + "%");
 
-        float pressure = mPrefWeather.getFloat(WEATHER_DATA_PRESSURE, 0);
+        float pressure = mPrefWeather.getFloat(Constants.WEATHER_DATA_PRESSURE, 0);
         mPressure.setText(pressure + " hpa");
 
         mUnits = AppPreference.getTemperatureUnit(this);
 
-        float wind_speed = mPrefWeather.getFloat(WEATHER_DATA_WIND_SPEED, 0);
+        float wind_speed = mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0);
         if (mUnits.equals("metric")) {
             mWindSpeed
                     .setText(wind_speed + getResources().getString(R.string.wind_speed_meters));
@@ -305,20 +288,20 @@ public class MainActivity extends AppCompatActivity {
             mWindSpeed.setText(wind_speed + getResources().getString(R.string.wind_speed_miles));
         }
 
-        int clouds = mPrefWeather.getInt(WEATHER_DATA_CLOUDS, 0);
+        int clouds = mPrefWeather.getInt(Constants.WEATHER_DATA_CLOUDS, 0);
         mClouds.setText(clouds + "%");
 
-        mTitle = mSharedPreferences.getString(APP_SETTINGS_CITY, "London");
+        mTitle = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
         setTitle(mTitle);
 
         String currentLocale = Locale.getDefault().getLanguage();
         SharedPreferences.Editor editor = mSharedPreferences.edit();
 
-        editor.putString(APP_SETTINGS_LOCALE, currentLocale);
+        editor.putString(Constants.APP_SETTINGS_LOCALE, currentLocale);
         editor.apply();
 
-        String latitude = mSharedPreferences.getString(APP_SETTINGS_LATITUDE, "51.51");
-        String longitude = mSharedPreferences.getString(APP_SETTINGS_LONGITUDE, "-0.13");
+        String latitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
+        String longitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
 
         if (isInternetConnection) {
             mLoadWeather = new BackgroundLoadWeather();
@@ -451,14 +434,14 @@ public class MainActivity extends AppCompatActivity {
             connectionDetector = new ConnectionDetector(MainActivity.this);
             isInternetConnection = connectionDetector.isNetworkAvailableAndConnected();
 
-            mSharedPreferences = getSharedPreferences(APP_SETTINGS,
+            mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                                                       Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putString(APP_SETTINGS_LATITUDE, latitude);
-            editor.putString(APP_SETTINGS_LONGITUDE, longitude);
+            editor.putString(Constants.APP_SETTINGS_LATITUDE, latitude);
+            editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
             editor.apply();
 
-            String currentLocal = mSharedPreferences.getString(APP_SETTINGS_LOCALE, "en");
+            String currentLocal = mSharedPreferences.getString(Constants.APP_SETTINGS_LOCALE, "en");
             if (isInternetConnection) {
                 mLoadWeather = new BackgroundLoadWeather();
                 mLoadWeather.execute(latitude, longitude, mUnits, currentLocal);
