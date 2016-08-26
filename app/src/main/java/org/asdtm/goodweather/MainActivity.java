@@ -467,6 +467,8 @@ public class MainActivity extends AppCompatActivity {
                                R.string.connection_not_found,
                                Toast.LENGTH_SHORT).show();
             }
+
+            sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
         }
 
         @Override
