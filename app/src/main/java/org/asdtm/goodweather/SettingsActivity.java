@@ -51,6 +51,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 || AboutPreferenceFragment.class.getName().equals(fragmentName);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public static class GeneralPreferenceFragment extends PreferenceFragment implements
             SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -58,7 +70,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
-            setHasOptionsMenu(true);
 
             final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
                     Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
@@ -83,7 +94,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             switch (key) {
                 case Constants.KEY_PREF_TEMPERATURE:
                     setSummary();
-                    getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                    getActivity().sendBroadcast(
+                            new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
                     break;
                 case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
                     Preference pref = findPreference(key);
@@ -120,17 +132,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
         }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()) {
-                case android.R.id.home:
-                    startActivity(new Intent(getActivity(), SettingsActivity.class));
-                    return true;
-            }
-
-            return super.onOptionsItemSelected(item);
-        }
     }
 
     public static class WidgetPreferenceFragment extends PreferenceFragment implements
@@ -140,7 +141,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_widget);
-            setHasOptionsMenu(true);
         }
 
         @Override
@@ -165,17 +165,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
         }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()) {
-                case android.R.id.home:
-                    startActivity(new Intent(getActivity(), SettingsActivity.class));
-                    return true;
-            }
-
-            return super.onOptionsItemSelected(item);
-        }
     }
 
     public static class AboutPreferenceFragment extends PreferenceFragment implements
@@ -185,7 +174,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_about);
-            setHasOptionsMenu(true);
         }
 
         @Override
@@ -204,17 +192,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onPause();
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
-        }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()) {
-                case android.R.id.home:
-                    startActivity(new Intent(getActivity(), SettingsActivity.class));
-                    return true;
-            }
-
-            return super.onOptionsItemSelected(item);
         }
     }
 }
