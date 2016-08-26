@@ -37,6 +37,7 @@ import android.widget.Toast;
 import org.asdtm.goodweather.model.Weather;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
+import org.asdtm.goodweather.utils.Utils;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isNetworkEnabled = false;
     private LocationManager locationManager;
     private String mUnits;
+    private String mSpeedScale;
 
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
@@ -80,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME);
 
+        mPrefWeather = getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
         mSharedPreferences
                 = getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
 
@@ -182,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //mNewRequest.setRefreshing(true);
         }
 
         @Override
@@ -244,52 +247,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mSharedPreferences
-                = getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
-        mPrefWeather =
-                getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
-
-        mTemperatureView = (TextView) findViewById(R.id.temperature);
-        mDescription = (TextView) findViewById(R.id.weather_description);
-        mPressure = (TextView) findViewById(R.id.pressure);
-        mHumidity = (TextView) findViewById(R.id.humidity);
-        mWindSpeed = (TextView) findViewById(R.id.wind_speed);
-        mClouds = (TextView) findViewById(R.id.clouds);
-        mIconWeather = (ImageView) findViewById(R.id.weather_icon);
-
-        String iconId = mPrefWeather.getString(Constants.WEATHER_DATA_ICON, "01n");
-        setIconWeather(iconId);
-
-        float temperature = mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0);
-        String setTemp = String.format(Locale.getDefault(), "%.1f", temperature);
-        mTemperatureView.setText(getString(R.string.temperature_with_degree, setTemp));
-
-        String description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION, null);
-        mDescription.setText(description);
-
-        int humidity = mPrefWeather.getInt(Constants.WEATHER_DATA_HUMIDITY, 0);
-        mHumidity.setText(humidity + "%");
-
-        float pressure = mPrefWeather.getFloat(Constants.WEATHER_DATA_PRESSURE, 0);
-        mPressure.setText(pressure + " hpa");
-
-        mUnits = AppPreference.getTemperatureUnit(this);
-
-        float wind_speed = mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0);
-        if (mUnits.equals("metric")) {
-            mWindSpeed
-                    .setText(wind_speed + getResources().getString(R.string.wind_speed_meters));
-        } else if (mUnits.equals("imperial")) {
-            mWindSpeed.setText(wind_speed + getResources().getString(R.string.wind_speed_miles));
-        }
-
-        int clouds = mPrefWeather.getInt(Constants.WEATHER_DATA_CLOUDS, 0);
-        mClouds.setText(clouds + "%");
-
-        mTitle = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
-        setTitle(mTitle);
-
-        AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME);
+        preLoadWeather();
     }
 
     @Override
@@ -528,5 +486,29 @@ public class MainActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    private void preLoadWeather() {
+        mUnits = AppPreference.getTemperatureUnit(this);
+        mSpeedScale = Utils.getSpeedScale(this);
+
+        String iconId = mPrefWeather.getString(Constants.WEATHER_DATA_ICON, "01n");
+        float temperature = mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0);
+        String setTemp = String.format(Locale.getDefault(), "%.1f", temperature);
+        String description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION, "clear sky");
+        int humidity = mPrefWeather.getInt(Constants.WEATHER_DATA_HUMIDITY, 0);
+        float pressure = mPrefWeather.getFloat(Constants.WEATHER_DATA_PRESSURE, 0);
+        float wind_speed = mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0);
+        int clouds = mPrefWeather.getInt(Constants.WEATHER_DATA_CLOUDS, 0);
+        mTitle = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
+
+        setIconWeather(iconId);
+        mTemperatureView.setText(getString(R.string.temperature_with_degree, setTemp));
+        mDescription.setText(description);
+        mHumidity.setText(humidity + "%");
+        mPressure.setText(pressure + " hpa");
+        mWindSpeed.setText(wind_speed + mSpeedScale);
+        mClouds.setText(clouds + "%");
+        setTitle(mTitle);
     }
 }
