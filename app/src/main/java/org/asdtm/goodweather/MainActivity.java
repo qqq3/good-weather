@@ -244,11 +244,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-
-        isInternetConnection = false;
-        connectionDetector = new ConnectionDetector(MainActivity.this);
-        isInternetConnection = connectionDetector.isNetworkAvailableAndConnected();
-
         mSharedPreferences
                 = getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
         mPrefWeather =
@@ -294,23 +289,7 @@ public class MainActivity extends AppCompatActivity {
         mTitle = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
         setTitle(mTitle);
 
-        String currentLocale = Locale.getDefault().getLanguage();
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-
-        editor.putString(Constants.APP_SETTINGS_LOCALE, currentLocale);
-        editor.apply();
-
-        String latitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
-        String longitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-
-        if (isInternetConnection) {
-            mLoadWeather = new BackgroundLoadWeather();
-            mLoadWeather.execute(latitude, longitude, mUnits, currentLocale);
-        } else {
-            Toast.makeText(MainActivity.this,
-                           R.string.connection_not_found,
-                           Toast.LENGTH_SHORT).show();
-        }
+        AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME);
     }
 
     @Override
