@@ -96,6 +96,9 @@ public class MoreWidgetService extends IntentService {
             remoteViews.setTextViewText(R.id.widget_clouds, cloudiness + percentSign);
             remoteViews.setImageViewBitmap(R.id.widget_icon,
                                            Utils.createWeatherIcon(this, weatherIcon));
+            String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
+                    .saveLastUpdateTimeMillis(this));
+            remoteViews.setTextViewText(R.id.last_update, lastUpdate);
 
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
         }

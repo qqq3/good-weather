@@ -78,6 +78,9 @@ public class LessWidgetService extends IntentService {
                                                                         Constants.APP_SETTINGS_NAME);
             String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
             remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
+            String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
+                    .saveLastUpdateTimeMillis(this));
+            remoteViews.setTextViewText(R.id.last_update, lastUpdate);
 
             String iconId = weather.currentWeather.getIdIcon();
             String weatherIcon = Utils.getStrIcon(this, iconId);

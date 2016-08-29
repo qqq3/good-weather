@@ -47,15 +47,17 @@ public class NotificationService extends IntentService {
         String locale = AppPreference.getLocale(this, Constants.APP_SETTINGS_NAME);
         String units = AppPreference.getTemperatureUnit(this);
 
-        Weather weather = new Weather();
+        Weather weather;
         try {
             String weatherRaw = new WeatherRequest().getItems(latitude, longitude, units, locale);
             weather = WeatherJSONParser.getWeather(weatherRaw);
+
+            AppPreference.saveLastUpdateTimeMillis(this);
+            AppPreference.setWeather(this, Constants.PREF_WEATHER_NAME, weather);
+            weatherNotification(weather);
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error get weather", e);
         }
-
-        weatherNotification(weather);
     }
 
     public static Intent newIntent(Context context) {

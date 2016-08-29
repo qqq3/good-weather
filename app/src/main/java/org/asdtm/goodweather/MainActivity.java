@@ -196,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
                 String data = new WeatherRequest().getItems(params[0], params[1], params[2],
                                                             params[3]);
                 weather = WeatherJSONParser.getWeather(data);
+                AppPreference.saveLastUpdateTimeMillis(MainActivity.this);
+                AppPreference.setWeather(MainActivity.this, Constants.PREF_WEATHER_NAME, weather);
             } catch (IOException | JSONException e) {
                 Log.e(TAG, "Error get weather", e);
             }
@@ -206,8 +208,6 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
             mNewRequest.setRefreshing(false);
-
-            AppPreference.setWeather(MainActivity.this, Constants.PREF_WEATHER_NAME, weather);
 
             mSharedPreferences =
                     getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
