@@ -57,8 +57,8 @@ public class AppPreference {
         editor.apply();
     }
 
-    public static void setWeather(Context context, String publicPrefName, Weather weather) {
-        SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
+    public static void saveWeather(Context context, Weather weather) {
+        SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putFloat(Constants.WEATHER_DATA_TEMPERATURE, weather.temperature.getTemp());

@@ -47,7 +47,7 @@ public class LessWidgetService extends IntentService {
                                                               locale);
             Weather weather;
             weather = WeatherJSONParser.getWeather(weatherRaw);
-            AppPreference.setWeather(this, Constants.PREF_WEATHER_NAME, weather);
+            AppPreference.saveWeather(this, weather);
             updateWidget(weather);
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error get weather", e);

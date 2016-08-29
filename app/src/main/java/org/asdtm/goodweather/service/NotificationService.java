@@ -53,7 +53,7 @@ public class NotificationService extends IntentService {
             weather = WeatherJSONParser.getWeather(weatherRaw);
 
             AppPreference.saveLastUpdateTimeMillis(this);
-            AppPreference.setWeather(this, Constants.PREF_WEATHER_NAME, weather);
+            AppPreference.saveWeather(this, weather);
             weatherNotification(weather);
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error get weather", e);

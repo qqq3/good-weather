@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                                                             params[3]);
                 weather = WeatherJSONParser.getWeather(data);
                 AppPreference.saveLastUpdateTimeMillis(MainActivity.this);
-                AppPreference.setWeather(MainActivity.this, Constants.PREF_WEATHER_NAME, weather);
+                AppPreference.saveWeather(MainActivity.this, weather);
             } catch (IOException | JSONException e) {
                 Log.e(TAG, "Error get weather", e);
             }
