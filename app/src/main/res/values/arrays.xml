@@ -28,7 +28,7 @@
         <item>1440</item>
     </string-array>
 
-    <string-array name="widget_update_period_entries" translatable="false">
+    <string-array name="widget_update_period_entries">
         <item>@string/update_period_30min</item>
         <item>@string/update_period_1hour</item>
         <item>@string/update_period_3hours</item>
@@ -36,7 +36,7 @@
         <item>@string/update_period_12hours</item>
         <item>@string/update_period_24hours</item>
     </string-array>
-    <string-array name="widget_update_period_values">
+    <string-array name="widget_update_period_values" translatable="false">
         <item>30</item>
         <item>60</item>
         <item>180</item>
