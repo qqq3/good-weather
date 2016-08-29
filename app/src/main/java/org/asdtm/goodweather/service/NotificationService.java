@@ -71,7 +71,7 @@ public class NotificationService extends IntentService {
                                                                PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         String intervalPref = AppPreference.getInterval(context);
-        long intervalMillis = intervalMillisForAlarm(intervalPref);
+        long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
         if (isNotificationEnable) {
 
             alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
@@ -81,24 +81,6 @@ public class NotificationService extends IntentService {
         } else {
             alarmManager.cancel(pendingIntent);
             pendingIntent.cancel();
-        }
-    }
-
-    private static long intervalMillisForAlarm(String intervalPref) {
-        int interval = Integer.parseInt(intervalPref);
-        switch (interval) {
-            case 15:
-                return AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-            case 30:
-                return AlarmManager.INTERVAL_HALF_HOUR;
-            case 60:
-                return AlarmManager.INTERVAL_HOUR;
-            case 720:
-                return AlarmManager.INTERVAL_HALF_DAY;
-            case 1440:
-                return AlarmManager.INTERVAL_DAY;
-            default:
-                return AlarmManager.INTERVAL_HOUR;
         }
     }
 
