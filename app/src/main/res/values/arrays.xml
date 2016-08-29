@@ -13,6 +13,8 @@
         <item>@string/update_period_15min</item>
         <item>@string/update_period_30min</item>
         <item>@string/update_period_1hour</item>
+        <item>@string/update_period_3hours</item>
+        <item>@string/update_period_6hours</item>
         <item>@string/update_period_12hours</item>
         <item>@string/update_period_24hours</item>
     </string-array>
@@ -20,19 +22,8 @@
         <item>15</item>
         <item>30</item>
         <item>60</item>
-        <item>720</item>
-        <item>1440</item>
-    </string-array>
-
-    <string-array name="widget_update_period_entries">
-        <item>@string/update_period_30min</item>
-        <item>@string/update_period_1hour</item>
-        <item>@string/update_period_12hours</item>
-        <item>@string/update_period_24hours</item>
-    </string-array>
-    <string-array name="widget_update_period_values">
-        <item>30</item>
-        <item>60</item>
+        <item>180</item>
+        <item>360</item>
         <item>720</item>
         <item>1440</item>
     </string-array>
