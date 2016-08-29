@@ -47,4 +47,5 @@
     <string name="preference_widget_light_theme">światło tematem</string>
     <string name="update_period_3hours">3 godziny</string>
     <string name="update_period_6hours">6 godzin</string>
+    <string name="preference_widget_title_update_period">Okres aktualizacji</string>
 </resources>
