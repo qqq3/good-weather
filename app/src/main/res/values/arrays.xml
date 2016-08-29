@@ -10,14 +10,27 @@
     </string-array>
 
     <string-array name="notification_refresh_intervals_entries">
-        <item>@string/refresh_interval_15min</item>
-        <item>@string/refresh_interval_30min</item>
-        <item>@string/refresh_interval_1hour</item>
-        <item>@string/refresh_interval_12hours</item>
-        <item>@string/refresh_interval_24hours</item>
+        <item>@string/update_period_15min</item>
+        <item>@string/update_period_30min</item>
+        <item>@string/update_period_1hour</item>
+        <item>@string/update_period_12hours</item>
+        <item>@string/update_period_24hours</item>
     </string-array>
     <string-array name="notification_refresh_interval_values" translatable="false">
         <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+
+    <string-array name="widget_update_period_entries">
+        <item>@string/update_period_30min</item>
+        <item>@string/update_period_1hour</item>
+        <item>@string/update_period_12hours</item>
+        <item>@string/update_period_24hours</item>
+    </string-array>
+    <string-array name="widget_update_period_values">
         <item>30</item>
         <item>60</item>
         <item>720</item>

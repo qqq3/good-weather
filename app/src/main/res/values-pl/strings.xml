@@ -34,15 +34,17 @@
     <string name="pref_title_notification_refresh_interval">Częstotliwość odświeżania</string>
     <string name="pref_title_vibrate">Wibrować</string>
     <string name="pressure_measurement">hPa</string>
-    <string name="refresh_interval_12hours">12 godzin</string>
-    <string name="refresh_interval_15min">15 minut</string>
-    <string name="refresh_interval_1hour">Co godzinę</string>
-    <string name="refresh_interval_24hours">24 godziny</string>
-    <string name="refresh_interval_30min">30 minut</string>
+    <string name="update_period_12hours">12 godzin</string>
+    <string name="update_period_15min">15 minut</string>
+    <string name="update_period_1hour">Co godzinę</string>
+    <string name="update_period_24hours">24 godziny</string>
+    <string name="update_period_30min">30 minut</string>
     <string name="widget_weather_icon_description">Current weather icon</string>
     <string name="widget_refresh_button">Widget refresh button</string>
     <string name="preference_title_activity_about">O aplikacji</string>
     <string name="preference_title_activity_general">Ustawienia główne</string>
     <string name="preference_title_activity_widget">Ustawienia Widget</string>
     <string name="preference_widget_light_theme">światło tematem</string>
+    <string name="update_period_3hours">3 godziny</string>
+    <string name="update_period_6hours">6 godzin</string>
 </resources>
