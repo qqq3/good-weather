@@ -99,4 +99,9 @@ public class AppPreference {
                                                             Context.MODE_PRIVATE);
         return sp.getLong(Constants.LAST_UPDATE_TIME_IN_MS, 0);
     }
+
+    public static String getWidgetUpdatePeriod(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_WIDGET_UPDATE_PERIOD, "60");
+    }
 }
