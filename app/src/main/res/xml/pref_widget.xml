@@ -4,4 +4,11 @@
         android:defaultValue="false"
         android:key="widget_light_theme_pref_key"
         android:title="@string/preference_widget_light_theme"/>
+    <ListPreference
+        android:defaultValue="60"
+        android:dialogTitle="@string/preference_widget_title_update_period"
+        android:entries="@array/widget_update_period_entries"
+        android:entryValues="@array/widget_update_period_values"
+        android:key="widget_update_period_pref_key"
+        android:title="@string/preference_widget_title_update_period"/>
 </PreferenceScreen>

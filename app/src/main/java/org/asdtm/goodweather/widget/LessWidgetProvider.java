@@ -13,6 +13,7 @@ import android.widget.RemoteViews;
 import org.asdtm.goodweather.MainActivity;
 import org.asdtm.goodweather.R;
 import org.asdtm.goodweather.utils.AppPreference;
+import org.asdtm.goodweather.utils.AppWidgetProviderAlarm;
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.Utils;
 
@@ -24,19 +25,40 @@ public class LessWidgetProvider extends AppWidgetProvider {
     private static final String TAG = "WidgetLessInfo";
 
     @Override
+    public void onEnabled(Context context) {
+        super.onEnabled(context);
+        AppWidgetProviderAlarm widgetProviderAlarm =
+                new AppWidgetProviderAlarm(context, LessWidgetProvider.class);
+        widgetProviderAlarm.setAlarm();
+    }
+
+    @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equalsIgnoreCase(Constants.ACTION_FORCED_APPWIDGET_UPDATE)) {
-            context.startService(new Intent(context, LessWidgetService.class));
-        } else if (intent.getAction().equalsIgnoreCase(Intent.ACTION_LOCALE_CHANGED)) {
-            AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
-            context.startService(new Intent(context, LessWidgetService.class));
-        } else if (intent.getAction().equalsIgnoreCase(Constants.ACTION_APPWIDGET_THEME_CHANGED)) {
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            ComponentName componentName = new ComponentName(context, LessWidgetProvider.class);
-            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
-            onUpdate(context, appWidgetManager, appWidgetIds);
-        } else {
-            super.onReceive(context, intent);
+        switch (intent.getAction()) {
+            case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
+                context.startService(new Intent(context, LessWidgetService.class));
+                break;
+            case Intent.ACTION_LOCALE_CHANGED:
+                AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
+                context.startService(new Intent(context, LessWidgetService.class));
+                break;
+            case Constants.ACTION_APPWIDGET_THEME_CHANGED:
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                ComponentName componentName = new ComponentName(context, LessWidgetProvider.class);
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
+                onUpdate(context, appWidgetManager, appWidgetIds);
+                break;
+            case Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED:
+                AppWidgetProviderAlarm widgetProviderAlarm =
+                        new AppWidgetProviderAlarm(context, LessWidgetProvider.class);
+                if (widgetProviderAlarm.isAlarmOff()) {
+                    break;
+                } else {
+                    widgetProviderAlarm.setAlarm();
+                }
+                break;
+            default:
+                super.onReceive(context, intent);
         }
     }
 
@@ -65,6 +87,14 @@ public class LessWidgetProvider extends AppWidgetProvider {
         }
 
         context.startService(new Intent(context, LessWidgetService.class));
+    }
+
+    @Override
+    public void onDisabled(Context context) {
+        super.onDisabled(context);
+        AppWidgetProviderAlarm appWidgetProviderAlarm =
+                new AppWidgetProviderAlarm(context, LessWidgetProvider.class);
+        appWidgetProviderAlarm.cancelAlarm();
     }
 
     private void preLoadWeather(Context context, RemoteViews remoteViews) {
@@ -104,8 +134,7 @@ public class LessWidgetProvider extends AppWidgetProvider {
             textColorId = ContextCompat.getColor(context,
                                                  R.color.widget_lightTheme_textColorPrimary);
         }
-        remoteViews.setInt(R.id.widget_root,
-                           "setBackgroundColor", backgroundColorId);
+        remoteViews.setInt(R.id.widget_root, "setBackgroundColor", backgroundColorId);
         remoteViews.setTextColor(R.id.widget_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_description, textColorId);
     }

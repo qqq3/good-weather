@@ -8,34 +8,48 @@ import android.os.SystemClock;
 
 public class AppWidgetProviderAlarm {
 
-    private Context mContext;
+    private static final String TAG = "AppWidgetProviderAlarm";
 
-    public AppWidgetProviderAlarm(Context context) {
-        mContext = context;
+    private Context mContext;
+    private Class<?> mCls;
+
+    public AppWidgetProviderAlarm(Context context, Class<?> cls) {
+        this.mContext = context;
+        this.mCls = cls;
     }
 
-    public void setAlarm(Class<?> cls) {
+    public void setAlarm() {
         String updatePeriodStr = AppPreference.getWidgetUpdatePeriod(mContext);
         long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME,
                                          SystemClock.elapsedRealtime() + updatePeriodMills,
                                          updatePeriodMills,
-                                         getPendingIntent(cls));
+                                         getPendingIntent(mCls));
     }
 
-    public void cancelAlarm(Class<?> cls) {
+    public void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(getPendingIntent(cls));
-        getPendingIntent(cls).cancel();
+        alarmManager.cancel(getPendingIntent(mCls));
+        getPendingIntent(mCls).cancel();
     }
 
     private PendingIntent getPendingIntent(Class<?> cls) {
-        Intent forcedWidgetUpdateIntent = new Intent(mContext, cls);
-        forcedWidgetUpdateIntent.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+        Intent intent = new Intent(mContext, cls);
+        intent.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
         return PendingIntent.getBroadcast(mContext,
                                           0,
-                                          forcedWidgetUpdateIntent,
+                                          intent,
                                           PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+
+    public boolean isAlarmOff() {
+        Intent intent = new Intent(mContext, mCls);
+        intent.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext,
+                                                                 0,
+                                                                 intent,
+                                                                 PendingIntent.FLAG_NO_CREATE);
+        return pendingIntent == null;
     }
 }

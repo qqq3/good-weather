@@ -8,7 +8,6 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import org.asdtm.goodweather.service.NotificationService;
@@ -101,7 +100,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     Preference pref = findPreference(key);
                     NotificationService.setNotificationServiceAlarm(getActivity(),
                                                                     pref.isEnabled());
-                    Log.i(TAG, "Interval was enabled: " + pref.isEnabled());
                     setSummary();
                     break;
             }
@@ -147,8 +145,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             switch (key) {
                 case Constants.KEY_PREF_WIDGET_LIGHT_THEME:
-                    getActivity().sendBroadcast(
-                            new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED));
+                    Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
+                    getActivity().sendBroadcast(intent);
+                    break;
+                case Constants.KEY_PREF_WIDGET_UPDATE_PERIOD:
+                    Intent intent1 = new Intent(Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED);
+                    getActivity().sendBroadcast(intent1);
+                    setSummary();
+                    break;
             }
         }
 
@@ -157,6 +161,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onResume();
             getPreferenceScreen().getSharedPreferences()
                                  .registerOnSharedPreferenceChangeListener(this);
+            setSummary();
         }
 
         @Override
@@ -164,6 +169,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onPause();
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        private void setSummary() {
+            Preference updatePeriodPref = findPreference(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
+            ListPreference updatePeriodListPref = (ListPreference) updatePeriodPref;
+            updatePeriodPref.setSummary(updatePeriodListPref.getEntry());
         }
     }
 

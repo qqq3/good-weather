@@ -13,6 +13,7 @@ import android.widget.RemoteViews;
 import org.asdtm.goodweather.MainActivity;
 import org.asdtm.goodweather.R;
 import org.asdtm.goodweather.utils.AppPreference;
+import org.asdtm.goodweather.utils.AppWidgetProviderAlarm;
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.Utils;
 
@@ -23,19 +24,39 @@ public class MoreWidgetProvider extends AppWidgetProvider {
     private static final String TAG = "WidgetMoreInfo";
 
     @Override
+    public void onEnabled(Context context) {
+        super.onEnabled(context);
+        AppWidgetProviderAlarm appWidgetProviderAlarm =
+                new AppWidgetProviderAlarm(context, MoreWidgetProvider.class);
+        appWidgetProviderAlarm.setAlarm();
+    }
+
+    @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equalsIgnoreCase(Constants.ACTION_FORCED_APPWIDGET_UPDATE)) {
-            context.startService(new Intent(context, MoreWidgetService.class));
-        } else if (intent.getAction().equalsIgnoreCase(Intent.ACTION_LOCALE_CHANGED)) {
-            AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
-            context.startService(new Intent(context, MoreWidgetService.class));
-        } else if (intent.getAction().equalsIgnoreCase(Constants.ACTION_APPWIDGET_THEME_CHANGED)) {
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            ComponentName componentName = new ComponentName(context, MoreWidgetProvider.class);
-            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
-            onUpdate(context, appWidgetManager, appWidgetIds);
-        } else {
-            super.onReceive(context, intent);
+        switch (intent.getAction()) {
+            case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
+                break;
+            case Intent.ACTION_LOCALE_CHANGED:
+                AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
+                context.startService(new Intent(context, MoreWidgetService.class));
+                break;
+            case Constants.ACTION_APPWIDGET_THEME_CHANGED:
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                ComponentName componentName = new ComponentName(context, MoreWidgetProvider.class);
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
+                onUpdate(context, appWidgetManager, appWidgetIds);
+                break;
+            case Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED:
+                AppWidgetProviderAlarm widgetProviderAlarm =
+                        new AppWidgetProviderAlarm(context, MoreWidgetProvider.class);
+                if (widgetProviderAlarm.isAlarmOff()) {
+                    break;
+                } else {
+                    widgetProviderAlarm.setAlarm();
+                }
+                break;
+            default:
+                super.onReceive(context, intent);
         }
     }
 
@@ -64,6 +85,14 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         }
 
         context.startService(new Intent(context, MoreWidgetService.class));
+    }
+
+    @Override
+    public void onDisabled(Context context) {
+        super.onDisabled(context);
+        AppWidgetProviderAlarm appWidgetProviderAlarm =
+                new AppWidgetProviderAlarm(context, MoreWidgetProvider.class);
+        appWidgetProviderAlarm.cancelAlarm();
     }
 
     private void preLoadWeather(Context context, RemoteViews remoteViews) {
