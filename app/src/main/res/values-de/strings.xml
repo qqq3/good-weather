@@ -18,8 +18,8 @@
     <string name="version_label">v</string>
     <string name="openweathermap_data">Wetterdaten bereitgestellt von OpenWeatherMap</string>
     <string name="progressDialog_gps_locate">Finden Sie aktuelle Position</string>
-    <string name="wind_speed_meters">" Meter je Sekunde"</string>
-    <string name="wind_speed_miles">" Meilen pro Stunde"</string>
+    <string name="wind_speed_meters">Meter je Sekunde</string>
+    <string name="wind_speed_miles">Meilen pro Stunde</string>
     <string name="yahoo_data">Cities Daten durch Yahoo! GeoPlanet bereitgestellt</string>
     <string name="hint_activity_search">Suche nach Standort</string>
     <string name="pref_title_temperature">Temperatur</string>

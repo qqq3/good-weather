@@ -9,8 +9,8 @@
     <string name="nav_menu_about">О программе</string>
     <string name="nav_menu_settings">Настройки</string>
     <string name="openweathermap_data">Метеорологическая информация предоставлена OpenWeatherMap</string>
-    <string name="wind_speed_meters">" м/с"</string>
-    <string name="wind_speed_miles">" миль/ч"</string>
+    <string name="wind_speed_meters">м/с</string>
+    <string name="wind_speed_miles">миль/ч</string>
     <string name="yahoo_data">Список городов предоставлен Yahoo! GeoPlanet</string>
     <string name="text_about"><b>Good weather</b> - бесплатное онлайн приложение для проверки погоды.
         С помощью приложения вы получите актуальную информацию, о погодных

@@ -44,8 +44,8 @@
     <string name="percent_sign" translatable="false">\u0025</string>
     <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
     <string name="pressure_measurement">hPa</string>
-    <string name="wind_speed_meters">" m/s"</string>
-    <string name="wind_speed_miles">" mph"</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">mph</string>
 
     <!-- Search Screen strings -->
     <string name="title_activity_search">Search Location</string>
