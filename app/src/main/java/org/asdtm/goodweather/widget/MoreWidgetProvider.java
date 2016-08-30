@@ -35,6 +35,7 @@ public class MoreWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         switch (intent.getAction()) {
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
+                context.startService(new Intent(context, MoreWidgetService.class));
                 break;
             case Intent.ACTION_LOCALE_CHANGED:
                 AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
