@@ -65,25 +65,24 @@ public class LessWidgetService extends IntentService {
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                                                       R.layout.widget_less_3x1);
 
-            String temperatureScale = Utils.getTemperatureScale(this);
-            String temperature = String.format(Locale.getDefault(), "%.0f",
-                                               weather.temperature.getTemp());
-            remoteViews.setTextViewText(R.id.widget_temperature,
-                                        temperature + temperatureScale);
-
-            remoteViews.setTextViewText(R.id.widget_description,
-                                        weather.currentWeather.getDescription());
-
+            String iconId = weather.currentWeather.getIdIcon();
+            String weatherIcon = Utils.getStrIcon(this, iconId);
             String[] cityAndCountryArray = AppPreference.getCityAndCode(this,
                                                                         Constants.APP_SETTINGS_NAME);
             String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
-            remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
                     .saveLastUpdateTimeMillis(this));
-            remoteViews.setTextViewText(R.id.last_update, lastUpdate);
 
-            String iconId = weather.currentWeather.getIdIcon();
-            String weatherIcon = Utils.getStrIcon(this, iconId);
+            String temperatureScale = Utils.getTemperatureScale(this);
+            String temperature = String.format(Locale.getDefault(), "%.0f",
+                                               weather.temperature.getTemp());
+
+            remoteViews.setTextViewText(R.id.widget_temperature,
+                                        temperature + temperatureScale);
+            remoteViews.setTextViewText(R.id.widget_description,
+                                        weather.currentWeather.getDescription());
+            remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
+            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
             remoteViews.setImageViewBitmap(R.id.widget_icon,
                                            Utils.createWeatherIcon(this, weatherIcon));
 

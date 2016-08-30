@@ -26,6 +26,15 @@
             android:textColor="@color/textColorPrimary"
             android:textSize="16sp"/>
 
+        <TextView
+            android:id="@+id/widget_last_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/textColorPrimary"/>
+
         <ImageButton
             android:id="@+id/widget_button_refresh"
             android:layout_width="wrap_content"

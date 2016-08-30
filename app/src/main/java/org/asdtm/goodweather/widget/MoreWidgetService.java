@@ -83,6 +83,8 @@ public class MoreWidgetService extends IntentService {
                                           String.valueOf(weather.cloud.getClouds()));
             String iconId = weather.currentWeather.getIdIcon();
             String weatherIcon = Utils.getStrIcon(this, iconId);
+            String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
+                    .saveLastUpdateTimeMillis(this));
 
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                                                       R.layout.widget_more_3x3);
@@ -96,9 +98,7 @@ public class MoreWidgetService extends IntentService {
             remoteViews.setTextViewText(R.id.widget_clouds, cloudiness + percentSign);
             remoteViews.setImageViewBitmap(R.id.widget_icon,
                                            Utils.createWeatherIcon(this, weatherIcon));
-            String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
-                    .saveLastUpdateTimeMillis(this));
-            remoteViews.setTextViewText(R.id.last_update, lastUpdate);
+            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
 
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
         }

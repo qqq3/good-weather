@@ -110,6 +110,8 @@ public class LessWidgetProvider extends AppWidgetProvider {
         String description = weatherPref.getString(Constants.WEATHER_DATA_DESCRIPTION, "clear sky");
         String iconId = weatherPref.getString(Constants.WEATHER_DATA_ICON, "01d");
         String weatherIcon = Utils.getStrIcon(context, iconId);
+        String lastUpdate = Utils.setLastUpdateTime(context,
+                                                    AppPreference.getLastUpdateTimeMillis(context));
 
         remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
         remoteViews.setTextViewText(R.id.widget_temperature,
@@ -117,6 +119,7 @@ public class LessWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_description, description);
         remoteViews.setImageViewBitmap(R.id.widget_icon,
                                        Utils.createWeatherIcon(context, weatherIcon));
+        remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }
 
     private void setWidgetTheme(Context context, RemoteViews remoteViews) {
