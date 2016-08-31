@@ -6,86 +6,63 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WeatherJSONParser
-{
+public class WeatherJSONParser {
+
     private static final String TAG = "WeatherJSONParser";
 
-    public static Weather getWeather(String data) throws JSONException
-    {
+    public static Weather getWeather(String data) throws JSONException {
         Weather weather = new Weather();
         CitySearch location = new CitySearch();
 
-        JSONObject jWeatherData = new JSONObject(data);
+        JSONObject weatherData = new JSONObject(data);
 
-        JSONArray jWeatherArray = jWeatherData.getJSONArray("weather");
+        JSONArray weatherArray = weatherData.getJSONArray("weather");
 
-        JSONObject weatherObj = jWeatherArray.getJSONObject(0);
-        //weather.currentWeather.setDescription(getString("description", weatherOdj));
+        JSONObject weatherObj = weatherArray.getJSONObject(0);
         if (weatherObj.has("description")) {
             weather.currentWeather.setDescription(weatherObj.getString("description"));
         }
         if (weatherObj.has("icon")) {
-            weather.currentWeather.setIdIcon(getString("icon", weatherObj));
+            weather.currentWeather.setIdIcon(weatherObj.getString("icon"));
         }
 
-        JSONObject mainObj = jWeatherData.getJSONObject("main");
+        JSONObject mainObj = weatherData.getJSONObject("main");
         if (mainObj.has("temp")) {
-            weather.temperature.setTemp(getFloat("temp", mainObj));
+            weather.temperature.setTemp(Float.parseFloat(mainObj.getString("temp")));
         }
-        //weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
-        //weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
         if (mainObj.has("pressure")) {
-            weather.currentCondition.setPressure(getFloat("pressure", mainObj));
+            weather.currentCondition.setPressure(Float.parseFloat(mainObj.getString("pressure")));
         }
         if (mainObj.has("humidity")) {
             weather.currentCondition.setHumidity(mainObj.getInt("humidity"));
         }
 
-        JSONObject windObj = jWeatherData.getJSONObject("wind");
+        JSONObject windObj = weatherData.getJSONObject("wind");
         if (windObj.has("speed")) {
-            weather.wind.setSpeed(getFloat("speed", windObj));
+            weather.wind.setSpeed(Float.parseFloat(windObj.getString("speed")));
         }
         if (windObj.has("deg")) {
-            weather.wind.setDirection(getFloat("deg", windObj));
+            weather.wind.setDirection(Float.parseFloat(windObj.getString("deg")));
         }
 
-        JSONObject cloudsObj = getObject("clouds", jWeatherData);
+        JSONObject cloudsObj = weatherData.getJSONObject("clouds");
         if (cloudsObj.has("all")) {
-            weather.cloud.setClouds(getInt("all", cloudsObj));
+            weather.cloud.setClouds(cloudsObj.getInt("all"));
         }
 
-        if (jWeatherData.has("name")) {
-            location.setCityName(jWeatherData.getString("name"));
+        if (weatherData.has("name")) {
+            location.setCityName(weatherData.getString("name"));
         }
 
-        JSONObject sysObj = jWeatherData.getJSONObject("sys");
+        JSONObject sysObj = weatherData.getJSONObject("sys");
         if (sysObj.has("country")) {
             location.setCountryCode(sysObj.getString("country"));
         }
+        weather.sys.setSunrise(sysObj.getLong("sunrise"));
+        weather.sys.setSunset(sysObj.getLong("sunset"));
+
         weather.location = location;
 
         return weather;
-    }
-
-    private static JSONObject getObject(String tag, JSONObject jsonObject) throws JSONException
-    {
-        JSONObject jsonObj = jsonObject.getJSONObject(tag);
-
-        return jsonObj;
-    }
-
-    private static String getString(String tag, JSONObject jsonObject) throws JSONException
-    {
-        return jsonObject.getString(tag);
-    }
-
-    private static int getInt(String tag, JSONObject jsonObject) throws JSONException
-    {
-        return jsonObject.getInt(tag);
-    }
-
-    private static float getFloat(String tag, JSONObject jsonObject) throws JSONException
-    {
-        return (float) jsonObject.getDouble(tag);
     }
 }
