@@ -69,6 +69,8 @@ public class AppPreference {
         editor.putFloat(Constants.WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());
         editor.putInt(Constants.WEATHER_DATA_CLOUDS, weather.cloud.getClouds());
         editor.putString(Constants.WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
+        editor.putLong(Constants.WEATHER_DATA_SUNRISE, weather.sys.getSunrise());
+        editor.putLong(Constants.WEATHER_DATA_SUNSET, weather.sys.getSunset());
         editor.apply();
     }
 

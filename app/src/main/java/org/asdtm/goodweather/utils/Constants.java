@@ -32,6 +32,8 @@ public class Constants {
     public static final String WEATHER_DATA_WIND_SPEED = "wind_speed";
     public static final String WEATHER_DATA_CLOUDS = "clouds";
     public static final String WEATHER_DATA_ICON = "icon";
+    public static final String WEATHER_DATA_SUNRISE = "sunrise";
+    public static final String WEATHER_DATA_SUNSET = "sunset";
 
     /**
      * Widget action constants
