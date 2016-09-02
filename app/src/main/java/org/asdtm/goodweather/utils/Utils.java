@@ -66,10 +66,10 @@ public class Utils {
             case "04n":
                 icon = context.getString(R.string.icon_broken_clouds);
                 break;
-            case "05d":
+            case "09d":
                 icon = context.getString(R.string.icon_shower_rain);
                 break;
-            case "05n":
+            case "09n":
                 icon = context.getString(R.string.icon_shower_rain);
                 break;
             case "10d":
