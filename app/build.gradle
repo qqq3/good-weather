@@ -1,15 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias RELEASE_KEY_ALIAS
-            keyPassword RELEASE_KEY_PASSWORD
-            storeFile file(RELEASE_STORE_FILE)
-            storePassword RELEASE_STORE_PASSWORD
-        }
-    }
-
     compileSdkVersion 24
     buildToolsVersion '23.0.3'
     defaultConfig {
@@ -18,9 +9,9 @@ android {
         targetSdkVersion 24
         versionCode 6
         versionName "2.1"
-        signingConfig signingConfigs.config
         vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -43,6 +34,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:design:24.1.1'
+    compile 'com.android.support:cardview-v7:24.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
     compile 'com.android.support:support-v4:24.1.1'
     testCompile 'junit:junit:4.12'
