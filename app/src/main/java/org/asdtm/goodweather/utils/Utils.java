@@ -140,4 +140,9 @@ public class Utils {
                 return interval * 60 * 1000;
         }
     }
+
+    public static String unixTimeToFormatTime(Context context, long unixTime) {
+        long unixTimeToMillis = unixTime * 1000;
+        return DateFormat.getTimeFormat(context).format(unixTimeToMillis);
+    }
 }
