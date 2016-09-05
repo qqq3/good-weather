@@ -39,6 +39,12 @@
     <string name="icon_snow" translatable="false">&#xf01b;</string>
     <string name="icon_mist" translatable="false">&#xf014;</string>
     <string name="icon_weather_default" translatable="false">&#xf075;</string>
+    <string name="icon_wind" translatable="false">&#xf050;</string>
+    <string name="icon_humidity" translatable="false">&#xf07a;</string>
+    <string name="icon_barometer" translatable="false">&#xf079;</string>
+    <string name="icon_cloudiness" translatable="false">&#xf002;</string>
+    <string name="icon_sunrise" translatable="false">&#xf051;</string>
+    <string name="icon_sunset" translatable="false">&#xf052;</string>
 
     <!-- Units and Measurement-->
     <string name="percent_sign" translatable="false">\u0025</string>
@@ -76,6 +82,14 @@
     <string name="humidity_label">Humidity: %s</string>
     <string name="pressure_label">Pressure: %s</string>
     <string name="cloudiness_label">Cloudiness: %s</string>
+    <string name="last_update_label">Last update: %s</string>
+    <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
+    <string name="wind_with_icon_label">%1$s Wind: %2$s %3$s</string>
+    <string name="humidity_with_icon_label">%1$s Humidity: %2$d%3$s</string>
+    <string name="pressure_with_icon_label">%1$s Pressure: %2$s %3$s</string>
+    <string name="cloudiness_with_icon_label">%1$s Cloudiness: %2$d%3$s</string>
+    <string name="sunrise_with_icon_label">%1$s Sunrise: %2$s</string>
+    <string name="sunset_with_icon_label">%1$s Sunset: %2$s</string>
 
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Current weather icon</string>
