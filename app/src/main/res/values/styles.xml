@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -15,8 +14,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="tableRow">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/text_color</item>
+    <style name="CardViewText">
+        <item name="android:textSize">@dimen/cardview_text_size</item>
+        <item name="android:paddingTop">@dimen/cardview_padding</item>
+        <item name="android:paddingBottom">@dimen/cardview_padding</item>
+    </style>
+
+    <style name="CardViewCustom" parent="CardView">
+        <item name="android:layout_marginTop">@dimen/cardview_margin</item>
+        <item name="android:layout_marginLeft">@dimen/cardview_margin</item>
+        <item name="android:layout_marginRight">@dimen/cardview_margin</item>
     </style>
 </resources>
