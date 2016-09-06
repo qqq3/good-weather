@@ -15,7 +15,6 @@
     <string name="label_temperature">Temperatur</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_about">Über</string>
-    <string name="version_label">v</string>
     <string name="openweathermap_data">Wetterdaten bereitgestellt von OpenWeatherMap</string>
     <string name="progressDialog_gps_locate">Finden Sie aktuelle Position</string>
     <string name="wind_speed_meters">Meter je Sekunde</string>
@@ -55,4 +54,8 @@
     <string name="sunrise_with_icon_label">%1$s Sonnenaufgang: %2$s</string>
     <string name="sunset_with_icon_label">%1$s Sonnenuntergang: %2$s</string>
     <string name="wind_with_icon_label">%1$s Wind: %2$s %3$s</string>
+    <string name="about_app_license_pref_title">Lizenz</string>
+    <string name="about_source_code_pref_title">Quellcode</string>
+    <string name="about_version_pref_title">Version</string>
+    <string name="about_open_source_licenses_pref_title">Open-Source-Lizenzen</string>
 </resources>

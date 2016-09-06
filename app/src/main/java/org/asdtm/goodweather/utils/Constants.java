@@ -25,6 +25,14 @@ public class Constants {
     public static final String KEY_PREF_WIDGET_LIGHT_THEME = "widget_light_theme_pref_key";
     public static final String KEY_PREF_WIDGET_UPDATE_PERIOD = "widget_update_period_pref_key";
 
+    /**
+     * About preference screen constants
+     */
+    public static final String KEY_PREF_ABOUT_VERSION = "about_version_pref_key";
+    public static final String KEY_PREF_ABOUT_GOOGLE_PLAY = "about_google_play_pref_key";
+    public static final String KEY_PREF_ABOUT_OPEN_SOURCE_LICENSES =
+            "about_open_source_licenses_pref_key";
+
     public static final String WEATHER_DATA_TEMPERATURE = "temperature";
     public static final String WEATHER_DATA_DESCRIPTION = "description";
     public static final String WEATHER_DATA_PRESSURE = "pressure";
@@ -44,4 +52,12 @@ public class Constants {
             "org.asdtm.goodweather.action.APPWIDGET_THEME_CHANGED";
     public static final String ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED =
             "org.asdtm.goodweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED";
+
+    /**
+     * URIs constants
+     */
+    public static final String SOURCE_CODE_URI = "https://github.com/qqq3/good-weather";
+    public static final String GOOGLE_PLAY_APP_URI = "market://details?id=%s";
+    public static final String GOOGLE_PLAY_WEB_URI =
+            "http://play.google.com/store/apps/details?id=%s";
 }

@@ -16,7 +16,6 @@
         С помощью приложения вы получите актуальную информацию, о погодных
         условиях более чем в 200.000 городах. </string>
     <string name="nav_feedback">Обратная связь</string>
-    <string name="version_label">"версия "</string>
     <string name="progressDialog_gps_locate">Определяем текущее местоположение</string>
     <string name="alertDialog_gps_negativeButton">Отмена</string>
     <string name="alertDialog_gps_positiveButton">Настройки</string>
@@ -55,4 +54,8 @@
     <string name="sunrise_with_icon_label">%1$s Восход: %2$s</string>
     <string name="sunset_with_icon_label">%1$s Заход: %2$s</string>
     <string name="wind_with_icon_label">%1$s Ветер: %2$s %3$s</string>
+    <string name="about_app_license_pref_title">Лицензия</string>
+    <string name="about_source_code_pref_title">Исходный код</string>
+    <string name="about_version_pref_title">Версия</string>
+    <string name="about_open_source_licenses_pref_title">Open Source лицензии</string>
 </resources>

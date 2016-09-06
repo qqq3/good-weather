@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <Preference
+        android:key="about_version_pref_key"
+        android:title="@string/about_version_pref_title"/>
+    <Preference
+        android:key="about_source_code_pref_key"
+        android:summary="https://github.com/qqq3/good-weather"
+        android:title="@string/about_source_code_pref_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/qqq3/good-weather"/>
+    </Preference>
+    <Preference
+        android:key="about_app_license_pref_key"
+        android:summary="https://www.gnu.org/licenses/gpl-3.0.txt"
+        android:title="@string/about_app_license_pref_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://www.gnu.org/licenses/gpl-3.0.txt"/>
+    </Preference>
+    <Preference
+        android:key="about_google_play_pref_key"
+        android:summary="https://play.google.com/store/apps/details?id=org.asdtm.goodweather"
+        android:title="@string/about_google_play_pref_title"/>
+    <Preference
+        android:key="about_open_source_licenses_pref_key"
+        android:title="@string/about_open_source_licenses_pref_title"/>
 </PreferenceScreen>

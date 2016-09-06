@@ -1,14 +1,22 @@
 package org.asdtm.goodweather;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 import org.asdtm.goodweather.service.NotificationService;
 import org.asdtm.goodweather.utils.Constants;
@@ -178,31 +186,75 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
-    public static class AboutPreferenceFragment extends PreferenceFragment implements
-            SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class AboutPreferenceFragment extends PreferenceFragment {
+
+        PackageManager mPackageManager;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_about);
+
+            mPackageManager = getActivity().getPackageManager();
+            findPreference(Constants.KEY_PREF_ABOUT_VERSION).setSummary(getVersionName());
+            findPreference(Constants.KEY_PREF_ABOUT_GOOGLE_PLAY).setIntent(googlePlayIntent());
         }
 
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
+                                             Preference preference) {
+            if (preference.equals(findPreference(Constants.KEY_PREF_ABOUT_OPEN_SOURCE_LICENSES))) {
+                LicensesDialogFragment licensesDialog = LicensesDialogFragment.newInstance();
+                licensesDialog.show(getFragmentManager(), "LicensesDialog");
+            }
+            return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
 
-        @Override
-        public void onResume() {
-            super.onResume();
-            getPreferenceScreen().getSharedPreferences()
-                                 .registerOnSharedPreferenceChangeListener(this);
+        private String getVersionName() {
+            String versionName;
+            try {
+                versionName = mPackageManager.getPackageInfo(getActivity().getPackageName(),
+                                                             0).versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e(TAG, "Get version name error", e);
+                versionName = "666";
+            }
+            return versionName;
         }
 
-        @Override
-        public void onPause() {
-            super.onPause();
-            getPreferenceScreen().getSharedPreferences()
-                                 .unregisterOnSharedPreferenceChangeListener(this);
+        private Intent googlePlayIntent() {
+            String ACTION_VIEW = Intent.ACTION_VIEW;
+            String googlePlayAppUri = String.format(Constants.GOOGLE_PLAY_APP_URI,
+                                                    getActivity().getPackageName());
+            String googlePlayWebUri = String.format(Constants.GOOGLE_PLAY_WEB_URI,
+                                                    getActivity().getPackageName());
+
+            Intent intent = new Intent(ACTION_VIEW, Uri.parse(googlePlayAppUri));
+            if (mPackageManager.resolveActivity(intent, 0) == null) {
+                intent = new Intent(ACTION_VIEW, Uri.parse(googlePlayWebUri));
+            }
+
+            return intent;
+        }
+
+        public static class LicensesDialogFragment extends DialogFragment {
+            static LicensesDialogFragment newInstance() {
+                return new LicensesDialogFragment();
+            }
+
+            @Override
+            public Dialog onCreateDialog(Bundle savedInstanceState) {
+                final WebView webView = new WebView(getActivity());
+                String licenses = "<p>Data provided by <a href='http://openweathermap.org/'>OpenWeatherMap</a>, " +
+                        "under the <a href='https://creativecommons.org/licenses/by-sa/4.0/'> Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a>" +
+                        "<p><a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a> licensed under <a href='scripts.sil.org/OFL'>SIL OFL 1.1</a>";
+                webView.loadData(licenses, "text/html", "UTF-8");
+                return new AlertDialog.Builder(getActivity())
+                        .setTitle("Open source licenses")
+                        .setView(webView)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .create();
+            }
         }
     }
 }

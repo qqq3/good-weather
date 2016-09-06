@@ -15,7 +15,6 @@
     <string name="text_about"><b>Good weather</b> - free app for online checking weather.
         With help of the app, you can check weather conditions in more than 200.000 cities.
         Thanks!</string>
-    <string name="version_label">v</string>
     <string name="openweathermap_data">Weather data provided by OpenWeatherMap</string>
     <string name="yahoo_data">Cities data provided by Yahoo! GeoPlanet</string>
     <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
@@ -75,7 +74,14 @@
     <string name="preference_widget_title_update_period">Update Period</string>
     <string name="preference_title_activity_general">General settings</string>
     <string name="preference_title_activity_widget">Widget settings</string>
+    
+    <!-- Preference Screen About -->
     <string name="preference_title_activity_about">About</string>
+    <string name="about_version_pref_title">Version</string>
+    <string name="about_source_code_pref_title">Source code</string>
+    <string name="about_app_license_pref_title">License</string>
+    <string name="about_google_play_pref_title" translatable="false">Google Play</string>
+    <string name="about_open_source_licenses_pref_title">Open Source licenses</string>
 
     <!-- Weather conditions label strings -->
     <string name="wind_label">Wind: %s</string>
