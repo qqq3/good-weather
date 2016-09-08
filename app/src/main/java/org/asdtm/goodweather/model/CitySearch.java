@@ -9,10 +9,10 @@ public class CitySearch
     private String mCountryCode;
 
     public CitySearch(){}
-    public CitySearch(String cityName, String country, String latitude, String longitude)
+    public CitySearch(String cityName, String countryCode, String latitude, String longitude)
     {
         mCityName = cityName;
-        mCountry = country;
+        mCountryCode = countryCode;
         mLatitude = latitude;
         mLongitude = longitude;
     }
@@ -70,6 +70,6 @@ public class CitySearch
     @Override
     public String toString()
     {
-        return mCityName + " (" + mCountryCode + ")";
+        return mCityName + ", " + mCountryCode;
     }
 }

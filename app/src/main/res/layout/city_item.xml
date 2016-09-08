@@ -17,7 +17,7 @@
         android:textColor="@color/settings_content_color"/>
 
     <TextView
-        android:id="@+id/country_name"
+        android:id="@+id/country_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"

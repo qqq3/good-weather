@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.utils.AppPreference;
+import org.asdtm.goodweather.utils.CityParser;
 import org.asdtm.goodweather.utils.Constants;
 
 import java.util.ArrayList;
@@ -37,13 +38,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     private final String APP_SETTINGS_NAME = "config";
     private final String APP_SETTINGS_CITY = "city";
-    private final String APP_SETTINGS_COUNTRY = "country";
     private final String APP_SETTINGS_COUNTRY_CODE = "country_code";
     private final String APP_SETTINGS_LATITUDE = "latitude";
     private final String APP_SETTINGS_LONGITUDE = "longitude";
 
-    private String locale;
-    private RecyclerView mFoundCityRecyclerView;
     private List<CitySearch> mCites;
     private SearchCityAdapter mSearchCityAdapter;
     private SharedPreferences mCityPref;
@@ -61,12 +59,12 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         mCityPref = getSharedPreferences(APP_SETTINGS_NAME, 0);
 
-        mFoundCityRecyclerView = (RecyclerView) findViewById(R.id.search_city_recycler_view);
-        mFoundCityRecyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.search_city_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
 
         mCites = new ArrayList<>();
         mSearchCityAdapter = new SearchCityAdapter(mCites);
-        mFoundCityRecyclerView.setAdapter(mSearchCityAdapter);
+        recyclerView.setAdapter(mSearchCityAdapter);
 
         loadLastFoundCity();
     }
@@ -75,7 +73,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     protected void onResume() {
         super.onResume();
         AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME);
-        locale = AppPreference.getLocale(this, Constants.APP_SETTINGS_NAME);
     }
 
     private class SearchCityHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -84,17 +81,17 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         private TextView mCityName;
         private TextView mCountryName;
 
-        public SearchCityHolder(View itemView) {
+        SearchCityHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             mCityName = (TextView) itemView.findViewById(R.id.city_name);
-            mCountryName = (TextView) itemView.findViewById(R.id.country_name);
+            mCountryName = (TextView) itemView.findViewById(R.id.country_code);
         }
 
-        public void bindCity(CitySearch city) {
+        void bindCity(CitySearch city) {
             mCity = city;
             mCityName.setText(city.getCityName());
-            mCountryName.setText(city.getCountry());
+            mCountryName.setText(city.getCountryCode());
         }
 
         @Override
@@ -111,7 +108,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         private List<CitySearch> mCites;
 
-        public SearchCityAdapter(List<CitySearch> cites) {
+        SearchCityAdapter(List<CitySearch> cites) {
             mCites = cites;
         }
 
@@ -145,10 +142,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 protected FilterResults performFiltering(CharSequence charSequence) {
                     FilterResults filterResults = new FilterResults();
 
-                    List<CitySearch> citySearchList = YahooParser.getCity(charSequence.toString(),
-                                                                          locale);
+                    List<CitySearch> citySearchList = CityParser.getCity(charSequence.toString());
                     filterResults.values = citySearchList;
-                    filterResults.count = citySearchList.size();
+                    filterResults.count = citySearchList != null ? citySearchList.size() : 0;
 
                     return filterResults;
                 }
@@ -217,7 +213,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private void setCity(CitySearch city) {
         SharedPreferences.Editor editor = mCityPref.edit();
         editor.putString(APP_SETTINGS_CITY, city.getCityName());
-        editor.putString(APP_SETTINGS_COUNTRY, city.getCountry());
         editor.putString(APP_SETTINGS_COUNTRY_CODE, city.getCountryCode());
         editor.putString(APP_SETTINGS_LATITUDE, city.getLatitude());
         editor.putString(APP_SETTINGS_LONGITUDE, city.getLongitude());
