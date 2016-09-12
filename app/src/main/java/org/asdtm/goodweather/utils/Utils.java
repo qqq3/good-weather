@@ -1,6 +1,8 @@
 package org.asdtm.goodweather.utils;
 
 import android.app.AlarmManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -144,5 +146,12 @@ public class Utils {
     public static String unixTimeToFormatTime(Context context, long unixTime) {
         long unixTimeToMillis = unixTime * 1000;
         return DateFormat.getTimeFormat(context).format(unixTimeToMillis);
+    }
+
+    public static void copyToClipboard(Context context, String string) {
+        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(
+                Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText(string, string);
+        clipboardManager.setPrimaryClip(clipData);
     }
 }
