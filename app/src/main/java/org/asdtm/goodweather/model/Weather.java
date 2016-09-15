@@ -55,7 +55,7 @@ public class Weather {
         }
 
         public void setDescription(String description) {
-            mDescription = description;
+            mDescription = description.substring(0, 1).toUpperCase() + description.substring(1);
         }
 
         public String getIdIcon() {
