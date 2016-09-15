@@ -2,13 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/main_menu_refresh"
+        android:icon="@drawable/ic_refresh_white_24dp"
+        android:title="@string/toolbar_menu_refresh"
+        app:showAsAction="always"/>
+    <item
         android:id="@+id/main_menu_search_city"
-        android:icon="@drawable/ic_search_black"
-        android:title="@string/hint_activity_search"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/toolbar_menu_search_city"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/main_menu_find_location"
-        android:icon="@drawable/ic_menu_gps"
-        android:title="locate"
-        app:showAsAction="always"/>
+        android:id="@+id/main_menu_detect_location"
+        android:icon="@drawable/ic_my_location_white_24dp"
+        android:title="@string/toolbar_menu_detect_location"
+        app:showAsAction="ifRoom"/>
 </menu>

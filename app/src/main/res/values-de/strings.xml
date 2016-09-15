@@ -63,4 +63,7 @@
     <string name="donation_bitcoin_open_app">Offene Bitcoin App</string>
     <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
     <string name="nav_menu_bitcoin_donation">Spenden Bitcoin</string>
+    <string name="toolbar_menu_detect_location">Erkennen Ort</string>
+    <string name="toolbar_menu_refresh">Aktualisieren</string>
+    <string name="toolbar_menu_search_city">Suchen Stadt</string>
 </resources>

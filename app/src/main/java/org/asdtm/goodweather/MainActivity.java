@@ -28,6 +28,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isNetworkEnabled = false;
     private LocationManager locationManager;
     private SwipeRefreshLayout mSwipeRefresh;
+    private Menu mToolbarMenu;
 
     private String mUnits;
     private String mSpeedScale;
@@ -153,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(TaskOutput result) {
             super.onPostExecute(result);
             mSwipeRefresh.setRefreshing(false);
+            invalidateOptionsMenu();
+            setUpdateButtonState(false);
         }
 
         @Override
@@ -160,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             AppPreference.saveWeather(MainActivity.this, mWeather);
             updateCurrentWeather();
         }
-}
+    }
 
     public TaskOutput.ParseResult parseWeather(String data) {
         try {
@@ -294,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.mToolbarMenu = menu;
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_main_menu, menu);
 
@@ -315,7 +321,27 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog.setCancelable(false);
 
         switch (item.getItemId()) {
-            case R.id.main_menu_find_location:
+            case R.id.main_menu_refresh:
+                String latitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LATITUDE,
+                                                               "51.51");
+                String longitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LONGITUDE,
+                                                                "-0.13");
+                String currentLocale = mSharedPreferences.getString(Constants.APP_SETTINGS_LOCALE,
+                                                                    "en");
+
+                if (connectionDetector.isNetworkAvailableAndConnected()) {
+                    new CurrentWeatherTask(this).execute(latitude,
+                                                         longitude,
+                                                         mUnits,
+                                                         currentLocale);
+                    setUpdateButtonState(true);
+                } else {
+                    Toast.makeText(MainActivity.this,
+                                   R.string.connection_not_found,
+                                   Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            case R.id.main_menu_detect_location:
                 if (isGPSEnabled) {
                     gpsRequestLocation();
                     mProgressDialog.show();
@@ -638,5 +664,19 @@ public class MainActivity extends AppCompatActivity {
         mPressureMeasurement = getString(R.string.pressure_measurement);
         mIconSunrise = getString(R.string.icon_sunrise);
         mIconSunset = getString(R.string.icon_sunset);
+    }
+
+    private void setUpdateButtonState(boolean isUpdate) {
+        if (mToolbarMenu != null) {
+            MenuItem updateItem = mToolbarMenu.findItem(R.id.main_menu_refresh);
+            ProgressBar progressUpdate = (ProgressBar) findViewById(R.id.toolbar_progress_bar);
+            if (isUpdate) {
+                updateItem.setVisible(false);
+                progressUpdate.setVisibility(View.VISIBLE);
+            } else {
+                progressUpdate.setVisibility(View.GONE);
+                updateItem.setVisible(true);
+            }
+        }
     }
 }

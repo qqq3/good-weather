@@ -16,6 +16,11 @@
     <string name="alertDialog_gps_positiveButton">Settings</string>
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_refresh">Update</string>
+    <string name="toolbar_menu_search_city">Search City</string>
+    <string name="toolbar_menu_detect_location">Detect Location</string>
     
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
