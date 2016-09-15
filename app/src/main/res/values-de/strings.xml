@@ -58,4 +58,5 @@
     <string name="about_source_code_pref_title">Quellcode</string>
     <string name="about_version_pref_title">Version</string>
     <string name="about_open_source_licenses_pref_title">Open-Source-Lizenzen</string>
+    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Versuche es später!</string>
 </resources>

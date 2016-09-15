@@ -60,4 +60,5 @@ public class Constants {
     public static final String GOOGLE_PLAY_APP_URI = "market://details?id=%s";
     public static final String GOOGLE_PLAY_WEB_URI =
             "http://play.google.com/store/apps/details?id=%s";
+    public static final String WEATHER_ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
 }

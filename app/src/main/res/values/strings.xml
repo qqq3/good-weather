@@ -8,7 +8,6 @@
     <string name="nav_menu_faq" translatable="false">FAQ</string>
     <string name="nav_menu_about">About</string>
     <string name="nav_feedback">Feedback</string>
-    <string name="connection_not_found">Check your internet connection</string>
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
     <string name="label_temperature">Temperature</string>
@@ -23,6 +22,10 @@
     <string name="alertDialog_gps_positiveButton">Settings</string>
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
+    
+    <!-- Toast messages -->
+    <string name="connection_not_found">Check your internet connection</string>
+    <string name="toast_parse_error">An error has occurred. Try later!</string>
 
     <!-- Weather icons -->
     <string name="icon_clear_sky_day" translatable="false">&#xf00d;</string>

@@ -58,4 +58,5 @@
     <string name="about_source_code_pref_title">Исходный код</string>
     <string name="about_version_pref_title">Версия</string>
     <string name="about_open_source_licenses_pref_title">Open Source лицензии</string>
+    <string name="toast_parse_error">Произошла ошибка. Попробуйте позже!</string>
 </resources>

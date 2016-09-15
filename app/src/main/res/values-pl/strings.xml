@@ -58,4 +58,5 @@
     <string name="about_open_source_licenses_pref_title">Licencje open source</string>
     <string name="about_source_code_pref_title">Kod źródłowy</string>
     <string name="about_version_pref_title">Wersja</string>
+    <string name="toast_parse_error">Wystąpił błąd. Spróbuj później!</string>
 </resources>

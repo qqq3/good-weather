@@ -12,7 +12,6 @@ import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -32,13 +31,17 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.model.Weather;
+import org.asdtm.goodweather.task.AsyncTaskBase;
+import org.asdtm.goodweather.task.TaskOutput;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.Utils;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -82,12 +85,16 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private BackgroundLoadWeather mLoadWeather;
+    private Weather mWeather;
+    private CitySearch mCitySearch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mWeather = new Weather();
+        mCitySearch = new CitySearch();
 
         weatherConditionsIcons();
         initializeTextView();
@@ -131,90 +138,146 @@ public class MainActivity extends AppCompatActivity {
         mSwipeRefresh.setOnRefreshListener(swipeRefreshListener);
     }
 
-    private class BackgroundLoadWeather extends AsyncTask<String, Void, Weather> {
+    private class CurrentWeatherTask extends AsyncTaskBase {
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+        CurrentWeatherTask(Context context) {
+            super(context);
         }
 
         @Override
-        protected Weather doInBackground(String... params) {
-            Weather weather = new Weather();
-
-            try {
-                String data = new WeatherRequest().getItems(params[0], params[1], params[2],
-                                                            params[3]);
-                weather = WeatherJSONParser.getWeather(data);
-                AppPreference.saveLastUpdateTimeMillis(MainActivity.this);
-                AppPreference.saveWeather(MainActivity.this, weather);
-            } catch (IOException | JSONException e) {
-                Log.e(TAG, "Error get weather", e);
-            }
-            return weather;
+        protected TaskOutput.ParseResult parseResponse(String response) {
+            return parseWeather(response);
         }
 
         @Override
-        protected void onPostExecute(Weather weather) {
-            super.onPostExecute(weather);
+        protected void onPostExecute(TaskOutput result) {
+            super.onPostExecute(result);
             mSwipeRefresh.setRefreshing(false);
-            mSharedPreferences =
-                    getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
-            SharedPreferences.Editor configEditor = mSharedPreferences.edit();
-
-            mSpeedScale = Utils.getSpeedScale(MainActivity.this);
-            String temperature = String.format(Locale.getDefault(),
-                                               "%.1f",
-                                               weather.temperature.getTemp());
-            String pressure = String.format(Locale.getDefault(),
-                                            "%.1f",
-                                            weather.currentCondition.getPressure());
-            String wind = String.format(Locale.getDefault(),
-                                        "%.1f",
-                                        weather.wind.getSpeed());
-
-            String lastUpdate = Utils.setLastUpdateTime(MainActivity.this,
-                                                        AppPreference.saveLastUpdateTimeMillis(
-                                                                MainActivity.this));
-            String sunrise = Utils.unixTimeToFormatTime(MainActivity.this,
-                                                        weather.sys.getSunrise());
-            String sunset = Utils.unixTimeToFormatTime(MainActivity.this,
-                                                       weather.sys.getSunset());
-
-            mIconWeatherView.setText(Utils.getStrIcon(MainActivity.this,
-                                                      weather.currentWeather.getIdIcon()));
-            mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
-            mDescriptionView.setText(weather.currentWeather.getDescription());
-            mHumidityView.setText(getString(R.string.humidity_with_icon_label,
-                                            mIconHumidity,
-                                            weather.currentCondition.getHumidity(),
-                                            mPercentSign));
-            mPressureView.setText(getString(R.string.pressure_with_icon_label,
-                                            mIconPressure,
-                                            pressure,
-                                            mPressureMeasurement));
-            mWindSpeedView.setText(getString(R.string.wind_with_icon_label,
-                                             mIconWind,
-                                             wind,
-                                             mSpeedScale));
-            mCloudinessView.setText(getString(R.string.cloudiness_with_icon_label,
-                                              mIconCloudiness,
-                                              weather.cloud.getClouds(),
-                                              mPercentSign));
-            mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
-            mSunriseView.setText(getString(R.string.sunrise_with_icon_label,
-                                           mIconSunrise,
-                                           sunrise));
-            mSunsetView.setText(getString(R.string.sunset_with_icon_label,
-                                          mIconSunset,
-                                          sunset));
-            setTitle(weather.location.getCityName());
-
-            configEditor.putString(Constants.APP_SETTINGS_CITY, weather.location.getCityName());
-            configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
-                                   weather.location.getCountryCode());
-            configEditor.apply();
         }
+
+        @Override
+        protected void updateUI() {
+            AppPreference.saveWeather(MainActivity.this, mWeather);
+            updateCurrentWeather();
+        }
+}
+
+    public TaskOutput.ParseResult parseWeather(String data) {
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+
+            JSONArray weatherArray = jsonObject.getJSONArray("weather");
+            JSONObject weatherObject = weatherArray.getJSONObject(0);
+            if (weatherObject.has("description")) {
+                mWeather.currentWeather.setDescription(weatherObject.getString("description"));
+            }
+            if (weatherObject.has("icon")) {
+                mWeather.currentWeather.setIdIcon(weatherObject.getString("icon"));
+            }
+
+            JSONObject mainObj = jsonObject.getJSONObject("main");
+            if (mainObj.has("temp")) {
+                mWeather.temperature.setTemp(Float.parseFloat(mainObj.getString("temp")));
+            }
+            if (mainObj.has("pressure")) {
+                mWeather.currentCondition.setPressure(
+                        Float.parseFloat(mainObj.getString("pressure")));
+            }
+            if (mainObj.has("humidity")) {
+                mWeather.currentCondition.setHumidity(mainObj.getInt("humidity"));
+            }
+
+            JSONObject windObj = jsonObject.getJSONObject("wind");
+            if (windObj.has("speed")) {
+                mWeather.wind.setSpeed(Float.parseFloat(windObj.getString("speed")));
+            }
+            if (windObj.has("deg")) {
+                mWeather.wind.setDirection(Float.parseFloat(windObj.getString("deg")));
+            }
+
+            JSONObject cloudsObj = jsonObject.getJSONObject("clouds");
+            if (cloudsObj.has("all")) {
+                mWeather.cloud.setClouds(cloudsObj.getInt("all"));
+            }
+
+            if (jsonObject.has("name")) {
+                mCitySearch.setCityName(jsonObject.getString("name"));
+            }
+
+            JSONObject sysObj = jsonObject.getJSONObject("sys");
+            if (sysObj.has("country")) {
+                mCitySearch.setCountryCode(sysObj.getString("country"));
+            }
+            mWeather.sys.setSunrise(sysObj.getLong("sunrise"));
+            mWeather.sys.setSunset(sysObj.getLong("sunset"));
+
+            mWeather.location = mCitySearch;
+
+        } catch (JSONException e) {
+            Log.e(TAG, "Error parsing JSON");
+            return TaskOutput.ParseResult.PARSE_JSON_EXCEPTION;
+        }
+
+        return TaskOutput.ParseResult.OK;
+    }
+
+    private void updateCurrentWeather() {
+        mSharedPreferences =
+                getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor configEditor = mSharedPreferences.edit();
+
+        mSpeedScale = Utils.getSpeedScale(MainActivity.this);
+        String temperature = String.format(Locale.getDefault(),
+                                           "%.1f",
+                                           mWeather.temperature.getTemp());
+        String pressure = String.format(Locale.getDefault(),
+                                        "%.1f",
+                                        mWeather.currentCondition.getPressure());
+        String wind = String.format(Locale.getDefault(),
+                                    "%.1f",
+                                    mWeather.wind.getSpeed());
+
+        String lastUpdate = Utils.setLastUpdateTime(MainActivity.this,
+                                                    AppPreference.saveLastUpdateTimeMillis(
+                                                            MainActivity.this));
+        String sunrise = Utils.unixTimeToFormatTime(MainActivity.this,
+                                                    mWeather.sys.getSunrise());
+        String sunset = Utils.unixTimeToFormatTime(MainActivity.this,
+                                                   mWeather.sys.getSunset());
+
+        mIconWeatherView.setText(Utils.getStrIcon(MainActivity.this,
+                                                  mWeather.currentWeather.getIdIcon()));
+        mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
+        mDescriptionView.setText(mWeather.currentWeather.getDescription());
+        mHumidityView.setText(getString(R.string.humidity_with_icon_label,
+                                        mIconHumidity,
+                                        mWeather.currentCondition.getHumidity(),
+                                        mPercentSign));
+        mPressureView.setText(getString(R.string.pressure_with_icon_label,
+                                        mIconPressure,
+                                        pressure,
+                                        mPressureMeasurement));
+        mWindSpeedView.setText(getString(R.string.wind_with_icon_label,
+                                         mIconWind,
+                                         wind,
+                                         mSpeedScale));
+        mCloudinessView.setText(getString(R.string.cloudiness_with_icon_label,
+                                          mIconCloudiness,
+                                          mWeather.cloud.getClouds(),
+                                          mPercentSign));
+        mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
+        mSunriseView.setText(getString(R.string.sunrise_with_icon_label,
+                                       mIconSunrise,
+                                       sunrise));
+        mSunsetView.setText(getString(R.string.sunset_with_icon_label,
+                                      mIconSunset,
+                                      sunset));
+        setTitle(mWeather.location.getCityName());
+
+        configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
+        configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
+                               mWeather.location.getCountryCode());
+        configEditor.apply();
     }
 
     @Override
@@ -312,10 +375,13 @@ public class MainActivity extends AppCompatActivity {
             editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
             editor.apply();
 
-            String currentLocal = mSharedPreferences.getString(Constants.APP_SETTINGS_LOCALE, "en");
+            String currentLocale = mSharedPreferences.getString(Constants.APP_SETTINGS_LOCALE,
+                                                                "en");
             if (isNetworkAvailable) {
-                mLoadWeather = new BackgroundLoadWeather();
-                mLoadWeather.execute(latitude, longitude, mUnits, currentLocal);
+                new CurrentWeatherTask(MainActivity.this).execute(latitude,
+                                                                  longitude,
+                                                                  mUnits,
+                                                                  currentLocale);
             } else {
                 Toast.makeText(MainActivity.this,
                                R.string.connection_not_found,
@@ -341,63 +407,70 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private NavigationView.OnNavigationItemSelectedListener navigationViewListener = new NavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(MenuItem item) {
-            int itemId = item.getItemId();
-            switch (itemId) {
-                case R.id.nav_settings:
-                    Intent goToSettings = new Intent(MainActivity.this, SettingsActivity.class);
-                    startActivity(goToSettings);
-                    break;
-                case R.id.nav_about:
-                    Intent goToAbout = new Intent(MainActivity.this, AboutActivity.class);
-                    startActivity(goToAbout);
-                    break;
-                case R.id.nav_feedback:
-                    Intent sendMessage = new Intent(Intent.ACTION_SEND);
-                    sendMessage.setType("message/rfc822");
-                    sendMessage.putExtra(Intent.EXTRA_EMAIL,
-                                         new String[]{getResources().getString(
-                                                 R.string.feedback_email)});
-                    try {
-                        startActivity(Intent.createChooser(sendMessage, "Send feedback"));
-                    } catch (android.content.ActivityNotFoundException e) {
-                        Toast.makeText(MainActivity.this,
-                                       "Communication app not found",
-                                       Toast.LENGTH_SHORT).show();
+    private NavigationView.OnNavigationItemSelectedListener navigationViewListener =
+            new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem item) {
+                    int itemId = item.getItemId();
+                    switch (itemId) {
+                        case R.id.nav_settings:
+                            Intent goToSettings = new Intent(MainActivity.this,
+                                                             SettingsActivity.class);
+                            startActivity(goToSettings);
+                            break;
+                        case R.id.nav_about:
+                            Intent goToAbout = new Intent(MainActivity.this, AboutActivity.class);
+                            startActivity(goToAbout);
+                            break;
+                        case R.id.nav_feedback:
+                            Intent sendMessage = new Intent(Intent.ACTION_SEND);
+                            sendMessage.setType("message/rfc822");
+                            sendMessage.putExtra(Intent.EXTRA_EMAIL,
+                                                 new String[]{getResources().getString(
+                                                         R.string.feedback_email)});
+                            try {
+                                startActivity(Intent.createChooser(sendMessage, "Send feedback"));
+                            } catch (android.content.ActivityNotFoundException e) {
+                                Toast.makeText(MainActivity.this,
+                                               "Communication app not found",
+                                               Toast.LENGTH_SHORT).show();
+                            }
+                            break;
                     }
-                    break;
-            }
 
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-            return true;
-        }
-    };
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                }
+            };
 
-    private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
-        public void onRefresh() {
-            isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
+    private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
+            new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
 
-            String latitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LATITUDE,
-                                                           "51.51");
-            String longitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LONGITUDE,
-                                                            "-0.13");
-            String currentLocale = mSharedPreferences.getString(Constants.APP_SETTINGS_LOCALE,
-                                                                "en");
+                    String latitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LATITUDE,
+                                                                   "51.51");
+                    String longitude = mSharedPreferences.getString(
+                            Constants.APP_SETTINGS_LONGITUDE,
+                            "-0.13");
+                    String currentLocale = mSharedPreferences.getString(
+                            Constants.APP_SETTINGS_LOCALE,
+                            "en");
 
-            if (isNetworkAvailable) {
-                mLoadWeather = new BackgroundLoadWeather();
-                mLoadWeather.execute(latitude, longitude, mUnits, currentLocale);
-            } else {
-                Toast.makeText(MainActivity.this,
-                               R.string.connection_not_found,
-                               Toast.LENGTH_SHORT).show();
-                mSwipeRefresh.setRefreshing(false);
-            }
-        }
-    };
+                    if (isNetworkAvailable) {
+                        new CurrentWeatherTask(MainActivity.this).execute(latitude,
+                                                                          longitude,
+                                                                          mUnits,
+                                                                          currentLocale);
+                    } else {
+                        Toast.makeText(MainActivity.this,
+                                       R.string.connection_not_found,
+                                       Toast.LENGTH_SHORT).show();
+                        mSwipeRefresh.setRefreshing(false);
+                    }
+                }
+            };
 
     public void showSettingsAlert() {
         AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
