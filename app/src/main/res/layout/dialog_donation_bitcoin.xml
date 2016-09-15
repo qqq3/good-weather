@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <TextView
+        android:id="@+id/bitcoin_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/primary_text_light_nodisable"
+        app:layout_constraintTop_toTopOf="@id/root"/>
+
+    <ImageView
+        android:id="@+id/bitcoin_address_qr"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/donation_bitcoin_qr_description"
+        android:src="@drawable/bitcoin_address_qr"
+        app:layout_constraintLeft_toLeftOf="@id/root"
+        app:layout_constraintRight_toRightOf="@id/root"
+        app:layout_constraintTop_toBottomOf="@id/bitcoin_address"/>
+
+    <Button
+        android:id="@+id/copy_bitcoin_address_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/donation_bitcoin_copy_button"
+        app:layout_constraintLeft_toLeftOf="@id/root"
+        app:layout_constraintRight_toRightOf="@id/root"
+        app:layout_constraintTop_toBottomOf="@id/bitcoin_address_qr"/>
+
+    <Button
+        android:id="@+id/open_bitcoin_app_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/donation_bitcoin_open_app"
+        app:layout_constraintLeft_toLeftOf="@id/root"
+        app:layout_constraintRight_toRightOf="@id/root"
+        app:layout_constraintTop_toBottomOf="@id/copy_bitcoin_address_button"/>
+</android.support.constraint.ConstraintLayout>

@@ -418,10 +418,6 @@ public class MainActivity extends AppCompatActivity {
                                                              SettingsActivity.class);
                             startActivity(goToSettings);
                             break;
-                        case R.id.nav_about:
-                            Intent goToAbout = new Intent(MainActivity.this, AboutActivity.class);
-                            startActivity(goToAbout);
-                            break;
                         case R.id.nav_feedback:
                             Intent sendMessage = new Intent(Intent.ACTION_SEND);
                             sendMessage.setType("message/rfc822");
@@ -435,6 +431,10 @@ public class MainActivity extends AppCompatActivity {
                                                "Communication app not found",
                                                Toast.LENGTH_SHORT).show();
                             }
+                            break;
+                        case R.id.nav_menu_bitcoin_donation:
+                            BitcoinDonationDialog dialog = BitcoinDonationDialog.newInstance();
+                            dialog.show(getFragmentManager(), "bitcoinDonationDialog");
                             break;
                     }
 

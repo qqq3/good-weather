@@ -6,7 +6,6 @@
     <string name="label_choose_city">Выбрать город</string>
     <string name="label_current_city">Текущий город</string>
     <string name="label_temperature">Температура</string>
-    <string name="nav_menu_about">О программе</string>
     <string name="nav_menu_settings">Настройки</string>
     <string name="openweathermap_data">Метеорологическая информация предоставлена OpenWeatherMap</string>
     <string name="wind_speed_meters">м/с</string>
@@ -59,4 +58,9 @@
     <string name="about_version_pref_title">Версия</string>
     <string name="about_open_source_licenses_pref_title">Open Source лицензии</string>
     <string name="toast_parse_error">Произошла ошибка. Попробуйте позже!</string>
+    <string name="donation_bitcoin_copy_button">Скопировать Bitcoin адрес</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin адрес добавлен в буфер обмена</string>
+    <string name="donation_bitcoin_open_app">Открыть Bitcoin кошелёк</string>
+    <string name="donation_bitcoin_qr_description">QR код Bitcoin пожертвования</string>
+    <string name="nav_menu_bitcoin_donation">Пожертвовать Bitcoin</string>
 </resources>

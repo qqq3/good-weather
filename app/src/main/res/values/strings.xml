@@ -1,13 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Good Weather</string>
     <string name="enter_city_hint">Enter city</string>
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="nav_menu_settings">Settings</string>
     <string name="activity_label">About</string>
-    <string name="nav_menu_faq" translatable="false">FAQ</string>
-    <string name="nav_menu_about">About</string>
-    <string name="nav_feedback">Feedback</string>
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
     <string name="label_temperature">Temperature</string>
@@ -22,6 +16,14 @@
     <string name="alertDialog_gps_positiveButton">Settings</string>
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
+    
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_menu_settings">Settings</string>
+    <string name="nav_menu_faq" translatable="false">FAQ</string>
+    <string name="nav_feedback">Feedback</string>
+    <string name="nav_menu_bitcoin_donation">Donate Bitcoin</string>
     
     <!-- Toast messages -->
     <string name="connection_not_found">Check your internet connection</string>
@@ -103,4 +105,10 @@
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Current weather icon</string>
     <string name="widget_refresh_button">Widget refresh button</string>
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">Donation Bitcoin QR code</string>
+    <string name="donation_bitcoin_copy_button">Copy Bitcoin Address</string>
+    <string name="donation_bitcoin_open_app">Open Bitcoin App</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin address was copied to the clipboard</string>
 </resources>

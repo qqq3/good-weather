@@ -13,8 +13,8 @@
             android:icon="@drawable/ic_feedback"
             android:title="@string/nav_feedback"/>
         <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/ic_menu_info"
-            android:title="@string/nav_menu_about"/>
+            android:id="@+id/nav_menu_bitcoin_donation"
+            android:icon="@drawable/ic_thumb_up_black_24dp"
+            android:title="@string/nav_menu_bitcoin_donation"/>
     </group>
 </menu>

@@ -14,7 +14,6 @@
     <string name="label_current_city">Aktuelle Stadt</string>
     <string name="label_temperature">Temperatur</string>
     <string name="nav_feedback">Feedback</string>
-    <string name="nav_menu_about">Über</string>
     <string name="openweathermap_data">Wetterdaten bereitgestellt von OpenWeatherMap</string>
     <string name="progressDialog_gps_locate">Finden Sie aktuelle Position</string>
     <string name="wind_speed_meters">Meter je Sekunde</string>
@@ -59,4 +58,9 @@
     <string name="about_version_pref_title">Version</string>
     <string name="about_open_source_licenses_pref_title">Open-Source-Lizenzen</string>
     <string name="toast_parse_error">Ein Fehler ist aufgetreten. Versuche es später!</string>
+    <string name="donation_bitcoin_copy_button">Kopieren Bitcoin-Adresse</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin-Adresse wurde in die Zwischenablage kopiert</string>
+    <string name="donation_bitcoin_open_app">Offene Bitcoin App</string>
+    <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
+    <string name="nav_menu_bitcoin_donation">Spenden Bitcoin</string>
 </resources>
