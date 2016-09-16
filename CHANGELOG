@@ -1,3 +1,10 @@
+v3.0
+
+- Added widgets
+- Produced by the redesign of the main screen
+- Fix bug: in some cases the app crashed when it updates the weather
+- Fix bug: the app is not closed by pressing the back button
+
 v2.1
 
 - Support for Android 3.0 (Honeycomb) has ended
