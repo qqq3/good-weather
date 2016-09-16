@@ -2,9 +2,11 @@ package org.asdtm.goodweather;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -17,6 +19,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -35,14 +38,10 @@ import android.widget.Toast;
 
 import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.model.Weather;
-import org.asdtm.goodweather.task.AsyncTaskBase;
-import org.asdtm.goodweather.task.TaskOutput;
+import org.asdtm.goodweather.service.CurrentWeatherService;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.Utils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -70,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private SwipeRefreshLayout mSwipeRefresh;
     private Menu mToolbarMenu;
+    private BroadcastReceiver mWeatherUpdateReceiver;
 
     private String mUnits;
     private String mSpeedScale;
@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private Weather mWeather;
-    private CitySearch mCitySearch;
+    public static Weather mWeather;
+    public static CitySearch mCitySearch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -101,13 +101,15 @@ public class MainActivity extends AppCompatActivity {
 
         weatherConditionsIcons();
         initializeTextView();
+        initializeWeatherReceiver();
+
         connectionDetector = new ConnectionDetector(MainActivity.this);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME);
 
         mPrefWeather = getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
-        mSharedPreferences
-                = getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
+        mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                                                  Context.MODE_PRIVATE);
 
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         final String title = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
@@ -118,9 +120,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this,
-                                                  mDrawerLayout,
-                                                  mToolbar,
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
                                                   R.string.navigation_drawer_open,
                                                   R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
@@ -135,148 +135,44 @@ public class MainActivity extends AppCompatActivity {
         mSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.main_swipe_refresh);
         int top_to_padding = 150;
         mSwipeRefresh.setProgressViewOffset(false, 0, top_to_padding);
-        mSwipeRefresh.setColorSchemeResources(R.color.swipe_red,
-                                              R.color.swipe_green,
+        mSwipeRefresh.setColorSchemeResources(R.color.swipe_red, R.color.swipe_green,
                                               R.color.swipe_blue);
         mSwipeRefresh.setOnRefreshListener(swipeRefreshListener);
     }
 
-    private class CurrentWeatherTask extends AsyncTaskBase {
-
-        CurrentWeatherTask(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected TaskOutput.ParseResult parseResponse(String response) {
-            return parseWeather(response);
-        }
-
-        @Override
-        protected void onPostExecute(TaskOutput result) {
-            super.onPostExecute(result);
-            mSwipeRefresh.setRefreshing(false);
-            invalidateOptionsMenu();
-            setUpdateButtonState(false);
-        }
-
-        @Override
-        protected void updateUI() {
-            AppPreference.saveWeather(MainActivity.this, mWeather);
-            updateCurrentWeather();
-        }
-    }
-
-    public TaskOutput.ParseResult parseWeather(String data) {
-        try {
-            JSONObject jsonObject = new JSONObject(data);
-
-            JSONArray weatherArray = jsonObject.getJSONArray("weather");
-            JSONObject weatherObject = weatherArray.getJSONObject(0);
-            if (weatherObject.has("description")) {
-                mWeather.currentWeather.setDescription(weatherObject.getString("description"));
-            }
-            if (weatherObject.has("icon")) {
-                mWeather.currentWeather.setIdIcon(weatherObject.getString("icon"));
-            }
-
-            JSONObject mainObj = jsonObject.getJSONObject("main");
-            if (mainObj.has("temp")) {
-                mWeather.temperature.setTemp(Float.parseFloat(mainObj.getString("temp")));
-            }
-            if (mainObj.has("pressure")) {
-                mWeather.currentCondition.setPressure(
-                        Float.parseFloat(mainObj.getString("pressure")));
-            }
-            if (mainObj.has("humidity")) {
-                mWeather.currentCondition.setHumidity(mainObj.getInt("humidity"));
-            }
-
-            JSONObject windObj = jsonObject.getJSONObject("wind");
-            if (windObj.has("speed")) {
-                mWeather.wind.setSpeed(Float.parseFloat(windObj.getString("speed")));
-            }
-            if (windObj.has("deg")) {
-                mWeather.wind.setDirection(Float.parseFloat(windObj.getString("deg")));
-            }
-
-            JSONObject cloudsObj = jsonObject.getJSONObject("clouds");
-            if (cloudsObj.has("all")) {
-                mWeather.cloud.setClouds(cloudsObj.getInt("all"));
-            }
-
-            if (jsonObject.has("name")) {
-                mCitySearch.setCityName(jsonObject.getString("name"));
-            }
-
-            JSONObject sysObj = jsonObject.getJSONObject("sys");
-            if (sysObj.has("country")) {
-                mCitySearch.setCountryCode(sysObj.getString("country"));
-            }
-            mWeather.sys.setSunrise(sysObj.getLong("sunrise"));
-            mWeather.sys.setSunset(sysObj.getLong("sunset"));
-
-            mWeather.location = mCitySearch;
-
-        } catch (JSONException e) {
-            Log.e(TAG, "Error parsing JSON");
-            return TaskOutput.ParseResult.PARSE_JSON_EXCEPTION;
-        }
-
-        return TaskOutput.ParseResult.OK;
-    }
-
     private void updateCurrentWeather() {
-        mSharedPreferences =
-                getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE);
+        AppPreference.saveWeather(MainActivity.this, mWeather);
+        mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                                                  Context.MODE_PRIVATE);
         SharedPreferences.Editor configEditor = mSharedPreferences.edit();
 
         mSpeedScale = Utils.getSpeedScale(MainActivity.this);
-        String temperature = String.format(Locale.getDefault(),
-                                           "%.1f",
+        String temperature = String.format(Locale.getDefault(), "%.1f",
                                            mWeather.temperature.getTemp());
-        String pressure = String.format(Locale.getDefault(),
-                                        "%.1f",
+        String pressure = String.format(Locale.getDefault(), "%.1f",
                                         mWeather.currentCondition.getPressure());
-        String wind = String.format(Locale.getDefault(),
-                                    "%.1f",
-                                    mWeather.wind.getSpeed());
+        String wind = String.format(Locale.getDefault(), "%.1f", mWeather.wind.getSpeed());
 
-        String lastUpdate = Utils.setLastUpdateTime(MainActivity.this,
-                                                    AppPreference.saveLastUpdateTimeMillis(
-                                                            MainActivity.this));
-        String sunrise = Utils.unixTimeToFormatTime(MainActivity.this,
-                                                    mWeather.sys.getSunrise());
-        String sunset = Utils.unixTimeToFormatTime(MainActivity.this,
-                                                   mWeather.sys.getSunset());
+        String lastUpdate = Utils.setLastUpdateTime(MainActivity.this, AppPreference
+                .saveLastUpdateTimeMillis(MainActivity.this));
+        String sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunrise());
+        String sunset = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunset());
 
-        mIconWeatherView.setText(Utils.getStrIcon(MainActivity.this,
-                                                  mWeather.currentWeather.getIdIcon()));
+        mIconWeatherView.setText(
+                Utils.getStrIcon(MainActivity.this, mWeather.currentWeather.getIdIcon()));
         mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
         mDescriptionView.setText(mWeather.currentWeather.getDescription());
-        mHumidityView.setText(getString(R.string.humidity_with_icon_label,
-                                        mIconHumidity,
-                                        mWeather.currentCondition.getHumidity(),
-                                        mPercentSign));
-        mPressureView.setText(getString(R.string.pressure_with_icon_label,
-                                        mIconPressure,
-                                        pressure,
+        mHumidityView.setText(getString(R.string.humidity_with_icon_label, mIconHumidity,
+                                        mWeather.currentCondition.getHumidity(), mPercentSign));
+        mPressureView.setText(getString(R.string.pressure_with_icon_label, mIconPressure, pressure,
                                         mPressureMeasurement));
-        mWindSpeedView.setText(getString(R.string.wind_with_icon_label,
-                                         mIconWind,
-                                         wind,
-                                         mSpeedScale));
-        mCloudinessView.setText(getString(R.string.cloudiness_with_icon_label,
-                                          mIconCloudiness,
-                                          mWeather.cloud.getClouds(),
-                                          mPercentSign));
+        mWindSpeedView.setText(
+                getString(R.string.wind_with_icon_label, mIconWind, wind, mSpeedScale));
+        mCloudinessView.setText(getString(R.string.cloudiness_with_icon_label, mIconCloudiness,
+                                          mWeather.cloud.getClouds(), mPercentSign));
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
-        mSunriseView.setText(getString(R.string.sunrise_with_icon_label,
-                                       mIconSunrise,
-                                       sunrise));
-        mSunsetView.setText(getString(R.string.sunset_with_icon_label,
-                                      mIconSunset,
-                                      sunset));
+        mSunriseView.setText(getString(R.string.sunrise_with_icon_label, mIconSunrise, sunrise));
+        mSunsetView.setText(getString(R.string.sunset_with_icon_label, mIconSunset, sunset));
         setTitle(mWeather.location.getCityName());
 
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
@@ -289,6 +185,14 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         preLoadWeather();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver, new IntentFilter(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mWeatherUpdateReceiver);
     }
 
     @Override
@@ -308,11 +212,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
-                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isGPSEnabled = locationManager.getAllProviders().contains(
+                LocationManager.GPS_PROVIDER) && locationManager.isProviderEnabled(
+                LocationManager.GPS_PROVIDER);
         isNetworkEnabled = locationManager.getAllProviders().contains(
-                LocationManager.NETWORK_PROVIDER)
-                && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                LocationManager.NETWORK_PROVIDER) && locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER);
 
         mProgressDialog = new ProgressDialog(MainActivity.this);
         mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
@@ -322,23 +227,14 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.main_menu_refresh:
-                String latitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LATITUDE,
-                                                               "51.51");
-                String longitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LONGITUDE,
-                                                                "-0.13");
-                String currentLocale = mSharedPreferences.getString(Constants.APP_SETTINGS_LOCALE,
-                                                                    "en");
-
                 if (connectionDetector.isNetworkAvailableAndConnected()) {
-                    new CurrentWeatherTask(this).execute(latitude,
-                                                         longitude,
-                                                         mUnits,
-                                                         currentLocale);
+                    startService(new Intent(this, CurrentWeatherService.class));
                     setUpdateButtonState(true);
                 } else {
                     Toast.makeText(MainActivity.this,
                                    R.string.connection_not_found,
                                    Toast.LENGTH_SHORT).show();
+                    setUpdateButtonState(false);
                 }
                 return true;
             case R.id.main_menu_detect_location:
@@ -375,9 +271,8 @@ public class MainActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                                                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat
-                        .checkSelfPermission(
-                                MainActivity.this,
-                                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        .checkSelfPermission(MainActivity.this,
+                                             Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding
@@ -390,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
             }
             locationManager.removeUpdates(mLocationListener);
 
-            isNetworkAvailable = false;
             connectionDetector = new ConnectionDetector(MainActivity.this);
             isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
 
@@ -401,20 +295,13 @@ public class MainActivity extends AppCompatActivity {
             editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
             editor.apply();
 
-            String currentLocale = mSharedPreferences.getString(Constants.APP_SETTINGS_LOCALE,
-                                                                "en");
             if (isNetworkAvailable) {
-                new CurrentWeatherTask(MainActivity.this).execute(latitude,
-                                                                  longitude,
-                                                                  mUnits,
-                                                                  currentLocale);
+                startService(new Intent(MainActivity.this, CurrentWeatherService.class));
+                sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
             } else {
-                Toast.makeText(MainActivity.this,
-                               R.string.connection_not_found,
-                               Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.connection_not_found, Toast.LENGTH_SHORT)
+                     .show();
             }
-
-            sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
         }
 
         @Override
@@ -447,14 +334,12 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_feedback:
                             Intent sendMessage = new Intent(Intent.ACTION_SEND);
                             sendMessage.setType("message/rfc822");
-                            sendMessage.putExtra(Intent.EXTRA_EMAIL,
-                                                 new String[]{getResources().getString(
-                                                         R.string.feedback_email)});
+                            sendMessage.putExtra(Intent.EXTRA_EMAIL, new String[]{
+                                    getResources().getString(R.string.feedback_email)});
                             try {
                                 startActivity(Intent.createChooser(sendMessage, "Send feedback"));
                             } catch (android.content.ActivityNotFoundException e) {
-                                Toast.makeText(MainActivity.this,
-                                               "Communication app not found",
+                                Toast.makeText(MainActivity.this, "Communication app not found",
                                                Toast.LENGTH_SHORT).show();
                             }
                             break;
@@ -474,21 +359,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onRefresh() {
                     isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
-
-                    String latitude = mSharedPreferences.getString(Constants.APP_SETTINGS_LATITUDE,
-                                                                   "51.51");
-                    String longitude = mSharedPreferences.getString(
-                            Constants.APP_SETTINGS_LONGITUDE,
-                            "-0.13");
-                    String currentLocale = mSharedPreferences.getString(
-                            Constants.APP_SETTINGS_LOCALE,
-                            "en");
-
                     if (isNetworkAvailable) {
-                        new CurrentWeatherTask(MainActivity.this).execute(latitude,
-                                                                          longitude,
-                                                                          mUnits,
-                                                                          currentLocale);
+                        startService(new Intent(MainActivity.this, CurrentWeatherService.class));
                     } else {
                         Toast.makeText(MainActivity.this,
                                        R.string.connection_not_found,
@@ -528,9 +400,8 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(MainActivity.this,
                                                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat
-                    .checkSelfPermission(
-                            MainActivity.this,
-                            Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    .checkSelfPermission(MainActivity.this,
+                                         Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
@@ -541,9 +412,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                                               0,
-                                               0,
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,
                                                mLocationListener);
     }
 
@@ -551,9 +420,8 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(MainActivity.this,
                                                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat
-                    .checkSelfPermission(
-                            MainActivity.this,
-                            Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    .checkSelfPermission(MainActivity.this,
+                                         Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
@@ -564,9 +432,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                                               0,
-                                               0,
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,
                                                mLocationListener);
     }
 
@@ -607,28 +473,17 @@ public class MainActivity extends AppCompatActivity {
         mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
         mDescriptionView.setText(description);
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
-        mHumidityView.setText(getString(R.string.humidity_with_icon_label,
-                                        mIconHumidity,
-                                        humidity,
+        mHumidityView.setText(getString(R.string.humidity_with_icon_label, mIconHumidity, humidity,
                                         mPercentSign));
-        mPressureView.setText(getString(R.string.pressure_with_icon_label,
-                                        mIconPressure,
-                                        pressure,
+        mPressureView.setText(getString(R.string.pressure_with_icon_label, mIconPressure, pressure,
                                         mPressureMeasurement));
-        mWindSpeedView.setText(getString(R.string.wind_with_icon_label,
-                                         mIconWind,
-                                         wind,
-                                         mSpeedScale));
-        mCloudinessView.setText(getString(R.string.cloudiness_with_icon_label,
-                                          mIconCloudiness,
-                                          clouds,
-                                          mPercentSign));
-        mSunriseView.setText(getString(R.string.sunrise_with_icon_label,
-                                       mIconSunrise,
-                                       sunrise));
-        mSunsetView.setText(getString(R.string.sunset_with_icon_label,
-                                      mIconSunset,
-                                      sunset));
+        mWindSpeedView.setText(
+                getString(R.string.wind_with_icon_label, mIconWind, wind, mSpeedScale));
+        mCloudinessView.setText(
+                getString(R.string.cloudiness_with_icon_label, mIconCloudiness, clouds,
+                          mPercentSign));
+        mSunriseView.setText(getString(R.string.sunrise_with_icon_label, mIconSunrise, sunrise));
+        mSunsetView.setText(getString(R.string.sunset_with_icon_label, mIconSunset, sunset));
         setTitle(title);
     }
 
@@ -678,5 +533,26 @@ public class MainActivity extends AppCompatActivity {
                 updateItem.setVisible(true);
             }
         }
+    }
+
+    private void initializeWeatherReceiver() {
+        mWeatherUpdateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                switch (intent.getStringExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT)) {
+                    case CurrentWeatherService.ACTION_WEATHER_UPDATE_OK:
+                        mSwipeRefresh.setRefreshing(false);
+                        setUpdateButtonState(false);
+                        updateCurrentWeather();
+                        break;
+                    case CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL:
+                        mSwipeRefresh.setRefreshing(false);
+                        setUpdateButtonState(false);
+                        Toast.makeText(MainActivity.this,
+                                       getString(R.string.toast_parse_error),
+                                       Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
     }
 }

@@ -100,5 +100,6 @@
         <service android:name=".service.NotificationService"/>
         <service android:name=".widget.LessWidgetService"/>
         <service android:name=".widget.MoreWidgetService"/>
+        <service android:name=".service.CurrentWeatherService"/>
     </application>
 </manifest>
