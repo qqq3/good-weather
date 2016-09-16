@@ -1,15 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">Good Weather</string>
     <string name="enter_city_hint">Enter city</string>
-    <string name="activity_label">About</string>
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
     <string name="label_temperature">Temperature</string>
-    <string name="text_about"><b>Good weather</b> - free app for online checking weather.
-        With help of the app, you can check weather conditions in more than 200.000 cities.
-        Thanks!</string>
-    <string name="openweathermap_data">Weather data provided by OpenWeatherMap</string>
-    <string name="yahoo_data">Cities data provided by Yahoo! GeoPlanet</string>
     <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
     <string name="alertDialog_gps_title" translatable="false">GPS is settings</string>
     <string name="alertDialog_gps_message">GPS is not enabled. Do you want to go to settings menu?</string>

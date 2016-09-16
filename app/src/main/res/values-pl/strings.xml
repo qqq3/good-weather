@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="activity_label">O aplikacji</string>
     <string name="nav_menu_settings">Ustawienia</string>
-    <string name="text_about"><b> Dobra pogoda </b> - darmowa aplikacja dla pogody kontroli online.
-         Przy pomocy aplikacji można sprawdzić warunki pogodowe w ponad 200.000 miast.
-         Dzięki!</string>
     <string name="alertDialog_gps_message">GPS nie jest włączony. Czy chcesz, aby przejść do menu ustawień?</string>
     <string name="alertDialog_gps_negativeButton">Anulować</string>
     <string name="alertDialog_gps_positiveButton">Ustawienia</string>
@@ -14,11 +10,9 @@
     <string name="label_current_city">Aktualne miasto</string>
     <string name="label_temperature">Temperatura</string>
     <string name="nav_feedback">Sprzężenie zwrotne</string>
-    <string name="openweathermap_data"> Dane pogodowe dostarczone przez OpenWeatherMap</string>
     <string name="progressDialog_gps_locate"> Znajdź bieżącej lokalizacji</string>
     <string name="wind_speed_miles">mil na godzinę</string>
     <string name="wind_speed_meters">metrów na sekundę</string>
-    <string name="yahoo_data">Dane dostarczone przez Yahoo! GeoPlanet</string>
     <string name="hint_activity_search">Szukanie</string>
     <string name="pref_title_temperature">Temperatura</string>
     <string name="title_activity_settings">Ustawienia</string>
