@@ -2,16 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '23.0.3'
+    buildToolsVersion '24.0.2'
     defaultConfig {
         applicationId "org.asdtm.goodweather"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 6
-        versionName "2.1"
+        versionCode 7
+        versionName "3.0"
         vectorDrawables.useSupportLibrary = true
     }
-
     buildTypes {
         release {
             minifyEnabled true
@@ -25,8 +24,6 @@ android {
                 }
             }
         }
-    }
-    productFlavors {
     }
 }
 
