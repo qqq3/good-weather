@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
@@ -17,15 +16,10 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -45,7 +39,7 @@ import org.asdtm.goodweather.utils.Utils;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = "WeatherPageFragment";
 
@@ -60,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView mSunriseView;
     private TextView mSunsetView;
 
-    private Toolbar mToolbar;
     private ConnectionDetector connectionDetector;
     private Boolean isNetworkAvailable;
     private ProgressDialog mProgressDialog;
@@ -85,9 +78,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
-
     public static Weather mWeather;
     public static CitySearch mCitySearch;
 
@@ -111,23 +101,9 @@ public class MainActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                                                   Context.MODE_PRIVATE);
 
-        mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = getToolbar();
         final String title = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
         setTitle(title);
-        setSupportActionBar(mToolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
-                                                  R.string.navigation_drawer_open,
-                                                  R.string.navigation_drawer_close);
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(navigationViewListener);
 
         /**
          * Configure SwipeRefreshLayout
@@ -193,12 +169,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mWeatherUpdateReceiver);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -320,40 +290,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private NavigationView.OnNavigationItemSelectedListener navigationViewListener =
-            new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(MenuItem item) {
-                    int itemId = item.getItemId();
-                    switch (itemId) {
-                        case R.id.nav_settings:
-                            Intent goToSettings = new Intent(MainActivity.this,
-                                                             SettingsActivity.class);
-                            startActivity(goToSettings);
-                            break;
-                        case R.id.nav_feedback:
-                            Intent sendMessage = new Intent(Intent.ACTION_SEND);
-                            sendMessage.setType("message/rfc822");
-                            sendMessage.putExtra(Intent.EXTRA_EMAIL, new String[]{
-                                    getResources().getString(R.string.feedback_email)});
-                            try {
-                                startActivity(Intent.createChooser(sendMessage, "Send feedback"));
-                            } catch (android.content.ActivityNotFoundException e) {
-                                Toast.makeText(MainActivity.this, "Communication app not found",
-                                               Toast.LENGTH_SHORT).show();
-                            }
-                            break;
-                        case R.id.nav_menu_bitcoin_donation:
-                            BitcoinDonationDialog dialog = BitcoinDonationDialog.newInstance();
-                            dialog.show(getFragmentManager(), "bitcoinDonationDialog");
-                            break;
-                    }
-
-                    mDrawerLayout.closeDrawer(GravityCompat.START);
-                    return true;
-                }
-            };
-
     private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -434,15 +370,6 @@ public class MainActivity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,
                                                mLocationListener);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            finish();
-        }
     }
 
     private void preLoadWeather() {
