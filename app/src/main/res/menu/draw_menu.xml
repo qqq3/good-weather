@@ -2,12 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
         <item
+            android:id="@+id/nav_menu_current_weather"
+            android:icon="@drawable/ic_current_weather_black_24dp"
+            android:title="@string/nav_menu_current_weather"/>
+        <item
+            android:id="@+id/nav_menu_graphs"
+            android:icon="@drawable/ic_graphs_black_32dp"
+            android:title="@string/nav_menu_graphs"/>
+        <item
+            android:id="@+id/nav_menu_weather_forecast"
+            android:icon="@drawable/ic_daily_forecast_dark_24dp"
+            android:title="@string/nav_menu_daily_forecast"/>
+        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/nav_menu_settings"/>
     </group>
-    <group android:checkableBehavior="none"
-        android:id="@+id/nav_menu_communication">
+    <group
+        android:id="@+id/nav_menu_communication"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_feedback"
