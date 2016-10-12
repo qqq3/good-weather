@@ -60,4 +60,22 @@
     <string name="toolbar_menu_detect_location">Erkennen Ort</string>
     <string name="toolbar_menu_refresh">Aktualisieren</string>
     <string name="toolbar_menu_search_city">Suchen Stadt</string>
+    <string name="nav_menu_current_weather">Aktuelle Wetterlage</string>
+    <string name="nav_menu_daily_forecast">Daily Forecast</string>
+    <string name="temperature_day_title">Tag</string>
+    <string name="temperature_evening_title">Abend</string>
+    <string name="temperature_morning_title">Morgen</string>
+    <string name="temperature_night_title">Nacht</string>
+    <string name="wind_direction_east">O</string>
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_east">NO</string>
+    <string name="wind_direction_north_west">NW</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_east">SO</string>
+    <string name="wind_direction_south_west">SW</string>
+    <string name="wind_direction_west">W</string>
+    <string name="label_activity_graphs">Grafiken Wetter</string>
+    <string name="label_activity_main">Aktuelle Wetterlage</string>
+    <string name="label_activity_weather_forecast">Daily Forecast</string>
+    <string name="nav_menu_graphs">Graphs</string>
 </resources>

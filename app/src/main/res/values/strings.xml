@@ -11,6 +11,12 @@
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
 
+    <!-- Activity names -->
+    <string name="title_activity_search">Search Location</string>
+    <string name="label_activity_main">Current Weather</string>
+    <string name="label_activity_weather_forecast">Daily Forecast</string>
+    <string name="label_activity_graphs">Graphs Weather</string>
+
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Update</string>
     <string name="toolbar_menu_search_city">Search City</string>
@@ -19,6 +25,9 @@
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_menu_current_weather">Current Weather</string>
+    <string name="nav_menu_daily_forecast">Daily Forecast</string>
+    <string name="nav_menu_graphs">Graphs</string>
     <string name="nav_menu_settings">Settings</string>
     <string name="nav_menu_faq" translatable="false">FAQ</string>
     <string name="nav_feedback">Feedback</string>
@@ -57,7 +66,6 @@
     <string name="wind_speed_miles">mph</string>
 
     <!-- Search Screen strings -->
-    <string name="title_activity_search">Search Location</string>
     <string name="hint_activity_search">Search location</string>
 
     <!-- Preference Screen strings -->
@@ -93,6 +101,10 @@
     <string name="pressure_label">Pressure: %s</string>
     <string name="cloudiness_label">Cloudiness: %s</string>
     <string name="last_update_label">Last update: %s</string>
+    <string name="temperature_morning_title">Morning</string>
+    <string name="temperature_day_title">Day</string>
+    <string name="temperature_evening_title">Evening</string>
+    <string name="temperature_night_title">Night</string>
     <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
     <string name="wind_with_icon_label">%1$s Wind: %2$s %3$s</string>
     <string name="humidity_with_icon_label">%1$s Humidity: %2$d%3$s</string>
@@ -110,4 +122,16 @@
     <string name="donation_bitcoin_copy_button">Copy Bitcoin Address</string>
     <string name="donation_bitcoin_open_app">Open Bitcoin App</string>
     <string name="donation_bitcoin_copy_message">Bitcoin address was copied to the clipboard</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_east">NE</string>
+    <string name="wind_direction_east">E</string>
+    <string name="wind_direction_south_east">SE</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_west">SW</string>
+    <string name="wind_direction_west">W</string>
+    <string name="wind_direction_north_west">NW</string>
+
+    <string name="default_daily_forecast" translatable="false">[{cloudiness:6,windSpeed:1.5,description:Clear,humidity:45,icon:10d,pressure:1000,windDegree:303,temperatureEvening:14.63,dateTime:1471673520,temperatureMin:10.38,temperatureMorning:15.9,temperatureNight:10.38,temperatureDay:15.9,temperatureMax:16.52}]</string>
 </resources>

@@ -60,4 +60,22 @@
     <string name="toolbar_menu_detect_location">Определить местоположение</string>
     <string name="toolbar_menu_refresh">Обновить</string>
     <string name="toolbar_menu_search_city">Найти город</string>
+    <string name="nav_menu_current_weather">Текущая погода</string>
+    <string name="nav_menu_daily_forecast">"Прогноз на неделю  "</string>
+    <string name="temperature_day_title">День</string>
+    <string name="temperature_evening_title">Вечер</string>
+    <string name="temperature_morning_title">Утро</string>
+    <string name="temperature_night_title">Ночь</string>
+    <string name="wind_direction_east">В</string>
+    <string name="wind_direction_north">С</string>
+    <string name="wind_direction_north_east">СВ</string>
+    <string name="wind_direction_north_west">СЗ</string>
+    <string name="wind_direction_south">Ю</string>
+    <string name="wind_direction_south_east">ЮВ</string>
+    <string name="wind_direction_south_west">ЮЗ</string>
+    <string name="wind_direction_west">З</string>
+    <string name="label_activity_graphs">Графики</string>
+    <string name="label_activity_main">Текущая погода</string>
+    <string name="label_activity_weather_forecast">Прогноз погоды</string>
+    <string name="nav_menu_graphs">Графики</string>
 </resources>
