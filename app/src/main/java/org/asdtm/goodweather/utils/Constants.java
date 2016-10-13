@@ -7,6 +7,7 @@ public class Constants {
      */
     public static final String APP_SETTINGS_NAME = "config";
     public static final String PREF_WEATHER_NAME = "weather_pref";
+    public static final String PREF_FORECAST_NAME = "weather_forecast";
 
     /**
      * Preferences constants

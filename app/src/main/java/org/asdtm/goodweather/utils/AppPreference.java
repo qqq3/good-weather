@@ -5,8 +5,14 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-import org.asdtm.goodweather.model.Weather;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.asdtm.goodweather.R;
+import org.asdtm.goodweather.model.Weather;
+import org.asdtm.goodweather.model.WeatherForecast;
+
+import java.util.List;
 import java.util.Locale;
 
 public class AppPreference {
@@ -105,5 +111,24 @@ public class AppPreference {
     public static String getWidgetUpdatePeriod(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WIDGET_UPDATE_PERIOD, "60");
+    }
+
+    public static void saveWeatherForecast(Context context, List<WeatherForecast> forecastList) {
+        SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_FORECAST_NAME,
+                                                                     Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String weatherJson = new Gson().toJson(forecastList);
+        editor.putString("daily_forecast", weatherJson);
+        editor.apply();
+    }
+
+    public static List<WeatherForecast> loadWeatherForecast(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_FORECAST_NAME,
+                                                                     Context.MODE_PRIVATE);
+        String weather = preferences.getString("daily_forecast",
+                                               context.getString(R.string.default_daily_forecast));
+        return new Gson().fromJson(weather,
+                                   new TypeToken<List<WeatherForecast>>() {
+                                   }.getType());
     }
 }
