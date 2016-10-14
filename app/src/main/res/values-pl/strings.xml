@@ -78,4 +78,5 @@
     <string name="label_activity_main">Aktualna pogoda</string>
     <string name="label_activity_weather_forecast">Dzienna prognoza</string>
     <string name="nav_menu_graphs">Wykresy</string>
+    <string name="load_progress">Załadunek&#8230;</string>
 </resources>

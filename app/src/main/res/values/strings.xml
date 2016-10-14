@@ -10,6 +10,7 @@
     <string name="alertDialog_gps_positiveButton">Settings</string>
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
+    <string name="load_progress">Loading&#8230;</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Search Location</string>
@@ -29,7 +30,7 @@
     <string name="nav_menu_daily_forecast">Daily Forecast</string>
     <string name="nav_menu_graphs">Graphs</string>
     <string name="nav_menu_settings">Settings</string>
-    <string name="nav_menu_faq" translatable="false">FAQ</string>
+    <string name="nav_menu_faq">FAQ</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Donate Bitcoin</string>
     

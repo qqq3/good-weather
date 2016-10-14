@@ -78,4 +78,5 @@
     <string name="label_activity_main">Aktuelle Wetterlage</string>
     <string name="label_activity_weather_forecast">Daily Forecast</string>
     <string name="nav_menu_graphs">Graphs</string>
+    <string name="load_progress">Laden&#8230;</string>
 </resources>
