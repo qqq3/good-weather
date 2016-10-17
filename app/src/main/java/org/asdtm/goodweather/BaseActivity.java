@@ -1,5 +1,6 @@
 package org.asdtm.goodweather;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -166,5 +167,14 @@ public class BaseActivity extends AppCompatActivity {
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }
+    }
+
+    @NonNull
+    protected ProgressDialog getProgressDialog() {
+        ProgressDialog dialog = new ProgressDialog(this);
+        dialog.isIndeterminate();
+        dialog.setMessage(getString(R.string.load_progress));
+        dialog.setCancelable(false);
+        return dialog;
     }
 }
