@@ -30,7 +30,6 @@
     <string name="nav_menu_daily_forecast">Daily Forecast</string>
     <string name="nav_menu_graphs">Graphs</string>
     <string name="nav_menu_settings">Settings</string>
-    <string name="nav_menu_faq">FAQ</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Donate Bitcoin</string>
     
@@ -65,6 +64,7 @@
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
+    <string name="millimetre_label">mm</string>
 
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Search location</string>
@@ -98,6 +98,8 @@
 
     <!-- Weather conditions label strings -->
     <string name="wind_label">Wind: %s</string>
+    <string name="rain_label">Rain: %1$s %2$s</string>
+    <string name="snow_label">Snow: %1$s %2$s</string>
     <string name="humidity_label">Humidity: %s</string>
     <string name="pressure_label">Pressure: %s</string>
     <string name="cloudiness_label">Cloudiness: %s</string>
@@ -134,5 +136,5 @@
     <string name="wind_direction_west">W</string>
     <string name="wind_direction_north_west">NW</string>
 
-    <string name="default_daily_forecast" translatable="false">[{cloudiness:6,windSpeed:1.5,description:Clear,humidity:45,icon:10d,pressure:1000,windDegree:303,temperatureEvening:14.63,dateTime:1471673520,temperatureMin:10.38,temperatureMorning:15.9,temperatureNight:10.38,temperatureDay:15.9,temperatureMax:16.52}]</string>
+    <string name="default_daily_forecast" translatable="false">[{cloudiness:6,windSpeed:1.5,description:Clear,humidity:45,icon:10d,pressure:1000,windDegree:303,temperatureEvening:14.63,dateTime:1471673520,temperatureMin:10.38,temperatureMorning:15.9,temperatureNight:10.38,temperatureDay:15.9,temperatureMax:16.52,rain:2,snow:5},{cloudiness:6,windSpeed:1.5,description:Clear,humidity:45,icon:10d,pressure:1000,windDegree:303,temperatureEvening:14.63,dateTime:1471673520,temperatureMin:10.38,temperatureMorning:15.9,temperatureNight:10.38,temperatureDay:55.9,temperatureMax:16.52,rain:4,snow:0}]</string>
 </resources>

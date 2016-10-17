@@ -79,4 +79,7 @@
     <string name="label_activity_weather_forecast">Dzienna prognoza</string>
     <string name="nav_menu_graphs">Wykresy</string>
     <string name="load_progress">Załadunek&#8230;</string>
+    <string name="millimetre_label">mm</string>
+    <string name="snow_label">Śnieg: %1$s %2$s</string>
+    <string name="rain_label">Deszcz: %1$s %2$s</string>
 </resources>

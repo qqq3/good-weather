@@ -8,11 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 
 import org.asdtm.goodweather.R;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
 
 public class Utils {
@@ -153,5 +156,27 @@ public class Utils {
                 Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText(string, string);
         clipboardManager.setPrimaryClip(clipData);
+    }
+
+    public static String windDegreeToDirections(Context context, double windDegree) {
+        String[] directions = context.getResources().getStringArray(R.array.wind_directions);
+        String[] arrows = context.getResources().getStringArray(R.array.wind_direction_arrows);
+        int index = (int) Math.abs(Math.round(windDegree % 360) / 45);
+
+        return directions[index] + " " + arrows[index];
+    }
+
+    public static URL getWeatherForecastUrl(String lat, String lon, String units, String lang) throws
+                                                                                         MalformedURLException {
+        String url = Uri.parse(Constants.WEATHER_FORECAST_ENDPOINT)
+                        .buildUpon()
+                        .appendQueryParameter("appid", ApiKeys.OPEN_WEATHER_MAP_API_KEY)
+                        .appendQueryParameter("lat", lat)
+                        .appendQueryParameter("lon", lon)
+                        .appendQueryParameter("units", units)
+                        .appendQueryParameter("lang", lang)
+                        .build()
+                        .toString();
+        return new URL(url);
     }
 }

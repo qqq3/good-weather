@@ -44,4 +44,26 @@
         <item>720</item>
         <item>1440</item>
     </string-array>
+
+    <!-- Wind directions array -->
+    <string-array name="wind_directions">
+        <item>@string/wind_direction_north</item>
+        <item>@string/wind_direction_north_east</item>
+        <item>@string/wind_direction_east</item>
+        <item>@string/wind_direction_south_east</item>
+        <item>@string/wind_direction_south</item>
+        <item>@string/wind_direction_south_west</item>
+        <item>@string/wind_direction_west</item>
+        <item>@string/wind_direction_north_west</item>
+    </string-array>
+    <string-array name="wind_direction_arrows" translatable="false">
+        <item name="n">&#xf058;</item>
+        <item name="ne">&#xf057;</item>
+        <item name="e">&#xf04d;</item>
+        <item name="se">&#xf088;</item>
+        <item name="s">&#xf044;</item>
+        <item name="sw">&#xf043;</item>
+        <item name="w">&#xf048;</item>
+        <item name="nw">&#xf087;</item>
+    </string-array>
 </resources>

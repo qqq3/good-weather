@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingTop="10dp">
+
+    <LinearLayout
+        android:id="@+id/temperature_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingEnd="?attr/listPreferredItemPaddingRight"
+        android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+        android:paddingRight="?attr/listPreferredItemPaddingRight"
+        android:paddingStart="?attr/listPreferredItemPaddingLeft"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/forecast.date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_color"
+                android:textSize="16sp"
+                tools:text="Wed, 31 September"/>
+
+            <TextView
+                android:id="@+id/forecast.temperature_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forecast.date_time"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="14sp"
+                tools:text="666"/>
+
+            <TextView
+                android:id="@+id/forecast.temperature_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forecast.date_time"
+                android:layout_gravity="center_vertical"
+                android:layout_toEndOf="@+id/forecast.temperature_min"
+                android:layout_toRightOf="@+id/forecast.temperature_min"
+                android:paddingEnd="?attr/listPreferredItemPaddingRight"
+                android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+                android:paddingRight="?attr/listPreferredItemPaddingRight"
+                android:paddingStart="?attr/listPreferredItemPaddingLeft"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="14sp"
+                tools:text="666"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/forecast.icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:textSize="38sp"
+            tools:text="Clear"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/forecast.divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/temperature_linear_layout"/>
+</android.support.constraint.ConstraintLayout>

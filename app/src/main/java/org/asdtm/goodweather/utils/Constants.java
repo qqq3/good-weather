@@ -65,4 +65,8 @@ public class Constants {
     public static final String WEATHER_FORECAST_ENDPOINT = "http://api.openweathermap.org/data/2.5/forecast/daily/";
 
     public static final String BITCOIN_ADDRESS = "1FV8m1MKqZ9ZKB8YNwpsjsuubHTznJSiT8";
+
+    public static final int PARSE_RESULT_SUCCESS = 0;
+    public static final int TASK_RESULT_ERROR = -1;
+    public static final int PARSE_RESULT_ERROR = -2;
 }

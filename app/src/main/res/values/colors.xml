@@ -11,6 +11,7 @@
     <color name="swipe_blue">#4447da</color>
     <color name="text_color">#302c2c</color>
     <color name="settings_content_color">#000000</color>
+    <color name="divider_light">#ccc</color>
 
     <color name="widget_darkTheme_colorBackground">#fa202020</color>
     <color name="widget_darkTheme_textColorPrimary">#FFFFFF</color>

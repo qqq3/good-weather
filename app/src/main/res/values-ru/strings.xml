@@ -79,4 +79,7 @@
     <string name="label_activity_weather_forecast">Прогноз погоды</string>
     <string name="nav_menu_graphs">Графики</string>
     <string name="load_progress">Загрузка&#8230;</string>
+    <string name="millimetre_label">мм</string>
+    <string name="rain_label">Дождь: %1$s %2$s</string>
+    <string name="snow_label">Снег: %1$s %2$s</string>
 </resources>
