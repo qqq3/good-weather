@@ -82,4 +82,9 @@
     <string name="millimetre_label">мм</string>
     <string name="rain_label">Дождь: %1$s %2$s</string>
     <string name="snow_label">Снег: %1$s %2$s</string>
+    <string name="label_rain">Дождь</string>
+    <string name="label_snow">Снег</string>
+    <string name="label_wind">Ветер</string>
+    <string name="menu_action_toggle_values">Переключение значений</string>
+    <string name="menu_action_toggle_yaxis">Переключение оси Y</string>
 </resources>

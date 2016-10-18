@@ -3,7 +3,6 @@
     <string name="enter_city_hint">Enter city</string>
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
-    <string name="label_temperature">Temperature</string>
     <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
     <string name="alertDialog_gps_title" translatable="false">GPS is settings</string>
     <string name="alertDialog_gps_message">GPS is not enabled. Do you want to go to settings menu?</string>
@@ -22,6 +21,8 @@
     <string name="toolbar_menu_refresh">Update</string>
     <string name="toolbar_menu_search_city">Search City</string>
     <string name="toolbar_menu_detect_location">Detect Location</string>
+    <string name="menu_action_toggle_values">Toggle Values</string>
+    <string name="menu_action_toggle_yaxis">Toggle Y-Axis</string>
     
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
@@ -115,6 +116,10 @@
     <string name="cloudiness_with_icon_label">%1$s Cloudiness: %2$d%3$s</string>
     <string name="sunrise_with_icon_label">%1$s Sunrise: %2$s</string>
     <string name="sunset_with_icon_label">%1$s Sunset: %2$s</string>
+    <string name="label_temperature">Temperature</string>
+    <string name="label_wind">Wind</string>
+    <string name="label_rain">Rain</string>
+    <string name="label_snow">Snow</string>
 
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Current weather icon</string>

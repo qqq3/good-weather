@@ -82,4 +82,9 @@
     <string name="millimetre_label">mm</string>
     <string name="snow_label">Schnee:  %1$s %2$s</string>
     <string name="rain_label">Regen: %1$s %2$s</string>
+    <string name="label_rain">Regen</string>
+    <string name="label_snow">Schnee</string>
+    <string name="label_wind">Wind</string>
+    <string name="menu_action_toggle_values">Werte umschalten</string>
+    <string name="menu_action_toggle_yaxis">Y-Achse umschalten</string>
 </resources>
