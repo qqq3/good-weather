@@ -18,6 +18,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -52,6 +53,24 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
+        </activity>
+        <activity
+            android:name=".WeatherForecastActivity"
+            android:label="@string/label_activity_weather_forecast"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
+            android:name=".GraphsActivity"
+            android:label="@string/label_activity_graphs"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
         </activity>
 
         <receiver android:name=".receiver.StartupReceiver">
