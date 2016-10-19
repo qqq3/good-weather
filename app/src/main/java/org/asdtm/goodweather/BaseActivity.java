@@ -18,14 +18,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.asdtm.goodweather.utils.AppPreference;
 
 public class BaseActivity extends AppCompatActivity {
+
+    private final String TAG = "BaseActivity";
+    static final int PICK_CITY = 1;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar mToolbar;
+    private String[] mCityAndCode;
+    private TextView mHeaderCity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,6 +90,11 @@ public class BaseActivity extends AppCompatActivity {
     private void configureNavView() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(navigationViewListener);
+
+        mCityAndCode = AppPreference.getCityAndCode(this);
+        View headerLayout = navigationView.getHeaderView(0);
+        mHeaderCity = (TextView) headerLayout.findViewById(R.id.nav_header_city);
+        mHeaderCity.setText(mCityAndCode[0] + ", " + mCityAndCode[1]);
     }
 
     private NavigationView.OnNavigationItemSelectedListener navigationViewListener =
@@ -176,5 +188,18 @@ public class BaseActivity extends AppCompatActivity {
         dialog.setMessage(getString(R.string.load_progress));
         dialog.setCancelable(false);
         return dialog;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case PICK_CITY:
+                if (resultCode == RESULT_OK) {
+                    mCityAndCode = AppPreference.getCityAndCode(this);
+                    mHeaderCity.setText(mCityAndCode[0] + ", " + mCityAndCode[1]);
+                }
+                break;
+        }
     }
 }

@@ -20,7 +20,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -101,10 +100,6 @@ public class MainActivity extends BaseActivity {
         mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                                                   Context.MODE_PRIVATE);
 
-        Toolbar toolbar = getToolbar();
-        final String title = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
-        setTitle(title);
-
         /**
          * Configure SwipeRefreshLayout
          */
@@ -149,7 +144,6 @@ public class MainActivity extends BaseActivity {
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mSunriseView.setText(getString(R.string.sunrise_with_icon_label, mIconSunrise, sunrise));
         mSunsetView.setText(getString(R.string.sunset_with_icon_label, mIconSunset, sunset));
-        setTitle(mWeather.location.getCityName());
 
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
@@ -222,7 +216,7 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.main_menu_search_city:
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, PICK_CITY);
                 return true;
         }
 
@@ -411,7 +405,6 @@ public class MainActivity extends BaseActivity {
                           mPercentSign));
         mSunriseView.setText(getString(R.string.sunrise_with_icon_label, mIconSunrise, sunrise));
         mSunsetView.setText(getString(R.string.sunset_with_icon_label, mIconSunset, sunset));
-        setTitle(title);
     }
 
     private void initializeTextView() {
