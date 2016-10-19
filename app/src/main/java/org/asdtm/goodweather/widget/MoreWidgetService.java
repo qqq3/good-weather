@@ -61,8 +61,7 @@ public class MoreWidgetService extends IntentService {
 
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
         for (int appWidgetId : widgetIds) {
-            String[] cityAndCountryArray = AppPreference.getCityAndCode(this,
-                                                                        Constants.APP_SETTINGS_NAME);
+            String[] cityAndCountryArray = AppPreference.getCityAndCode(this);
             String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
             String temperatureScale = Utils.getTemperatureScale(this);
             String speedScale = Utils.getSpeedScale(this);

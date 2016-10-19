@@ -100,8 +100,7 @@ public class LessWidgetProvider extends AppWidgetProvider {
     private void preLoadWeather(Context context, RemoteViews remoteViews) {
         SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                                                                      Context.MODE_PRIVATE);
-        String[] cityAndCountryArray = AppPreference.getCityAndCode(context,
-                                                                    Constants.APP_SETTINGS_NAME);
+        String[] cityAndCountryArray = AppPreference.getCityAndCode(context);
         String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
         String temperatureScale = Utils.getTemperatureScale(context);
 
