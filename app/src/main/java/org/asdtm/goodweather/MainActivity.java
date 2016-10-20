@@ -16,6 +16,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -38,7 +39,7 @@ import org.asdtm.goodweather.utils.Utils;
 
 import java.util.Locale;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final String TAG = "WeatherPageFragment";
 
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity {
     private TextView mLastUpdateView;
     private TextView mSunriseView;
     private TextView mSunsetView;
+    private AppBarLayout mAppBarLayout;
 
     private ConnectionDetector connectionDetector;
     private Boolean isNetworkAvailable;
@@ -155,8 +157,14 @@ public class MainActivity extends BaseActivity {
     public void onResume() {
         super.onResume();
         preLoadWeather();
-
+        mAppBarLayout.addOnOffsetChangedListener(this);
         LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver, new IntentFilter(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mAppBarLayout.removeOnOffsetChangedListener(this);
     }
 
     @Override
@@ -428,6 +436,7 @@ public class MainActivity extends BaseActivity {
         mSunriseView.setTypeface(weatherFontIcon);
         mSunsetView = (TextView) findViewById(R.id.main_sunset);
         mSunsetView.setTypeface(weatherFontIcon);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.main_appbar);
     }
 
     private void weatherConditionsIcons() {
@@ -474,5 +483,10 @@ public class MainActivity extends BaseActivity {
                 }
             }
         };
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        mSwipeRefresh.setEnabled(verticalOffset == 0);
     }
 }
