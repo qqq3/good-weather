@@ -72,14 +72,18 @@ public class MoreWidgetService extends IntentService {
                                                weather.temperature.getTemp());
             String wind = getString(R.string.wind_label, String.format(Locale.getDefault(),
                                                                        "%.1f",
-                                                                       weather.wind.getSpeed()));
+                                                                       weather.wind.getSpeed()),
+                                    speedScale);
             String humidity = getString(R.string.humidity_label,
-                                        String.valueOf(weather.currentCondition.getHumidity()));
+                                        String.valueOf(weather.currentCondition.getHumidity()),
+                                        percentSign);
             String pressure = getString(R.string.pressure_label,
                                         String.format(Locale.getDefault(), "%.1f",
-                                                      weather.currentCondition.getPressure()));
+                                                      weather.currentCondition.getPressure()),
+                                        pressureMeasurement);
             String cloudiness = getString(R.string.cloudiness_label,
-                                          String.valueOf(weather.cloud.getClouds()));
+                                          String.valueOf(weather.cloud.getClouds()),
+                                          percentSign);
             String iconId = weather.currentWeather.getIdIcon();
             String weatherIcon = Utils.getStrIcon(this, iconId);
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
@@ -91,10 +95,10 @@ public class MoreWidgetService extends IntentService {
             remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
             remoteViews.setTextViewText(R.id.widget_description,
                                         weather.currentWeather.getDescription());
-            remoteViews.setTextViewText(R.id.widget_wind, wind + " " + speedScale);
-            remoteViews.setTextViewText(R.id.widget_humidity, humidity + percentSign);
-            remoteViews.setTextViewText(R.id.widget_pressure, pressure + " " + pressureMeasurement);
-            remoteViews.setTextViewText(R.id.widget_clouds, cloudiness + percentSign);
+            remoteViews.setTextViewText(R.id.widget_wind, wind);
+            remoteViews.setTextViewText(R.id.widget_humidity, humidity);
+            remoteViews.setTextViewText(R.id.widget_pressure, pressure);
+            remoteViews.setTextViewText(R.id.widget_clouds, cloudiness);
             remoteViews.setImageViewBitmap(R.id.widget_icon,
                                            Utils.createWeatherIcon(this, weatherIcon));
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);

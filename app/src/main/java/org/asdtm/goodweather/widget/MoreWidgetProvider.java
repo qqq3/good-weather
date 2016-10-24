@@ -112,22 +112,26 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         String description = weatherPref.getString(Constants.WEATHER_DATA_DESCRIPTION, "clear sky");
         String wind = context.getString(R.string.wind_label,
                                         String.format(Locale.getDefault(), "%.0f", weatherPref
-                                                .getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0)));
+                                                .getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0)),
+                                        speedScale);
         String humidity =
                 context.getString(R.string.humidity_label,
                                   String.valueOf(
-                                          weatherPref.getInt(Constants.WEATHER_DATA_HUMIDITY, 0)));
+                                          weatherPref.getInt(Constants.WEATHER_DATA_HUMIDITY, 0)),
+                                  percentSign);
         String pressure =
                 context.getString(R.string.pressure_label,
                                   String.format(Locale.getDefault(),
                                                 "%.1f",
                                                 weatherPref
                                                         .getFloat(Constants.WEATHER_DATA_PRESSURE,
-                                                                  0)));
+                                                                  0)),
+                                  pressureMeasurement);
         String cloudiness =
                 context.getString(R.string.cloudiness_label,
                                   String.valueOf(
-                                          weatherPref.getInt(Constants.WEATHER_DATA_CLOUDS, 0)));
+                                          weatherPref.getInt(Constants.WEATHER_DATA_CLOUDS, 0)),
+                                  percentSign);
         String iconId = weatherPref.getString(Constants.WEATHER_DATA_ICON, "01d");
         String weatherIcon = Utils.getStrIcon(context, iconId);
         String lastUpdate = Utils.setLastUpdateTime(context,
@@ -136,10 +140,10 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
         remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
         remoteViews.setTextViewText(R.id.widget_description, description);
-        remoteViews.setTextViewText(R.id.widget_wind, wind + " " + speedScale);
-        remoteViews.setTextViewText(R.id.widget_humidity, humidity + percentSign);
-        remoteViews.setTextViewText(R.id.widget_pressure, pressure + " " + pressureMeasurement);
-        remoteViews.setTextViewText(R.id.widget_clouds, cloudiness + percentSign);
+        remoteViews.setTextViewText(R.id.widget_wind, wind);
+        remoteViews.setTextViewText(R.id.widget_humidity, humidity);
+        remoteViews.setTextViewText(R.id.widget_pressure, pressure);
+        remoteViews.setTextViewText(R.id.widget_clouds, cloudiness);
         remoteViews.setImageViewBitmap(R.id.widget_icon,
                                        Utils.createWeatherIcon(context, weatherIcon));
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);

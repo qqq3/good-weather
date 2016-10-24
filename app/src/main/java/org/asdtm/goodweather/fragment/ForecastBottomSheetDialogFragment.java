@@ -64,14 +64,14 @@ public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment
                                                              String.format(Locale.getDefault(),
                                                                            "%.0f",
                                                                            temperatureNight));
-        String wind = getActivity().getString(R.string.wind_label, mWeather.getWindSpeed());
+        String wind = getActivity().getString(R.string.wind_label, mWeather.getWindSpeed(), speedScale);
         String windDegree = mWeather.getWindDegree();
         String windDirection = Utils.windDegreeToDirections(getActivity(),
                                                             Double.parseDouble(windDegree));
         String rain = getString(R.string.rain_label, mWeather.getRain(), mmLabel);
         String snow = getString(R.string.snow_label, mWeather.getSnow(), mmLabel);
-        String pressure = getActivity().getString(R.string.pressure_label, mWeather.getPressure());
-        String humidity = getActivity().getString(R.string.humidity_label, mWeather.getHumidity());
+        String pressure = getActivity().getString(R.string.pressure_label, mWeather.getPressure(), pressureMeasurement);
+        String humidity = getActivity().getString(R.string.humidity_label, mWeather.getHumidity(), percentSign);
 
         TextView descriptionView = (TextView) v.findViewById(R.id.forecast_description);
         TextView windView = (TextView) v.findViewById(R.id.forecast_wind);
@@ -93,11 +93,11 @@ public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment
 
         descriptionView.setText(description);
         windView.setTypeface(typeface);
-        windView.setText(wind + " " + speedScale + " " + windDirection);
+        windView.setText(wind + " " + windDirection);
         rainView.setText(rain);
         snowView.setText(snow);
-        humidityView.setText(humidity + percentSign);
-        pressureView.setText(pressure + " " + pressureMeasurement);
+        humidityView.setText(humidity);
+        pressureView.setText(pressure);
         if (temperatureMorning > 0) {
             temperatureMorningStr = "+" + temperatureMorningStr;
         }

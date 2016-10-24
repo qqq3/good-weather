@@ -98,24 +98,20 @@
     <string name="about_open_source_licenses_pref_title">Open Source licenses</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">Wind: %s</string>
+    <string name="wind_label">Wind: %1$s %2$s</string>
     <string name="rain_label">Rain: %1$s %2$s</string>
     <string name="snow_label">Snow: %1$s %2$s</string>
-    <string name="humidity_label">Humidity: %s</string>
-    <string name="pressure_label">Pressure: %s</string>
-    <string name="cloudiness_label">Cloudiness: %s</string>
+    <string name="humidity_label">Humidity: %1$s%2$s</string>
+    <string name="pressure_label">Pressure: %1$s %2$s</string>
+    <string name="cloudiness_label">Cloudiness: %1$s%2$s</string>
     <string name="last_update_label">Last update: %s</string>
+    <string name="sunrise_label">Sunrise: %s</string>
+    <string name="sunset_label">Sunset: %s</string>
     <string name="temperature_morning_title">Morning</string>
     <string name="temperature_day_title">Day</string>
     <string name="temperature_evening_title">Evening</string>
     <string name="temperature_night_title">Night</string>
     <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
-    <string name="wind_with_icon_label">%1$s Wind: %2$s %3$s</string>
-    <string name="humidity_with_icon_label">%1$s Humidity: %2$d%3$s</string>
-    <string name="pressure_with_icon_label">%1$s Pressure: %2$s %3$s</string>
-    <string name="cloudiness_with_icon_label">%1$s Cloudiness: %2$d%3$s</string>
-    <string name="sunrise_with_icon_label">%1$s Sunrise: %2$s</string>
-    <string name="sunset_with_icon_label">%1$s Sunset: %2$s</string>
     <string name="label_temperature">Temperature</string>
     <string name="label_wind">Wind</string>
     <string name="label_rain">Rain</string>

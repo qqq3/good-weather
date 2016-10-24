@@ -17,10 +17,10 @@
     <string name="pref_title_temperature">Temperatura</string>
     <string name="title_activity_settings">Ustawienia</string>
     <string name="title_activity_search">Szukanie</string>
-    <string name="cloudiness_label">Zmętnienie: %s</string>
-    <string name="humidity_label">Wilgotność: %s</string>
-    <string name="pressure_label">Ciśnienie: %s</string>
-    <string name="wind_label">Wiatr: %s</string>
+    <string name="cloudiness_label">Zmętnienie: %1$s%2$s</string>
+    <string name="humidity_label">Wilgotność: %1$s%2$s</string>
+    <string name="pressure_label">Ciśnienie: %1$s %2$s</string>
+    <string name="wind_label">Wiatr: %1$s %2$s</string>
     <string name="pref_title_category_notification">Powiadomienia</string>
     <string name="pref_title_notification">Włącz powiadomienia</string>
     <string name="pref_title_notification_refresh_interval">Częstotliwość odświeżania</string>
@@ -40,13 +40,7 @@
     <string name="update_period_3hours">3 godziny</string>
     <string name="update_period_6hours">6 godzin</string>
     <string name="preference_widget_title_update_period">Okres aktualizacji</string>
-    <string name="cloudiness_with_icon_label">%1$s Zmętnienie: %2$d%3$s</string>
-    <string name="humidity_with_icon_label">%1$s Wilgotność: %2$d%3$s</string>
     <string name="last_update_label">Ostatnia zmiana: %s</string>
-    <string name="pressure_with_icon_label">%1$s Ciśnienie: %2$s %3$s</string>
-    <string name="sunrise_with_icon_label">%1$s Wschód słońca: %2$s</string>
-    <string name="sunset_with_icon_label">%1$s Zachód słońca: %2$s</string>
-    <string name="wind_with_icon_label">%1$s Wiatr: %2$s %3$s</string>
     <string name="about_app_license_pref_title">Licencja</string>
     <string name="about_open_source_licenses_pref_title">Licencje open source</string>
     <string name="about_source_code_pref_title">Kod źródłowy</string>
@@ -87,4 +81,6 @@
     <string name="label_wind">Wiatr</string>
     <string name="menu_action_toggle_values">Przełącz wartości</string>
     <string name="menu_action_toggle_yaxis">Przegubowe Y-Axis</string>
+    <string name="sunset_label">Zachód słońca: %s</string>
+    <string name="sunrise_label">Wschód słońca: %s</string>
 </resources>

@@ -17,10 +17,10 @@
     <string name="pref_title_temperature">Температура</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_search">Поиск</string>
-    <string name="cloudiness_label">Облачность: %s</string>
-    <string name="humidity_label">Влажность: %s</string>
-    <string name="pressure_label">Давление: %s</string>
-    <string name="wind_label">Ветер: %s</string>
+    <string name="cloudiness_label">Облачность: %1$s%2$s</string>
+    <string name="humidity_label">Влажность: %1$s%2$s</string>
+    <string name="pressure_label">Давление: %1$s %2$s</string>
+    <string name="wind_label">Ветер: %1$s %2$s</string>
     <string name="pref_title_category_notification">Уведомления</string>
     <string name="pref_title_notification">Уведомления</string>
     <string name="pref_title_notification_refresh_interval">Интервал обновления</string>
@@ -40,13 +40,7 @@
     <string name="update_period_3hours">3 часа</string>
     <string name="update_period_6hours">6 часов</string>
     <string name="preference_widget_title_update_period">Интервал обновления</string>
-    <string name="cloudiness_with_icon_label">%1$s Облачность: %2$d%3$s</string>
-    <string name="humidity_with_icon_label">%1$s Влажность: %2$d%3$s</string>
     <string name="last_update_label">Последнее обновление: %s</string>
-    <string name="pressure_with_icon_label">%1$s Давление: %2$s %3$s</string>
-    <string name="sunrise_with_icon_label">%1$s Восход: %2$s</string>
-    <string name="sunset_with_icon_label">%1$s Заход: %2$s</string>
-    <string name="wind_with_icon_label">%1$s Ветер: %2$s %3$s</string>
     <string name="about_app_license_pref_title">Лицензия</string>
     <string name="about_source_code_pref_title">Исходный код</string>
     <string name="about_version_pref_title">Версия</string>
@@ -87,4 +81,6 @@
     <string name="label_wind">Ветер</string>
     <string name="menu_action_toggle_values">Переключение значений</string>
     <string name="menu_action_toggle_yaxis">Переключение оси Y</string>
+    <string name="sunset_label">Заход: %s</string>
+    <string name="sunrise_label">Восход: %s</string>
 </resources>

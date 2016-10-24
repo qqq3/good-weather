@@ -96,28 +96,26 @@ public class NotificationService extends IntentService {
 
         String wind = getString(R.string.wind_label, String.format(Locale.getDefault(),
                                                                    "%.1f",
-                                                                   weather.wind.getSpeed()));
+                                                                   weather.wind.getSpeed()),
+                                speedScale);
         String humidity = getString(R.string.humidity_label,
-                                    String.valueOf(weather.currentCondition.getHumidity()));
+                                    String.valueOf(weather.currentCondition.getHumidity()),
+                                    getString(R.string.percent_sign));
         String pressure = getString(R.string.pressure_label,
                                     String.format(Locale.getDefault(), "%.1f",
-                                                  weather.currentCondition.getPressure()));
+                                                  weather.currentCondition.getPressure()),
+                                    getString(R.string.pressure_measurement));
         String cloudiness = getString(R.string.pressure_label,
-                                      String.valueOf(weather.cloud.getClouds()));
+                                      String.valueOf(weather.cloud.getClouds()),
+                                      getString(R.string.percent_sign));
 
         StringBuilder notificationText = new StringBuilder(wind)
-                .append(" ")
-                .append(speedScale)
                 .append("  ")
                 .append(humidity)
-                .append(getString(R.string.percent_sign))
                 .append("  ")
                 .append(pressure)
-                .append(" ")
-                .append(getString(R.string.pressure_measurement))
                 .append("  ")
-                .append(cloudiness)
-                .append(getString(R.string.percent_sign));
+                .append(cloudiness);
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentIntent(launchIntent)

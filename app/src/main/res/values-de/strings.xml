@@ -17,10 +17,10 @@
     <string name="pref_title_temperature">Temperatur</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="title_activity_search">Suche nach Standort</string>
-    <string name="cloudiness_label">Trübung: %s</string>
-    <string name="humidity_label">Feuchtigkeit: %s</string>
-    <string name="pressure_label">Luftdruck: %s</string>
-    <string name="wind_label">Wind: %s</string>
+    <string name="cloudiness_label">Trübung: %1$s%2$s</string>
+    <string name="humidity_label">Feuchtigkeit: %1$s%2$s</string>
+    <string name="pressure_label">Luftdruck: %1$s %2$s</string>
+    <string name="wind_label">Wind: %1$s %2$s</string>
     <string name="pref_title_category_notification">Benachrichtigungen</string>
     <string name="pref_title_notification">Benachrichtigungen aktivieren</string>
     <string name="pref_title_notification_refresh_interval">Aktualisierungsintervall</string>
@@ -40,13 +40,7 @@
     <string name="update_period_3hours">3 Stunden</string>
     <string name="update_period_6hours">6 Stunden</string>
     <string name="preference_widget_title_update_period">Update-Zeitraum</string>
-    <string name="cloudiness_with_icon_label">%1$s Trübung: %2$d%3$s</string>
-    <string name="humidity_with_icon_label">%1$s Feuchtigkeit: %2$d%3$s</string>
     <string name="last_update_label">Zuletzt aktualisiert: %s</string>
-    <string name="pressure_with_icon_label">%1$s Luftdruck: %2$s %3$s</string>
-    <string name="sunrise_with_icon_label">%1$s Sonnenaufgang: %2$s</string>
-    <string name="sunset_with_icon_label">%1$s Sonnenuntergang: %2$s</string>
-    <string name="wind_with_icon_label">%1$s Wind: %2$s %3$s</string>
     <string name="about_app_license_pref_title">Lizenz</string>
     <string name="about_source_code_pref_title">Quellcode</string>
     <string name="about_version_pref_title">Version</string>
@@ -87,4 +81,6 @@
     <string name="label_wind">Wind</string>
     <string name="menu_action_toggle_values">Werte umschalten</string>
     <string name="menu_action_toggle_yaxis">Y-Achse umschalten</string>
+    <string name="sunset_label">Sonnenuntergang: %s</string>
+    <string name="sunrise_label">Sonnenaufgang: %s</string>
 </resources>
