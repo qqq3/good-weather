@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -54,6 +55,12 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private TextView mSunriseView;
     private TextView mSunsetView;
     private AppBarLayout mAppBarLayout;
+    private TextView mIconWindView;
+    private TextView mIconHumidityView;
+    private TextView mIconPressureView;
+    private TextView mIconCloudinessView;
+    private TextView mIconSunriseView;
+    private TextView mIconSunsetView;
 
     private ConnectionDetector connectionDetector;
     private Boolean isNetworkAvailable;
@@ -120,7 +127,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         SharedPreferences.Editor configEditor = mSharedPreferences.edit();
 
         mSpeedScale = Utils.getSpeedScale(MainActivity.this);
-        String temperature = String.format(Locale.getDefault(), "%.1f",
+        String temperature = String.format(Locale.getDefault(), "%.0f",
                                            mWeather.temperature.getTemp());
         String pressure = String.format(Locale.getDefault(), "%.1f",
                                         mWeather.currentCondition.getPressure());
@@ -135,17 +142,18 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 Utils.getStrIcon(MainActivity.this, mWeather.currentWeather.getIdIcon()));
         mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
         mDescriptionView.setText(mWeather.currentWeather.getDescription());
-        mHumidityView.setText(getString(R.string.humidity_with_icon_label, mIconHumidity,
-                                        mWeather.currentCondition.getHumidity(), mPercentSign));
-        mPressureView.setText(getString(R.string.pressure_with_icon_label, mIconPressure, pressure,
+        mHumidityView.setText(getString(R.string.humidity_label,
+                                        String.valueOf(mWeather.currentCondition.getHumidity()),
+                                        mPercentSign));
+        mPressureView.setText(getString(R.string.pressure_label, pressure,
                                         mPressureMeasurement));
-        mWindSpeedView.setText(
-                getString(R.string.wind_with_icon_label, mIconWind, wind, mSpeedScale));
-        mCloudinessView.setText(getString(R.string.cloudiness_with_icon_label, mIconCloudiness,
-                                          mWeather.cloud.getClouds(), mPercentSign));
+        mWindSpeedView.setText(getString(R.string.wind_label, wind, mSpeedScale));
+        mCloudinessView.setText(getString(R.string.cloudiness_label,
+                                          String.valueOf(mWeather.cloud.getClouds()),
+                                          mPercentSign));
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
-        mSunriseView.setText(getString(R.string.sunrise_with_icon_label, mIconSunrise, sunrise));
-        mSunsetView.setText(getString(R.string.sunset_with_icon_label, mIconSunset, sunset));
+        mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
+        mSunsetView.setText(getString(R.string.sunset_label, sunset));
 
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
@@ -158,7 +166,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         super.onResume();
         preLoadWeather();
         mAppBarLayout.addOnOffsetChangedListener(this);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver, new IntentFilter(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver,
+                                                                 new IntentFilter(
+                                                                         CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT));
     }
 
     @Override
@@ -392,7 +402,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         long sunrisePref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNRISE, -1);
         long sunsetPref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNSET, -1);
 
-        String temperature = String.format(Locale.getDefault(), "%.1f", temperaturePref);
+        String temperature = String.format(Locale.getDefault(), "%.0f", temperaturePref);
         String pressure = String.format(Locale.getDefault(), "%.1f", pressurePref);
         String wind = String.format(Locale.getDefault(), "%.1f", windPref);
         String sunrise = Utils.unixTimeToFormatTime(this, sunrisePref);
@@ -402,41 +412,79 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
         mDescriptionView.setText(description);
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
-        mHumidityView.setText(getString(R.string.humidity_with_icon_label, mIconHumidity, humidity,
+        mHumidityView.setText(getString(R.string.humidity_label,
+                                        String.valueOf(humidity),
                                         mPercentSign));
-        mPressureView.setText(getString(R.string.pressure_with_icon_label, mIconPressure, pressure,
+        mPressureView.setText(getString(R.string.pressure_label,
+                                        pressure,
                                         mPressureMeasurement));
-        mWindSpeedView.setText(
-                getString(R.string.wind_with_icon_label, mIconWind, wind, mSpeedScale));
-        mCloudinessView.setText(
-                getString(R.string.cloudiness_with_icon_label, mIconCloudiness, clouds,
-                          mPercentSign));
-        mSunriseView.setText(getString(R.string.sunrise_with_icon_label, mIconSunrise, sunrise));
-        mSunsetView.setText(getString(R.string.sunset_with_icon_label, mIconSunset, sunset));
+        mWindSpeedView.setText(getString(R.string.wind_label, wind, mSpeedScale));
+        mCloudinessView.setText(getString(R.string.cloudiness_label,
+                                          String.valueOf(clouds),
+                                          mPercentSign));
+        mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
+        mSunsetView.setText(getString(R.string.sunset_label, sunset));
     }
 
     private void initializeTextView() {
+        /**
+         * Create typefaces from Asset
+         */
         Typeface weatherFontIcon = Typeface.createFromAsset(this.getAssets(),
                                                             "fonts/weathericons-regular-webfont.ttf");
+        Typeface robotoThin = Typeface.createFromAsset(this.getAssets(),
+                                                       "fonts/Roboto-Thin.ttf");
+        Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
+                                                        "fonts/Roboto-Light.ttf");
+
         mIconWeatherView = (TextView) findViewById(R.id.main_weather_icon);
-        mIconWeatherView.setTypeface(weatherFontIcon);
         mTemperatureView = (TextView) findViewById(R.id.main_temperature);
-        mTemperatureView.setTypeface(weatherFontIcon);
         mDescriptionView = (TextView) findViewById(R.id.main_description);
         mPressureView = (TextView) findViewById(R.id.main_pressure);
-        mPressureView.setTypeface(weatherFontIcon);
         mHumidityView = (TextView) findViewById(R.id.main_humidity);
-        mHumidityView.setTypeface(weatherFontIcon);
         mWindSpeedView = (TextView) findViewById(R.id.main_wind_speed);
-        mWindSpeedView.setTypeface(weatherFontIcon);
         mCloudinessView = (TextView) findViewById(R.id.main_cloudiness);
-        mCloudinessView.setTypeface(weatherFontIcon);
         mLastUpdateView = (TextView) findViewById(R.id.main_last_update);
         mSunriseView = (TextView) findViewById(R.id.main_sunrise);
-        mSunriseView.setTypeface(weatherFontIcon);
         mSunsetView = (TextView) findViewById(R.id.main_sunset);
-        mSunsetView.setTypeface(weatherFontIcon);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.main_appbar);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.main_app_bar);
+
+        mIconWeatherView.setTypeface(weatherFontIcon);
+        mTemperatureView.setTypeface(robotoThin);
+        mWindSpeedView.setTypeface(robotoLight);
+        mHumidityView.setTypeface(robotoLight);
+        mPressureView.setTypeface(robotoLight);
+        mCloudinessView.setTypeface(robotoLight);
+        mSunriseView.setTypeface(robotoLight);
+        mSunsetView.setTypeface(robotoLight);
+
+        /**
+         * Initialize and configure weather icons
+         */
+        mIconWindView = (TextView) findViewById(R.id.main_wind_icon);
+        mIconWindView.setTypeface(weatherFontIcon);
+        mIconWindView.setText(mIconWind);
+        mIconWindView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        mIconHumidityView = (TextView) findViewById(R.id.main_humidity_icon);
+        mIconHumidityView.setTypeface(weatherFontIcon);
+        mIconHumidityView.setText(mIconHumidity);
+        mIconHumidityView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        mIconPressureView = (TextView) findViewById(R.id.main_pressure_icon);
+        mIconPressureView.setTypeface(weatherFontIcon);
+        mIconPressureView.setText(mIconPressure);
+        mIconPressureView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        mIconCloudinessView = (TextView) findViewById(R.id.main_cloudiness_icon);
+        mIconCloudinessView.setTypeface(weatherFontIcon);
+        mIconCloudinessView.setText(mIconCloudiness);
+        mIconCloudinessView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        mIconSunriseView = (TextView) findViewById(R.id.main_sunrise_icon);
+        mIconSunriseView.setTypeface(weatherFontIcon);
+        mIconSunriseView.setText(mIconSunrise);
+        mIconSunriseView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        mIconSunsetView = (TextView) findViewById(R.id.main_sunset_icon);
+        mIconSunsetView.setTypeface(weatherFontIcon);
+        mIconSunsetView.setText(mIconSunset);
+        mIconSunsetView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
     }
 
     private void weatherConditionsIcons() {

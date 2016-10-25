@@ -6,173 +6,252 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
     android:fitsSystemWindows="true"
     tools:context="org.asdtm.goodweather.MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.AppBarLayout
-            android:id="@+id/main.appbar"
+            android:id="@+id/main.app_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
+            android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:elevation="4dp"
-                android:navigationIcon="?homeAsUpIndicator"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="false">
 
-                <ProgressBar
-                    android:id="@+id/toolbar_progress_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_gravity="end"
-                    android:indeterminate="true"
-                    android:indeterminateTint="#FFFFFF"
-                    android:indeterminateTintMode="src_in"
-                    android:visibility="gone"/>
-            </android.support.v7.widget.Toolbar>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/background_appbar"
+                    app:layout_collapseMode="parallax"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/main.general_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    app:layout_collapseMode="parallax">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/main.weather_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="52sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Icon"/>
+
+                        <TextView
+                            android:id="@+id/main.description"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@+id/main.last_update"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            tools:text="Clear sky"/>
+
+                        <TextView
+                            android:id="@+id/main.last_update"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:maxLines="3"
+                            android:textColor="@color/textColorPrimary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            tools:text="Last update: 6:59 am"/>
+                    </android.support.constraint.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/main.temperature"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:textAlignment="center"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="100sp"
+                        tools:text="19"/>
+                </LinearLayout>
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:navigationIcon="?homeAsUpIndicator"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                    <ProgressBar
+                        android:id="@+id/toolbar_progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_gravity="end"
+                        android:indeterminate="true"
+                        android:indeterminateTint="#FFFFFF"
+                        android:indeterminateTintMode="src_in"
+                        android:visibility="gone"/>
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="@dimen/activity_vertical_margin"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/activity_vertical_margin">
 
-                <android.support.v7.widget.CardView
-                    style="@style/CardViewCustom"
+                <LinearLayout
+                    style="@style/MainLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:contentPadding="@dimen/cardview_content_padding">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/main.general_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/main.wind_icon"
+                        style="@style/MainIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"/>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/main.wind_speed"
+                        style="@style/MainConditions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/main.temperature"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-light"
-                                android:textColor="@color/text_color"
-                                android:textSize="48sp"/>
-
-                            <TextView
-                                android:id="@+id/main.description"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:id="@+id/main.last_update"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:gravity="center_vertical"
-                                android:maxLines="3"/>
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/main.weather_icon"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:textAlignment="center"
-                            android:textColor="@color/text_color"
-                            android:textSize="84sp"/>
-
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    style="@style/CardViewCustom"
+                <LinearLayout
+                    style="@style/MainLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:contentPadding="@dimen/cardview_content_padding">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/main.humidity_icon"
+                        style="@style/MainIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"/>
 
-                        <TextView
-                            android:id="@+id/main.wind_speed"
-                            style="@style/CardViewText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/main.humidity"
+                        style="@style/MainConditions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/main.humidity"
-                            style="@style/CardViewText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:id="@+id/main.pressure"
-                            style="@style/CardViewText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:id="@+id/main.cloudiness"
-                            style="@style/CardViewText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    style="@style/CardViewCustom"
+                <LinearLayout
+                    style="@style/MainLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    app:contentPadding="@dimen/cardview_content_padding">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/main.pressure_icon"
+                        style="@style/MainIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"/>
 
-                        <TextView
-                            android:id="@+id/main.sunrise"
-                            style="@style/CardViewText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/main.pressure"
+                        style="@style/MainConditions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/main.sunset"
-                            style="@style/CardViewText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
+                <LinearLayout
+                    style="@style/MainLinearLayout"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/main.cloudiness_icon"
+                        style="@style/MainIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"/>
+
+                    <TextView
+                        android:id="@+id/main.cloudiness"
+                        style="@style/MainConditions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?android:attr/listDivider"/>
+
+                <LinearLayout
+                    style="@style/MainLinearLayout"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/main.sunrise_icon"
+                        style="@style/MainIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"/>
+
+                    <TextView
+                        android:id="@+id/main.sunrise"
+                        style="@style/MainConditions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/MainLinearLayout"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/main.sunset_icon"
+                        style="@style/MainIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"/>
+
+                    <TextView
+                        android:id="@+id/main.sunset"
+                        style="@style/MainConditions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
