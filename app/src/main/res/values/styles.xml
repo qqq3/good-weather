@@ -1,6 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -9,20 +9,38 @@
         <item name="android:editTextColor">@color/textColorPrimary</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="android:editTextColor">@color/textColorPrimary</item>
     </style>
 
-    <style name="CardViewText">
-        <item name="android:textSize">@dimen/cardview_text_size</item>
-        <item name="android:paddingTop">@dimen/cardview_padding</item>
-        <item name="android:paddingBottom">@dimen/cardview_padding</item>
+    <style name="AppTheme" parent="AppTheme.Base"/>
+
+    <style name="MainLinearLayout">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+    <style name="MainIcon">
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginLeft" tools:targetApi="17">@dimen/activity_horizontal_margin</item>
+        <item name="android:textAlignment" tools:targetApi="17">gravity</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
-    <style name="CardViewCustom" parent="CardView">
-        <item name="android:layout_marginTop">@dimen/cardview_margin</item>
-        <item name="android:layout_marginLeft">@dimen/cardview_margin</item>
-        <item name="android:layout_marginRight">@dimen/cardview_margin</item>
+    <style name="MainConditions">
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:maxLines">2</item>
     </style>
 </resources>
