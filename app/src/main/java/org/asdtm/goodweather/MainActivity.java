@@ -108,6 +108,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mPrefWeather = getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
         mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                                                   Context.MODE_PRIVATE);
+        final String city = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
+        setTitle(city);
 
         /**
          * Configure SwipeRefreshLayout
@@ -154,7 +156,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
-
+        setTitle(mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
                                mWeather.location.getCountryCode());
@@ -424,6 +426,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                                           mPercentSign));
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
+        setTitle(title);
     }
 
     private void initializeTextView() {
