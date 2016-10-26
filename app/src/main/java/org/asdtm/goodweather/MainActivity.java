@@ -2,6 +2,7 @@ package org.asdtm.goodweather;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -40,9 +42,11 @@ import org.asdtm.goodweather.utils.Utils;
 
 import java.util.Locale;
 
+import static org.asdtm.goodweather.utils.AppPreference.saveLastUpdateTimeMillis;
+
 public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
-    private static final String TAG = "WeatherPageFragment";
+    private static final String TAG = "MainActivity";
 
     private TextView mIconWeatherView;
     private TextView mTemperatureView;
@@ -120,6 +124,12 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mSwipeRefresh.setColorSchemeResources(R.color.swipe_red, R.color.swipe_green,
                                               R.color.swipe_blue);
         mSwipeRefresh.setOnRefreshListener(swipeRefreshListener);
+
+        /**
+         * Share weather fab
+         */
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(fabListener);
     }
 
     private void updateCurrentWeather() {
@@ -135,8 +145,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                                         mWeather.currentCondition.getPressure());
         String wind = String.format(Locale.getDefault(), "%.1f", mWeather.wind.getSpeed());
 
-        String lastUpdate = Utils.setLastUpdateTime(MainActivity.this, AppPreference
-                .saveLastUpdateTimeMillis(MainActivity.this));
+        String lastUpdate = Utils.setLastUpdateTime(MainActivity.this,
+                                                    saveLastUpdateTimeMillis(MainActivity.this));
         String sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunrise());
         String sunset = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunset());
 
@@ -540,4 +550,46 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         mSwipeRefresh.setEnabled(verticalOffset == 0);
     }
+
+    FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String temperatureScale = Utils.getTemperatureScale(MainActivity.this);
+            mSpeedScale = Utils.getSpeedScale(MainActivity.this);
+            String weather;
+            String city;
+            String temperature;
+            String description;
+            String wind;
+            String sunrise;
+            String sunset;
+            city = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
+            temperature = String.format(Locale.getDefault(), "%.0f", mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
+            description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION,
+                                                 "clear sky");
+            wind = String.format(Locale.getDefault(), "%.1f",
+                                 mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
+            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
+                    .getLong(Constants.WEATHER_DATA_SUNRISE, -1));
+            sunset = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
+                    .getLong(Constants.WEATHER_DATA_SUNSET, -1));
+            weather = "City: " + city +
+                    "\nTemperature: " + temperature + temperatureScale +
+                    "\nDescription: " + description +
+                    "\nWind: " + wind + " " + mSpeedScale +
+                    "\nSunrise: " + sunrise +
+                    "\nSunset: " + sunset;
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, weather);
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            try {
+                startActivity(Intent.createChooser(shareIntent, "Share Weather"));
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(MainActivity.this,
+                               "Communication app not found",
+                               Toast.LENGTH_LONG).show();
+            }
+        }
+    };
 }
