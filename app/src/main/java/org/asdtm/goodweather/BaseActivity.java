@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.asdtm.goodweather.service.CurrentWeatherService;
 import org.asdtm.goodweather.utils.AppPreference;
 
 public class BaseActivity extends AppCompatActivity {
@@ -195,9 +196,14 @@ public class BaseActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case PICK_CITY:
+                ConnectionDetector connectionDetector = new ConnectionDetector(this);
                 if (resultCode == RESULT_OK) {
                     mCityAndCode = AppPreference.getCityAndCode(this);
                     mHeaderCity.setText(mCityAndCode[0] + ", " + mCityAndCode[1]);
+
+                    if (connectionDetector.isNetworkAvailableAndConnected()) {
+                        startService(new Intent(this, CurrentWeatherService.class));
+                    }
                 }
                 break;
         }
