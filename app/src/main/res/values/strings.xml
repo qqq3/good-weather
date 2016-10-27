@@ -16,6 +16,7 @@
     <string name="label_activity_main">Current Weather</string>
     <string name="label_activity_weather_forecast">Daily Forecast</string>
     <string name="label_activity_graphs">Graphs Weather</string>
+    <string name="title_activity_license">License for %s</string>
 
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Update</string>

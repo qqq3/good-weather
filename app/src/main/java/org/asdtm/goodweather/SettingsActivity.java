@@ -12,11 +12,13 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
-import android.webkit.WebView;
+import android.widget.TextView;
 
 import org.asdtm.goodweather.service.NotificationService;
 import org.asdtm.goodweather.utils.Constants;
@@ -60,7 +62,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
@@ -238,20 +239,23 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
 
         public static class LicensesDialogFragment extends DialogFragment {
+
             static LicensesDialogFragment newInstance() {
                 return new LicensesDialogFragment();
             }
 
             @Override
             public Dialog onCreateDialog(Bundle savedInstanceState) {
-                final WebView webView = new WebView(getActivity());
-                String licenses = "<p>Data provided by <a href='http://openweathermap.org/'>OpenWeatherMap</a>, " +
-                        "under the <a href='https://creativecommons.org/licenses/by-sa/4.0/'> Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a>" +
-                        "<p><a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a> licensed under <a href='scripts.sil.org/OFL'>SIL OFL 1.1</a>";
-                webView.loadData(licenses, "text/html", "UTF-8");
+                final TextView textView = new TextView(getActivity());
+                int padding = (int) getResources().getDimension(R.dimen.activity_horizontal_margin);
+                textView.setPadding(padding, padding, padding, padding);
+                textView.setLineSpacing(0, 1.2f);
+                textView.setLinkTextColor(ContextCompat.getColor(getActivity(), R.color.link_color));
+                textView.setText(R.string.licenses);
+                textView.setMovementMethod(LinkMovementMethod.getInstance());
                 return new AlertDialog.Builder(getActivity())
                         .setTitle("Open source licenses")
-                        .setView(webView)
+                        .setView(textView)
                         .setPositiveButton(android.R.string.ok, null)
                         .create();
             }

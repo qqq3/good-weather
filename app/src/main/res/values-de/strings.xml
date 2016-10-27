@@ -83,4 +83,5 @@
     <string name="menu_action_toggle_yaxis">Y-Achse umschalten</string>
     <string name="sunset_label">Sonnenuntergang: %s</string>
     <string name="sunrise_label">Sonnenaufgang: %s</string>
+    <string name="title_activity_license">Lizenz für %s</string>
 </resources>

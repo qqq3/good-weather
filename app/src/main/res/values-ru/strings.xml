@@ -83,4 +83,5 @@
     <string name="menu_action_toggle_yaxis">Переключение оси Y</string>
     <string name="sunset_label">Заход: %s</string>
     <string name="sunrise_label">Восход: %s</string>
+    <string name="title_activity_license">Лицензия на %s</string>
 </resources>

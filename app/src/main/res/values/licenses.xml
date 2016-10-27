@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="licenses" translatable="false">
+        <a href='https://github.com/google/gson'>Gson</a>
+        (<a href='file:///android_asset/licenses/Gson'>license</a>)\n
+
+        <a href='https://www.flickr.com/photos/kc2daniel/9694177482/'>JEEP TRAIL IN LAKE CITY</a>
+        (<a href='file:///android_asset/licenses/JeepTrail'>license</a>)\n
+
+        <a href='https://github.com/PhilJay/MPAndroidChart'>MPAndroidChart</a>
+        (<a href='file:///android_asset/licenses/MPAndroidChart'>license</a>)\n
+
+        <a href='http://openweathermap.org/'>OpenWeatherMap</a>
+        (<a href='file:///android_asset/licenses/OpenWeatherMap'>license</a>)\n
+
+        <a href='https://github.com/google/roboto/'>Roboto</a>
+        (<a href='file:///android_asset/licenses/Roboto'>license</a>)\n
+
+        <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>
+        (<a href='file:///android_asset/licenses/WeatherIcons'>license</a>)
+    </string>
+</resources>
