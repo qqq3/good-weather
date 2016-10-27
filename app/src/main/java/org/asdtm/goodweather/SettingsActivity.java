@@ -198,6 +198,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             mPackageManager = getActivity().getPackageManager();
             findPreference(Constants.KEY_PREF_ABOUT_VERSION).setSummary(getVersionName());
+            findPreference(Constants.KEY_PREF_ABOUT_F_DROID).setIntent(fDroidIntent());
             findPreference(Constants.KEY_PREF_ABOUT_GOOGLE_PLAY).setIntent(googlePlayIntent());
         }
 
@@ -221,6 +222,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 versionName = "666";
             }
             return versionName;
+        }
+
+        private Intent fDroidIntent() {
+            String ACTION_VIEW = Intent.ACTION_VIEW;
+            String fDroidWebUri = String.format(Constants.F_DROID_WEB_URI,
+                                                getActivity().getPackageName());
+
+            return new Intent(ACTION_VIEW, Uri.parse(fDroidWebUri));
         }
 
         private Intent googlePlayIntent() {

@@ -95,6 +95,7 @@
     <string name="about_version_pref_title">Version</string>
     <string name="about_source_code_pref_title">Source code</string>
     <string name="about_app_license_pref_title">License</string>
+    <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
     <string name="about_google_play_pref_title" translatable="false">Google Play</string>
     <string name="about_open_source_licenses_pref_title">Open Source licenses</string>
 

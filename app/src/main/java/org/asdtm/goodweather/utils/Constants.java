@@ -30,6 +30,7 @@ public class Constants {
      * About preference screen constants
      */
     public static final String KEY_PREF_ABOUT_VERSION = "about_version_pref_key";
+    public static final String KEY_PREF_ABOUT_F_DROID = "about_f_droid_pref_key";
     public static final String KEY_PREF_ABOUT_GOOGLE_PLAY = "about_google_play_pref_key";
     public static final String KEY_PREF_ABOUT_OPEN_SOURCE_LICENSES =
             "about_open_source_licenses_pref_key";
@@ -61,6 +62,7 @@ public class Constants {
     public static final String GOOGLE_PLAY_APP_URI = "market://details?id=%s";
     public static final String GOOGLE_PLAY_WEB_URI =
             "http://play.google.com/store/apps/details?id=%s";
+    public static final String F_DROID_WEB_URI = "https://f-droid.org/repository/browse/?fdid=%s";
     public static final String WEATHER_ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
     public static final String WEATHER_FORECAST_ENDPOINT = "http://api.openweathermap.org/data/2.5/forecast/daily/";
 

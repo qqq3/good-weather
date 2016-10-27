@@ -20,6 +20,10 @@
             android:data="https://www.gnu.org/licenses/gpl-3.0.txt"/>
     </Preference>
     <Preference
+        android:key="about_f_droid_pref_key"
+        android:summary="https://f-droid.org/app/org.asdtm.goodweather"
+        android:title="@string/about_f_droid_pref_title"/>
+    <Preference
         android:key="about_google_play_pref_key"
         android:summary="https://play.google.com/store/apps/details?id=org.asdtm.goodweather"
         android:title="@string/about_google_play_pref_title"/>
