@@ -1,87 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="nav_menu_settings">Einstellungen</string>
-    <string name="alertDialog_gps_message">GPS ist nicht aktiviert. Wollen Sie zu den Einstellungen?</string>
-    <string name="alertDialog_gps_negativeButton">Abbrechen</string>
-    <string name="alertDialog_gps_positiveButton">Einstellungen</string>
-    <string name="connection_not_found"> Überprüfen Sie Ihre Internetverbindung</string>
+
     <string name="enter_city_hint">Stadt betreten</string>
-    <string name="label_choose_city">Wählen Sie die Stadt</string>
     <string name="label_current_city">Aktuelle Stadt</string>
-    <string name="label_temperature">Temperatur</string>
-    <string name="nav_feedback">Feedback</string>
+    <string name="label_choose_city">Wähle Stadt</string>
+    <string name="alertDialog_gps_message">GPS ist nicht aktiviert. Wollen Sie zu den Einstellungen?</string>
+    <string name="alertDialog_gps_positiveButton">Einstellungen</string>
+    <string name="alertDialog_gps_negativeButton">Abbrechen</string>
     <string name="progressDialog_gps_locate">Aktuelle Position wird gesucht</string>
+    <string name="load_progress">Laden&#8230;</string>
+
+    <!-- Activity names -->
+    <string name="title_activity_search">Standortsuche</string>
+    <string name="label_activity_main">Aktuelles Wetter</string>
+    <string name="label_activity_weather_forecast">Tagesvorhersage</string>
+    <string name="label_activity_graphs">Wetterdiagramme</string>
+    <string name="title_activity_license">Lizenz für %s</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_refresh">Aktualisieren</string>
+    <string name="toolbar_menu_search_city">Stadt suchen</string>
+    <string name="toolbar_menu_detect_location">Standort ermitteln</string>
+    <string name="menu_action_toggle_values">Werte umschalten</string>
+    <string name="menu_action_toggle_yaxis">Y-Achse umschalten</string>
+
+    <!-- Navigation drawer -->
+    <string name="nav_menu_current_weather">Aktuelles Wetter</string>
+    <string name="nav_menu_daily_forecast">Tagesvorhersage</string>
+    <string name="nav_menu_graphs">Diagramme</string>
+    <string name="nav_menu_settings">Einstellungen</string>
+    <!-- string name="nav_feedback">Feedback</string> (Equal in English and German) -->
+    <string name="nav_menu_bitcoin_donation">Bitcoin spenden</string>
+
+    <!-- Toast messages -->
+    <string name="connection_not_found"> Überprüfen Sie Ihre Internetverbindung</string>
+    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Versuche es später nochmal!</string>
+
+    <!-- Units and Measurement-->
+    <!-- string name="pressure_measurement">hPa</string (Equal in English and German) -->
     <string name="wind_speed_meters">Meter pro Sekunde</string>
     <string name="wind_speed_miles">Meilen pro Stunde</string>
-    <string name="hint_activity_search">Suche nach Standort</string>
-    <string name="pref_title_temperature">Temperatur</string>
+    <!-- string name="millimetre_label">mm</string (Equal in English and German) -->
+
+    <!-- Search Screen strings -->
+    <string name="hint_activity_search">Standort suchen</string>
+
+    <!-- Preference Screen strings -->
     <string name="title_activity_settings">Einstellungen</string>
-    <string name="title_activity_search">Suche nach Standort</string>
-    <string name="cloudiness_label">Trübung: %1$s%2$s</string>
-    <string name="humidity_label">Feuchtigkeit: %1$s%2$s</string>
-    <string name="pressure_label">Luftdruck: %1$s %2$s</string>
-    <string name="wind_label">Wind: %1$s %2$s</string>
+    <string name="pref_title_temperature">Temperatur</string>
     <string name="pref_title_category_notification">Benachrichtigungen</string>
     <string name="pref_title_notification">Benachrichtigungen aktivieren</string>
     <string name="pref_title_notification_refresh_interval">Aktualisierungsintervall</string>
-    <string name="pref_title_vibrate">Vibrieren</string>
-    <string name="pressure_measurement">hPa</string>
-    <string name="update_period_12hours">12 Stunden</string>
     <string name="update_period_15min">15 Minuten</string>
-    <string name="update_period_1hour">Jede Stunde</string>
-    <string name="update_period_24hours">24 Stunden</string>
     <string name="update_period_30min">30 Minuten</string>
-    <string name="widget_weather_icon_description">Current weather icon</string>
-    <string name="widget_refresh_button">Widget refresh button</string>
-    <string name="preference_title_activity_about">Über</string>
-    <string name="preference_title_activity_general">Allgemeine Einstellungen</string>
-    <string name="preference_title_activity_widget">Widget-Einstellungen</string>
-    <string name="preference_widget_light_theme">Light Theme</string>
+    <string name="update_period_1hour">Jede Stunde</string>
     <string name="update_period_3hours">3 Stunden</string>
     <string name="update_period_6hours">6 Stunden</string>
-    <string name="preference_widget_title_update_period">Update-Zeitraum</string>
-    <string name="last_update_label">Zuletzt aktualisiert: %s</string>
-    <string name="about_app_license_pref_title">Lizenz</string>
-    <string name="about_source_code_pref_title">Quellcode</string>
+    <string name="update_period_12hours">12 Stunden</string>
+    <string name="update_period_24hours">24 Stunden</string>
+    <string name="pref_title_vibrate">Vibrieren</string>
+    <string name="preference_widget_light_theme">Light Theme</string>
+    <string name="preference_widget_title_update_period">Aktualisierungsintervall</string>
+    <string name="preference_title_activity_general">Allgemeine Einstellungen</string>
+    <string name="preference_title_activity_widget">Widget-Einstellungen</string>
+
+    <!-- Preference Screen About -->
+    <string name="preference_title_activity_about">Über</string>
     <string name="about_version_pref_title">Version</string>
+    <string name="about_source_code_pref_title">Quellcode</string>
+    <string name="about_app_license_pref_title">Lizenz</string>
     <string name="about_open_source_licenses_pref_title">Open-Source-Lizenzen</string>
-    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Versuche es später!</string>
-    <string name="donation_bitcoin_copy_button">Bitcoin-Adresse kopieren</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin-Adresse wurde in die Zwischenablage kopiert</string>
-    <string name="donation_bitcoin_open_app">Bitcoin App öffnen</string>
-    <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
-    <string name="nav_menu_bitcoin_donation">Bitcoin spenden</string>
-    <string name="toolbar_menu_detect_location">Standort ermitteln</string>
-    <string name="toolbar_menu_refresh">Aktualisieren</string>
-    <string name="toolbar_menu_search_city">Stadt suchen</string>
-    <string name="nav_menu_current_weather">Aktuelles Wetter</string>
-    <string name="nav_menu_daily_forecast">Tagesvorhersage</string>
+
+    <!-- Weather conditions label strings -->
+    <string name="wind_label">Wind: %1$s %2$s</string>
+    <string name="rain_label">Regen: %1$s %2$s</string>
+    <string name="snow_label">Schnee:  %1$s %2$s</string>
+    <string name="humidity_label">Feuchtigkeit: %1$s%2$s</string>
+    <string name="pressure_label">Luftdruck: %1$s %2$s</string>
+    <string name="cloudiness_label">Bewölkung: %1$s%2$s</string>
+    <string name="last_update_label">Zuletzt aktualisiert: %s</string>
+    <string name="sunrise_label">Sonnenaufgang: %s</string>
+    <string name="sunset_label">Sonnenuntergang: %s</string>
+    <string name="temperature_morning_title">Morgen</string>
     <string name="temperature_day_title">Tag</string>
     <string name="temperature_evening_title">Abend</string>
-    <string name="temperature_morning_title">Morgen</string>
     <string name="temperature_night_title">Nacht</string>
-    <string name="wind_direction_east">O</string>
-    <string name="wind_direction_north">N</string>
-    <string name="wind_direction_north_east">NO</string>
-    <string name="wind_direction_north_west">NW</string>
-    <string name="wind_direction_south">S</string>
-    <string name="wind_direction_south_east">SO</string>
-    <string name="wind_direction_south_west">SW</string>
-    <string name="wind_direction_west">W</string>
-    <string name="label_activity_graphs">Wetterdiagramme</string>
-    <string name="label_activity_main">Aktuelle Wetterlage</string>
-    <string name="label_activity_weather_forecast">Tägliche Vorhersage</string>
-    <string name="nav_menu_graphs">Diagramme</string>
-    <string name="load_progress">Laden&#8230;</string>
-    <string name="millimetre_label">mm</string>
-    <string name="snow_label">Schnee:  %1$s %2$s</string>
-    <string name="rain_label">Regen: %1$s %2$s</string>
+    <string name="label_temperature">Temperatur</string>
+    <string name="label_wind">Wind</string>
     <string name="label_rain">Regen</string>
     <string name="label_snow">Schnee</string>
-    <string name="label_wind">Wind</string>
-    <string name="menu_action_toggle_values">Werte umschalten</string>
-    <string name="menu_action_toggle_yaxis">Y-Achse umschalten</string>
-    <string name="sunset_label">Sonnenuntergang: %s</string>
-    <string name="sunrise_label">Sonnenaufgang: %s</string>
-    <string name="title_activity_license">Lizenz für %s</string>
+
+    <!-- Widgets strings -->
+    <!-- string name="widget_weather_icon_description">Current weather icon</string -->
+    <!-- string name="widget_refresh_button">Widget refresh button</string -->
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
+    <string name="donation_bitcoin_copy_button">Bitcoin-Adresse kopieren</string>
+    <string name="donation_bitcoin_open_app">Bitcoin App öffnen</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin-Adresse wurde in die Zwischenablage kopiert</string>
+
+    !-- Wind directions -->
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_east">NO</string>
+    <string name="wind_direction_east">O</string>
+    <string name="wind_direction_south_east">SO</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_west">SW</string>
+    <string name="wind_direction_west">W</string>
+    <string name="wind_direction_north_west">NW</string>
 </resources>
