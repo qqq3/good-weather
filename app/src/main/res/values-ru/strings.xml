@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="connection_not_found">Отсутсвует подключение к интернету</string>
+    <string name="connection_not_found">Отсутствует подключение к интернету</string>
     <string name="enter_city_hint">Введите город</string>
     <string name="label_choose_city">Выбрать город</string>
     <string name="label_current_city">Текущий город</string>
@@ -55,7 +55,7 @@
     <string name="toolbar_menu_refresh">Обновить</string>
     <string name="toolbar_menu_search_city">Найти город</string>
     <string name="nav_menu_current_weather">Текущая погода</string>
-    <string name="nav_menu_daily_forecast">"Прогноз на неделю  "</string>
+    <string name="nav_menu_daily_forecast">Прогноз на неделю</string>
     <string name="temperature_day_title">День</string>
     <string name="temperature_evening_title">Вечер</string>
     <string name="temperature_morning_title">Утро</string>
