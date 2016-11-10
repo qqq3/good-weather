@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="enter_city_hint">Stadt betreten</string>
     <string name="label_current_city">Aktuelle Stadt</string>
     <string name="label_choose_city">Wähle Stadt</string>
@@ -29,7 +28,7 @@
     <string name="nav_menu_daily_forecast">Tagesvorhersage</string>
     <string name="nav_menu_graphs">Diagramme</string>
     <string name="nav_menu_settings">Einstellungen</string>
-    <!-- string name="nav_feedback">Feedback</string> (Equal in English and German) -->
+    <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Bitcoin spenden</string>
 
     <!-- Toast messages -->
@@ -37,10 +36,10 @@
     <string name="toast_parse_error">Ein Fehler ist aufgetreten. Versuche es später nochmal!</string>
 
     <!-- Units and Measurement-->
-    <!-- string name="pressure_measurement">hPa</string (Equal in English and German) -->
+    <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">Meter pro Sekunde</string>
     <string name="wind_speed_miles">Meilen pro Stunde</string>
-    <!-- string name="millimetre_label">mm</string (Equal in English and German) -->
+    <string name="millimetre_label">mm</string>
 
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Standort suchen</string>
@@ -91,8 +90,8 @@
     <string name="label_snow">Schnee</string>
 
     <!-- Widgets strings -->
-    <!-- string name="widget_weather_icon_description">Current weather icon</string -->
-    <!-- string name="widget_refresh_button">Widget refresh button</string -->
+    <string name="widget_weather_icon_description">Current weather icon</string>
+    <string name="widget_refresh_button">Widget refresh button</string>
 
     <!-- Donation Bitcoin dialog -->
     <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
