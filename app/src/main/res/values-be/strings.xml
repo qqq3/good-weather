@@ -1,0 +1,111 @@
+<resources>
+    <string name="enter_city_hint">Увядзіце горад</string>
+    <string name="label_current_city">Цяперашні горад</string>
+    <string name="label_choose_city">Выбраць горад</string>
+    <string name="alertDialog_gps_message">Служба GPS не актыўная. Жадаеце перайсці ў меню налад?</string>
+    <string name="alertDialog_gps_positiveButton">Налады</string>
+    <string name="alertDialog_gps_negativeButton">Адмяніць</string>
+    <string name="progressDialog_gps_locate">Вызначаем бягучае месцазнаходжанне</string>
+    <string name="load_progress">Загрузка&#8230;</string>
+
+    <!-- Activity names -->
+    <string name="title_activity_search">Пошук</string>
+    <string name="label_activity_main">Бягучае надвор\'е</string>
+    <string name="label_activity_weather_forecast">Штодзённы прагноз</string>
+    <string name="label_activity_graphs">Графікі</string>
+    <string name="title_activity_license">Ліцэнзія на %s</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_search_city">Знайсці горад</string>
+    <string name="toolbar_menu_detect_location">Вызначыць месцазнахадженне</string>
+    <string name="menu_action_toggle_values">Пераключэнне значэнняў</string>
+    <string name="menu_action_toggle_yaxis">Пераключэнне восі Y</string>
+
+    <!-- Navigation drawer -->
+    <string name="nav_menu_current_weather">Бягучае надвор\'е</string>
+    <string name="nav_menu_daily_forecast">Штодзённы прагноз</string>
+    <string name="nav_menu_graphs">Графікі</string>
+    <string name="nav_menu_settings">Налады</string>
+    <string name="nav_feedback">Зваротная сувязь</string>
+    <string name="nav_menu_bitcoin_donation">Ахвяраваць Bitcoin</string>
+
+    <!-- Toast messages -->
+    <string name="connection_not_found">Адсутнічае падлучэнне да інтэрнэту</string>
+    <string name="toast_parse_error">Адбылася памылка. Паспрабуйце пазней!</string>
+
+    <!-- Units and Measurement-->
+    <string name="pressure_measurement">гПа</string>
+    <string name="wind_speed_meters">м/с</string>
+    <string name="wind_speed_miles">міль/г</string>
+    <string name="millimetre_label">мм</string>
+
+    <!-- Search Screen strings -->
+    <string name="hint_activity_search">Пошук месцазнаходжання</string>
+
+    <!-- Preference Screen strings -->
+    <string name="title_activity_settings">Налады</string>
+    <string name="pref_title_temperature">Тэмпература</string>
+    <string name="pref_title_category_notification">Апавяшчэння</string>
+    <string name="pref_title_notification">Ўключыць апавяшчэння</string>
+    <string name="pref_title_notification_refresh_interval">Інтэрвал абнаўлення</string>
+    <string name="update_period_15min">15 хвілін</string>
+    <string name="update_period_30min">30 хвілін</string>
+    <string name="update_period_1hour">Кожную гадзіну</string>
+    <string name="update_period_3hours">3 гадзіны</string>
+    <string name="update_period_6hours">6 гадзін</string>
+    <string name="update_period_12hours">12 гадзін</string>
+    <string name="update_period_24hours">24 гадзіны</string>
+    <string name="pref_title_vibrate">Вібрацыя</string>
+    <string name="preference_widget_light_theme">Светлая тэма</string>
+    <string name="preference_widget_title_update_period">Інтэрвал абнаўлення</string>
+    <string name="preference_title_activity_general">Галоўныя налады</string>
+    <string name="preference_title_activity_widget">Налады віджэтаў</string>
+
+    <!-- Preference Screen About -->
+    <string name="preference_title_activity_about">Аб дадатку</string>
+    <string name="about_version_pref_title">Версія</string>
+    <string name="about_source_code_pref_title">Зыходнікі</string>
+    <string name="about_app_license_pref_title">Ліцэнзія</string>
+    <string name="about_open_source_licenses_pref_title">Open Source ліцэнзіі</string>
+
+    <!-- Weather conditions label strings -->
+    <string name="wind_label">Вецер: %1$s %2$s</string>
+    <string name="rain_label">Дождж: %1$s %2$s</string>
+    <string name="snow_label">Снег: %1$s %2$s</string>
+    <string name="humidity_label">Вільготнасць: %1$s%2$s</string>
+    <string name="pressure_label">Ціск: %1$s %2$s</string>
+    <string name="cloudiness_label">Воблачнасць: %1$s%2$s</string>
+    <string name="last_update_label">Апошняе абнаўленне: %s</string>
+    <string name="sunrise_label">Узыход: %s</string>
+    <string name="sunset_label">Заход: %s</string>
+    <string name="temperature_morning_title">Раніца</string>
+    <string name="temperature_day_title">Дзень</string>
+    <string name="temperature_evening_title">Вечар</string>
+    <string name="temperature_night_title">Ноч</string>
+    <string name="label_temperature">Тэмпература</string>
+    <string name="label_wind">Вецер</string>
+    <string name="label_rain">Дождж</string>
+    <string name="label_snow">Снег</string>
+
+    <!-- Widgets strings -->
+    <string name="widget_weather_icon_description">Значок надвор\'я</string>
+    <string name="widget_refresh_button">Кнопка абнаўлення</string>
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">Bitcoin QR-код</string>
+    <string name="donation_bitcoin_copy_button">Скапіяваць Bitcoin адрас</string>
+    <string name="donation_bitcoin_open_app">Адкрыць Bitcoin дадатак</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin адрас быў скапіяваны ў буфер абмену</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction_north">Пн</string>
+    <string name="wind_direction_north_east">ПнЎ</string>
+    <string name="wind_direction_east">У</string>
+    <string name="wind_direction_south_east">ПдЎ</string>
+    <string name="wind_direction_south">Пд</string>
+    <string name="wind_direction_south_west">ПдЗ</string>
+    <string name="wind_direction_west">З</string>
+    <string name="wind_direction_north_west">ПнЗ</string>
+    <string name="toolbar_menu_refresh">Абнавіць</string>
+
+</resources>
