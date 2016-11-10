@@ -20,6 +20,7 @@ Open Source weather app for Android.
 - [x] Add widgets
 - [x] Change API > 21 theme
 - [ ] Grant permissions on Android 6.0 and above
+- [ ] Improve accessibility for people with disabilities
 
 ## Donations
 If you would like to help, you can donate Bitcoin on ```16rSzigYf3roULrPuMFe6mb5xxHE3iZspM``` address.
