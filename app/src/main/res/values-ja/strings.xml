@@ -1,0 +1,111 @@
+<resources>
+    <string name="enter_city_hint">都市を入力</string>
+    <string name="label_current_city">現在の都市</string>
+    <string name="label_choose_city">都市を選択</string>
+    <string name="alertDialog_gps_message">GPS が有効ではありません。設定メニューに移動しますか?</string>
+    <string name="alertDialog_gps_positiveButton">設定</string>
+    <string name="alertDialog_gps_negativeButton">キャンセル</string>
+    <string name="progressDialog_gps_locate">現在の場所を検索</string>
+    <string name="load_progress">ロード中&#8230;</string>
+
+    <!-- Activity names -->
+    <string name="title_activity_search">場所を検索</string>
+    <string name="label_activity_main">現在の天気</string>
+    <string name="label_activity_weather_forecast">毎日の予報</string>
+    <string name="label_activity_graphs">天気のグラフ</string>
+    <string name="title_activity_license">%s のライセンス</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_refresh">更新</string>
+    <string name="toolbar_menu_search_city">都市を検索</string>
+    <string name="toolbar_menu_detect_location">場所を検出</string>
+    <string name="menu_action_toggle_values">値を切り替え</string>
+    <string name="menu_action_toggle_yaxis">Y-軸を切り替え</string>
+
+    <!-- Navigation drawer -->
+    <string name="nav_menu_current_weather">現在の天気</string>
+    <string name="nav_menu_daily_forecast">毎日の予報</string>
+    <string name="nav_menu_graphs">グラフ</string>
+    <string name="nav_menu_settings">設定</string>
+    <string name="nav_feedback">フィードバック</string>
+    <string name="nav_menu_bitcoin_donation">Bitcoin を寄付</string>
+
+    <!-- Toast messages -->
+    <string name="connection_not_found">インターネット接続を確認してください</string>
+    <string name="toast_parse_error">エラーが発生しました。後でやり直してください!</string>
+
+    <!-- Units and Measurement-->
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="millimetre_label">mm</string>
+
+    <!-- Search Screen strings -->
+    <string name="hint_activity_search">場所を検索</string>
+
+    <!-- Preference Screen strings -->
+    <string name="title_activity_settings">設定</string>
+    <string name="pref_title_temperature">気温</string>
+    <string name="pref_title_category_notification">通知</string>
+    <string name="pref_title_notification">通知を有効にする</string>
+    <string name="pref_title_notification_refresh_interval">リフレッシュ間隔</string>
+    <string name="update_period_15min">15 分</string>
+    <string name="update_period_30min">30 分</string>
+    <string name="update_period_1hour">毎時</string>
+    <string name="update_period_3hours">3 時間</string>
+    <string name="update_period_6hours">6 時間</string>
+    <string name="update_period_12hours">12 時間</string>
+    <string name="update_period_24hours">24 時間</string>
+    <string name="pref_title_vibrate">バイブレート</string>
+    <string name="preference_widget_light_theme">ライトテーマ</string>
+    <string name="preference_widget_title_update_period">更新間隔</string>
+    <string name="preference_title_activity_general">全般設定</string>
+    <string name="preference_title_activity_widget">ウィジェット設定</string>
+
+    <!-- Preference Screen About -->
+    <string name="preference_title_activity_about">アプリについて</string>
+    <string name="about_version_pref_title">バージョン</string>
+    <string name="about_source_code_pref_title">ソースコード</string>
+    <string name="about_app_license_pref_title">ライセンス</string>
+    <string name="about_open_source_licenses_pref_title">オープンソース ライセンス</string>
+
+    <!-- Weather conditions label strings -->
+    <string name="wind_label">風: %1$s %2$s</string>
+    <string name="rain_label">雨: %1$s %2$s</string>
+    <string name="snow_label">雪: %1$s %2$s</string>
+    <string name="humidity_label">湿度: %1$s%2$s</string>
+    <string name="pressure_label">気圧: %1$s %2$s</string>
+    <string name="cloudiness_label">曇り: %1$s%2$s</string>
+    <string name="last_update_label">最終更新: %s</string>
+    <string name="sunrise_label">日の出: %s</string>
+    <string name="sunset_label">日の入り: %s</string>
+    <string name="temperature_morning_title">朝</string>
+    <string name="temperature_day_title">昼</string>
+    <string name="temperature_evening_title">夕</string>
+    <string name="temperature_night_title">夜</string>
+    <string name="label_temperature">気温</string>
+    <string name="label_wind">風</string>
+    <string name="label_rain">雨</string>
+    <string name="label_snow">雪</string>
+
+    <!-- Widgets strings -->
+    <string name="widget_weather_icon_description">現在の天気アイコン</string>
+    <string name="widget_refresh_button">ウィジェット リフレッシュ ボタン</string>
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">寄付の Bitcoin QR コード</string>
+    <string name="donation_bitcoin_copy_button">Bitcoin アドレスをコピー</string>
+    <string name="donation_bitcoin_open_app">Bitcoin アプリを開く</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin アドレスをクリップボードにコピーしました</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction_north">北</string>
+    <string name="wind_direction_north_east">北東</string>
+    <string name="wind_direction_east">東</string>
+    <string name="wind_direction_south_east">南東</string>
+    <string name="wind_direction_south">南</string>
+    <string name="wind_direction_south_west">南西</string>
+    <string name="wind_direction_west">西</string>
+    <string name="wind_direction_north_west">北西</string>
+
+</resources>
