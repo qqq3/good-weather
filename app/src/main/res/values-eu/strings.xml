@@ -1,10 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">Good Weather</string>
     <string name="enter_city_hint">Hiria idatzi</string>
     <string name="label_current_city">Uneko hiria</string>
     <string name="label_choose_city">Hiria hautatu</string>
-    <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
-    <string name="alertDialog_gps_title" translatable="false">GPS is settings</string>
     <string name="alertDialog_gps_message">GPSa ez dago gaituta. Ezarpenen menura joan nahi duzu?</string>
     <string name="alertDialog_gps_positiveButton">Ezarpenak</string>
     <string name="alertDialog_gps_negativeButton">Utzi</string>
@@ -26,8 +23,6 @@
     <string name="menu_action_toggle_yaxis">Y ardatza alderantzikatu</string>
 
     <!-- Navigation drawer -->
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_menu_current_weather">Uneko eguraldia</string>
     <string name="nav_menu_daily_forecast">Eguneroko iragarpena</string>
     <string name="nav_menu_graphs">Grafikoak</string>
@@ -39,30 +34,7 @@
     <string name="connection_not_found">Egiaztatu zure interneteko konexioa</string>
     <string name="toast_parse_error">Akats bat gertatu da. Saiatu beranduago</string>
 
-    <!-- Weather icons -->
-    <string name="icon_clear_sky_day" translatable="false">&#xf00d;</string>
-    <string name="icon_clear_sky_night" translatable="false">&#xf02e;</string>
-    <string name="icon_few_clouds_day" translatable="false">&#xf002;</string>
-    <string name="icon_few_clouds_night" translatable="false">&#xf086;</string>
-    <string name="icon_scattered_clouds" translatable="false">&#xf041;</string>
-    <string name="icon_broken_clouds" translatable="false">&#xf013;</string>
-    <string name="icon_shower_rain" translatable="false">&#xf01a;</string>
-    <string name="icon_rain_day" translatable="false">&#xf008;</string>
-    <string name="icon_rain_night" translatable="false">&#xf028;</string>
-    <string name="icon_thunderstorm" translatable="false">&#xf01e;</string>
-    <string name="icon_snow" translatable="false">&#xf01b;</string>
-    <string name="icon_mist" translatable="false">&#xf014;</string>
-    <string name="icon_weather_default" translatable="false">&#xf075;</string>
-    <string name="icon_wind" translatable="false">&#xf050;</string>
-    <string name="icon_humidity" translatable="false">&#xf07a;</string>
-    <string name="icon_barometer" translatable="false">&#xf079;</string>
-    <string name="icon_cloudiness" translatable="false">&#xf002;</string>
-    <string name="icon_sunrise" translatable="false">&#xf051;</string>
-    <string name="icon_sunset" translatable="false">&#xf052;</string>
-
     <!-- Units and Measurement-->
-    <string name="percent_sign" translatable="false">\u0025</string>
-    <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">m/o</string>
@@ -95,8 +67,6 @@
     <string name="about_version_pref_title">Bertsioa</string>
     <string name="about_source_code_pref_title">Iturburu kodea</string>
     <string name="about_app_license_pref_title">Lizentzia</string>
-    <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
-    <string name="about_google_play_pref_title" translatable="false">Google Play</string>
     <string name="about_open_source_licenses_pref_title">Iturri irekiko lizentziak</string>
 
     <!-- Weather conditions label strings -->
@@ -113,7 +83,6 @@
     <string name="temperature_day_title">Eguna</string>
     <string name="temperature_evening_title">Arratsaldea</string>
     <string name="temperature_night_title">Gaua</string>
-    <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
     <string name="label_temperature">Tenperatura</string>
     <string name="label_wind">Haizea</string>
     <string name="label_rain">Euria</string>
@@ -138,6 +107,4 @@
     <string name="wind_direction_south_west">HM</string>
     <string name="wind_direction_west">M</string>
     <string name="wind_direction_north_west">IM</string>
-
-    <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
 </resources>
