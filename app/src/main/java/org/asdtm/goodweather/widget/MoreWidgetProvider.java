@@ -139,7 +139,9 @@ public class MoreWidgetProvider extends AppWidgetProvider {
 
         remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
         remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
-        remoteViews.setTextViewText(R.id.widget_description, description);
+        if(!AppPreference.hideDescription(context))
+            remoteViews.setTextViewText(R.id.widget_description, description);
+        else remoteViews.setTextViewText(R.id.widget_description, " ");
         remoteViews.setTextViewText(R.id.widget_wind, wind);
         remoteViews.setTextViewText(R.id.widget_humidity, humidity);
         remoteViews.setTextViewText(R.id.widget_pressure, pressure);

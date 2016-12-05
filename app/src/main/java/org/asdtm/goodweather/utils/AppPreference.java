@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.asdtm.goodweather.MainActivity;
 import org.asdtm.goodweather.R;
 import org.asdtm.goodweather.model.Weather;
 import org.asdtm.goodweather.model.WeatherForecast;
@@ -20,6 +22,11 @@ public class AppPreference {
     public static String getTemperatureUnit(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TEMPERATURE, "metric");
+    }
+
+    public static boolean hideDescription(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_HIDE_DESCRIPTION, false);
     }
 
     public static String getInterval(Context context) {
@@ -68,8 +75,14 @@ public class AppPreference {
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putFloat(Constants.WEATHER_DATA_TEMPERATURE, weather.temperature.getTemp());
-        editor.putString(Constants.WEATHER_DATA_DESCRIPTION,
-                         weather.currentWeather.getDescription());
+        if(!hideDescription(context))
+        {
+            editor.putString(Constants.WEATHER_DATA_DESCRIPTION,
+                    weather.currentWeather.getDescription());
+        }
+        else {
+            editor.putString(Constants.WEATHER_DATA_DESCRIPTION, " ");
+        }
         editor.putFloat(Constants.WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
         editor.putInt(Constants.WEATHER_DATA_HUMIDITY, weather.currentCondition.getHumidity());
         editor.putFloat(Constants.WEATHER_DATA_WIND_SPEED, weather.wind.getSpeed());

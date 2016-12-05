@@ -46,6 +46,7 @@
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Ezarpenak</string>
     <string name="pref_title_temperature">Tenperatura</string>
+    <string name="preference_hide_desc">Eguraldiaren deskribapena ezkutatu</string>
     <string name="pref_title_category_notification">Jakinarazpenak</string>
     <string name="pref_title_notification">Jakinarazpenak gaitu</string>
     <string name="pref_title_notification_refresh_interval">Freskatze tartea</string>

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -19,6 +20,7 @@ import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.asdtm.goodweather.service.NotificationService;
 import org.asdtm.goodweather.utils.Constants;
@@ -104,6 +106,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     setSummary();
                     getActivity().sendBroadcast(
                             new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                    break;
+                case Constants.KEY_PREF_HIDE_DESCRIPTION:
+                    Intent intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+                    getActivity().sendBroadcast(intent);
                     break;
                 case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
                     Preference pref = findPreference(key);
