@@ -107,5 +107,6 @@
     <string name="wind_direction_west">З</string>
     <string name="wind_direction_north_west">ПнЗ</string>
     <string name="toolbar_menu_refresh">Абнавіць</string>
+    <string name="preference_hide_desc">Схаваць апісанне надвор\'я</string>
 
 </resources>

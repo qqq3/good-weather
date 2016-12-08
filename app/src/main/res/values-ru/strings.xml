@@ -84,4 +84,5 @@
     <string name="sunset_label">Заход: %s</string>
     <string name="sunrise_label">Восход: %s</string>
     <string name="title_activity_license">Лицензия на %s</string>
+    <string name="preference_hide_desc">Убрать описание погоды</string>
 </resources>
