@@ -7,6 +7,10 @@
         android:entryValues="@array/pref_temperature_values"
         android:key="temperature_pref_key"
         android:title="@string/pref_title_temperature"/>
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="hide_desc_pref_key"
+        android:title="@string/preference_hide_desc"/>
     <PreferenceCategory
         android:key="notification_category_pref_key"
         android:title="@string/pref_title_category_notification">

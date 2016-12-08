@@ -107,5 +107,6 @@
     <string name="wind_direction_south_west">南西</string>
     <string name="wind_direction_west">西</string>
     <string name="wind_direction_north_west">北西</string>
+    <string name="preference_hide_desc">天気予報を隠す</string>
 
 </resources>

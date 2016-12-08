@@ -115,7 +115,9 @@ public class LessWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
         remoteViews.setTextViewText(R.id.widget_temperature,
                                     temperature + temperatureScale);
-        remoteViews.setTextViewText(R.id.widget_description, description);
+        if(!AppPreference.hideDescription(context))
+            remoteViews.setTextViewText(R.id.widget_description, description);
+        else remoteViews.setTextViewText(R.id.widget_description, " ");
         remoteViews.setImageViewBitmap(R.id.widget_icon,
                                        Utils.createWeatherIcon(context, weatherIcon));
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);

@@ -108,4 +108,5 @@
     <string name="wind_direction_south_west">SW</string>
     <string name="wind_direction_west">W</string>
     <string name="wind_direction_north_west">NW</string>
+    <string name="preference_hide_desc">Wetterbeschreibung anzeigen</string>
 </resources>

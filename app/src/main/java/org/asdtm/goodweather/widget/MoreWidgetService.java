@@ -93,8 +93,10 @@ public class MoreWidgetService extends IntentService {
                                                       R.layout.widget_more_3x3);
             remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
             remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
-            remoteViews.setTextViewText(R.id.widget_description,
+            if(!AppPreference.hideDescription(this))
+                remoteViews.setTextViewText(R.id.widget_description,
                                         weather.currentWeather.getDescription());
+            else remoteViews.setTextViewText(R.id.widget_description, " ");
             remoteViews.setTextViewText(R.id.widget_wind, wind);
             remoteViews.setTextViewText(R.id.widget_humidity, humidity);
             remoteViews.setTextViewText(R.id.widget_pressure, pressure);

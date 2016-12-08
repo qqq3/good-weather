@@ -153,7 +153,10 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mIconWeatherView.setText(
                 Utils.getStrIcon(MainActivity.this, mWeather.currentWeather.getIdIcon()));
         mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
-        mDescriptionView.setText(mWeather.currentWeather.getDescription());
+        if(!AppPreference.hideDescription(MainActivity.this))
+            mDescriptionView.setText(mWeather.currentWeather.getDescription());
+        else
+            mDescriptionView.setText(" ");
         mHumidityView.setText(getString(R.string.humidity_label,
                                         String.valueOf(mWeather.currentCondition.getHumidity()),
                                         mPercentSign));

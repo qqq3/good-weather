@@ -78,8 +78,10 @@ public class LessWidgetService extends IntentService {
 
             remoteViews.setTextViewText(R.id.widget_temperature,
                                         temperature + temperatureScale);
-            remoteViews.setTextViewText(R.id.widget_description,
+            if(!AppPreference.hideDescription(this))
+                remoteViews.setTextViewText(R.id.widget_description,
                                         weather.currentWeather.getDescription());
+            else remoteViews.setTextViewText(R.id.widget_description, " ");
             remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
             remoteViews.setImageViewBitmap(R.id.widget_icon,
