@@ -1,0 +1,112 @@
+<resources>
+    <string name="enter_city_hint">Introduce ciudad</string>
+    <string name="label_current_city">Ciudad actual</string>
+    <string name="label_choose_city">Escoge ciudad</string>
+    <string name="alertDialog_gps_message">El GPS no está habilitado. ¿Quieres ir al menu de ajustes?</string>
+    <string name="alertDialog_gps_positiveButton">Ajustes</string>
+    <string name="alertDialog_gps_negativeButton">Cancelar</string>
+    <string name="progressDialog_gps_locate">Encontrar ubicación actual</string>
+    <string name="load_progress">Cargando&#8230;</string>
+
+    <!-- Activity names -->
+    <string name="title_activity_search">Buscar ubicación</string>
+    <string name="label_activity_main">Clima actual</string>
+    <string name="label_activity_weather_forecast">Pronóstico diario</string>
+    <string name="label_activity_graphs">Gráficos de clima</string>
+    <string name="title_activity_license">Licencia para %s</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_refresh">Actualizar</string>
+    <string name="toolbar_menu_search_city">Buscar ciudad</string>
+    <string name="toolbar_menu_detect_location">Detectar ubicación</string>
+    <string name="menu_action_toggle_values">Intercambiar valores</string>
+    <string name="menu_action_toggle_yaxis">Intercambiar eje Y</string>
+
+    <!-- Navigation drawer -->
+    <string name="nav_menu_current_weather">Clima actual</string>
+    <string name="nav_menu_daily_forecast">Pronóstico diario</string>
+    <string name="nav_menu_graphs">Gráficos</string>
+    <string name="nav_menu_settings">Ajustes</string>
+    <string name="nav_feedback">Opinión</string>
+    <string name="nav_menu_bitcoin_donation">Donar Bitcoins</string>
+
+    <!-- Toast messages -->
+    <string name="connection_not_found">Comprueba tu conexión a internet</string>
+    <string name="toast_parse_error">Ha ocurrido un error. Prueba más tarde</string>
+
+    <!-- Units and Measurement-->
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="millimetre_label">mm</string>
+
+    <!-- Search Screen strings -->
+    <string name="hint_activity_search">Buscar ubicación</string>
+
+    <!-- Preference Screen strings -->
+    <string name="title_activity_settings">Ajustes</string>
+    <string name="pref_title_temperature">Temperatura</string>
+    <string name="preference_hide_desc">Esconder descripción del clima</string>
+    <string name="pref_title_category_notification">Notificaciones</string>
+    <string name="pref_title_notification">Habilitar notificafiones</string>
+    <string name="pref_title_notification_refresh_interval">Intervalo de actualización</string>
+    <string name="update_period_15min">15 minutos</string>
+    <string name="update_period_30min">30 minutos</string>
+    <string name="update_period_1hour">Cada hora</string>
+    <string name="update_period_3hours">3 horas</string>
+    <string name="update_period_6hours">6 horas</string>
+    <string name="update_period_12hours">12 horas</string>
+    <string name="update_period_24hours">24 horas</string>
+    <string name="pref_title_vibrate">Vibrar</string>
+    <string name="preference_widget_light_theme">Tema claro</string>
+    <string name="preference_widget_title_update_period">Periodo de actualización</string>
+    <string name="preference_title_activity_general">Ajustes generales</string>
+    <string name="preference_title_activity_widget">Ajustes de widget</string>
+
+    <!-- Preference Screen About -->
+    <string name="preference_title_activity_about">Acerca de</string>
+    <string name="about_version_pref_title">Versión</string>
+    <string name="about_source_code_pref_title">Código fuente</string>
+    <string name="about_app_license_pref_title">Licencia</string>
+    <string name="about_open_source_licenses_pref_title">Licencias de código abierto</string>
+
+    <!-- Weather conditions label strings -->
+    <string name="wind_label">Viento: %1$s %2$s</string>
+    <string name="rain_label">Lluvia: %1$s %2$s</string>
+    <string name="snow_label">Nieve: %1$s %2$s</string>
+    <string name="humidity_label">Humedad: %1$s%2$s</string>
+    <string name="pressure_label">Presión: %1$s %2$s</string>
+    <string name="cloudiness_label">Nubosidad: %1$s%2$s</string>
+    <string name="last_update_label">Última actualización: %s</string>
+    <string name="sunrise_label">Amanecer: %s</string>
+    <string name="sunset_label">Puesta del sol: %s</string>
+    <string name="temperature_morning_title">Mañana</string>
+    <string name="temperature_day_title">Día</string>
+    <string name="temperature_evening_title">Tarde</string>
+    <string name="temperature_night_title">Noche</string>
+    <string name="label_temperature">Temperatura</string>
+    <string name="label_wind">Viento</string>
+    <string name="label_rain">Lluvia</string>
+    <string name="label_snow">Nieve</string>
+
+    <!-- Widgets strings -->
+    <string name="widget_weather_icon_description">Icono de clima actual</string>
+    <string name="widget_refresh_button">Botón de actualización del widget</string>
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">Código QR de donación de Bitcoin QR</string>
+    <string name="donation_bitcoin_copy_button">Copiar dirección de Bitcoin</string>
+    <string name="donation_bitcoin_open_app">Abrir aplicación de Bitcoin</string>
+    <string name="donation_bitcoin_copy_message">La dirección de Bitcoin se ha copiado en el portapapeles</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_east">NE</string>
+    <string name="wind_direction_east">E</string>
+    <string name="wind_direction_south_east">SE</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_west">SO</string>
+    <string name="wind_direction_west">O</string>
+    <string name="wind_direction_north_west">NO</string>
+
+</resources>
