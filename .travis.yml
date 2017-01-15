@@ -12,6 +12,7 @@ android:
     - android-25
     - extra-android-m2repository
   licenses:
-    - 'android-sdk-license-+'
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
 
 script: ./gradlew build --stacktrace
