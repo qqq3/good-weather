@@ -1,0 +1,17 @@
+language: android
+jdk: oraclejdk8
+os: linux
+sudo: false
+
+android:
+  components:
+    - tools
+    - tools
+    - platfom-tools
+    - build-tools-25.0.2
+    - android-25
+    - extra-android-m2repository
+  licenses:
+    - 'android-sdk-license-+'
+
+script: ./gradlew build --stacktrace
