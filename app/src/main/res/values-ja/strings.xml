@@ -109,4 +109,8 @@
     <string name="wind_direction_north_west">北西</string>
     <string name="preference_hide_desc">天気予報を隠す</string>
 
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">場所現在の都市を決定するために許可が必要です</string>
+    <string name="permission_not_granted">権限は許可されていません！</string>
+    <string name="permission_available_location">場所のアクセス許可が付与されました</string>
 </resources>

@@ -141,4 +141,9 @@
     <string name="wind_direction_north_west">NW</string>
 
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
+
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Location Permissions are needed to determine the current city</string>
+    <string name="permission_not_granted">Permissions were not granted!</string>
+    <string name="permission_available_location">Location Permissions have been granted</string>
 </resources>

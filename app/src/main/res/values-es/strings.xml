@@ -109,4 +109,8 @@
     <string name="wind_direction_west">O</string>
     <string name="wind_direction_north_west">NO</string>
 
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Ubicación Se necesitan permisos para determinar la ciudad actual</string>
+    <string name="permission_not_granted">Los permisos no se concedieron!</string>
+    <string name="permission_available_location">Ubicación Se han concedido permisos</string>
 </resources>

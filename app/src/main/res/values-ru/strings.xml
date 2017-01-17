@@ -85,4 +85,9 @@
     <string name="sunrise_label">Восход: %s</string>
     <string name="title_activity_license">Лицензия на %s</string>
     <string name="preference_hide_desc">Убрать описание погоды</string>
+
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Разрешения "Получение местонахождения" необходимы для определения текущего города</string>
+    <string name="permission_not_granted">Разрешения не продоставлены!</string>
+    <string name="permission_available_location">Разрешения "Получение местонахождения" были продоставлены</string>
 </resources>

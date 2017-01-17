@@ -85,4 +85,9 @@
     <string name="sunrise_label">Wschód słońca: %s</string>
     <string name="title_activity_license">Licencja dla %s</string>
     <string name="preference_hide_desc">Ukryj opis pogody</string>
+
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Potrzebne są Lokalizacja Uprawnienia do określenia obecnego miasta</string>
+    <string name="permission_not_granted">Uprawnienia nie zostały przyznane!</string>
+    <string name="permission_available_location">Lokalizacja uprawnienia zostały przyznane</string>
 </resources>

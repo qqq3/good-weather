@@ -109,4 +109,9 @@
     <string name="wind_direction_west">W</string>
     <string name="wind_direction_north_west">NW</string>
     <string name="preference_hide_desc">Wetterbeschreibung anzeigen</string>
+
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Standort Berechtigungen werden benötigt, um die aktuelle Stadt zu ermitteln</string>
+    <string name="permission_not_granted">Berechtigungen wurden nicht gewährt!</string>
+    <string name="permission_available_location">Standort Berechtigungen wurden erteilt</string>
 </resources>
