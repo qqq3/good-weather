@@ -33,12 +33,15 @@ Open source weather app for Android.
 - [ ] Improve accessibility for people with disabilities
 
 ## Donations
-If you would like to help, you can donate Bitcoin on ```16rSzigYf3roULrPuMFe6mb5xxHE3iZspM``` address.
+If you would like to help, you can donate Bitcoin on ```1FV8m1MKqZ9ZKB8YNwpsjsuubHTznJSiT8``` address.
 
 Or scan QR code with help Bitcoin app:
-<img src="http://i.imgur.com/vNNN8IY.png" alt="QR code Bitcoin address" width="100" height="100" />
+<img src="http://i.imgur.com/pqG48LZ.png" alt="QR code Bitcoin address" width="100" height="100" />
 
 Thanks!
+
+## List of contributors
+[berian](https://github.com/beriain), [mahula](https://github.com/mahula), [naofum](https://github.com/naofum)
 
 ## License
 ```
