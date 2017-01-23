@@ -110,7 +110,7 @@
     <string name="wind_direction_north_west">IM</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Kokapena Baimenak behar dira egungo hiriaren zehazteko</string>
-    <string name="permission_not_granted">Baimenak ez ziren ematen!</string>
-    <string name="permission_available_location">Kokapena Baimenak eman dira</string>
+    <string name="permission_location_rationale">Kokapen baimenak behar dira uneko hiria zehazteko</string>
+    <string name="permission_not_granted">Baimenak ez dira eman!</string>
+    <string name="permission_available_location">Kokapen baimenak eman dira</string>
 </resources>

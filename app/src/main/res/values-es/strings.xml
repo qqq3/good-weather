@@ -94,7 +94,7 @@
     <string name="widget_refresh_button">Botón de actualización del widget</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Código QR de donación de Bitcoin QR</string>
+    <string name="donation_bitcoin_qr_description">Código QR de donación de Bitcoin</string>
     <string name="donation_bitcoin_copy_button">Copiar dirección de Bitcoin</string>
     <string name="donation_bitcoin_open_app">Abrir aplicación de Bitcoin</string>
     <string name="donation_bitcoin_copy_message">La dirección de Bitcoin se ha copiado en el portapapeles</string>
@@ -110,7 +110,7 @@
     <string name="wind_direction_north_west">NO</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Ubicación Se necesitan permisos para determinar la ciudad actual</string>
+    <string name="permission_location_rationale">Los permisos de ubicación son necesarios para determinar la ciudad actual</string>
     <string name="permission_not_granted">Los permisos no se concedieron!</string>
-    <string name="permission_available_location">Ubicación Se han concedido permisos</string>
+    <string name="permission_available_location">Se han concedido los permisos de ubicación</string>
 </resources>
