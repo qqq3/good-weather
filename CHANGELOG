@@ -1,3 +1,9 @@
+v4.1
+
+- Support runtime permissions for Android 6.0
+- Added translations: Basque, Belarusian, Japanese, Spanish
+- Minor bugfixes
+
 v4.0
 
 - Improved main screen
