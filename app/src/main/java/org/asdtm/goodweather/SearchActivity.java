@@ -1,7 +1,6 @@
 package org.asdtm.goodweather;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -13,16 +12,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import org.asdtm.goodweather.model.CitySearch;
@@ -33,11 +30,10 @@ import org.asdtm.goodweather.utils.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class SearchActivity extends AppCompatActivity {
 
     public static final String TAG = "SearchActivity";
 
-    private final String APP_SETTINGS_NAME = "config";
     private final String APP_SETTINGS_CITY = "city";
     private final String APP_SETTINGS_COUNTRY_CODE = "country_code";
     private final String APP_SETTINGS_LATITUDE = "latitude";
@@ -55,15 +51,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }
         setContentView(R.layout.activity_search);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.search_activity_toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        setupActionBar();
+        setupSearchView();
 
+        String APP_SETTINGS_NAME = "config";
         mCityPref = getSharedPreferences(APP_SETTINGS_NAME, 0);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.search_city_recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
 
         mCites = new ArrayList<>();
@@ -71,6 +65,34 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         recyclerView.setAdapter(mSearchCityAdapter);
 
         loadLastFoundCity();
+    }
+
+    private void setupSearchView() {
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        SearchView searchView = (SearchView) findViewById(R.id.search_view);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconified(false);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mSearchCityAdapter.getFilter().filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mSearchCityAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+    }
+
+    private void setupActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -158,36 +180,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 protected void publishResults(CharSequence charSequence,
                                               FilterResults filterResults) {
                     mCites.clear();
-                    mCites.addAll((ArrayList<CitySearch>) filterResults.values);
+                    if (filterResults.values != null) {
+                        mCites.addAll((ArrayList<CitySearch>) filterResults.values);
+                    }
                     notifyDataSetChanged();
                 }
             };
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.search, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search_city).getActionView();
-
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconified(false);
-        searchView.onActionViewExpanded();
-
-        int searchPlateId = searchView.getContext().getResources().getIdentifier(
-                "android:id/search_plate", null, null);
-        View searchPlateView = searchView.findViewById(searchPlateId);
-        if (searchPlateView != null) {
-            int color = ContextCompat.getColor(SearchActivity.this, R.color.colorPrimary);
-            searchPlateView.setBackgroundColor(color);
-        }
-
-        searchView.setOnQueryTextListener(this);
-
-        return true;
     }
 
     @Override
@@ -199,20 +198,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        mSearchCityAdapter.getFilter().filter(s);
-
-        return true;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String s) {
-        mSearchCityAdapter.getFilter().filter(s);
-
-        return true;
     }
 
     private void setCity(CitySearch city) {

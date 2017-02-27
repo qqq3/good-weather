@@ -2,7 +2,5 @@
 <searchable
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:hint="@string/hint_activity_search"
-    android:label="@string/title_activity_search"
-    android:inputType="textFilter"
-    android:imeOptions="actionSearch">
+    android:label="@string/title_activity_search">
 </searchable>
