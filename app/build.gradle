@@ -7,8 +7,8 @@ android {
         applicationId "org.asdtm.goodweather"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 9
-        versionName "4.1"
+        versionCode 10
+        versionName "4.2"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
