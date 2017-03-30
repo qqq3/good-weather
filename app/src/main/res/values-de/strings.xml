@@ -62,6 +62,7 @@
     <string name="preference_widget_title_update_period">Aktualisierungsintervall</string>
     <string name="preference_title_activity_general">Allgemeine Einstellungen</string>
     <string name="preference_title_activity_widget">Widget-Einstellungen</string>
+    <string name="preference_hide_desc">Wetterbeschreibung ausblenden</string>
 
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">Über</string>
@@ -108,7 +109,6 @@
     <string name="wind_direction_south_west">SW</string>
     <string name="wind_direction_west">W</string>
     <string name="wind_direction_north_west">NW</string>
-    <string name="preference_hide_desc">Wetterbeschreibung anzeigen</string>
 
     <!-- Permission strings -->
     <string name="permission_location_rationale">Standort Berechtigungen werden benötigt, um die aktuelle Stadt zu ermitteln</string>
