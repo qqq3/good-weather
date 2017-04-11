@@ -12,6 +12,16 @@
         android:key="hide_desc_pref_key"
         android:title="@string/preference_hide_desc"/>
     <PreferenceCategory
+        android:key="display_category_pref_key"
+        android:title="@string/preference_title_category_display">
+        <ListPreference
+            android:key="language_pref_key"
+            android:dialogTitle="@string/pref_title_language"
+            android:title="@string/pref_title_language"
+            android:entries="@array/language_entries"
+            android:entryValues="@array/language_values"/>
+    </PreferenceCategory>
+    <PreferenceCategory
         android:key="notification_category_pref_key"
         android:title="@string/pref_title_category_notification">
         <SwitchPreference

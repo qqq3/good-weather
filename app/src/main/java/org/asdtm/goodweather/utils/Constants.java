@@ -26,6 +26,7 @@ public class Constants {
     public static final String KEY_PREF_VIBRATE = "notification_vibrate_pref_key";
     public static final String KEY_PREF_WIDGET_LIGHT_THEME = "widget_light_theme_pref_key";
     public static final String KEY_PREF_WIDGET_UPDATE_PERIOD = "widget_update_period_pref_key";
+    public static final String PREF_LANGUAGE = "language_pref_key";
 
     /**
      * About preference screen constants
