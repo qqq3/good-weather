@@ -122,6 +122,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                     break;
                 case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
+                    entrySummary(key);
                     if (changing) {
                         Preference pref = findPreference(key);
                         NotificationService.setNotificationServiceAlarm(getActivity(), pref.isEnabled());
