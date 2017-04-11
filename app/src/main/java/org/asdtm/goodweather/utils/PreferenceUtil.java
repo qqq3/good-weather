@@ -11,6 +11,6 @@ public class PreferenceUtil {
     }
 
     public static String getLanguage(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_LANGUAGE, "");
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_LANGUAGE, "en");
     }
 }
