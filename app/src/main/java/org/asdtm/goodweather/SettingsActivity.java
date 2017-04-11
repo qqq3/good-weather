@@ -129,6 +129,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     break;
                 case Constants.PREF_LANGUAGE:
                     entrySummary(key);
+                    if (changing) {
+                        DialogFragment dialog = new SettingsAlertDialog().newInstance(R.string.restart_dialog_message);
+                        dialog.show(getActivity().getFragmentManager(), "restartApp");
+                    }
                     break;
             }
         }
@@ -284,6 +288,28 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         .setPositiveButton(android.R.string.ok, null)
                         .create();
             }
+        }
+    }
+
+    public static class SettingsAlertDialog extends DialogFragment {
+
+        private static final String ARG_MESSAGE_RES_ID = "org.asdtm.goodweather.message_res_id";
+
+        public SettingsAlertDialog newInstance(int messageResId) {
+            SettingsAlertDialog fragment = new SettingsAlertDialog();
+            Bundle args = new Bundle();
+            args.putInt(ARG_MESSAGE_RES_ID, messageResId);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            int messageResId = getArguments().getInt(ARG_MESSAGE_RES_ID);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(messageResId);
+            builder.setPositiveButton(android.R.string.ok, null);
+            return builder.create();
         }
     }
 }
