@@ -39,7 +39,6 @@ public class LessWidgetProvider extends AppWidgetProvider {
                 context.startService(new Intent(context, LessWidgetService.class));
                 break;
             case Intent.ACTION_LOCALE_CHANGED:
-                AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
                 context.startService(new Intent(context, LessWidgetService.class));
                 break;
             case Constants.ACTION_APPWIDGET_THEME_CHANGED:

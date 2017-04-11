@@ -110,7 +110,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         connectionDetector = new ConnectionDetector(MainActivity.this);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME);
 
         mPrefWeather = getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
         mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,

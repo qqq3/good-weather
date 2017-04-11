@@ -19,6 +19,8 @@ import org.asdtm.goodweather.adapter.WeatherForecastAdapter;
 import org.asdtm.goodweather.model.WeatherForecast;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
+import org.asdtm.goodweather.utils.LanguageUtil;
+import org.asdtm.goodweather.utils.PreferenceUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -150,8 +152,7 @@ public class WeatherForecastActivity extends BaseActivity {
                 SharedPreferences pref = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
                 String latitude = pref.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
                 String longitude = pref.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-                String locale = AppPreference.getLocale(WeatherForecastActivity.this,
-                                                        Constants.APP_SETTINGS_NAME);
+                String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(WeatherForecastActivity.this));
                 String units = AppPreference.getTemperatureUnit(WeatherForecastActivity.this);
 
                 String requestResult = "";

@@ -11,6 +11,8 @@ import org.asdtm.goodweather.ConnectionDetector;
 import org.asdtm.goodweather.utils.ApiKeys;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
+import org.asdtm.goodweather.utils.LanguageUtil;
+import org.asdtm.goodweather.utils.PreferenceUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +48,7 @@ public class CurrentWeatherService extends IntentService {
         SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
         String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
         String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-        String locale = AppPreference.getLocale(this, Constants.APP_SETTINGS_NAME);
+        String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(this));
         String units = AppPreference.getTemperatureUnit(this);
 
         String requestResult = "";
