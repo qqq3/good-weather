@@ -16,6 +16,7 @@ public class LanguageUtil {
     private static final String TAG = LanguageUtil.class.getSimpleName();
 
     @TargetApi(17)
+    @SuppressWarnings("deprecation")
     public static void setLanguage(final ContextWrapper contextWrapper, String locale) {
         Locale sLocale;
         if (TextUtils.isEmpty(locale)) {
@@ -53,7 +54,7 @@ public class LanguageUtil {
         activity.overridePendingTransition(0, 0);
     }
 
-    public String getLanguageName(String locale) {
+    public static String getLanguageName(String locale) {
         if (locale.contains("_")) {
             return locale.split("_")[0];
         }
