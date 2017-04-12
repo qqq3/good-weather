@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import org.asdtm.goodweather.service.CurrentWeatherService;
 import org.asdtm.goodweather.utils.AppPreference;
+import org.asdtm.goodweather.utils.Utils;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -92,10 +93,9 @@ public class BaseActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(navigationViewListener);
 
-        mCityAndCode = AppPreference.getCityAndCode(this);
         View headerLayout = navigationView.getHeaderView(0);
         mHeaderCity = (TextView) headerLayout.findViewById(R.id.nav_header_city);
-        mHeaderCity.setText(mCityAndCode[0] + ", " + mCityAndCode[1]);
+        mHeaderCity.setText(Utils.getCityAndCountry(this));
     }
 
     private NavigationView.OnNavigationItemSelectedListener navigationViewListener =

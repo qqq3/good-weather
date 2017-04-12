@@ -11,10 +11,14 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -25,6 +29,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,6 +37,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.IOException;
+import java.util.List;
 
 import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.model.Weather;
@@ -48,6 +55,8 @@ import static org.asdtm.goodweather.utils.AppPreference.saveLastUpdateTimeMillis
 public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final String TAG = "MainActivity";
+    
+    private static final long LOCATION_TIMEOUT_IN_MS = 30000l;
 
     private TextView mIconWeatherView;
     private TextView mTemperatureView;
@@ -96,6 +105,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION};
 
+    public Context storedContext;
+        
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,8 +126,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mPrefWeather = getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
         mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                 Context.MODE_PRIVATE);
-        final String city = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
-        setTitle(city);
+        setTitle(Utils.getCityAndCountry(this));
 
         /**
          * Configure SwipeRefreshLayout
@@ -132,6 +142,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
          * Share weather fab
          */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        this.storedContext = this;
         fab.setOnClickListener(fabListener);
     }
 
@@ -172,10 +183,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
-        setTitle(mWeather.location.getCityName());
+        if(AppPreference.isGeocoderEnabled(this)) {
+            setTitle(Utils.getCityAndCountry(this));
+        } else {
+            setTitle(mWeather.location.getCityName());
+        }
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
-                mWeather.location.getCountryCode());
+                    mWeather.location.getCountryCode());
         configEditor.apply();
     }
 
@@ -255,6 +270,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putString(Constants.APP_SETTINGS_LATITUDE, latitude);
             editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
+            getAndWriteAddressFromGeocoder(latitude, longitude, editor);
             editor.apply();
 
             if (isNetworkAvailable) {
@@ -282,6 +298,21 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         }
     };
 
+    private void getAndWriteAddressFromGeocoder(String latitude, String longitude, SharedPreferences.Editor editor) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            String latitudeEn = latitude.replace(",", ".");
+            String longitudeEn = longitude.replace(",", ".");
+            List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(latitudeEn), Double.parseDouble(longitudeEn), 1);
+            if((addresses != null) && (addresses.size() > 0)) {
+                editor.putString(Constants.APP_SETTINGS_GEO_CITY, addresses.get(0).getLocality());
+                editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, addresses.get(0).getCountryName());
+            }
+        } catch (IOException | NumberFormatException ex) {
+            Log.e(TAG, "Unable to get address from latitude and longitude", ex);
+        }
+    }
+    
     private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -312,7 +343,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         float pressurePref = mPrefWeather.getFloat(Constants.WEATHER_DATA_PRESSURE, 0);
         float windPref = mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0);
         int clouds = mPrefWeather.getInt(Constants.WEATHER_DATA_CLOUDS, 0);
-        String title = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
+        
         long sunrisePref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNRISE, -1);
         long sunsetPref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNSET, -1);
 
@@ -338,7 +369,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 mPercentSign));
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
-        setTitle(title);
+        setTitle(Utils.getCityAndCountry(this));
     }
 
     private void initializeTextView() {
@@ -454,18 +485,17 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
 
     FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
+                
         @Override
         public void onClick(View view) {
             String temperatureScale = Utils.getTemperatureScale(MainActivity.this);
             mSpeedScale = Utils.getSpeedScale(MainActivity.this);
             String weather;
-            String city;
             String temperature;
             String description;
             String wind;
             String sunrise;
             String sunset;
-            city = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
             temperature = String.format(Locale.getDefault(), "%.0f", mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
             description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION,
                                                  "clear sky");
@@ -475,7 +505,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     .getLong(Constants.WEATHER_DATA_SUNRISE, -1));
             sunset = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
                     .getLong(Constants.WEATHER_DATA_SUNSET, -1));
-            weather = "City: " + city +
+            weather = "City: " + Utils.getCityAndCountry(storedContext) +
                     "\nTemperature: " + temperature + temperatureScale +
                     "\nDescription: " + description +
                     "\nWind: " + wind + " " + mSpeedScale +
@@ -548,13 +578,39 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     public void gpsRequestLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+            Looper locationLooper = Looper.myLooper();
+            locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, mLocationListener, locationLooper);
+            final Handler locationHandler = new Handler(locationLooper);
+            locationHandler.postDelayed(new Runnable() {
+                 @Override
+                 public void run() {
+                     locationManager.removeUpdates(mLocationListener);
+                     mLocationListener.onLocationChanged(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+                 }
+            }, LOCATION_TIMEOUT_IN_MS);
         }
     }
 
     public void networkRequestLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
+            Looper locationLooper = Looper.myLooper();
+            locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, mLocationListener, locationLooper);
+            final Handler locationHandler = new Handler(locationLooper);
+            locationHandler.postDelayed(new Runnable() {
+                 @Override
+                 public void run() {
+                     locationManager.removeUpdates(mLocationListener);
+                     Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                     Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                     if((lastGpsLocation == null) && (lastNetworkLocation != null)) {
+                         mLocationListener.onLocationChanged(lastNetworkLocation);
+                     } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
+                         mLocationListener.onLocationChanged(lastGpsLocation);
+                     } else if ((lastGpsLocation != null) && (lastNetworkLocation != null)) {
+                         mLocationListener.onLocationChanged((lastGpsLocation.getElapsedRealtimeNanos() > lastNetworkLocation.getElapsedRealtimeNanos())?lastGpsLocation:lastNetworkLocation);
+                     }
+                 }
+            }, LOCATION_TIMEOUT_IN_MS);
         }
     }
 

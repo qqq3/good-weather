@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -100,11 +101,70 @@ public class AppPreference {
         return result;
     }
 
-    public static boolean isLightThemeEnabled(Context context) {
+    public static boolean isGeocoderEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                Constants.KEY_PREF_WIDGET_LIGHT_THEME, false);
+                Constants.KEY_PREF_WIDGET_USE_GEOCODER, false);
+    }
+    public static boolean isUpdateLocationEnabled(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false);
+    }
+    
+    public static String getTheme(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_WIDGET_THEME, "dark");
     }
 
+    public static int getTextColor(Context context) {
+        String theme = getTheme(context);
+        if (null == theme) {
+            return ContextCompat.getColor(context, R.color.widget_transparentTheme_textColorPrimary);
+        } else switch (theme) {
+            case "dark":
+                return ContextCompat.getColor(context, R.color.widget_darkTheme_textColorPrimary);
+            case "light":
+                return ContextCompat.getColor(context, R.color.widget_lightTheme_textColorPrimary);
+            default:
+                return ContextCompat.getColor(context, R.color.widget_transparentTheme_textColorPrimary);
+        }
+    }
+    
+    public static int getBackgroundColor(Context context) {
+        String theme = getTheme(context);
+        if (null == theme) {
+            return ContextCompat.getColor(context,
+                    R.color.widget_transparentTheme_colorBackground);
+        } else switch (theme) {
+            case "dark":
+                return ContextCompat.getColor(context,
+                        R.color.widget_darkTheme_colorBackground);
+            case "light":
+                return ContextCompat.getColor(context,
+                        R.color.widget_lightTheme_colorBackground);
+            default:
+                return ContextCompat.getColor(context,
+                        R.color.widget_transparentTheme_colorBackground);
+        }
+    }
+    
+    public static int getWindowHeaderBackgroundColorId(Context context) {
+        String theme = getTheme(context);
+        if (null == theme) {
+            return ContextCompat.getColor(context,
+                    R.color.widget_transparentTheme_window_colorBackground);
+        } else switch (theme) {
+            case "dark":
+                return ContextCompat.getColor(context,
+                        R.color.widget_darkTheme_window_colorBackground);
+            case "light":
+                return ContextCompat.getColor(context,
+                        R.color.widget_lightTheme_window_colorBackground);
+            default:
+                return ContextCompat.getColor(context,
+                        R.color.widget_transparentTheme_window_colorBackground);
+        }
+    }
+    
     public static long saveLastUpdateTimeMillis(Context context) {
         SharedPreferences sp = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
                                                             Context.MODE_PRIVATE);

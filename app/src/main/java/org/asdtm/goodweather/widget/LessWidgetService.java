@@ -35,13 +35,11 @@ public class LessWidgetService extends IntentService {
         if (!checkNetwork.isNetworkAvailableAndConnected()) {
             return;
         }
-
         SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
         String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
         String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
         String locale = AppPreference.getLocale(this, Constants.APP_SETTINGS_NAME);
         String units = AppPreference.getTemperatureUnit(this);
-
         try {
             String weatherRaw = new WeatherRequest().getItems(latitude, longitude, units,
                                                               locale);
@@ -67,8 +65,6 @@ public class LessWidgetService extends IntentService {
 
             String iconId = weather.currentWeather.getIdIcon();
             String weatherIcon = Utils.getStrIcon(this, iconId);
-            String[] cityAndCountryArray = AppPreference.getCityAndCode(this);
-            String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
                     .saveLastUpdateTimeMillis(this));
 
@@ -82,7 +78,7 @@ public class LessWidgetService extends IntentService {
                 remoteViews.setTextViewText(R.id.widget_description,
                                         weather.currentWeather.getDescription());
             else remoteViews.setTextViewText(R.id.widget_description, " ");
-            remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
+            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this));
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
             remoteViews.setImageViewBitmap(R.id.widget_icon,
                                            Utils.createWeatherIcon(this, weatherIcon));
