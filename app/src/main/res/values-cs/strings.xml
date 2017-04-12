@@ -1,0 +1,152 @@
+<resources>
+    <string name="app_name" translatable="false">Good Weather</string>
+    <string name="enter_city_hint">Zadejte město</string>
+    <string name="label_current_city">Aktuální město</string>
+    <string name="label_choose_city">Vyberte město</string>
+    <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
+    <string name="alertDialog_gps_title" translatable="false">GPS je nastavení</string>
+    <string name="alertDialog_gps_message">GPS není povoleno. Chcete zobrazit menu nastavení?</string>
+    <string name="alertDialog_gps_positiveButton">Nastavení</string>
+    <string name="alertDialog_gps_negativeButton">Zpět</string>
+    <string name="progressDialog_gps_locate">Najít aktuální polohu</string>
+    <string name="load_progress">Nahrávám&#8230;</string>
+
+    <!-- Activity names -->
+    <string name="title_activity_search">Najít pozici</string>
+    <string name="label_activity_main">Aktuální počasí</string>
+    <string name="label_activity_weather_forecast">Denní předpověd</string>
+    <string name="label_activity_graphs">Počasí v grafech</string>
+    <string name="title_activity_license">Lecence pro %s</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_refresh">Aktualizace</string>
+    <string name="toolbar_menu_search_city">Najít město</string>
+    <string name="toolbar_menu_detect_location">Detect Location</string>
+    <string name="menu_action_toggle_values">Přepnout hodnoty</string>
+    <string name="menu_action_toggle_yaxis">Přepnout osu Y</string>
+
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_open" translatable="false">Otevřít navigační panel</string>
+    <string name="navigation_drawer_close" translatable="false">Zavřít navigační panel</string>
+    <string name="nav_menu_current_weather">Aktuální počasí</string>
+    <string name="nav_menu_daily_forecast">Denní předpověd</string>
+    <string name="nav_menu_graphs">Grafy</string>
+    <string name="nav_menu_settings">Nastavení</string>
+    <string name="nav_feedback">Zpětná vazba</string>
+    <string name="nav_menu_bitcoin_donation">Přispět Bitcoiny</string>
+
+    <!-- Toast messages -->
+    <string name="connection_not_found">Zkontrolujte své připojení na Internet</string>
+    <string name="toast_parse_error">Vyskytla se chyba. Zkuste to znovu později!</string>
+
+    <!-- Weather icons -->
+    <string name="icon_clear_sky_day" translatable="false">&#xf00d;</string>
+    <string name="icon_clear_sky_night" translatable="false">&#xf02e;</string>
+    <string name="icon_few_clouds_day" translatable="false">&#xf002;</string>
+    <string name="icon_few_clouds_night" translatable="false">&#xf086;</string>
+    <string name="icon_scattered_clouds" translatable="false">&#xf041;</string>
+    <string name="icon_broken_clouds" translatable="false">&#xf013;</string>
+    <string name="icon_shower_rain" translatable="false">&#xf01a;</string>
+    <string name="icon_rain_day" translatable="false">&#xf008;</string>
+    <string name="icon_rain_night" translatable="false">&#xf028;</string>
+    <string name="icon_thunderstorm" translatable="false">&#xf01e;</string>
+    <string name="icon_snow" translatable="false">&#xf01b;</string>
+    <string name="icon_mist" translatable="false">&#xf014;</string>
+    <string name="icon_weather_default" translatable="false">&#xf075;</string>
+    <string name="icon_wind" translatable="false">&#xf050;</string>
+    <string name="icon_humidity" translatable="false">&#xf07a;</string>
+    <string name="icon_barometer" translatable="false">&#xf079;</string>
+    <string name="icon_cloudiness" translatable="false">&#xf002;</string>
+    <string name="icon_sunrise" translatable="false">&#xf051;</string>
+    <string name="icon_sunset" translatable="false">&#xf052;</string>
+
+    <!-- Units and Measurement-->
+    <string name="percent_sign" translatable="false">\u0025</string>
+    <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="millimetre_label">mm</string>
+
+    <!-- Search Screen strings -->
+    <string name="hint_activity_search">Najít polohu</string>
+
+    <!-- Preference Screen strings -->
+    <string name="title_activity_settings">Nastavení</string>
+    <string name="pref_title_temperature">Teplota</string>
+    <string name="preference_hide_desc">Skrýt popis počasí</string>
+    <string name="pref_title_category_notification">Upozornění</string>
+    <string name="pref_title_notification">Povolit upozornění</string>
+    <string name="pref_title_notification_refresh_interval">Interval obnovení</string>
+    <string name="update_period_15min">15 minut</string>
+    <string name="update_period_30min">30 minut</string>
+    <string name="update_period_1hour">Každou hodinu</string>
+    <string name="update_period_3hours">3 hodiny</string>
+    <string name="update_period_6hours">6 hodin</string>
+    <string name="update_period_12hours">12 hodin</string>
+    <string name="update_period_24hours">24 hodin</string>
+    <string name="pref_title_vibrate">Vibrovat</string>
+    <string name="preference_widget_title_update_period">Interval aktualizace</string>
+    <string name="preference_title_activity_general">Obecná nastavení</string>
+    <string name="preference_title_activity_widget">Nastavení widgetu</string>
+    <string name="preference_widget_update_location">Aktualizace pozice</string>
+    <string name="preference_widget_use_geocoder">Použít geolokaci pro zobrazení</string>
+    <string name="preference_widget_theme_title">Téma widgetu</string>
+    <string name="theme_dark">Tmavé</string>
+    <string name="theme_light">Světlé</string>
+    <string name="theme_transparent">Průsvitné</string>
+
+    <!-- Preference Screen About -->
+    <string name="preference_title_activity_about">O aplikaci</string>
+    <string name="about_version_pref_title">Verze</string>
+    <string name="about_source_code_pref_title">Zdrojový kód</string>
+    <string name="about_app_license_pref_title">Licence</string>
+    <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
+    <string name="about_google_play_pref_title" translatable="false">Google Play</string>
+    <string name="about_open_source_licenses_pref_title">Open Source licence</string>
+
+    <!-- Weather conditions label strings -->
+    <string name="wind_label">Vítr: %1$s %2$s</string>
+    <string name="rain_label">Déšť: %1$s %2$s</string>
+    <string name="snow_label">Sníh: %1$s %2$s</string>
+    <string name="humidity_label">Vlhkost: %1$s%2$s</string>
+    <string name="pressure_label">Tlak: %1$s %2$s</string>
+    <string name="cloudiness_label">Oblačnost: %1$s%2$s</string>
+    <string name="last_update_label">Poslední aktualizace: %s</string>
+    <string name="sunrise_label">Východ slunce: %s</string>
+    <string name="sunset_label">Západ slunce: %s</string>
+    <string name="temperature_morning_title">Ráno</string>
+    <string name="temperature_day_title">Během dne</string>
+    <string name="temperature_evening_title">Večer</string>
+    <string name="temperature_night_title">V noci</string>
+    <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
+    <string name="label_temperature">Teplota</string>
+    <string name="label_wind">Vítr</string>
+    <string name="label_rain">Déšť</string>
+    <string name="label_snow">Sníh</string>
+
+    <!-- Widgets strings -->
+    <string name="widget_weather_icon_description">Aktuální ikona počasí</string>
+    <string name="widget_refresh_button">Tlačítko obnovení ve widgetu</string>
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">Příspěvek Bitcoinem QR kód</string>
+    <string name="donation_bitcoin_copy_button">Kopírovat adresu Bitcoinu</string>
+    <string name="donation_bitcoin_open_app">Otevřít aplikaci Bitcoin</string>
+    <string name="donation_bitcoin_copy_message">Adresa Bitcoinu byla zkopírována do schránky</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction_north">S</string>
+    <string name="wind_direction_north_east">SV</string>
+    <string name="wind_direction_east">V</string>
+    <string name="wind_direction_south_east">JV</string>
+    <string name="wind_direction_south">J</string>
+    <string name="wind_direction_south_west">JZ</string>
+    <string name="wind_direction_west">Z</string>
+    <string name="wind_direction_north_west">SZ</string>
+
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
+    <string name="permission_not_granted">Oprávnění nejsou udělena!</string>
+    <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy.</string>
+</resources>
