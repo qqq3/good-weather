@@ -1,10 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">Good Weather</string>
     <string name="enter_city_hint">Zadejte město</string>
     <string name="label_current_city">Aktuální město</string>
     <string name="label_choose_city">Vyberte město</string>
-    <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
-    <string name="alertDialog_gps_title" translatable="false">GPS je nastavení</string>
     <string name="alertDialog_gps_message">GPS není povoleno. Chcete zobrazit menu nastavení?</string>
     <string name="alertDialog_gps_positiveButton">Nastavení</string>
     <string name="alertDialog_gps_negativeButton">Zpět</string>
@@ -26,8 +23,6 @@
     <string name="menu_action_toggle_yaxis">Přepnout osu Y</string>
 
     <!-- Navigation drawer -->
-    <string name="navigation_drawer_open" translatable="false">Otevřít navigační panel</string>
-    <string name="navigation_drawer_close" translatable="false">Zavřít navigační panel</string>
     <string name="nav_menu_current_weather">Aktuální počasí</string>
     <string name="nav_menu_daily_forecast">Denní předpověd</string>
     <string name="nav_menu_graphs">Grafy</string>
@@ -39,30 +34,7 @@
     <string name="connection_not_found">Zkontrolujte své připojení na Internet</string>
     <string name="toast_parse_error">Vyskytla se chyba. Zkuste to znovu později!</string>
 
-    <!-- Weather icons -->
-    <string name="icon_clear_sky_day" translatable="false">&#xf00d;</string>
-    <string name="icon_clear_sky_night" translatable="false">&#xf02e;</string>
-    <string name="icon_few_clouds_day" translatable="false">&#xf002;</string>
-    <string name="icon_few_clouds_night" translatable="false">&#xf086;</string>
-    <string name="icon_scattered_clouds" translatable="false">&#xf041;</string>
-    <string name="icon_broken_clouds" translatable="false">&#xf013;</string>
-    <string name="icon_shower_rain" translatable="false">&#xf01a;</string>
-    <string name="icon_rain_day" translatable="false">&#xf008;</string>
-    <string name="icon_rain_night" translatable="false">&#xf028;</string>
-    <string name="icon_thunderstorm" translatable="false">&#xf01e;</string>
-    <string name="icon_snow" translatable="false">&#xf01b;</string>
-    <string name="icon_mist" translatable="false">&#xf014;</string>
-    <string name="icon_weather_default" translatable="false">&#xf075;</string>
-    <string name="icon_wind" translatable="false">&#xf050;</string>
-    <string name="icon_humidity" translatable="false">&#xf07a;</string>
-    <string name="icon_barometer" translatable="false">&#xf079;</string>
-    <string name="icon_cloudiness" translatable="false">&#xf002;</string>
-    <string name="icon_sunrise" translatable="false">&#xf051;</string>
-    <string name="icon_sunset" translatable="false">&#xf052;</string>
-
     <!-- Units and Measurement-->
-    <string name="percent_sign" translatable="false">\u0025</string>
-    <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
@@ -101,8 +73,6 @@
     <string name="about_version_pref_title">Verze</string>
     <string name="about_source_code_pref_title">Zdrojový kód</string>
     <string name="about_app_license_pref_title">Licence</string>
-    <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
-    <string name="about_google_play_pref_title" translatable="false">Google Play</string>
     <string name="about_open_source_licenses_pref_title">Open Source licence</string>
 
     <!-- Weather conditions label strings -->
@@ -119,7 +89,6 @@
     <string name="temperature_day_title">Během dne</string>
     <string name="temperature_evening_title">Večer</string>
     <string name="temperature_night_title">V noci</string>
-    <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
     <string name="label_temperature">Teplota</string>
     <string name="label_wind">Vítr</string>
     <string name="label_rain">Déšť</string>
