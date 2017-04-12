@@ -74,6 +74,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static class GeneralPreferenceFragment extends PreferenceFragment implements
             SharedPreferences.OnSharedPreferenceChangeListener {
 
+        private final String[] SUMMARIES_TO_UPDATE = {
+                Constants.KEY_PREF_TEMPERATURE,
+                Constants.KEY_PREF_HIDE_DESCRIPTION,
+                Constants.KEY_PREF_INTERVAL_NOTIFICATION,
+                Constants.PREF_LANGUAGE,
+        };
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -96,37 +103,44 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                 };
 
+        private void entrySummary(String key) {
+            ListPreference preference = (ListPreference) findPreference(key);
+            preference.setSummary(preference.getEntry());
+        }
 
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        private void updateSummary(String key, boolean changing) {
             switch (key) {
                 case Constants.KEY_PREF_TEMPERATURE:
-                    setSummary();
-                    getActivity().sendBroadcast(
-                            new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                    entrySummary(key);
+                    if (changing) {
+                        getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                    }
                     break;
                 case Constants.KEY_PREF_HIDE_DESCRIPTION:
-                    Intent intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-                    getActivity().sendBroadcast(intent);
+                    if (changing) {
+                        getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                    }
                     break;
                 case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
-                    Preference pref = findPreference(key);
-                    NotificationService.setNotificationServiceAlarm(getActivity(),
-                                                                    pref.isEnabled());
-                    setSummary();
+                    entrySummary(key);
+                    if (changing) {
+                        Preference pref = findPreference(key);
+                        NotificationService.setNotificationServiceAlarm(getActivity(), pref.isEnabled());
+                    }
+                    break;
+                case Constants.PREF_LANGUAGE:
+                    entrySummary(key);
+                    if (changing) {
+                        DialogFragment dialog = new SettingsAlertDialog().newInstance(R.string.restart_dialog_message);
+                        dialog.show(getActivity().getFragmentManager(), "restartApp");
+                    }
                     break;
             }
         }
 
-        private void setSummary() {
-            Preference temperaturePref = findPreference(Constants.KEY_PREF_TEMPERATURE);
-            ListPreference temperatureListPref = (ListPreference) temperaturePref;
-            temperaturePref.setSummary(temperatureListPref.getEntry());
-
-            Preference notificationIntervalPref = findPreference(
-                    Constants.KEY_PREF_INTERVAL_NOTIFICATION);
-            ListPreference notificationIntervalListPref = (ListPreference) notificationIntervalPref;
-            notificationIntervalPref.setSummary(notificationIntervalListPref.getEntry());
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            updateSummary(key, true);
         }
 
         @Override
@@ -134,7 +148,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onResume();
             getPreferenceScreen().getSharedPreferences()
                                  .registerOnSharedPreferenceChangeListener(this);
-            setSummary();
+
+            for (String key : SUMMARIES_TO_UPDATE) {
+                updateSummary(key, false);
+            }
         }
 
         @Override
@@ -272,6 +289,28 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         .setPositiveButton(android.R.string.ok, null)
                         .create();
             }
+        }
+    }
+
+    public static class SettingsAlertDialog extends DialogFragment {
+
+        private static final String ARG_MESSAGE_RES_ID = "org.asdtm.goodweather.message_res_id";
+
+        public SettingsAlertDialog newInstance(int messageResId) {
+            SettingsAlertDialog fragment = new SettingsAlertDialog();
+            Bundle args = new Bundle();
+            args.putInt(ARG_MESSAGE_RES_ID, messageResId);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            int messageResId = getArguments().getInt(ARG_MESSAGE_RES_ID);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(messageResId);
+            builder.setPositiveButton(android.R.string.ok, null);
+            return builder.create();
         }
     }
 }

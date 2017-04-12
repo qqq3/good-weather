@@ -40,7 +40,6 @@ public class MoreWidgetProvider extends AppWidgetProvider {
                 context.startService(new Intent(context, LocationUpdateService.class));
                 break;
             case Intent.ACTION_LOCALE_CHANGED:
-                AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
                 context.startService(new Intent(context, MoreWidgetService.class));
                 break;
             case Constants.ACTION_APPWIDGET_THEME_CHANGED:

@@ -23,7 +23,6 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import org.asdtm.goodweather.model.CitySearch;
-import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.CityParser;
 import org.asdtm.goodweather.utils.Constants;
 
@@ -93,12 +92,6 @@ public class SearchActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        AppPreference.setLocale(this, Constants.APP_SETTINGS_NAME);
     }
 
     private class SearchCityHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

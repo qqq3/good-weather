@@ -12,7 +12,6 @@ public class Constants {
     /**
      * Preferences constants
      */
-    public static final String APP_SETTINGS_LOCALE = "locale";
     public static final String APP_SETTINGS_LATITUDE = "latitude";
     public static final String APP_SETTINGS_LONGITUDE = "longitude";
     public static final String APP_SETTINGS_CITY = "city";

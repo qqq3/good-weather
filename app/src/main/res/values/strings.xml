@@ -154,4 +154,7 @@
     <string name="permission_location_rationale">Location Permissions are needed to determine the current city</string>
     <string name="permission_not_granted">Permissions were not granted!</string>
     <string name="permission_available_location">Location Permissions have been granted</string>
+
+    <!-- Dialog strings -->
+    <string name="restart_dialog_message">Please restart application to apply new settings</string>
 </resources>

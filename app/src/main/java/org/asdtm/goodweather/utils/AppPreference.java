@@ -1,20 +1,18 @@
 package org.asdtm.goodweather.utils;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 
 import org.asdtm.goodweather.R;
 import org.asdtm.goodweather.model.Weather;
 import org.asdtm.goodweather.model.WeatherForecast;
 
 import java.util.List;
-import java.util.Locale;
 
 public class AppPreference {
 
@@ -42,31 +40,6 @@ public class AppPreference {
     public static boolean isNotificationEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_IS_NOTIFICATION_ENABLED, false);
-    }
-
-    public static String getLocale(Context context, String publicPrefName) {
-        SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
-                                                                     Context.MODE_PRIVATE);
-        return preferences.getString(Constants.APP_SETTINGS_LOCALE, "en");
-    }
-
-    public static void setLocale(Context context, String publicPrefName) {
-        String locale;
-        /**
-         * Check API version and based on this gets the current value of the default locale
-         * with specified Category or without
-         */
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            locale = Locale.getDefault(Locale.Category.DISPLAY).getLanguage();
-        } else {
-            locale = Locale.getDefault().getLanguage();
-        }
-
-        SharedPreferences preferences = context.getSharedPreferences(publicPrefName,
-                                                                     Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(Constants.APP_SETTINGS_LOCALE, locale);
-        editor.apply();
     }
 
     public static void saveWeather(Context context, Weather weather) {
