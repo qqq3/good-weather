@@ -30,7 +30,6 @@ public class LessWidgetProvider extends AppWidgetProvider {
         AppWidgetProviderAlarm widgetProviderAlarm =
                 new AppWidgetProviderAlarm(context, LessWidgetProvider.class);
         widgetProviderAlarm.setAlarm();
-        AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
     }
 
     @Override

@@ -30,7 +30,6 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         AppWidgetProviderAlarm appWidgetProviderAlarm =
                 new AppWidgetProviderAlarm(context, MoreWidgetProvider.class);
         appWidgetProviderAlarm.setAlarm();
-        AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
     }
 
     @Override
