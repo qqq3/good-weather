@@ -18,6 +18,7 @@ import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.Utils;
 
 import java.util.Locale;
+import org.asdtm.goodweather.service.LocationUpdateService;
 
 public class MoreWidgetProvider extends AppWidgetProvider {
 
@@ -29,13 +30,14 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         AppWidgetProviderAlarm appWidgetProviderAlarm =
                 new AppWidgetProviderAlarm(context, MoreWidgetProvider.class);
         appWidgetProviderAlarm.setAlarm();
+        AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         switch (intent.getAction()) {
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
-                context.startService(new Intent(context, MoreWidgetService.class));
+                context.startService(new Intent(context, LocationUpdateService.class));
                 break;
             case Intent.ACTION_LOCALE_CHANGED:
                 AppPreference.setLocale(context, Constants.APP_SETTINGS_NAME);
@@ -100,8 +102,6 @@ public class MoreWidgetProvider extends AppWidgetProvider {
     private void preLoadWeather(Context context, RemoteViews remoteViews) {
         SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                                                                      Context.MODE_PRIVATE);
-        String[] cityAndCountryArray = AppPreference.getCityAndCode(context);
-        String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
         String temperatureScale = Utils.getTemperatureScale(context);
         String speedScale = Utils.getSpeedScale(context);
         String percentSign = context.getString(R.string.percent_sign);
@@ -137,7 +137,7 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         String lastUpdate = Utils.setLastUpdateTime(context,
                                                     AppPreference.getLastUpdateTimeMillis(context));
 
-        remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
+        remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context));
         remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
         if(!AppPreference.hideDescription(context))
             remoteViews.setTextViewText(R.id.widget_description, description);
@@ -152,20 +152,9 @@ public class MoreWidgetProvider extends AppWidgetProvider {
     }
 
     private void setWidgetTheme(Context context, RemoteViews remoteViews) {
-        int textColorId;
-        int backgroundColorId;
-
-        if (!AppPreference.isLightThemeEnabled(context)) {
-            backgroundColorId = ContextCompat.getColor(context,
-                                                       R.color.widget_darkTheme_colorBackground);
-            textColorId = ContextCompat.getColor(context,
-                                                 R.color.widget_darkTheme_textColorPrimary);
-        } else {
-            backgroundColorId = ContextCompat.getColor(context,
-                                                       R.color.widget_lightTheme_colorBackground);
-            textColorId = ContextCompat.getColor(context,
-                                                 R.color.widget_lightTheme_textColorPrimary);
-        }
+        int textColorId = AppPreference.getTextColor(context);
+        int backgroundColorId = AppPreference.getBackgroundColor(context);
+        int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
         remoteViews.setInt(R.id.widget_root, "setBackgroundColor", backgroundColorId);
         remoteViews.setTextColor(R.id.widget_temperature, textColorId);
@@ -175,5 +164,6 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextColor(R.id.widget_humidity, textColorId);
         remoteViews.setTextColor(R.id.widget_pressure, textColorId);
         remoteViews.setTextColor(R.id.widget_clouds, textColorId);
+        remoteViews.setInt(R.id.header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
     }
 }

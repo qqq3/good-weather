@@ -86,14 +86,19 @@
     <string name="update_period_12hours">12 hours</string>
     <string name="update_period_24hours">24 hours</string>
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="preference_widget_light_theme">Light theme</string>
     <string name="preference_widget_title_update_period">Update Period</string>
     <string name="preference_title_activity_general">General settings</string>
     <string name="preference_title_activity_widget">Widget settings</string>
+    <string name="preference_widget_update_location">Update location</string>
+    <string name="preference_widget_use_geocoder">Use geolocation for displaying</string>
+    <string name="preference_widget_theme_title">Widget theme</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_transparent">Transparent</string>
     <string name="preference_title_category_display">Display</string>
     <string name="pref_title_language">Language</string>
     <string name="pref_language_default">Default Language</string>
-
+    
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">About</string>
     <string name="about_version_pref_title">Version</string>

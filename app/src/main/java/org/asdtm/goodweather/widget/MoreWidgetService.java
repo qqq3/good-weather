@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.RemoteViews;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 import org.asdtm.goodweather.ConnectionDetector;
 import org.asdtm.goodweather.R;
@@ -54,15 +57,13 @@ public class MoreWidgetService extends IntentService {
             stopSelf();
         }
     }
-
+    
     private void updateWidget(Weather weather) {
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(this);
         ComponentName widgetComponent = new ComponentName(this, MoreWidgetProvider.class);
 
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
         for (int appWidgetId : widgetIds) {
-            String[] cityAndCountryArray = AppPreference.getCityAndCode(this);
-            String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
             String temperatureScale = Utils.getTemperatureScale(this);
             String speedScale = Utils.getSpeedScale(this);
             String percentSign = getString(R.string.percent_sign);
@@ -91,7 +92,7 @@ public class MoreWidgetService extends IntentService {
 
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                                                       R.layout.widget_more_3x3);
-            remoteViews.setTextViewText(R.id.widget_city, cityAndCountry);
+            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this));
             remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
             if(!AppPreference.hideDescription(this))
                 remoteViews.setTextViewText(R.id.widget_description,

@@ -495,7 +495,7 @@ public class GraphsActivity extends BaseActivity {
                 String requestResult = "";
                 HttpURLConnection connection = null;
                 try {
-                    URL url = getWeatherForecastUrl(latitude, longitude, units, locale);
+                    URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, units, locale);
                     connection = (HttpURLConnection) url.openConnection();
 
                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {

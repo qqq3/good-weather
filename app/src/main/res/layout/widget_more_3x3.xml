@@ -10,7 +10,7 @@
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/widget_darkTheme_window_colorBackground"
         android:orientation="horizontal">
 
         <TextView

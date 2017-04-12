@@ -9,3 +9,4 @@ out/
 release.properties
 gradle.properties
 local.properties
+/.nb-gradle/
