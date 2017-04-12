@@ -73,6 +73,7 @@
         <item name="english">English</item>
         <item name="basque">Euskara</item>
         <item name="belarusian">Беларуская</item>
+        <item name="french">Français (French)</item>
         <item name="german">Deutsch</item>
         <item name="spanish">Español(España)</item>
         <item name="japanese">日本語</item>
@@ -84,6 +85,7 @@
         <item name="english">en_GB</item>
         <item name="basque">eu_ES</item>
         <item name="belarusian">be_BY</item>
+        <item name="french">fr</item>
         <item name="german">de_DE</item>
         <item name="spanish">es_ES</item>
         <item name="japanese">ja_JP</item>
