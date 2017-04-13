@@ -114,4 +114,8 @@
     <string name="permission_location_rationale">Standort Berechtigungen werden benötigt, um die aktuelle Stadt zu ermitteln</string>
     <string name="permission_not_granted">Berechtigungen wurden nicht gewährt!</string>
     <string name="permission_available_location">Standort Berechtigungen wurden erteilt</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">Sprache</string>
+    <string name="preference_title_category_display">Anzeige</string>
+    <string name="restart_dialog_message">Starten Sie die Anwendung neu, um neue Einstellungen anzuwenden</string>
 </resources>

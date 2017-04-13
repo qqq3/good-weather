@@ -90,4 +90,8 @@
     <string name="permission_location_rationale">Potrzebne są Lokalizacja Uprawnienia do określenia obecnego miasta</string>
     <string name="permission_not_granted">Uprawnienia nie zostały przyznane!</string>
     <string name="permission_available_location">Lokalizacja uprawnienia zostały przyznane</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">Język</string>
+    <string name="preference_title_category_display">Widok</string>
+    <string name="restart_dialog_message">Proszę ponownie uruchomić aplikację, aby zastosować nowe ustawienia</string>
 </resources>

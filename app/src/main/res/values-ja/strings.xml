@@ -113,4 +113,8 @@
     <string name="permission_location_rationale">場所現在の都市を決定するために許可が必要です</string>
     <string name="permission_not_granted">権限は許可されていません！</string>
     <string name="permission_available_location">場所のアクセス許可が付与されました</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">言語</string>
+    <string name="preference_title_category_display">表示</string>
+    <string name="restart_dialog_message">新しい設定を適用するためにアプリケーションを再起動してください</string>
 </resources>

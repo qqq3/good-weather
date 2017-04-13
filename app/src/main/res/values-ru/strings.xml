@@ -90,4 +90,8 @@
     <string name="permission_location_rationale">Разрешения "Получение местонахождения" необходимы для определения текущего города</string>
     <string name="permission_not_granted">Разрешения не продоставлены!</string>
     <string name="permission_available_location">Разрешения "Получение местонахождения" были продоставлены</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">Язык</string>
+    <string name="preference_title_category_display">Вид</string>
+    <string name="restart_dialog_message">Пожалуйста, перезапустите приложение, чтобы применить новые настройки</string>
 </resources>

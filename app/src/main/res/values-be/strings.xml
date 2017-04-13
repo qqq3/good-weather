@@ -113,4 +113,8 @@
     <string name="permission_location_rationale">Дазволу "Атрыманне месцазнаходжаньня" неабходны для вызначэння горада</string>
     <string name="permission_not_granted">Дазволу не прадастаўлены!</string>
     <string name="permission_available_location">Дазволу "Атрыманне месцазнаходжаньня" былі прадастаўлены</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">Мова</string>
+    <string name="preference_title_category_display">Выгляд</string>
+    <string name="restart_dialog_message">Калі ласка, перазапусціце праграму, каб скарыстацца новымі наладамі</string>
 </resources>
