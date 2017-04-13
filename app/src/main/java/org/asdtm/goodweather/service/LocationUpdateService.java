@@ -30,6 +30,8 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private LocationManager locationManager;
     
+    private long lastLocationUpdateTime;
+    
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -53,6 +55,9 @@ public class LocationUpdateService extends Service implements LocationListener {
                  @Override
                  public void run() {
                      locationManager.removeUpdates(locationListener);
+                     if ((System.currentTimeMillis() - (2*LOCATION_TIMEOUT_IN_MS)) < lastLocationUpdateTime) {
+                         return;
+                     }
                      Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                      Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                      if((lastGpsLocation == null) && (lastNetworkLocation != null)) {
@@ -73,6 +78,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     
     @Override
     public void onLocationChanged(Location location) {
+        lastLocationUpdateTime = System.currentTimeMillis();
         String latitude = String.format("%1$.2f", location.getLatitude());
         String longitude = String.format("%1$.2f", location.getLongitude());
         SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
