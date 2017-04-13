@@ -92,7 +92,7 @@
     <string name="preference_title_activity_widget">Widget settings</string>
     <string name="preference_title_category_display">Display</string>
     <string name="pref_title_language">Language</string>
-    <string name="pref_language_default">Default Language</string>
+    <string name="pref_language_default">System Default</string>
 
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">About</string>

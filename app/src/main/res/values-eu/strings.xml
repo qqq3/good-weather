@@ -113,4 +113,8 @@
     <string name="permission_location_rationale">Kokapen baimenak behar dira uneko hiria zehazteko</string>
     <string name="permission_not_granted">Baimenak ez dira eman!</string>
     <string name="permission_available_location">Kokapen baimenak eman dira</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">Hizkuntza</string>
+    <string name="preference_title_category_display">Erakutsi</string>
+    <string name="restart_dialog_message">Berrabiarazi aplikazioaren ezarpen berriak aplikatzeko</string>
 </resources>

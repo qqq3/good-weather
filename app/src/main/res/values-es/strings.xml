@@ -113,4 +113,8 @@
     <string name="permission_location_rationale">Los permisos de ubicación son necesarios para determinar la ciudad actual</string>
     <string name="permission_not_granted">Los permisos no se concedieron!</string>
     <string name="permission_available_location">Se han concedido los permisos de ubicación</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">Idioma</string>
+    <string name="preference_title_category_display">Mostrar</string>
+    <string name="restart_dialog_message">Reinicie la aplicación para aplicar la nueva configuración</string>
 </resources>

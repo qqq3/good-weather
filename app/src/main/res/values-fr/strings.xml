@@ -113,4 +113,8 @@
     <string name="permission_location_rationale">Permissions de localisation requises pour déterminer la ville actuelle</string>
     <string name="permission_not_granted">Permissions non accordées!</string>
     <string name="permission_available_location">Permissions de localisation accordées</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">La langue</string>
+    <string name="preference_title_category_display">Affichage</string>
+    <string name="restart_dialog_message">Redémarrez l\'application pour appliquer de nouveaux paramètres</string>
 </resources>
