@@ -11,13 +11,13 @@ import android.widget.RemoteViews;
 
 import org.asdtm.goodweather.MainActivity;
 import org.asdtm.goodweather.R;
+import org.asdtm.goodweather.service.LocationUpdateService;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.AppWidgetProviderAlarm;
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.Utils;
 
 import java.util.Locale;
-import org.asdtm.goodweather.service.LocationUpdateService;
 
 
 public class LessWidgetProvider extends AppWidgetProvider {
@@ -36,7 +36,11 @@ public class LessWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         switch (intent.getAction()) {
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
-                context.startService(new Intent(context, LocationUpdateService.class));
+                if(AppPreference.isUpdateLocationEnabled(context)) {
+                    context.startService(new Intent(context, LocationUpdateService.class));
+                } else {
+                    context.startService(new Intent(context, LessWidgetService.class));
+                }
                 break;
             case Intent.ACTION_LOCALE_CHANGED:
                 context.startService(new Intent(context, LessWidgetService.class));
