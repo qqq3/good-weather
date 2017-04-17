@@ -124,5 +124,6 @@
         <service android:name=".widget.LessWidgetService"/>
         <service android:name=".widget.MoreWidgetService"/>
         <service android:name=".service.CurrentWeatherService"/>
+        <service android:name=".service.LocationUpdateService" />
     </application>
 </manifest>

@@ -2,8 +2,19 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference
         android:defaultValue="false"
-        android:key="widget_light_theme_pref_key"
-        android:title="@string/preference_widget_light_theme"/>
+        android:key="widget_update_location_pref_key"
+        android:title="@string/preference_widget_update_location"/>
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="widget_use_geocoder_pref_key"
+        android:title="@string/preference_widget_use_geocoder"/>
+    <ListPreference
+        android:defaultValue="dark"
+        android:dialogTitle="@string/preference_widget_theme_title"
+        android:entries="@array/widget_theme_entries"
+        android:entryValues="@array/widget_theme_values"
+        android:key="widget_theme_pref_key"
+        android:title="@string/preference_widget_theme_title"/>
     <ListPreference
         android:defaultValue="60"
         android:dialogTitle="@string/preference_widget_title_update_period"

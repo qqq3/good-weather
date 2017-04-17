@@ -29,6 +29,7 @@
     </string-array>
 
     <string-array name="widget_update_period_entries">
+        <item>@string/update_period_15min</item>
         <item>@string/update_period_30min</item>
         <item>@string/update_period_1hour</item>
         <item>@string/update_period_3hours</item>
@@ -37,12 +38,24 @@
         <item>@string/update_period_24hours</item>
     </string-array>
     <string-array name="widget_update_period_values" translatable="false">
+        <item>15</item>
         <item>30</item>
         <item>60</item>
         <item>180</item>
         <item>360</item>
         <item>720</item>
         <item>1440</item>
+    </string-array>
+    
+    <string-array name="widget_theme_entries">
+        <item>@string/theme_dark</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_transparent</item>
+    </string-array>
+    <string-array name="widget_theme_values" translatable="false">
+        <item>dark</item>
+        <item>light</item>
+        <item>transparent</item>
     </string-array>
 
     <!-- Wind directions array -->
@@ -79,6 +92,7 @@
         <item name="japanese">日本語</item>
         <item name="polish">Polski</item>
         <item name="russian">Русский</item>
+        <item name="czech">Čeština</item>
     </string-array>
     <string-array name="language_values">
         <item name="default"></item>
@@ -91,5 +105,6 @@
         <item name="japanese">ja_JP</item>
         <item name="polish">pl_PL</item>
         <item name="russian">ru_RU</item>
+        <item name="czech">cs</item>
     </string-array>
 </resources>

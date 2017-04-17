@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.asdtm.goodweather.service.CurrentWeatherService;
-import org.asdtm.goodweather.utils.AppPreference;
+import org.asdtm.goodweather.utils.Utils;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -32,7 +32,6 @@ public class BaseActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar mToolbar;
-    private String[] mCityAndCode;
     private TextView mHeaderCity;
 
     @Override
@@ -92,10 +91,9 @@ public class BaseActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(navigationViewListener);
 
-        mCityAndCode = AppPreference.getCityAndCode(this);
         View headerLayout = navigationView.getHeaderView(0);
         mHeaderCity = (TextView) headerLayout.findViewById(R.id.nav_header_city);
-        mHeaderCity.setText(mCityAndCode[0] + ", " + mCityAndCode[1]);
+        mHeaderCity.setText(Utils.getCityAndCountry(this));
     }
 
     private NavigationView.OnNavigationItemSelectedListener navigationViewListener =
@@ -198,8 +196,7 @@ public class BaseActivity extends AppCompatActivity {
             case PICK_CITY:
                 ConnectionDetector connectionDetector = new ConnectionDetector(this);
                 if (resultCode == RESULT_OK) {
-                    mCityAndCode = AppPreference.getCityAndCode(this);
-                    mHeaderCity.setText(mCityAndCode[0] + ", " + mCityAndCode[1]);
+                    mHeaderCity.setText(Utils.getCityAndCountry(this));
 
                     if (connectionDetector.isNetworkAvailableAndConnected()) {
                         startService(new Intent(this, CurrentWeatherService.class));

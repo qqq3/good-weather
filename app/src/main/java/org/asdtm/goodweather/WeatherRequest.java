@@ -1,25 +1,19 @@
 package org.asdtm.goodweather;
 
-import android.net.Uri;
-
-import org.asdtm.goodweather.utils.ApiKeys;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import org.asdtm.goodweather.utils.Constants;
+import org.asdtm.goodweather.utils.Utils;
 
 public class WeatherRequest
 {
     private static final String TAG = "WeatherRequest";
-    private static final String ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
-    private static final String APPID = ApiKeys.OPEN_WEATHER_MAP_API_KEY;
 
-    byte[] getWeatherByte(String location) throws IOException
+    byte[] getWeatherByte(URL url) throws IOException
     {
-        // Создаем объект URL
-        URL url = new URL(location);
         // Вызов метода openConnection() создает объект подключения к заданному url-адресу
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -45,22 +39,13 @@ public class WeatherRequest
         }
     }
 
-    public String getUrl(String url) throws IOException
+    public String getResultAsString(URL url) throws IOException
     {
         return new String(getWeatherByte(url));
     }
 
     public String getItems(String lat, String lon, String units, String lang) throws IOException
     {
-
-        String url = Uri.parse(ENDPOINT).buildUpon()
-                .appendQueryParameter("lat", lat)
-                .appendQueryParameter("lon", lon)
-                .appendQueryParameter("APPID", APPID)
-                .appendQueryParameter("units", units)
-                .appendQueryParameter("lang", lang)
-                .build()
-                .toString();
-        return getUrl(url);
+        return getResultAsString(Utils.getWeatherForecastUrl(Constants.WEATHER_ENDPOINT, lat, lon, units, lang));
     }
 }

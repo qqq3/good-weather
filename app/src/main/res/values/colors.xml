@@ -16,7 +16,13 @@
 
     <color name="widget_darkTheme_colorBackground">#fa202020</color>
     <color name="widget_darkTheme_textColorPrimary">#FFFFFF</color>
+    <color name="widget_darkTheme_window_colorBackground">#009688</color>
     
     <color name="widget_lightTheme_colorBackground">#f5e7e7e7</color>
     <color name="widget_lightTheme_textColorPrimary">#000000</color>
+    <color name="widget_lightTheme_window_colorBackground">#009688</color>
+    
+    <color name="widget_transparentTheme_colorBackground">#00e7e7e7</color>
+    <color name="widget_transparentTheme_textColorPrimary">#FFFFFF</color>
+    <color name="widget_transparentTheme_window_colorBackground">#00e7e7e7</color>
 </resources>

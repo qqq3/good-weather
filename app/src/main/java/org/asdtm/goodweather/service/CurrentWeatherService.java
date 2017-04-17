@@ -3,16 +3,15 @@ package org.asdtm.goodweather.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import org.asdtm.goodweather.ConnectionDetector;
-import org.asdtm.goodweather.utils.ApiKeys;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.LanguageUtil;
 import org.asdtm.goodweather.utils.PreferenceUtil;
+import org.asdtm.goodweather.utils.Utils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,7 +53,7 @@ public class CurrentWeatherService extends IntentService {
         String requestResult = "";
         HttpURLConnection connection = null;
         try {
-            URL url = getUrl(latitude, longitude, units, locale);
+            URL url = Utils.getWeatherForecastUrl(Constants.WEATHER_ENDPOINT, latitude, longitude, units, locale);
             connection = (HttpURLConnection) url.openConnection();
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -147,18 +146,5 @@ public class CurrentWeatherService extends IntentService {
             intent.putExtra(ACTION_WEATHER_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
         }
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-    }
-
-    private URL getUrl(String lat, String lon, String units, String lang) throws
-                                                                          IOException {
-        String url = Uri.parse(Constants.WEATHER_ENDPOINT).buildUpon()
-                        .appendQueryParameter("lat", lat)
-                        .appendQueryParameter("lon", lon)
-                        .appendQueryParameter("APPID", ApiKeys.OPEN_WEATHER_MAP_API_KEY)
-                        .appendQueryParameter("units", units)
-                        .appendQueryParameter("lang", lang)
-                        .build()
-                        .toString();
-        return new URL(url);
     }
 }

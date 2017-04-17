@@ -4,12 +4,12 @@ import android.app.AlarmManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 
 import org.asdtm.goodweather.R;
@@ -26,18 +26,12 @@ public class Utils {
         Paint paint = new Paint();
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(),
                                                         "fonts/weathericons-regular-webfont.ttf");
-        int textColor;
-        if (!AppPreference.isLightThemeEnabled(context)) {
-            textColor = ContextCompat.getColor(context, R.color.widget_darkTheme_textColorPrimary);
-        } else {
-            textColor = ContextCompat.getColor(context, R.color.widget_lightTheme_textColorPrimary);
-        }
 
         paint.setAntiAlias(true);
         paint.setSubpixelText(true);
         paint.setTypeface(weatherFont);
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(textColor);
+        paint.setColor(AppPreference.getTextColor(context));
         paint.setTextSize(180);
         paint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(text, 128, 200, paint);
@@ -166,17 +160,45 @@ public class Utils {
         return directions[index] + " " + arrows[index];
     }
 
-    public static URL getWeatherForecastUrl(String lat, String lon, String units, String lang) throws
+    public static URL getWeatherForecastUrl(String endpoint, String lat, String lon, String units, String lang) throws
                                                                                          MalformedURLException {
-        String url = Uri.parse(Constants.WEATHER_FORECAST_ENDPOINT)
+        String url = Uri.parse(endpoint)
                         .buildUpon()
                         .appendQueryParameter("appid", ApiKeys.OPEN_WEATHER_MAP_API_KEY)
                         .appendQueryParameter("lat", lat)
                         .appendQueryParameter("lon", lon)
                         .appendQueryParameter("units", units)
-                        .appendQueryParameter("lang", lang)
+                        .appendQueryParameter("lang", "cs".equalsIgnoreCase(lang)?"cz":lang)
                         .build()
                         .toString();
         return new URL(url);
+    }
+    
+    public static String getCityAndCountry(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
+        
+        if(AppPreference.isGeocoderEnabled(context)) {
+            return getCityAndCountryFromGeolocation(preferences);
+        } else {
+            return getCityAndCountryFromPreference(context);
+        }
+    }
+        
+    private static String getCityAndCountryFromGeolocation(SharedPreferences preferences) {
+        String geoCountryName = preferences.getString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "United Kingdom");
+        String geoCity = preferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London");
+        if("".equals(geoCity)) {
+            return geoCountryName;
+        }
+        String geoDistrictOfCity = preferences.getString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, "");
+        if ("".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
+            return geoCity + ", " + geoCountryName;
+        }
+        return geoCity + " - " + geoDistrictOfCity + ", " + geoCountryName;
+    }
+
+    private static String getCityAndCountryFromPreference(Context context) {
+        String[] cityAndCountryArray = AppPreference.getCityAndCode(context);
+        return cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
     }
 }
