@@ -10,12 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import org.asdtm.goodweather.R;
 
@@ -191,7 +186,7 @@ public class Utils {
         
     private static String getCityAndCountryFromGeolocation(SharedPreferences preferences) {
         String geoCountryName = preferences.getString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "United Kingdom");
-        String geoCity = preferences.getString(Constants.APP_SETTINGS_GEO_CITY, "");
+        String geoCity = preferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London");
         if("".equals(geoCity)) {
             return geoCountryName;
         }
@@ -204,7 +199,6 @@ public class Utils {
 
     private static String getCityAndCountryFromPreference(Context context) {
         String[] cityAndCountryArray = AppPreference.getCityAndCode(context);
-        String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
-        return cityAndCountry;
+        return cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
     }
 }
