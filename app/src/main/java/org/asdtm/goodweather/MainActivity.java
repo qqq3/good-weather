@@ -55,7 +55,7 @@ import static org.asdtm.goodweather.utils.AppPreference.saveLastUpdateTimeMillis
 public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final String TAG = "MainActivity";
-    
+
     private static final long LOCATION_TIMEOUT_IN_MS = 30000l;
 
     private TextView mIconWeatherView;
@@ -84,7 +84,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private Menu mToolbarMenu;
     private BroadcastReceiver mWeatherUpdateReceiver;
 
-    private String mUnits;
     private String mSpeedScale;
     private String mIconWind;
     private String mIconHumidity;
@@ -106,7 +105,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             Manifest.permission.ACCESS_FINE_LOCATION};
 
     public Context storedContext;
-        
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,11 +181,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
-        if(AppPreference.isGeocoderEnabled(this)) {
-            setTitle(Utils.getCityAndCountry(this));
-        } else {
-            setTitle(mWeather.location.getCityName());
-        }
+
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
                     mWeather.location.getCountryCode());
@@ -311,7 +306,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             Log.e(TAG, "Unable to get address from latitude and longitude", ex);
         }
     }
-    
+
     private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -342,7 +337,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         float pressurePref = mPrefWeather.getFloat(Constants.WEATHER_DATA_PRESSURE, 0);
         float windPref = mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0);
         int clouds = mPrefWeather.getInt(Constants.WEATHER_DATA_CLOUDS, 0);
-        
         long sunrisePref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNRISE, -1);
         long sunsetPref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNSET, -1);
 
@@ -484,7 +478,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
 
     FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
-                
         @Override
         public void onClick(View view) {
             String temperatureScale = Utils.getTemperatureScale(MainActivity.this);
@@ -605,7 +598,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                          mLocationListener.onLocationChanged(lastNetworkLocation);
                      } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
                          mLocationListener.onLocationChanged(lastGpsLocation);
-                     } else if ((lastGpsLocation != null) && (lastNetworkLocation != null)) {
+                     } else {
                          mLocationListener.onLocationChanged((lastGpsLocation.getElapsedRealtimeNanos() > lastNetworkLocation.getElapsedRealtimeNanos())?lastGpsLocation:lastNetworkLocation);
                      }
                  }
