@@ -324,7 +324,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             };
 
     private void preLoadWeather() {
-        mUnits = AppPreference.getTemperatureUnit(this);
         mSpeedScale = Utils.getSpeedScale(this);
         String lastUpdate = Utils.setLastUpdateTime(this,
                 AppPreference.getLastUpdateTimeMillis(this));
