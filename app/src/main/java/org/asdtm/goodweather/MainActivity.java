@@ -578,7 +578,11 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     locationManager.removeUpdates(mLocationListener);
                     if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        mLocationListener.onLocationChanged(lastLocation);
+                        if (lastLocation != null) {
+                            mLocationListener.onLocationChanged(lastLocation);
+                        } else {
+                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+                        }
                     }
                 }
             }, LOCATION_TIMEOUT_IN_MS);
@@ -603,7 +607,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
                             mLocationListener.onLocationChanged(lastGpsLocation);
                         } else {
-                            mLocationListener.onLocationChanged((lastGpsLocation.getElapsedRealtimeNanos() > lastNetworkLocation.getElapsedRealtimeNanos()) ? lastGpsLocation : lastNetworkLocation);
+                            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
                         }
                     }
                 }
