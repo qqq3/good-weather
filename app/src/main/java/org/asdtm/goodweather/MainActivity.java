@@ -37,8 +37,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.io.IOException;
-import java.util.List;
 
 import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.model.Weather;
@@ -48,6 +46,8 @@ import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.PermissionUtil;
 import org.asdtm.goodweather.utils.Utils;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 import static org.asdtm.goodweather.utils.AppPreference.saveLastUpdateTimeMillis;
@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     private static final String TAG = "MainActivity";
 
-    private static final long LOCATION_TIMEOUT_IN_MS = 30000l;
+    private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
 
     private TextView mIconWeatherView;
     private TextView mTemperatureView;
@@ -184,7 +184,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
-                    mWeather.location.getCountryCode());
+                mWeather.location.getCountryCode());
         configEditor.apply();
     }
 
@@ -228,8 +228,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     setUpdateButtonState(true);
                 } else {
                     Toast.makeText(MainActivity.this,
-                                   R.string.connection_not_found,
-                                   Toast.LENGTH_SHORT).show();
+                            R.string.connection_not_found,
+                            Toast.LENGTH_SHORT).show();
                     setUpdateButtonState(false);
                 }
                 return true;
@@ -260,7 +260,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
 
             mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                                                      Context.MODE_PRIVATE);
+                    Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putString(Constants.APP_SETTINGS_LATITUDE, latitude);
             editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
@@ -272,7 +272,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
             } else {
                 Toast.makeText(MainActivity.this, R.string.connection_not_found, Toast.LENGTH_SHORT)
-                     .show();
+                        .show();
             }
         }
 
@@ -298,7 +298,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             String latitudeEn = latitude.replace(",", ".");
             String longitudeEn = longitude.replace(",", ".");
             List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(latitudeEn), Double.parseDouble(longitudeEn), 1);
-            if((addresses != null) && (addresses.size() > 0)) {
+            if ((addresses != null) && (addresses.size() > 0)) {
                 editor.putString(Constants.APP_SETTINGS_GEO_CITY, addresses.get(0).getLocality());
                 editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, addresses.get(0).getCountryName());
             }
@@ -316,8 +316,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         startService(new Intent(MainActivity.this, CurrentWeatherService.class));
                     } else {
                         Toast.makeText(MainActivity.this,
-                                       R.string.connection_not_found,
-                                       Toast.LENGTH_SHORT).show();
+                                R.string.connection_not_found,
+                                Toast.LENGTH_SHORT).show();
                         mSwipeRefresh.setRefreshing(false);
                     }
                 }
@@ -464,8 +464,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
                         Toast.makeText(MainActivity.this,
-                                       getString(R.string.toast_parse_error),
-                                       Toast.LENGTH_SHORT).show();
+                                getString(R.string.toast_parse_error),
+                                Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -489,9 +489,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             String sunset;
             temperature = String.format(Locale.getDefault(), "%.0f", mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
             description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION,
-                                                 "clear sky");
+                    "clear sky");
             wind = String.format(Locale.getDefault(), "%.1f",
-                                 mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
+                    mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
             sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
                     .getLong(Constants.WEATHER_DATA_SUNRISE, -1));
             sunset = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
@@ -510,8 +510,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 startActivity(Intent.createChooser(shareIntent, "Share Weather"));
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(MainActivity.this,
-                               "Communication app not found",
-                               Toast.LENGTH_LONG).show();
+                        "Communication app not found",
+                        Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -573,11 +573,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, mLocationListener, locationLooper);
             final Handler locationHandler = new Handler(locationLooper);
             locationHandler.postDelayed(new Runnable() {
-                 @Override
-                 public void run() {
-                     locationManager.removeUpdates(mLocationListener);
-                     mLocationListener.onLocationChanged(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-                 }
+                @Override
+                public void run() {
+                    locationManager.removeUpdates(mLocationListener);
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        mLocationListener.onLocationChanged(lastLocation);
+                    }
+                }
             }, LOCATION_TIMEOUT_IN_MS);
         }
     }
@@ -588,19 +591,22 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, mLocationListener, locationLooper);
             final Handler locationHandler = new Handler(locationLooper);
             locationHandler.postDelayed(new Runnable() {
-                 @Override
-                 public void run() {
-                     locationManager.removeUpdates(mLocationListener);
-                     Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                     Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                     if((lastGpsLocation == null) && (lastNetworkLocation != null)) {
-                         mLocationListener.onLocationChanged(lastNetworkLocation);
-                     } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
-                         mLocationListener.onLocationChanged(lastGpsLocation);
-                     } else {
-                         mLocationListener.onLocationChanged((lastGpsLocation.getElapsedRealtimeNanos() > lastNetworkLocation.getElapsedRealtimeNanos())?lastGpsLocation:lastNetworkLocation);
-                     }
-                 }
+                @Override
+                public void run() {
+                    locationManager.removeUpdates(mLocationListener);
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                        if ((lastGpsLocation == null) && (lastNetworkLocation != null)) {
+                            mLocationListener.onLocationChanged(lastNetworkLocation);
+                        } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
+                            mLocationListener.onLocationChanged(lastGpsLocation);
+                        } else {
+                            mLocationListener.onLocationChanged((lastGpsLocation.getElapsedRealtimeNanos() > lastNetworkLocation.getElapsedRealtimeNanos()) ? lastGpsLocation : lastNetworkLocation);
+                        }
+                    }
+                }
             }, LOCATION_TIMEOUT_IN_MS);
         }
     }
@@ -615,7 +621,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
 
     private void requestLocationPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
             Snackbar.make(findViewById(android.R.id.content), R.string.permission_location_rationale, Snackbar.LENGTH_LONG)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
