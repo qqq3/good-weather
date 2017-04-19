@@ -527,6 +527,16 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
+        mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    locationManager.removeUpdates(mLocationListener);
+                } catch (SecurityException e) {
+                    Log.e(TAG, "Cancellation error", e);
+                }
+            }
+        });
 
         if (isNetworkEnabled) {
             networkRequestLocation();
