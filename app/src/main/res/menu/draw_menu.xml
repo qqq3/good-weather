@@ -13,14 +13,14 @@
             android:id="@+id/nav_menu_weather_forecast"
             android:icon="@drawable/ic_daily_forecast_dark_24dp"
             android:title="@string/nav_menu_daily_forecast"/>
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_settings"
-            android:title="@string/nav_menu_settings"/>
     </group>
     <group
         android:id="@+id/nav_menu_communication"
         android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/nav_menu_settings"/>
         <item
             android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_feedback"
