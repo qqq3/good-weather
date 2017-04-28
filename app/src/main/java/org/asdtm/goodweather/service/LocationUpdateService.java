@@ -1,9 +1,11 @@
 package org.asdtm.goodweather.service;
 
+import android.Manifest;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import org.asdtm.goodweather.utils.Constants;
@@ -27,7 +30,9 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private static final String TAG = "LocationUpdateService";
 
-    private static final long LOCATION_TIMEOUT_IN_MS = 30000l;
+    private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
+
+    public static final String ARG_REQUEST_LOCATION_PERMISSION = "org.asdtm.goodweather.service.request_location_permission";
 
     private LocationManager locationManager;
 
@@ -47,32 +52,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        Looper locationLooper = Looper.myLooper();
-        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
-        final LocationListener locationListener = this;
-        final Handler locationHandler = new Handler(locationLooper);
-        locationHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                locationManager.removeUpdates(locationListener);
-                if ((System.currentTimeMillis() - (2 * LOCATION_TIMEOUT_IN_MS)) < lastLocationUpdateTime) {
-                    return;
-                }
-                Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if ((lastGpsLocation == null) && (lastNetworkLocation != null)) {
-                    locationListener.onLocationChanged(lastNetworkLocation);
-                } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
-                    locationListener.onLocationChanged(lastGpsLocation);
-                } else if ((lastGpsLocation != null) && (lastNetworkLocation != null)) {
-                    locationListener.onLocationChanged((lastGpsLocation.getElapsedRealtimeNanos() > lastNetworkLocation.getElapsedRealtimeNanos()) ? lastGpsLocation : lastNetworkLocation);
-                }
-
-                startService(new Intent(getBaseContext(), LessWidgetService.class));
-                startService(new Intent(getBaseContext(), MoreWidgetService.class));
-                stopSelf();
-            }
-        }, LOCATION_TIMEOUT_IN_MS);
+        requestLocation();
         return ret;
     }
 
@@ -82,6 +62,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         lastLocationUpdateTime = System.currentTimeMillis();
         String latitude = String.format("%1$.2f", location.getLatitude());
         String longitude = String.format("%1$.2f", location.getLongitude());
+        locationManager.removeUpdates(this);
         SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
@@ -89,8 +70,6 @@ public class LocationUpdateService extends Service implements LocationListener {
         editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
         getAndWriteAddressFromGeocoder(latitude, longitude, editor);
         editor.apply();
-
-        locationManager.removeUpdates(this);
     }
 
     @Override
@@ -119,6 +98,47 @@ public class LocationUpdateService extends Service implements LocationListener {
             }
         } catch (IOException | NumberFormatException ex) {
             Log.e(TAG, "Unable to get address from latitude and longitude", ex);
+        }
+    }
+
+    private void requestLocation() {
+        int fineLocationPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (fineLocationPermission != PackageManager.PERMISSION_GRANTED) {
+            stopSelf();
+        } else {
+            detectLocation();
+        }
+    }
+
+    private void detectLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Looper locationLooper = Looper.myLooper();
+            locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
+            final LocationListener locationListener = this;
+            final Handler locationHandler = new Handler(locationLooper);
+            locationHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    locationManager.removeUpdates(locationListener);
+                    if ((System.currentTimeMillis() - (2 * LOCATION_TIMEOUT_IN_MS)) < lastLocationUpdateTime) {
+                        return;
+                    }
+                    if (ContextCompat.checkSelfPermission(LocationUpdateService.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if ((lastGpsLocation == null) && (lastNetworkLocation != null)) {
+                            locationListener.onLocationChanged(lastNetworkLocation);
+                        } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
+                            locationListener.onLocationChanged(lastGpsLocation);
+                        } else {
+                            locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, 0, 0, locationListener);
+                        }
+                    }
+                    startService(new Intent(getBaseContext(), LessWidgetService.class));
+                    startService(new Intent(getBaseContext(), MoreWidgetService.class));
+                    stopSelf();
+                }
+            }, LOCATION_TIMEOUT_IN_MS);
         }
     }
 }

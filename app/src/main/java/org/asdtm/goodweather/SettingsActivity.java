@@ -1,5 +1,6 @@
 package org.asdtm.goodweather;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -7,11 +8,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -182,6 +185,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     Intent intent1 = new Intent(Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED);
                     getActivity().sendBroadcast(intent1);
                     setSummary();
+                    break;
+                case Constants.KEY_PREF_WIDGET_UPDATE_LOCATION:
+                    int fineLocationPermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+                    if (fineLocationPermission != PackageManager.PERMISSION_GRANTED) {
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), R.string.permission_location_need, Snackbar.LENGTH_SHORT).show();
+                        CheckBoxPreference updateLocation = (CheckBoxPreference) findPreference(key);
+                        updateLocation.setChecked(false);
+                    }
                     break;
             }
         }
