@@ -58,7 +58,6 @@
     <string name="update_period_12hours">12 horas</string>
     <string name="update_period_24hours">24 horas</string>
     <string name="pref_title_vibrate">Vibrar</string>
-    <string name="preference_widget_light_theme">Tema claro</string>
     <string name="preference_widget_title_update_period">Periodo de actualización</string>
     <string name="preference_title_activity_general">Ajustes generales</string>
     <string name="preference_title_activity_widget">Ajustes de widget</string>

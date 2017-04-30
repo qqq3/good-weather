@@ -57,7 +57,6 @@
     <string name="update_period_12hours">12 時間</string>
     <string name="update_period_24hours">24 時間</string>
     <string name="pref_title_vibrate">バイブレート</string>
-    <string name="preference_widget_light_theme">ライトテーマ</string>
     <string name="preference_widget_title_update_period">更新間隔</string>
     <string name="preference_title_activity_general">全般設定</string>
     <string name="preference_title_activity_widget">ウィジェット設定</string>
