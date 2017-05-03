@@ -108,6 +108,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        ((GoodWeatherApp) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -402,27 +403,21 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mIconWindView = (TextView) findViewById(R.id.main_wind_icon);
         mIconWindView.setTypeface(weatherFontIcon);
         mIconWindView.setText(mIconWind);
-        mIconWindView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconHumidityView = (TextView) findViewById(R.id.main_humidity_icon);
         mIconHumidityView.setTypeface(weatherFontIcon);
         mIconHumidityView.setText(mIconHumidity);
-        mIconHumidityView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconPressureView = (TextView) findViewById(R.id.main_pressure_icon);
         mIconPressureView.setTypeface(weatherFontIcon);
         mIconPressureView.setText(mIconPressure);
-        mIconPressureView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconCloudinessView = (TextView) findViewById(R.id.main_cloudiness_icon);
         mIconCloudinessView.setTypeface(weatherFontIcon);
         mIconCloudinessView.setText(mIconCloudiness);
-        mIconCloudinessView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconSunriseView = (TextView) findViewById(R.id.main_sunrise_icon);
         mIconSunriseView.setTypeface(weatherFontIcon);
         mIconSunriseView.setText(mIconSunrise);
-        mIconSunriseView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconSunsetView = (TextView) findViewById(R.id.main_sunset_icon);
         mIconSunsetView.setTypeface(weatherFontIcon);
         mIconSunsetView.setText(mIconSunset);
-        mIconSunsetView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
     }
 
     private void weatherConditionsIcons() {

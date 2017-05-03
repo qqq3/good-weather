@@ -107,4 +107,11 @@
         <item name="russian">ru_RU</item>
         <item name="czech">cs</item>
     </string-array>
+
+    <!-- Themes array -->
+    <string-array name="theme_entries">
+        <item name="light">@string/theme_light</item>
+        <item name="dark">@string/theme_dark</item>
+    </string-array>
+
 </resources>

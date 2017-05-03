@@ -20,6 +20,12 @@
             android:title="@string/pref_title_language"
             android:entries="@array/language_entries"
             android:entryValues="@array/language_values"/>
+        <ListPreference
+            android:key="theme_pref_key"
+            android:dialogTitle="@string/pref_title_theme"
+            android:title="@string/pref_title_theme"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:key="notification_category_pref_key"

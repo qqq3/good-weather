@@ -1,6 +1,7 @@
 package org.asdtm.goodweather;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -18,9 +19,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.asdtm.goodweather.service.NotificationService;
@@ -34,8 +40,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((GoodWeatherApp) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
         setupActionBar();
+
+        int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+        int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+        int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+        getListView().setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
     }
 
     @Override
@@ -50,6 +62,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     private void setupActionBar() {
+        getLayoutInflater().inflate(R.layout.activity_settings, (ViewGroup)findViewById(android.R.id.content));
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -82,6 +97,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Constants.KEY_PREF_HIDE_DESCRIPTION,
                 Constants.KEY_PREF_INTERVAL_NOTIFICATION,
                 Constants.PREF_LANGUAGE,
+                Constants.PREF_THEME,
         };
 
         @Override
@@ -92,7 +108,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
                     Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
             notificationSwitch.setOnPreferenceChangeListener(notificationListener);
+        }
 
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
         }
 
         Preference.OnPreferenceChangeListener notificationListener =
@@ -138,6 +166,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         dialog.show(getActivity().getFragmentManager(), "restartApp");
                     }
                     break;
+                case Constants.PREF_THEME:
+                    entrySummary(key);
+                    if (changing) {
+                        GoodWeatherApp app = (GoodWeatherApp) getActivity().getApplication();
+                        app.reloadTheme();
+                        app.applyTheme(getActivity());
+                        restartApp(getActivity());
+                    }
+                    break;
             }
         }
 
@@ -172,6 +209,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_widget);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
         }
 
         @Override
@@ -232,6 +282,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             findPreference(Constants.KEY_PREF_ABOUT_VERSION).setSummary(getVersionName());
             findPreference(Constants.KEY_PREF_ABOUT_F_DROID).setIntent(fDroidIntent());
             findPreference(Constants.KEY_PREF_ABOUT_GOOGLE_PLAY).setIntent(googlePlayIntent());
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
         }
 
         @Override
@@ -323,5 +386,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             builder.setPositiveButton(android.R.string.ok, null);
             return builder.create();
         }
+    }
+
+    public static void restartApp(Activity activity) {
+        Intent intent = activity.getIntent();
+        if (intent == null) {
+            return;
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        activity.finish();
+        activity.overridePendingTransition(0, 0);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(0, 0);
     }
 }

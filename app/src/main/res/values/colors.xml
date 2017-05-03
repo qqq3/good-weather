@@ -5,6 +5,7 @@
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="textColorHint">#d4d4d4</color>
     <color name="colorAccent">#de454e</color>
+    <color name="colorAccentDark">#d84315</color>
     <color name="windowBackground">#4db6ac</color>
     <color name="swipe_red">#df5e65</color>
     <color name="swipe_green">#42c25e</color>
