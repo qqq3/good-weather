@@ -80,7 +80,7 @@
     <string name="about_version_pref_title">Sürüm</string>
     <string name="about_source_code_pref_title">Kaynak kodu</string>
     <string name="about_app_license_pref_title">Lisans</string>
-    <string name="about_open_source_licenses_pref_title">Açık Kaynak lisansları/string>
+    <string name="about_open_source_licenses_pref_title">Açık Kaynak lisansları</string>
 
     <!-- Weather conditions label strings -->
     <string name="wind_label">Rüzgar: %1$s %2$s</string>
