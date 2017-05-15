@@ -89,6 +89,7 @@
         <item name="catalan">Català (Catalan)</item>
         <item name="czech">Čeština (Czech)</item>
         <item name="french">Français (French)</item>
+        <item name="italian">Italiano (Italian)</item>
         <item name="german">Deutsch (German)</item>
         <item name="spanish">Español (Spanish)</item>
         <item name="japanese">日本語 (Japanese)</item>
@@ -103,6 +104,7 @@
         <item name="catalan">ca</item>
         <item name="czech">cs</item>
         <item name="french">fr</item>
+        <item name="italian">it_IT</item>
         <item name="german">de_DE</item>
         <item name="spanish">es_ES</item>
         <item name="japanese">ja_JP</item>
