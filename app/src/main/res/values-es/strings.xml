@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Introduce ciudad</string>
     <string name="label_current_city">Ciudad actual</string>
@@ -6,7 +7,7 @@
     <string name="alertDialog_gps_positiveButton">Ajustes</string>
     <string name="alertDialog_gps_negativeButton">Cancelar</string>
     <string name="progressDialog_gps_locate">Encontrar ubicación actual</string>
-    <string name="load_progress">Cargando&#8230;</string>
+    <string name="load_progress">Cargando…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Buscar ubicación</string>
@@ -32,7 +33,7 @@
 
     <!-- Toast messages -->
     <string name="connection_not_found">Comprueba tu conexión a internet</string>
-    <string name="toast_parse_error">Ha ocurrido un error. Prueba más tarde</string>
+    <string name="toast_parse_error">Ha ocurrido un error. Prueba más tarde.</string>
 
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
