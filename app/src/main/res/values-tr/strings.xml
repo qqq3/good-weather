@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Şehir girin</string>
     <string name="label_current_city">Geçerli şehir</string>
@@ -7,10 +7,10 @@
     <string name="alertDialog_gps_positiveButton">Ayarlar</string>
     <string name="alertDialog_gps_negativeButton">İptal</string>
     <string name="progressDialog_gps_locate">Şimdiki konumu bul</string>
-    <string name="load_progress">Yükleniyor&#8230;</string>
+    <string name="load_progress">Yükleniyor…</string>
 
     <!-- Activity names -->
-    <string name="title_activity_search">Konumu Ara</string>
+    <string name="title_activity_search">Konum Ara</string>
     <string name="label_activity_main">Şimdiki Hava</string>
     <string name="label_activity_weather_forecast">Günlük Tahmin</string>
     <string name="label_activity_graphs">Hava Grafikleri</string>
@@ -44,7 +44,7 @@
     <string name="millimetre_label">mm</string>
 
     <!-- Search Screen strings -->
-    <string name="hint_activity_search">Konumu ara</string>
+    <string name="hint_activity_search">Konum ara</string>
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Ayarlar</string>
@@ -65,7 +65,7 @@
     <string name="preference_title_activity_general">Genel ayarlar</string>
     <string name="preference_title_activity_widget">Widget ayarları</string>
     <string name="preference_widget_update_location">Konumu güncelle</string>
-    <string name="preference_widget_use_geocoder">Görüntüleme için konum kullan</string>
+    <string name="preference_widget_use_geocoder">Görüntüleme için konumu kullan</string>
     <string name="preference_widget_theme_title">Widget teması</string>
     <string name="theme_dark">Koyu</string>
     <string name="theme_light">Açık</string>
@@ -88,7 +88,7 @@
     <string name="snow_label">Kar: %1$s %2$s</string>
     <string name="humidity_label">Nem: %1$s%2$s</string>
     <string name="pressure_label">Basınç: %1$s %2$s</string>
-    <string name="cloudiness_label">Açıklık: %1$s%2$s</string>
+    <string name="cloudiness_label">Kapalılık: %1$s%2$s</string>
     <string name="last_update_label">Son güncelleme: %s</string>
     <string name="sunrise_label">Gün doğumu: %s</string>
     <string name="sunset_label">Gün batımı: %s</string>
