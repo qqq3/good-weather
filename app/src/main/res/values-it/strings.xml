@@ -1,10 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">Good Weather</string>
     <string name="enter_city_hint">Inserisci città</string>
     <string name="label_current_city">Città corrente</string>
     <string name="label_choose_city">Scegli la città</string>
-    <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
-    <string name="alertDialog_gps_title" translatable="false">Impostazioni GPS</string>
     <string name="alertDialog_gps_message">Il GPS non è abilitato. Vuoi andare al menu delle impostazioni?</string>
     <string name="alertDialog_gps_positiveButton">Impostazioni</string>
     <string name="alertDialog_gps_negativeButton">Annulla</string>
@@ -23,11 +20,9 @@
     <string name="toolbar_menu_search_city">Cerca località</string>
     <string name="toolbar_menu_detect_location">Geolocalizzazione</string>
     <string name="menu_action_toggle_values">Valori sul grafico</string>
-    <string name="menu_action_toggle_yaxis">Valori sull'asse Y</string>
+    <string name="menu_action_toggle_yaxis">Valori sull\'asse Y</string>
 
     <!-- Navigation drawer -->
-    <string name="navigation_drawer_open" translatable="false">Apri menu navigation drawer</string>
-    <string name="navigation_drawer_close" translatable="false">Chiudi menu navigation drawer</string>
     <string name="nav_menu_current_weather">Meteo attuale</string>
     <string name="nav_menu_daily_forecast">Previsioni giornaliere</string>
     <string name="nav_menu_graphs">Grafici</string>
@@ -39,30 +34,7 @@
     <string name="connection_not_found">Controlla la tua connessione internet</string>
     <string name="toast_parse_error">Si è verificato un errore. Prova più tardi!</string>
 
-    <!-- Weather icons -->
-    <string name="icon_clear_sky_day" translatable="false">&#xf00d;</string>
-    <string name="icon_clear_sky_night" translatable="false">&#xf02e;</string>
-    <string name="icon_few_clouds_day" translatable="false">&#xf002;</string>
-    <string name="icon_few_clouds_night" translatable="false">&#xf086;</string>
-    <string name="icon_scattered_clouds" translatable="false">&#xf041;</string>
-    <string name="icon_broken_clouds" translatable="false">&#xf013;</string>
-    <string name="icon_shower_rain" translatable="false">&#xf01a;</string>
-    <string name="icon_rain_day" translatable="false">&#xf008;</string>
-    <string name="icon_rain_night" translatable="false">&#xf028;</string>
-    <string name="icon_thunderstorm" translatable="false">&#xf01e;</string>
-    <string name="icon_snow" translatable="false">&#xf01b;</string>
-    <string name="icon_mist" translatable="false">&#xf014;</string>
-    <string name="icon_weather_default" translatable="false">&#xf075;</string>
-    <string name="icon_wind" translatable="false">&#xf050;</string>
-    <string name="icon_humidity" translatable="false">&#xf07a;</string>
-    <string name="icon_barometer" translatable="false">&#xf079;</string>
-    <string name="icon_cloudiness" translatable="false">&#xf002;</string>
-    <string name="icon_sunrise" translatable="false">&#xf051;</string>
-    <string name="icon_sunset" translatable="false">&#xf052;</string>
-
     <!-- Units and Measurement-->
-    <string name="percent_sign" translatable="false">\u0025</string>
-    <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
@@ -77,7 +49,7 @@
     <string name="preference_hide_desc">Nascondi la descrizione</string>
     <string name="pref_title_category_notification">Notifiche</string>
     <string name="pref_title_notification">Abilita notifiche</string>
-    <string name="pref_title_notification_refresh_interval">Intervallo d'aggiornamento</string>
+    <string name="pref_title_notification_refresh_interval">Intervallo d\'aggiornamento</string>
     <string name="update_period_15min">15 minuti</string>
     <string name="update_period_30min">30 minuti</string>
     <string name="update_period_1hour">Ogni ora</string>
@@ -86,7 +58,7 @@
     <string name="update_period_12hours">12 ore</string>
     <string name="update_period_24hours">24 ore</string>
     <string name="pref_title_vibrate">Vibrazione</string>
-    <string name="preference_widget_title_update_period">Intervallo d'aggiornamento</string>
+    <string name="preference_widget_title_update_period">Intervallo d\'aggiornamento</string>
     <string name="preference_title_activity_general">Impostazioni generali</string>
     <string name="preference_title_activity_widget">Impostazioni del widget</string>
     <string name="preference_widget_update_location">Aggiorna la posizione</string>
@@ -105,8 +77,6 @@
     <string name="about_version_pref_title">Versione</string>
     <string name="about_source_code_pref_title">Codice sorgente</string>
     <string name="about_app_license_pref_title">Licenza</string>
-    <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
-    <string name="about_google_play_pref_title" translatable="false">Google Play</string>
     <string name="about_open_source_licenses_pref_title">Licenze Open Source</string>
 
     <!-- Weather conditions label strings -->
@@ -123,7 +93,6 @@
     <string name="temperature_day_title">Giorno</string>
     <string name="temperature_evening_title">Sera</string>
     <string name="temperature_night_title">Notte</string>
-    <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
     <string name="label_temperature">Temperatura</string>
     <string name="label_wind">Vento</string>
     <string name="label_rain">Pioggia</string>
@@ -137,7 +106,7 @@
     <string name="donation_bitcoin_qr_description">QR code donazione Bitcoin</string>
     <string name="donation_bitcoin_copy_button">Copia indirizzo Bitcoin</string>
     <string name="donation_bitcoin_open_app">Apri applicazione Bitcoin</string>
-    <string name="donation_bitcoin_copy_message">L'indirizzo Bitcoin è stato copiato negli appunti</string>
+    <string name="donation_bitcoin_copy_message">L\'indirizzo Bitcoin è stato copiato negli appunti</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">N</string>
@@ -145,11 +114,9 @@
     <string name="wind_direction_east">E</string>
     <string name="wind_direction_south_east">SE</string>
     <string name="wind_direction_south">S</string>
-    <string name="wind_direction_south_west">SW</string>
-    <string name="wind_direction_west">W</string>
-    <string name="wind_direction_north_west">NW</string>
-
-    <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
+    <string name="wind_direction_south_west">SO</string>
+    <string name="wind_direction_west">O</string>
+    <string name="wind_direction_north_west">NO</string>
 
     <!-- Permission strings -->
     <string name="permission_location_rationale">Per determinare la tua posizione sono necessari i permessi per la geolocalizzazione</string>
@@ -158,5 +125,5 @@
     <string name="permission_location_need">È necessario concedere le autorizzazioni di geolocalizzazione</string>
 
     <!-- Dialog strings -->
-    <string name="restart_dialog_message">Riavviare l'applicazione per applicare le nuove impostazioni</string>
+    <string name="restart_dialog_message">Riavviare l\'applicazione per applicare le nuove impostazioni</string>
 </resources>
