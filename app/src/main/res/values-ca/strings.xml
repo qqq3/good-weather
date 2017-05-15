@@ -33,7 +33,7 @@
 
     <!-- Toast messages -->
     <string name="connection_not_found">Comprova la teva connexió a Internet</string>
-    <string name="toast_parse_error">Ha ocorregut un error. Prova més tard</string>
+    <string name="toast_parse_error">Ha ocorregut un error. Prova més tard!</string>
 
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
