@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Introdueix ciutat</string>
     <string name="label_current_city">Ciutat actual</string>
@@ -6,7 +7,7 @@
     <string name="alertDialog_gps_positiveButton">Paràmetres</string>
     <string name="alertDialog_gps_negativeButton">Cancel\·lar</string>
     <string name="progressDialog_gps_locate">Trobar l\'ubicació actual</string>
-    <string name="load_progress">Càrrega&#8230;</string>
+    <string name="load_progress">Càrrega…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Cercar ubicació</string>
@@ -116,4 +117,14 @@
     <string name="pref_title_language">Idioma</string>
     <string name="preference_title_category_display">Mostrar</string>
     <string name="restart_dialog_message">Reiniciï l\'aplicació per aplicar la nova configuració</string>
-</resources>
+<string name="preference_widget_update_location">Actualitza localització</string>
+    <string name="preference_widget_use_geocoder">Utiliza la ubicació mostrada</string>
+    <string name="preference_widget_theme_title">Tema del giny</string>
+    <string name="theme_dark">Fosc</string>
+    <string name="theme_light">Clar</string>
+    <string name="theme_transparent">Transparent</string>
+    <string name="pref_title_theme">Tema</string>
+    
+    <string name="permission_location_need">Hauries de donar permisos de localització</string>
+
+    </resources>
