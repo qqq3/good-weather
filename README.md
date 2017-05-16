@@ -27,16 +27,21 @@ Open source weather app for Android.
 - [ ] Add weather map
 - [ ] Improve accessibility for people with disabilities
 
+# Translations
+[https://hosted.weblate.org/projects/good-weather/strings/](https://hosted.weblate.org/projects/good-weather/strings/)
+
+The strings are translated using [Weblate](https://weblate.org/en/). Follow
+[these instructions](https://hosted.weblate.org/engage/good-weather/) if you would like to contribute 
+[here](https://hosted.weblate.org/projects/good-weather/strings/).
+
 ## Donations
 If you would like to help, you can donate Bitcoin on ```1FV8m1MKqZ9ZKB8YNwpsjsuubHTznJSiT8``` address.
-
-Or scan QR code with help Bitcoin app:
-<img src="http://i.imgur.com/pqG48LZ.png" alt="QR code Bitcoin address" width="100" height="100" />
-
 Thanks!
 
 ## List of contributors
-[berian](https://github.com/beriain), [mahula](https://github.com/mahula), [naofum](https://github.com/naofum), [thuryn](https://github.com/thuryn)
+[berian](https://github.com/beriain), [mahula](https://github.com/mahula), [naofum](https://github.com/naofum), 
+[thuryn](https://github.com/thuryn), [monolifed](https://github.com/monolifed), [marcoM32](https://github.com/marcoM32),
+[Zagur](https://github.com/Zagur)
 
 ## License
 ```
