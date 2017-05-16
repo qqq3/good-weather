@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Stadt betreten</string>
     <string name="label_current_city">Aktuelle Stadt</string>
@@ -7,7 +7,7 @@
     <string name="alertDialog_gps_positiveButton">Einstellungen</string>
     <string name="alertDialog_gps_negativeButton">Abbrechen</string>
     <string name="progressDialog_gps_locate">Aktuelle Position wird gesucht</string>
-    <string name="load_progress">Laden&#8230;</string>
+    <string name="load_progress">Laden…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Standortsuche</string>
@@ -90,8 +90,8 @@
     <string name="label_snow">Schnee</string>
 
     <!-- Widgets strings -->
-    <string name="widget_weather_icon_description">Current weather icon</string>
-    <string name="widget_refresh_button">Widget refresh button</string>
+    <string name="widget_weather_icon_description">Momentanes Wetter Icon</string>
+    <string name="widget_refresh_button">\"Widget aktualisieren\" Button</string>
 
     <!-- Donation Bitcoin dialog -->
     <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
@@ -99,7 +99,7 @@
     <string name="donation_bitcoin_open_app">Bitcoin App öffnen</string>
     <string name="donation_bitcoin_copy_message">Bitcoin-Adresse wurde in die Zwischenablage kopiert</string>
 
-    !-- Wind directions -->
+    !-- Wind directions --&gt;
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NO</string>
     <string name="wind_direction_east">O</string>
@@ -117,4 +117,12 @@
     <string name="pref_title_language">Sprache</string>
     <string name="preference_title_category_display">Anzeige</string>
     <string name="restart_dialog_message">Starten Sie die Anwendung neu, um neue Einstellungen anzuwenden</string>
-</resources>
+<string name="preference_widget_use_geocoder">Verwende Standort</string>
+    <string name="preference_widget_update_location">Standort aktualisieren</string>
+    <string name="preference_widget_theme_title">Widget Motiv</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_transparent">Transparent</string>
+    <string name="pref_title_theme">Motiv</string>
+    
+    </resources>
