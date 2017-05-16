@@ -117,4 +117,14 @@
     <string name="pref_title_language">Idioma</string>
     <string name="preference_title_category_display">Mostrar</string>
     <string name="restart_dialog_message">Reinicie la aplicación para aplicar la nueva configuración</string>
-</resources>
+<string name="preference_widget_update_location">Actualizar ubicación</string>
+    <string name="preference_widget_use_geocoder">Utilizar geolocalización para mostrar</string>
+    <string name="preference_widget_theme_title">Tema del widget</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_transparent">Transparente</string>
+    <string name="pref_title_theme">Tema</string>
+    
+    <string name="permission_location_need">Tiene que conceder permiso de localización</string>
+
+    </resources>
