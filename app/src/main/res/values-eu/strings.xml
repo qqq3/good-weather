@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Hiria idatzi</string>
     <string name="label_current_city">Uneko hiria</string>
@@ -6,7 +7,7 @@
     <string name="alertDialog_gps_positiveButton">Ezarpenak</string>
     <string name="alertDialog_gps_negativeButton">Utzi</string>
     <string name="progressDialog_gps_locate">Uneko kokapena aurkitu</string>
-    <string name="load_progress">Kargatzen&#8230;</string>
+    <string name="load_progress">Kargatzen…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Kokapena bilatu</string>
@@ -116,4 +117,14 @@
     <string name="pref_title_language">Hizkuntza</string>
     <string name="preference_title_category_display">Erakutsi</string>
     <string name="restart_dialog_message">Berrabiarazi aplikazioaren ezarpen berriak aplikatzeko</string>
-</resources>
+<string name="preference_widget_update_location">Kokapena eguneratu</string>
+    <string name="preference_widget_use_geocoder">Geokokapena erabili erakusteko</string>
+    <string name="preference_widget_theme_title">Widgetaren gaia</string>
+    <string name="theme_dark">Iluna</string>
+    <string name="theme_light">Argia</string>
+    <string name="theme_transparent">Gardena</string>
+    <string name="pref_title_theme">Gaia</string>
+    
+    <string name="permission_location_need">Kokapen baimenak eman behar dituzu</string>
+
+    </resources>
