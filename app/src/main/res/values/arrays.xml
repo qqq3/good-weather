@@ -95,21 +95,23 @@
         <item name="japanese">日本語 (Japanese)</item>
         <item name="polish">Polski (Polish)</item>
         <item name="russian">Русский (Russian)</item>
+        <item name="turkish">Türkçe (Turkish)</item>
     </string-array>
     <string-array name="language_values">
         <item name="default"></item>
-        <item name="english">en_GB</item>
-        <item name="basque">eu_ES</item>
-        <item name="belarusian">be_BY</item>
+        <item name="english">en</item>
+        <item name="basque">eu</item>
+        <item name="belarusian">be</item>
         <item name="catalan">ca</item>
         <item name="czech">cs</item>
         <item name="french">fr</item>
-        <item name="italian">it_IT</item>
-        <item name="german">de_DE</item>
-        <item name="spanish">es_ES</item>
-        <item name="japanese">ja_JP</item>
-        <item name="polish">pl_PL</item>
-        <item name="russian">ru_RU</item>
+        <item name="italian">it</item>
+        <item name="german">de</item>
+        <item name="spanish">es</item>
+        <item name="japanese">ja</item>
+        <item name="polish">pl</item>
+        <item name="russian">ru</item>
+        <item name="turkish">tr</item>
     </string-array>
 
     <!-- Themes array -->
