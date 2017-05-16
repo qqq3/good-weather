@@ -123,6 +123,6 @@
     <string name="theme_dark">Dunkel</string>
     <string name="theme_light">Hell</string>
     <string name="theme_transparent">Transparent</string>
-    <string name="pref_title_theme">Motiv</string>
+    <string name="pref_title_theme">Theme</string>
     
     </resources>
