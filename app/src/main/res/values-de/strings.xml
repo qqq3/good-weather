@@ -125,4 +125,6 @@
     <string name="theme_transparent">Transparent</string>
     <string name="pref_title_theme">Theme</string>
     
+    <string name="permission_location_need">Standortberechtigungen muss gewährt werden</string>
+
     </resources>
