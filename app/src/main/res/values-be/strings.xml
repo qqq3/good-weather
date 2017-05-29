@@ -122,4 +122,9 @@
     <string name="theme_transparent">Празрыстая</string>
     <string name="pref_title_theme">Тэма</string>
     
+    <string name="preference_widget_update_location">Абнавіць месцазнаходжанне</string>
+    <string name="preference_widget_use_geocoder">Выкарыстоўваць геалакацыю для адлюстравання</string>
+    <string name="preference_widget_theme_title">Тэма</string>
+    <string name="permission_location_need">Вы павінны даць дазвол на выкарыстання звестак аб месцазнаходжанні</string>
+
     </resources>
