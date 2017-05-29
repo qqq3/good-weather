@@ -6,12 +6,12 @@
     <string name="alertDialog_gps_message">Служба GPS не актыўная. Жадаеце перайсці ў меню налад?</string>
     <string name="alertDialog_gps_positiveButton">Налады</string>
     <string name="alertDialog_gps_negativeButton">Адмяніць</string>
-    <string name="progressDialog_gps_locate">Вызначаем бягучае месцазнаходжанне</string>
+    <string name="progressDialog_gps_locate">Вызначаем цяперашняе месцазнаходжанне</string>
     <string name="load_progress">Загрузка…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Пошук</string>
-    <string name="label_activity_main">Бягучае надвор\'е</string>
+    <string name="label_activity_main">Актуальнае надвор\'е</string>
     <string name="label_activity_weather_forecast">Штодзённы прагноз</string>
     <string name="label_activity_graphs">Графікі</string>
     <string name="title_activity_license">Ліцэнзія на %s</string>
@@ -23,7 +23,7 @@
     <string name="menu_action_toggle_yaxis">Пераключэнне восі Y</string>
 
     <!-- Navigation drawer -->
-    <string name="nav_menu_current_weather">Бягучае надвор\'е</string>
+    <string name="nav_menu_current_weather">Актуальнае надвор\'е</string>
     <string name="nav_menu_daily_forecast">Штодзённы прагноз</string>
     <string name="nav_menu_graphs">Графікі</string>
     <string name="nav_menu_settings">Налады</string>
@@ -31,7 +31,7 @@
     <string name="nav_menu_bitcoin_donation">Ахвяраваць Bitcoin</string>
 
     <!-- Toast messages -->
-    <string name="connection_not_found">Адсутнічае падлучэнне да інтэрнэту</string>
+    <string name="connection_not_found">Адсутнічае падлучэнне да Інтэрнэту</string>
     <string name="toast_parse_error">Адбылася памылка. Паспрабуйце пазней!</string>
 
     <!-- Units and Measurement-->
@@ -46,8 +46,8 @@
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Налады</string>
     <string name="pref_title_temperature">Тэмпература</string>
-    <string name="pref_title_category_notification">Апавяшчэння</string>
-    <string name="pref_title_notification">Ўключыць апавяшчэння</string>
+    <string name="pref_title_category_notification">Апавяшчэнні</string>
+    <string name="pref_title_notification">Уключыць апавяшчэнні</string>
     <string name="pref_title_notification_refresh_interval">Інтэрвал абнаўлення</string>
     <string name="update_period_15min">15 хвілін</string>
     <string name="update_period_30min">30 хвілін</string>
@@ -93,9 +93,9 @@
 
     <!-- Donation Bitcoin dialog -->
     <string name="donation_bitcoin_qr_description">Bitcoin QR-код</string>
-    <string name="donation_bitcoin_copy_button">Скапіяваць Bitcoin адрас</string>
-    <string name="donation_bitcoin_open_app">Адкрыць Bitcoin дадатак</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin адрас быў скапіяваны ў буфер абмену</string>
+    <string name="donation_bitcoin_copy_button">Скапіяваць Bitcoin-адрас</string>
+    <string name="donation_bitcoin_open_app">Адкрыць Bitcoin-дадатак</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin-адрас быў скапіяваны ў буфер абмену</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">Пн</string>
@@ -110,9 +110,9 @@
     <string name="preference_hide_desc">Схаваць апісанне надвор\'я</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Дазволу "Атрыманне месцазнаходжаньня" неабходны для вызначэння горада</string>
-    <string name="permission_not_granted">Дазволу не прадастаўлены!</string>
-    <string name="permission_available_location">Дазволу "Атрыманне месцазнаходжаньня" былі прадастаўлены</string>
+    <string name="permission_location_rationale">Дазвол на атрыманне месцазнаходжання неабходны для вызначэння горада</string>
+    <string name="permission_not_granted">Дазвол не прадастаўлены!</string>
+    <string name="permission_available_location">Дазвол на атрыманне месцазнаходжання быў прадастаўлены</string>
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Мова</string>
     <string name="preference_title_category_display">Выгляд</string>
@@ -125,6 +125,6 @@
     <string name="preference_widget_update_location">Абнавіць месцазнаходжанне</string>
     <string name="preference_widget_use_geocoder">Выкарыстоўваць геалакацыю для адлюстравання</string>
     <string name="preference_widget_theme_title">Тэма</string>
-    <string name="permission_location_need">Вы павінны даць дазвол на выкарыстання звестак аб месцазнаходжанні</string>
+    <string name="permission_location_need">Вы павінны даць дазвол на атрымання звестак аб месцазнаходжанні</string>
 
     </resources>
