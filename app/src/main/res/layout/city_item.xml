@@ -8,21 +8,22 @@
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/city_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="London"
-        android:fontFamily="sans-serif"
-        android:textSize="16sp"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textAppearance="?android:attr/textAppearanceListItem"/>
-
-    <TextView
-        android:id="@+id/country_code"
+        android:id="@+id/city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:textSize="14sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        tools:text="London"/>
+
+    <TextView
+        android:id="@+id/country_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        tools:text="GB"/>
+        tools:text="London, England, United Kingdom"/>
 </LinearLayout>
