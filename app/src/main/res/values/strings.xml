@@ -70,6 +70,7 @@
 
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Search location</string>
+    <string name="search_hint">You can specify a region by adding a country code, separated by a comma. For example, \"London,UK\"</string>
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Settings</string>

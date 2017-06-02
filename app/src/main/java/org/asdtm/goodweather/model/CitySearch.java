@@ -1,75 +1,88 @@
 package org.asdtm.goodweather.model;
 
-public class CitySearch
-{
+public class CitySearch {
     private String mCityName;
-    private String mCountry;
+    private String mCountryName;
+    private String mCountryCode;
+    private String mAdminName;
+    private String mToponymName;
     private String mLatitude;
     private String mLongitude;
-    private String mCountryCode;
 
-    public CitySearch(){}
-    public CitySearch(String cityName, String countryCode, String latitude, String longitude)
-    {
+    public CitySearch() {
+    }
+
+    public CitySearch(String cityName, String toponymName, String adminName, String countryName, String latitude, String longitude) {
         mCityName = cityName;
-        mCountryCode = countryCode;
+        mToponymName = toponymName;
+        mAdminName = adminName;
+        mCountryName = countryName;
         mLatitude = latitude;
         mLongitude = longitude;
     }
 
-    public String getCityName()
-    {
+    public String getCityName() {
         return mCityName;
     }
 
-    public void setCityName(String cityName)
-    {
+    public void setCityName(String cityName) {
         mCityName = cityName;
     }
 
-    public String getCountry()
-    {
-        return mCountry;
+    public String getCountryName() {
+        return mCountryName;
     }
 
-    public void setCountry(String country)
-    {
-        mCountry = country;
+    public void setCountryName(String countryName) {
+        mCountryName = countryName;
     }
 
-    public String getLatitude()
-    {
+    public String getLatitude() {
         return mLatitude;
     }
 
-    public void setLatitude(String latitude)
-    {
+    public void setLatitude(String latitude) {
         mLatitude = latitude;
     }
 
-    public String getLongitude()
-    {
+    public String getLongitude() {
         return mLongitude;
     }
 
-    public void setLongitude(String longitude)
-    {
+    public void setLongitude(String longitude) {
         mLongitude = longitude;
     }
 
-    public String getCountryCode()
-    {
+    public String getCountryCode() {
         return mCountryCode;
     }
 
-    public void setCountryCode(String countryCode)
-    {
+    public void setCountryCode(String countryCode) {
         mCountryCode = countryCode;
     }
 
+    public String getAdminName() {
+        return mAdminName;
+    }
+
+    public void setAdminName(String adminName) {
+        mAdminName = adminName;
+    }
+
+    public String getToponymName() {
+        return mToponymName;
+    }
+
+    public void setToponymName(String toponymName) {
+        mToponymName = toponymName;
+    }
+
     @Override
-    public String toString()
-    {
-        return mCityName + ", " + mCountryCode;
+    public String toString() {
+        return mCityName + ", " + mAdminName + " (" + mCountryName + ")";
+    }
+
+    public String toCoordinates() {
+        return "[" + mLatitude + ", " + mLongitude + "]";
     }
 }

@@ -15,7 +15,12 @@ public class Constants {
     public static final String APP_SETTINGS_LATITUDE = "latitude";
     public static final String APP_SETTINGS_LONGITUDE = "longitude";
     public static final String APP_SETTINGS_CITY = "city";
+    public static final String APP_SETTINGS_TOPONYM_NAME = "toponym_name";
     public static final String APP_SETTINGS_COUNTRY_CODE = "country_code";
+    public static final String APP_SETTINGS_COUNTRY_NAME = "country_name";
+    public static final String APP_SETTINGS_ADMIN_NAME = "admin_name";
+    public static final String APP_SETTINGS_DEFINED_NAME = "location_defined_name";
+
     public static final String APP_SETTINGS_GEO_COUNTRY_NAME = "geo_country_name";
     public static final String APP_SETTINGS_GEO_DISTRICT_OF_CITY = "geo_district_name";
     public static final String APP_SETTINGS_GEO_CITY = "geo_city_name";

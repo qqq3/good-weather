@@ -25,6 +25,7 @@ import android.widget.TextView;
 import org.asdtm.goodweather.model.CitySearch;
 import org.asdtm.goodweather.utils.CityParser;
 import org.asdtm.goodweather.utils.Constants;
+import org.asdtm.goodweather.utils.PreferenceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +33,6 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity {
 
     public static final String TAG = "SearchActivity";
-
-    private final String APP_SETTINGS_CITY = "city";
-    private final String APP_SETTINGS_COUNTRY_CODE = "country_code";
-    private final String APP_SETTINGS_LATITUDE = "latitude";
-    private final String APP_SETTINGS_LONGITUDE = "longitude";
 
     private List<CitySearch> mCites;
     private SearchCityAdapter mSearchCityAdapter;
@@ -54,8 +50,7 @@ public class SearchActivity extends AppCompatActivity {
         setupActionBar();
         setupSearchView();
 
-        String APP_SETTINGS_NAME = "config";
-        mCityPref = getSharedPreferences(APP_SETTINGS_NAME, 0);
+        mCityPref = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
@@ -99,19 +94,19 @@ public class SearchActivity extends AppCompatActivity {
 
         private CitySearch mCity;
         private TextView mCityName;
-        private TextView mCountryName;
+        private TextView mCountryInfo;
 
         SearchCityHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            mCityName = (TextView) itemView.findViewById(R.id.city_name);
-            mCountryName = (TextView) itemView.findViewById(R.id.country_code);
+            mCityName = (TextView) itemView.findViewById(R.id.city);
+            mCountryInfo = (TextView) itemView.findViewById(R.id.country_info);
         }
 
         void bindCity(CitySearch city) {
             mCity = city;
             mCityName.setText(city.getCityName());
-            mCountryName.setText(city.getCountryCode());
+            mCountryInfo.setText(city.getToponymName() + ", " + city.getAdminName() + ", " + city.getCountryName());
         }
 
         @Override
@@ -163,7 +158,7 @@ public class SearchActivity extends AppCompatActivity {
                 protected FilterResults performFiltering(CharSequence charSequence) {
                     FilterResults filterResults = new FilterResults();
 
-                    List<CitySearch> citySearchList = CityParser.getCity(charSequence.toString());
+                    List<CitySearch> citySearchList = CityParser.getCoordinatesFromAddress(SearchActivity.this, charSequence.toString());
                     filterResults.values = citySearchList;
                     filterResults.count = citySearchList != null ? citySearchList.size() : 0;
 
@@ -195,21 +190,28 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void setCity(CitySearch city) {
+        String locationDefinedName = city.getCityName() + ", " + city.getCountryCode();
+        PreferenceUtil.setLocationDefinedName(this, locationDefinedName);
         SharedPreferences.Editor editor = mCityPref.edit();
-        editor.putString(APP_SETTINGS_CITY, city.getCityName());
-        editor.putString(APP_SETTINGS_COUNTRY_CODE, city.getCountryCode());
-        editor.putString(APP_SETTINGS_LATITUDE, city.getLatitude());
-        editor.putString(APP_SETTINGS_LONGITUDE, city.getLongitude());
+        editor.putString(Constants.APP_SETTINGS_CITY, city.getCityName());
+        editor.putString(Constants.APP_SETTINGS_TOPONYM_NAME, city.getToponymName());
+        editor.putString(Constants.APP_SETTINGS_ADMIN_NAME, city.getAdminName());
+        editor.putString(Constants.APP_SETTINGS_COUNTRY_NAME, city.getCountryName());
+        editor.putString(Constants.APP_SETTINGS_COUNTRY_CODE, city.getCountryCode());
+        editor.putString(Constants.APP_SETTINGS_LATITUDE, city.getLatitude());
+        editor.putString(Constants.APP_SETTINGS_LONGITUDE, city.getLongitude());
         editor.apply();
     }
 
     private void loadLastFoundCity() {
         if (mCites.isEmpty()) {
-            String lastCity = mCityPref.getString(APP_SETTINGS_CITY, "London");
-            String lastCountry = mCityPref.getString(APP_SETTINGS_COUNTRY_CODE, "UK");
-            String lastLat = mCityPref.getString(APP_SETTINGS_LATITUDE, "51.51");
-            String lastLon = mCityPref.getString(APP_SETTINGS_LONGITUDE, "-0.13");
-            CitySearch city = new CitySearch(lastCity, lastCountry, lastLat, lastLon);
+            String lastCity = mCityPref.getString(Constants.APP_SETTINGS_CITY, "London");
+            String lastToponymName = mCityPref.getString(Constants.APP_SETTINGS_TOPONYM_NAME, "London");
+            String lastAdminName = mCityPref.getString(Constants.APP_SETTINGS_ADMIN_NAME, "London");
+            String lastCountryName = mCityPref.getString(Constants.APP_SETTINGS_COUNTRY_NAME, "United Kingdom");
+            String lastLat = mCityPref.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
+            String lastLon = mCityPref.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
+            CitySearch city = new CitySearch(lastCity, lastToponymName, lastAdminName, lastCountryName, lastLat, lastLon);
             mCites.add(city);
         }
     }
