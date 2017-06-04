@@ -105,4 +105,11 @@
     <string name="donation_bitcoin_open_app">Άνοιγμα της Μπιτκοϊνικής Εφαρμογής</string>
     <string name="donation_bitcoin_copy_message">Η Μπιτκοϊνική διεύθυνση αντιγράφτηκε στο πρόχειρο</string>
 
+    <string name="nav_feedback">Γνώμη</string>
+    <string name="preference_widget_theme_title">Θέμα Γραφικού Στοιχείου</string>
+    <string name="pref_title_theme">Θέμα</string>
+    
+    <string name="widget_weather_icon_description">Εικονίδιο τωρινού καιρού</string>
+    <string name="widget_refresh_button">Πλήκτρο ανανέωσης του γραφικού στοιχείου</string>
+
     </resources>
