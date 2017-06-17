@@ -94,6 +94,10 @@ public class MoreWidgetService extends IntentService {
 
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                                                       R.layout.widget_more_3x3);
+
+            MoreWidgetProvider.setWidgetTheme(this, remoteViews);
+            MoreWidgetProvider.setWidgetIntents(this, remoteViews);
+
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this));
             remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
             if(!AppPreference.hideDescription(this))

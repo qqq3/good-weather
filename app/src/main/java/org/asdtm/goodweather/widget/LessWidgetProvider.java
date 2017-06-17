@@ -74,17 +74,8 @@ public class LessWidgetProvider extends AppWidgetProvider {
                                                       R.layout.widget_less_3x1);
 
             setWidgetTheme(context, remoteViews);
+            setWidgetIntents(context, remoteViews);
             preLoadWeather(context, remoteViews);
-
-            Intent intent = new Intent(context, LessWidgetProvider.class);
-            intent.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widget_button_refresh, pendingIntent);
-
-            Intent intentStartActivity = new Intent(context, MainActivity.class);
-            PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
-                                                                     intentStartActivity, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widget_root, pendingIntent2);
 
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
@@ -123,15 +114,28 @@ public class LessWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }
 
-    private void setWidgetTheme(Context context, RemoteViews remoteViews) {
+    public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
 
         int textColorId = AppPreference.getTextColor(context);
         int backgroundColorId = AppPreference.getBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
-        
+
         remoteViews.setInt(R.id.widget_root, "setBackgroundColor", backgroundColorId);
         remoteViews.setTextColor(R.id.widget_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_description, textColorId);
         remoteViews.setInt(R.id.header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+    }
+
+    public static void setWidgetIntents(Context context, RemoteViews remoteViews) {
+
+        Intent intent = new Intent(context, LessWidgetProvider.class);
+        intent.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_button_refresh, pendingIntent);
+
+        Intent intentStartActivity = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
+                                                                  intentStartActivity, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_root, pendingIntent2);
     }
 }

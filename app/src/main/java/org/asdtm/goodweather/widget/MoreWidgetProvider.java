@@ -73,18 +73,8 @@ public class MoreWidgetProvider extends AppWidgetProvider {
                                                       R.layout.widget_more_3x3);
 
             setWidgetTheme(context, remoteViews);
+            setWidgetIntents(context, remoteViews);
             preLoadWeather(context, remoteViews);
-
-            Intent intentRefreshService = new Intent(context, MoreWidgetProvider.class);
-            intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                                                                     intentRefreshService, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widget_button_refresh, pendingIntent);
-
-            Intent intentStartActivity = new Intent(context, MainActivity.class);
-            PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
-                                                                     intentStartActivity, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widget_root, pendingIntent2);
 
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
@@ -152,7 +142,7 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }
 
-    private void setWidgetTheme(Context context, RemoteViews remoteViews) {
+    public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
         int textColorId = AppPreference.getTextColor(context);
         int backgroundColorId = AppPreference.getBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
@@ -166,5 +156,19 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextColor(R.id.widget_pressure, textColorId);
         remoteViews.setTextColor(R.id.widget_clouds, textColorId);
         remoteViews.setInt(R.id.header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+    }
+
+    public static void setWidgetIntents(Context context, RemoteViews remoteViews) {
+
+        Intent intentRefreshService = new Intent(context, MoreWidgetProvider.class);
+        intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                                                                  intentRefreshService, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_button_refresh, pendingIntent);
+
+        Intent intentStartActivity = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
+                                                                  intentStartActivity, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_root, pendingIntent2);
     }
 }
