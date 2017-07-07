@@ -1,44 +1,44 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="app_name" translatable="false">Good Weather</string>
-    <string name="enter_city_hint">Shyiramo umujyi</string>
-    <string name="label_current_city">Aho uhehererye ubu</string>
-    <string name="label_choose_city">Hitamo umujyi</string>
+    <string name="enter_city_hint">Enter city</string>
+    <string name="label_current_city">Current city</string>
+    <string name="label_choose_city">Choose city</string>
     <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
     <string name="alertDialog_gps_title" translatable="false">GPS is settings</string>
-    <string name="alertDialog_gps_message">GPS ntago iri gukora. ushaka kuyemeza?</string>
-    <string name="alertDialog_gps_positiveButton">Gushyira k\'umurongo</string>
-    <string name="alertDialog_gps_negativeButton">Bireke</string>
-    <string name="progressDialog_gps_locate">Shaka aho mperereye</string>
-    <string name="load_progress">Birigukorwa.....</string>
+    <string name="alertDialog_gps_message">GPS is not enabled. Do you want to go to settings menu?</string>
+    <string name="alertDialog_gps_positiveButton">Settings</string>
+    <string name="alertDialog_gps_negativeButton">Cancel</string>
+    <string name="progressDialog_gps_locate">Find current location</string>
+    <string name="load_progress">Loading…</string>
 
     <!-- Activity names -->
-    <string name="title_activity_search">Shaka ahantu</string>
-    <string name="label_activity_main">Iteganyagihe ryaka kanya</string>
-    <string name="label_activity_weather_forecast">Iteaganyagihe rya buri munsi</string>
-    <string name="label_activity_graphs">Igisgushanyo</string>
+    <string name="title_activity_search">Search Location</string>
+    <string name="label_activity_main">Current Weather</string>
+    <string name="label_activity_weather_forecast">Daily Forecast</string>
+    <string name="label_activity_graphs">Graphs Weather</string>
     <string name="title_activity_license">License for %s</string>
 
     <!-- Toolbar menu -->
-    <string name="toolbar_menu_refresh">Ibishya</string>
-    <string name="toolbar_menu_search_city">Shaka umujyi</string>
-    <string name="toolbar_menu_detect_location">Bona umujyi</string>
-    <string name="menu_action_toggle_values">Agaciro</string>
-    <string name="menu_action_toggle_yaxis">Y-Axis</string>
+    <string name="toolbar_menu_refresh">Update</string>
+    <string name="toolbar_menu_search_city">Search City</string>
+    <string name="toolbar_menu_detect_location">Detect Location</string>
+    <string name="menu_action_toggle_values">Toggle Values</string>
+    <string name="menu_action_toggle_yaxis">Toggle Y-Axis</string>
 
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="nav_menu_current_weather">Iteganyagihe ryaka kanya</string>
-    <string name="nav_menu_daily_forecast">Iteganyagihe rya buri munsi</string>
-    <string name="nav_menu_graphs">Igishushanyo</string>
-    <string name="nav_menu_settings">Gushyira k\'umurongo</string>
-    <string name="nav_feedback">Twandikire</string>
-    <string name="nav_menu_bitcoin_donation">Fasha</string>
+    <string name="nav_menu_current_weather">Current Weather</string>
+    <string name="nav_menu_daily_forecast">Daily Forecast</string>
+    <string name="nav_menu_graphs">Graphs</string>
+    <string name="nav_menu_settings">Settings</string>
+    <string name="nav_feedback">Feedback</string>
+    <string name="nav_menu_bitcoin_donation">Donate Bitcoin</string>
 
     <!-- Toast messages -->
-    <string name="connection_not_found">Reba neza ni murandasi iriho</string>
-    <string name="toast_parse_error">Hari ikibazo kibaye, ongera</string>
+    <string name="connection_not_found">Check your internet connection</string>
+    <string name="toast_parse_error">An error has occurred. Try later!</string>
 
     <!-- Weather icons -->
     <string name="icon_clear_sky_day" translatable="false"></string>
@@ -73,62 +73,62 @@
     <string name="hint_activity_search">Search location</string>
 
     <!-- Preference Screen strings -->
-    <string name="title_activity_settings">Gushyira k\'umurongo</string>
-    <string name="pref_title_temperature">Ubushyuhe</string>
-    <string name="preference_hide_desc">Hisha ibivuga kwitaganyihe</string>
-    <string name="pref_title_category_notification">itangazo</string>
-    <string name="pref_title_notification">Emeza amatangazo</string>
-    <string name="pref_title_notification_refresh_interval">ibishya mu gihe</string>
-    <string name="update_period_15min">Iminota 15</string>
-    <string name="update_period_30min">iminota 30</string>
-    <string name="update_period_1hour">Buri saha</string>
-    <string name="update_period_3hours">amasaha 3</string>
-    <string name="update_period_6hours">amasaha 6</string>
-    <string name="update_period_12hours">amasaha 12</string>
-    <string name="update_period_24hours">amasaha 24</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="pref_title_temperature">Temperature</string>
+    <string name="preference_hide_desc">Hide weather description</string>
+    <string name="pref_title_category_notification">Notifications</string>
+    <string name="pref_title_notification">Enable Notifications</string>
+    <string name="pref_title_notification_refresh_interval">Refresh Interval</string>
+    <string name="update_period_15min">15 minutes</string>
+    <string name="update_period_30min">30 minutes</string>
+    <string name="update_period_1hour">Every hour</string>
+    <string name="update_period_3hours">3 hours</string>
+    <string name="update_period_6hours">6 hours</string>
+    <string name="update_period_12hours">12 hours</string>
+    <string name="update_period_24hours">24 hours</string>
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="preference_widget_title_update_period">Update Period</string>
-    <string name="preference_title_activity_general">Gushiyara k\'umurongo bisazwe</string>
-    <string name="preference_title_activity_widget">gushyira k\'umurong widget</string>
-    <string name="preference_widget_update_location">Ahantu hashya</string>
-    <string name="preference_widget_use_geocoder">Koresha geolocation mu kugaragaza</string>
-    <string name="preference_widget_theme_title">Kurimbisha widget</string>
-    <string name="theme_dark">Umukara</string>
-    <string name="theme_light">Icyeye</string>
-    <string name="theme_transparent">Ibengerana</string>
-    <string name="preference_title_category_display">Garagaza</string>
-    <string name="pref_title_language">Ururimi</string>
+    <string name="preference_title_activity_general">General settings</string>
+    <string name="preference_title_activity_widget">Widget settings</string>
+    <string name="preference_widget_update_location">Update location</string>
+    <string name="preference_widget_use_geocoder">Use geolocation for displaying</string>
+    <string name="preference_widget_theme_title">Widget theme</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_transparent">Transparent</string>
+    <string name="preference_title_category_display">Display</string>
+    <string name="pref_title_language">Language</string>
     <string name="pref_language_default">System Default</string>
-    <string name="pref_title_theme">Kurimbisha</string>
+    <string name="pref_title_theme">Theme</string>
     
     <!-- Preference Screen About -->
-    <string name="preference_title_activity_about">Abo turibo</string>
-    <string name="about_version_pref_title">Verrisiyo</string>
+    <string name="preference_title_activity_about">About</string>
+    <string name="about_version_pref_title">Version</string>
     <string name="about_source_code_pref_title">Source code</string>
     <string name="about_app_license_pref_title">License</string>
     <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
     <string name="about_google_play_pref_title" translatable="false">Google Play</string>
-    <string name="about_open_source_licenses_pref_title">Ibiranga</string>
+    <string name="about_open_source_licenses_pref_title">Open Source licenses</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">umuyaga: %1$s %2$s</string>
-    <string name="rain_label">imvura: %1$s %2$s</string>
-    <string name="snow_label">Ibicu: %1$s %2$s</string>
-    <string name="humidity_label">ubuhehere: %1$s%2$s</string>
-    <string name="pressure_label">ubutsikamire: %1$s %2$s</string>
-    <string name="cloudiness_label">Ibicu: %1$s%2$s</string>
-    <string name="last_update_label">Ibishya biheruka: %s</string>
-    <string name="sunrise_label">kurasa kw\'Izuba: %s</string>
-    <string name="sunset_label">Izuba: %s</string>
-    <string name="temperature_morning_title">igitongo</string>
-    <string name="temperature_day_title">umunsi</string>
-    <string name="temperature_evening_title">Ikigoroba</string>
-    <string name="temperature_night_title">ijoro</string>
+    <string name="wind_label">Wind: %1$s %2$s</string>
+    <string name="rain_label">Rain: %1$s %2$s</string>
+    <string name="snow_label">Snow: %1$s %2$s</string>
+    <string name="humidity_label">Humidity: %1$s%2$s</string>
+    <string name="pressure_label">Pressure: %1$s %2$s</string>
+    <string name="cloudiness_label">Cloudiness: %1$s%2$s</string>
+    <string name="last_update_label">Last update: %s</string>
+    <string name="sunrise_label">Sunrise: %s</string>
+    <string name="sunset_label">Sunset: %s</string>
+    <string name="temperature_morning_title">Morning</string>
+    <string name="temperature_day_title">Day</string>
+    <string name="temperature_evening_title">Evening</string>
+    <string name="temperature_night_title">Night</string>
     <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
-    <string name="label_temperature">ubushyuhe</string>
-    <string name="label_wind">umuyaga</string>
-    <string name="label_rain">imvura</string>
-    <string name="label_snow">urubura</string>
+    <string name="label_temperature">Temperature</string>
+    <string name="label_wind">Wind</string>
+    <string name="label_rain">Rain</string>
+    <string name="label_snow">Snow</string>
 
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Current weather icon</string>
@@ -153,11 +153,11 @@
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">uburenganzi bwaho uri burakenewe</string>
-    <string name="permission_not_granted">uburengazira ntibwejwe</string>
-    <string name="permission_available_location">uburengazira bwemejwe</string>
-    <string name="permission_location_need">ukobwa kwemeza aho uri</string>
+    <string name="permission_location_rationale">Location Permissions are needed to determine the current city</string>
+    <string name="permission_not_granted">Permissions were not granted!</string>
+    <string name="permission_available_location">Location Permissions have been granted</string>
+    <string name="permission_location_need">You must grant Location Permissions</string>
 
     <!-- Dialog strings -->
-    <string name="restart_dialog_message">tangiza programu mukweza ibyo ukoze</string>
+    <string name="restart_dialog_message">Please restart application to apply new settings</string>
 </resources>
