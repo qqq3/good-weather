@@ -18,6 +18,7 @@ public class Constants {
     public static final String APP_SETTINGS_COUNTRY_CODE = "country_code";
     public static final String APP_SETTINGS_GEO_COUNTRY_NAME = "geo_country_name";
     public static final String APP_SETTINGS_GEO_DISTRICT_OF_CITY = "geo_district_name";
+    public static final String APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY = "geo_district_country";
     public static final String APP_SETTINGS_GEO_CITY = "geo_city_name";
     public static final String LAST_UPDATE_TIME_IN_MS = "last_update";
     
@@ -31,6 +32,7 @@ public class Constants {
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";
     public static final String KEY_PREF_WIDGET_UPDATE_PERIOD = "widget_update_period_pref_key";
     public static final String PREF_LANGUAGE = "language_pref_key";
+    public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";
 
     /**
      * About preference screen constants

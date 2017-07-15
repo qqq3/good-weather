@@ -124,6 +124,10 @@
         <service android:name=".widget.LessWidgetService"/>
         <service android:name=".widget.MoreWidgetService"/>
         <service android:name=".service.CurrentWeatherService"/>
-        <service android:name=".service.LocationUpdateService" />
+        <service android:name=".service.LocationUpdateService" >
+            <intent-filter>
+                 <action android:name="android.intent.action.LOCATION_UPDATE" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>

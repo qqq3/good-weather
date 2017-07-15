@@ -67,6 +67,7 @@
     <string name="theme_dark">Tmavé</string>
     <string name="theme_light">Světlé</string>
     <string name="theme_transparent">Průsvitné</string>
+    <string name="location_geocoder_title">Zdroj informací o poloze a adrese</string>
 
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">O aplikaci</string>

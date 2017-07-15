@@ -47,6 +47,15 @@
         <item>1440</item>
     </string-array>
     
+    <string-array name="location_geocoder_source_entries">
+        <item>@string/location_geocoder_system</item>
+        <item>@string/location_geocoder_unifiednlp</item>
+    </string-array>
+    <string-array name="location_geocoder_source_values">
+        <item>location_geocoder_system</item>
+        <item>location_geocoder_unifiednlp</item>
+    </string-array>
+    
     <string-array name="widget_theme_entries">
         <item>@string/theme_dark</item>
         <item>@string/theme_light</item>

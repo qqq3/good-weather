@@ -9,6 +9,13 @@
         android:key="widget_use_geocoder_pref_key"
         android:title="@string/preference_widget_use_geocoder"/>
     <ListPreference
+        android:defaultValue="location_geocoder_system"
+        android:dialogTitle="@string/location_geocoder_title"
+        android:entries="@array/location_geocoder_source_entries"
+        android:entryValues="@array/location_geocoder_source_values"
+        android:key="location_geocoder_source"
+        android:title="@string/location_geocoder_title"/>
+    <ListPreference
         android:defaultValue="dark"
         android:dialogTitle="@string/preference_widget_theme_title"
         android:entries="@array/widget_theme_entries"

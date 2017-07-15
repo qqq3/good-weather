@@ -78,9 +78,15 @@ public class AppPreference {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_USE_GEOCODER, false);
     }
+    
     public static boolean isUpdateLocationEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false);
+    }
+    
+    public static String getLocationGeocoderSource(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, "location_geocoder_system");
     }
     
     public static String getTheme(Context context) {

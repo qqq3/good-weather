@@ -9,12 +9,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import android.util.Log;
 import java.io.IOException;
 
 import org.asdtm.goodweather.R;
@@ -22,6 +21,7 @@ import org.asdtm.goodweather.R;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 
 public class Utils {
 
@@ -179,6 +179,34 @@ public class Utils {
         return new URL(url);
     }
     
+    public static void getAndWriteAddressFromGeocoder(Geocoder geocoder, Address address, String latitude, String longitude, SharedPreferences.Editor editor) {
+        try {
+            String latitudeEn = latitude.replace(",", ".");
+            String longitudeEn = longitude.replace(",", ".");
+            if (address == null) {
+                List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(latitudeEn), Double.parseDouble(longitudeEn), 1);
+                if((addresses != null) && (addresses.size() > 0)) {
+                    address = addresses.get(0);
+                }
+            }
+            if(address != null) {
+                editor.putString(Constants.APP_SETTINGS_GEO_CITY, address.getLocality());
+                editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, address.getCountryName());
+                if(address.getAdminArea() != null) {
+                    editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, address.getAdminArea());
+                } else {
+                    editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, null);
+                }
+            
+                /*editor.putString(Constants.APP_SETTINGS_GEO_CITY, address.getSubAdminArea());*/
+                editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, address.getSubLocality());
+                /*editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, address.getCountryName());*/
+            }
+        } catch (IOException | NumberFormatException ex) {
+            Log.e(Utils.class.getName(), "Unable to get address from latitude and longitude", ex);
+        }
+    }
+    
     public static String getCityAndCountry(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
         
@@ -197,7 +225,11 @@ public class Utils {
         }
         String geoDistrictOfCity = preferences.getString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, "");
         if ("".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
+            String geoCountryDistrict = preferences.getString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, "");
+            if ((geoCountryDistrict == null) || "".equals(geoCountryDistrict) || geoCity.equals(geoCountryDistrict)) {
             return geoCity + ", " + geoCountryName;
+        }
+            return geoCity + ", " + geoCountryDistrict + ", " + geoCountryName;
         }
         return geoCity + " - " + geoDistrictOfCity + ", " + geoCountryName;
     }

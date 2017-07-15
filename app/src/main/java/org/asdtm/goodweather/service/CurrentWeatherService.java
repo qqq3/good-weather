@@ -82,6 +82,11 @@ public class CurrentWeatherService extends IntentService {
     }
 
     public void parseWeather(String data) {
+        
+        if(mWeather == null) {
+            return;
+        }
+        
         try {
             JSONObject jsonObject = new JSONObject(data);
 
