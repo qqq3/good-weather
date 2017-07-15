@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <string name="enter_city_hint">Introdueix ciutat</string>
+    <string name="label_current_city">Ciutat actual</string>
+    <string name="label_choose_city">Escull ciutat</string>
+    <string name="alertDialog_gps_message">El GPS no està habilitat. ¿Vols anar al menú de configuració?</string>
+    <string name="alertDialog_gps_positiveButton">Paràmetres</string>
+    <string name="alertDialog_gps_negativeButton">Cancel\·lar</string>
+    <string name="progressDialog_gps_locate">Trobar l\'ubicació actual</string>
+    <string name="load_progress">Càrrega…</string>
+
+    <!-- Activity names -->
+    <string name="title_activity_search">Cercar ubicació</string>
+    <string name="label_activity_main">Clima actual</string>
+    <string name="label_activity_weather_forecast">Pronòstic diari</string>
+    <string name="label_activity_graphs">Gràfics del clima</string>
+    <string name="title_activity_license">Llicència per %s</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_refresh">Actualitzar</string>
+    <string name="toolbar_menu_search_city">Cercar ciutat</string>
+    <string name="toolbar_menu_detect_location">Decectar ubicació</string>
+    <string name="menu_action_toggle_values">Intercanviar valors</string>
+    <string name="menu_action_toggle_yaxis">Intercanviar eix Y</string>
+
+    <!-- Navigation drawer -->
+    <string name="nav_menu_current_weather">Clima actual</string>
+    <string name="nav_menu_daily_forecast">Pronòstic diari</string>
+    <string name="nav_menu_graphs">Gràfics</string>
+    <string name="nav_menu_settings">Paràmetres</string>
+    <string name="nav_feedback">Opinió</string>
+    <string name="nav_menu_bitcoin_donation">Fer donació Bitcoins</string>
+
+    <!-- Toast messages -->
+    <string name="connection_not_found">Comprova la teva connexió a Internet</string>
+    <string name="toast_parse_error">Ha ocorregut un error. Prova més tard!</string>
+
+    <!-- Units and Measurement-->
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="millimetre_label">mm</string>
+
+    <!-- Search Screen strings -->
+    <string name="hint_activity_search">Cercar ubicació</string>
+
+    <!-- Preference Screen strings -->
+    <string name="title_activity_settings">Paràmetres</string>
+    <string name="pref_title_temperature">Temperatura</string>
+    <string name="preference_hide_desc">Amagar descripció del clima</string>
+    <string name="pref_title_category_notification">Notificacions</string>
+    <string name="pref_title_notification">Habilitar notificacions</string>
+    <string name="pref_title_notification_refresh_interval">Interval d\'actualització</string>
+    <string name="update_period_15min">15 minuts</string>
+    <string name="update_period_30min">30 minuts</string>
+    <string name="update_period_1hour">Cada hora</string>
+    <string name="update_period_3hours">3 hores</string>
+    <string name="update_period_6hours">6 hores</string>
+    <string name="update_period_12hours">12 hores</string>
+    <string name="update_period_24hours">24 hores</string>
+    <string name="pref_title_vibrate">Vibrar</string>
+    <string name="preference_widget_title_update_period">Període d\'actualització</string>
+    <string name="preference_title_activity_general">Paràmetres generals</string>
+    <string name="preference_title_activity_widget">Paràmetres del giny</string>
+
+    <!-- Preference Screen About -->
+    <string name="preference_title_activity_about">Quant a</string>
+    <string name="about_version_pref_title">Versió</string>
+    <string name="about_source_code_pref_title">Codi font</string>
+    <string name="about_app_license_pref_title">Llicència</string>
+    <string name="about_open_source_licenses_pref_title">Llicència de Codi Obert</string>
+
+    <!-- Weather conditions label strings -->
+    <string name="wind_label">Vent: %1$s %2$s</string>
+    <string name="rain_label">Pluja: %1$s %2$s</string>
+    <string name="snow_label">Neu: %1$s %2$s</string>
+    <string name="humidity_label">Humitat: %1$s%2$s</string>
+    <string name="pressure_label">Pressió: %1$s %2$s</string>
+    <string name="cloudiness_label">Nuvolositat: %1$s%2$s</string>
+    <string name="last_update_label">Última actualització: %s</string>
+    <string name="sunrise_label">Sortida del sol: %s</string>
+    <string name="sunset_label">Posta del sol: %s</string>
+    <string name="temperature_morning_title">Demà</string>
+    <string name="temperature_day_title">Dia</string>
+    <string name="temperature_evening_title">Tarda</string>
+    <string name="temperature_night_title">Nit</string>
+    <string name="label_temperature">Temperatura</string>
+    <string name="label_wind">Vent</string>
+    <string name="label_rain">Pluja</string>
+    <string name="label_snow">Neu</string>
+
+    <!-- Widgets strings -->
+    <string name="widget_weather_icon_description">Icona del clima actual</string>
+    <string name="widget_refresh_button">Botó d\'actualització del giny</string>
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">Codi QR de donació de Bitcoin</string>
+    <string name="donation_bitcoin_copy_button">Copiar direcció de Bitcoin</string>
+    <string name="donation_bitcoin_open_app">Obrir aplicació de Bitcoin</string>
+    <string name="donation_bitcoin_copy_message">La direcció de Bitcoin s\'ha copiat en el porta-retalls</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_east">NE</string>
+    <string name="wind_direction_east">E</string>
+    <string name="wind_direction_south_east">SE</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_west">SO</string>
+    <string name="wind_direction_west">O</string>
+    <string name="wind_direction_north_west">NO</string>
+
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Els permisos d\'ubicació són necessaris per determinar la ciutat actual</string>
+    <string name="permission_not_granted">Els permisos no s\'han concedit!</string>
+    <string name="permission_available_location">S\'han concedit els permisos d\'ubicació</string>
+    <string name="pref_language_default">Per defecte</string>
+    <string name="pref_title_language">Idioma</string>
+    <string name="preference_title_category_display">Mostrar</string>
+    <string name="restart_dialog_message">Reiniciï l\'aplicació per aplicar la nova configuració</string>
+<string name="preference_widget_update_location">Actualitza localització</string>
+    <string name="preference_widget_use_geocoder">Utiliza la ubicació mostrada</string>
+    <string name="preference_widget_theme_title">Tema del giny</string>
+    <string name="theme_dark">Fosc</string>
+    <string name="theme_light">Clar</string>
+    <string name="theme_transparent">Transparent</string>
+    <string name="pref_title_theme">Tema</string>
+    
+    <string name="permission_location_need">Hauries de donar permisos de localització</string>
+
+    </resources>

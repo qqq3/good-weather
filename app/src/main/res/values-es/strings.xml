@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Introduce ciudad</string>
     <string name="label_current_city">Ciudad actual</string>
@@ -6,7 +7,7 @@
     <string name="alertDialog_gps_positiveButton">Ajustes</string>
     <string name="alertDialog_gps_negativeButton">Cancelar</string>
     <string name="progressDialog_gps_locate">Encontrar ubicación actual</string>
-    <string name="load_progress">Cargando&#8230;</string>
+    <string name="load_progress">Cargando…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Buscar ubicación</string>
@@ -32,7 +33,7 @@
 
     <!-- Toast messages -->
     <string name="connection_not_found">Comprueba tu conexión a internet</string>
-    <string name="toast_parse_error">Ha ocurrido un error. Prueba más tarde</string>
+    <string name="toast_parse_error">Ha ocurrido un error. Prueba más tarde.</string>
 
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
@@ -58,7 +59,6 @@
     <string name="update_period_12hours">12 horas</string>
     <string name="update_period_24hours">24 horas</string>
     <string name="pref_title_vibrate">Vibrar</string>
-    <string name="preference_widget_light_theme">Tema claro</string>
     <string name="preference_widget_title_update_period">Periodo de actualización</string>
     <string name="preference_title_activity_general">Ajustes generales</string>
     <string name="preference_title_activity_widget">Ajustes de widget</string>
@@ -117,4 +117,14 @@
     <string name="pref_title_language">Idioma</string>
     <string name="preference_title_category_display">Mostrar</string>
     <string name="restart_dialog_message">Reinicie la aplicación para aplicar la nueva configuración</string>
-</resources>
+<string name="preference_widget_update_location">Actualizar ubicación</string>
+    <string name="preference_widget_use_geocoder">Utilizar geolocalización para mostrar</string>
+    <string name="preference_widget_theme_title">Tema del widget</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_transparent">Transparente</string>
+    <string name="pref_title_theme">Tema</string>
+    
+    <string name="permission_location_need">Tiene que conceder permiso de localización</string>
+
+    </resources>

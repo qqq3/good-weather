@@ -1,29 +1,43 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppBaseThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorHint">@color/textColorHint</item>
-        <item name="android:editTextColor">@color/textColorPrimary</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+        <item name="actionBarTheme">@style/AppThemeLight.Toolbar</item>
+        <item name="actionBarPopupTheme">@style/AppThemeLight.Toolbar</item>
     </style>
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppBaseThemeDark" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorHint">@color/textColorHint</item>
-        <item name="android:editTextColor">@color/textColorPrimary</item>
+        <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+        <item name="actionBarTheme">@style/AppThemeLight.Toolbar</item>
+        <item name="actionBarPopupTheme">@style/AppThemeLight.Toolbar</item>
     </style>
 
-    <style name="AppTheme" parent="AppTheme.Base"/>
+    <style name="AppThemeDark" parent="AppBaseThemeDark">
+    </style>
+
+    <style name="AppThemeLight" parent="AppBaseThemeLight">
+    </style>
+
+    <style name="TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="AppThemeLight.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 
     <style name="MainLinearLayout">
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:layout_height">48dp</item>
     </style>
+
     <style name="MainIcon">
         <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
         <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/activity_horizontal_margin</item>
@@ -32,6 +46,7 @@
         <item name="android:textAlignment" tools:targetApi="17">gravity</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorAccentDark</item>
     </style>
 
     <style name="MainConditions">

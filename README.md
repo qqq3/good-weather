@@ -9,7 +9,7 @@ Open source weather app for Android.
 [<img src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' alt='Get it on Google Play' width='210' heigh='80'>](https://play.google.com/store/apps/details?id=org.asdtm.goodweather)
 
 ## Features
-* Different languages: English, Spanish, German, Japanese, Basque, Polish, Belarusian, Russian
+* Different languages: Basque, Belarusian, Czech, English, French, German, Japanese, Spanish, Polish, Russian
 * Current weather
 * 7 day forecast
 * Many locations
@@ -24,24 +24,24 @@ Open source weather app for Android.
 [<img src="http://i.imgur.com/lQKKBYY.png" alt="Good Weather preview" width="200">](http://i.imgur.com/lQKKBYY.png)
 
 ## To-Do
-- [x] Remove Ads
-- [x] Change Preference Screen
-- [x] Add notifications
-- [x] Add widgets
-- [x] Change API > 21 theme
-- [x] Grant permissions on Android 6.0 and above
+- [ ] Add weather map
 - [ ] Improve accessibility for people with disabilities
+
+# Translations
+[https://hosted.weblate.org/projects/good-weather/strings/](https://hosted.weblate.org/projects/good-weather/strings/)
+
+The strings are translated using [Weblate](https://weblate.org/en/). Follow
+[these instructions](https://hosted.weblate.org/engage/good-weather/) if you would like to contribute 
+[here](https://hosted.weblate.org/projects/good-weather/strings/).
 
 ## Donations
 If you would like to help, you can donate Bitcoin on ```1FV8m1MKqZ9ZKB8YNwpsjsuubHTznJSiT8``` address.
-
-Or scan QR code with help Bitcoin app:
-<img src="http://i.imgur.com/pqG48LZ.png" alt="QR code Bitcoin address" width="100" height="100" />
-
 Thanks!
 
 ## List of contributors
-[berian](https://github.com/beriain), [mahula](https://github.com/mahula), [naofum](https://github.com/naofum)
+[berian](https://github.com/beriain), [mahula](https://github.com/mahula), [naofum](https://github.com/naofum), 
+[thuryn](https://github.com/thuryn), [monolifed](https://github.com/monolifed), [marcoM32](https://github.com/marcoM32),
+[Zagur](https://github.com/Zagur)
 
 ## License
 ```

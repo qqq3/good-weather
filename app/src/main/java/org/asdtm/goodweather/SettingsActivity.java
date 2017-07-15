@@ -1,23 +1,33 @@
 package org.asdtm.goodweather;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.asdtm.goodweather.service.NotificationService;
@@ -31,8 +41,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((GoodWeatherApp) getApplication()).applyTheme(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        }
         super.onCreate(savedInstanceState);
         setupActionBar();
+
+        int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+        int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+        int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+        getListView().setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
     }
 
     @Override
@@ -47,6 +66,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     private void setupActionBar() {
+        getLayoutInflater().inflate(R.layout.activity_settings, (ViewGroup)findViewById(android.R.id.content));
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -79,6 +101,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Constants.KEY_PREF_HIDE_DESCRIPTION,
                 Constants.KEY_PREF_INTERVAL_NOTIFICATION,
                 Constants.PREF_LANGUAGE,
+                Constants.PREF_THEME,
         };
 
         @Override
@@ -89,7 +112,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
                     Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
             notificationSwitch.setOnPreferenceChangeListener(notificationListener);
+        }
 
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
         }
 
         Preference.OnPreferenceChangeListener notificationListener =
@@ -135,6 +170,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         dialog.show(getActivity().getFragmentManager(), "restartApp");
                     }
                     break;
+                case Constants.PREF_THEME:
+                    entrySummary(key);
+                    if (changing) {
+                        GoodWeatherApp app = (GoodWeatherApp) getActivity().getApplication();
+                        app.reloadTheme();
+                        app.applyTheme(getActivity());
+                        restartApp(getActivity());
+                    }
+                    break;
             }
         }
 
@@ -172,6 +216,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
 
         @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
+        }
+
+        @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             switch (key) {
                 case Constants.KEY_PREF_WIDGET_THEME:
@@ -182,6 +239,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     Intent intent1 = new Intent(Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED);
                     getActivity().sendBroadcast(intent1);
                     setSummary();
+                    break;
+                case Constants.KEY_PREF_WIDGET_UPDATE_LOCATION:
+                    int fineLocationPermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+                    if (fineLocationPermission != PackageManager.PERMISSION_GRANTED) {
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), R.string.permission_location_need, Snackbar.LENGTH_SHORT).show();
+                        CheckBoxPreference updateLocation = (CheckBoxPreference) findPreference(key);
+                        updateLocation.setChecked(false);
+                    }
                     break;
             }
         }
@@ -221,6 +286,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             findPreference(Constants.KEY_PREF_ABOUT_VERSION).setSummary(getVersionName());
             findPreference(Constants.KEY_PREF_ABOUT_F_DROID).setIntent(fDroidIntent());
             findPreference(Constants.KEY_PREF_ABOUT_GOOGLE_PLAY).setIntent(googlePlayIntent());
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
         }
 
         @Override
@@ -312,5 +390,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             builder.setPositiveButton(android.R.string.ok, null);
             return builder.create();
         }
+    }
+
+    public static void restartApp(Activity activity) {
+        Intent intent = activity.getIntent();
+        if (intent == null) {
+            return;
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        activity.finish();
+        activity.overridePendingTransition(0, 0);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(0, 0);
     }
 }

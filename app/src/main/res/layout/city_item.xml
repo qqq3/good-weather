@@ -14,7 +14,8 @@
         tools:text="London"
         android:fontFamily="sans-serif"
         android:textSize="16sp"
-        android:textColor="@color/settings_content_color"/>
+        android:textColor="?android:attr/textColorPrimary"
+        android:textAppearance="?android:attr/textAppearanceListItem"/>
 
     <TextView
         android:id="@+id/country_code"
@@ -22,5 +23,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:textSize="14sp"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
         tools:text="GB"/>
 </LinearLayout>

@@ -44,6 +44,7 @@ public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ((GoodWeatherApp) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));

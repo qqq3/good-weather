@@ -219,7 +219,7 @@ public class Utils {
         
     private static String getCityAndCountryFromGeolocation(SharedPreferences preferences) {
         String geoCountryName = preferences.getString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "United Kingdom");
-        String geoCity = preferences.getString(Constants.APP_SETTINGS_GEO_CITY, "");
+        String geoCity = preferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London");
         if("".equals(geoCity)) {
             return geoCountryName;
         }
@@ -236,7 +236,6 @@ public class Utils {
 
     private static String getCityAndCountryFromPreference(Context context) {
         String[] cityAndCountryArray = AppPreference.getCityAndCode(context);
-        String cityAndCountry = cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
-        return cityAndCountry;
+        return cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
     }
 }

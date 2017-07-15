@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Stadt betreten</string>
     <string name="label_current_city">Aktuelle Stadt</string>
@@ -7,7 +7,7 @@
     <string name="alertDialog_gps_positiveButton">Einstellungen</string>
     <string name="alertDialog_gps_negativeButton">Abbrechen</string>
     <string name="progressDialog_gps_locate">Aktuelle Position wird gesucht</string>
-    <string name="load_progress">Laden&#8230;</string>
+    <string name="load_progress">Laden…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Standortsuche</string>
@@ -58,7 +58,6 @@
     <string name="update_period_12hours">12 Stunden</string>
     <string name="update_period_24hours">24 Stunden</string>
     <string name="pref_title_vibrate">Vibrieren</string>
-    <string name="preference_widget_light_theme">Light Theme</string>
     <string name="preference_widget_title_update_period">Aktualisierungsintervall</string>
     <string name="preference_title_activity_general">Allgemeine Einstellungen</string>
     <string name="preference_title_activity_widget">Widget-Einstellungen</string>
@@ -91,8 +90,8 @@
     <string name="label_snow">Schnee</string>
 
     <!-- Widgets strings -->
-    <string name="widget_weather_icon_description">Current weather icon</string>
-    <string name="widget_refresh_button">Widget refresh button</string>
+    <string name="widget_weather_icon_description">Momentanes Wetter Icon</string>
+    <string name="widget_refresh_button">\"Widget aktualisieren\" Button</string>
 
     <!-- Donation Bitcoin dialog -->
     <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
@@ -100,7 +99,7 @@
     <string name="donation_bitcoin_open_app">Bitcoin App öffnen</string>
     <string name="donation_bitcoin_copy_message">Bitcoin-Adresse wurde in die Zwischenablage kopiert</string>
 
-    !-- Wind directions -->
+    !-- Wind directions --&gt;
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NO</string>
     <string name="wind_direction_east">O</string>
@@ -111,11 +110,21 @@
     <string name="wind_direction_north_west">NW</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Standort Berechtigungen werden benötigt, um die aktuelle Stadt zu ermitteln</string>
+    <string name="permission_location_rationale">Standortberechtigungen werden benötigt, um die aktuelle Stadt zu ermitteln</string>
     <string name="permission_not_granted">Berechtigungen wurden nicht gewährt!</string>
     <string name="permission_available_location">Standort Berechtigungen wurden erteilt</string>
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Sprache</string>
     <string name="preference_title_category_display">Anzeige</string>
     <string name="restart_dialog_message">Starten Sie die Anwendung neu, um neue Einstellungen anzuwenden</string>
-</resources>
+<string name="preference_widget_use_geocoder">Verwende Standort</string>
+    <string name="preference_widget_update_location">Standort aktualisieren</string>
+    <string name="preference_widget_theme_title">Widget Motiv</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_transparent">Transparent</string>
+    <string name="pref_title_theme">Motiv</string>
+    
+    <string name="permission_location_need">Standortberechtigungen muss gewährt werden</string>
+
+    </resources>

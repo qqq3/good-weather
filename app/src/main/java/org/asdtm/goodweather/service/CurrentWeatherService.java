@@ -11,6 +11,7 @@ import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.LanguageUtil;
 import org.asdtm.goodweather.utils.PreferenceUtil;
+import org.asdtm.goodweather.utils.Utils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +24,6 @@ import java.net.URL;
 
 import static org.asdtm.goodweather.MainActivity.mCitySearch;
 import static org.asdtm.goodweather.MainActivity.mWeather;
-import org.asdtm.goodweather.utils.Utils;
 
 public class CurrentWeatherService extends IntentService {
 

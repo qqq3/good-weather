@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <string name="enter_city_hint">Şehir girin</string>
+    <string name="label_current_city">Geçerli şehir</string>
+    <string name="label_choose_city">Şehir seçin</string>
+    <string name="alertDialog_gps_message">GPS etkin değil. Ayarlar menüsüne gitmek istiyor musunuz?</string>
+    <string name="alertDialog_gps_positiveButton">Ayarlar</string>
+    <string name="alertDialog_gps_negativeButton">İptal</string>
+    <string name="progressDialog_gps_locate">Şimdiki konumu bul</string>
+    <string name="load_progress">Yükleniyor…</string>
+
+    <!-- Activity names -->
+    <string name="title_activity_search">Konum Ara</string>
+    <string name="label_activity_main">Şimdiki Hava</string>
+    <string name="label_activity_weather_forecast">Günlük Tahmin</string>
+    <string name="label_activity_graphs">Hava Grafikleri</string>
+    <string name="title_activity_license">%s için Lisans</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_refresh">Güncelle</string>
+    <string name="toolbar_menu_search_city">Şehir Ara</string>
+    <string name="toolbar_menu_detect_location">Konumu Algıla</string>
+    <string name="menu_action_toggle_values">Değerleri Aç/Kapa</string>
+    <string name="menu_action_toggle_yaxis">Y-Eksenini Aç/Kapa</string>
+
+    <!-- Navigation drawer -->
+    <string name="nav_menu_current_weather">Şimdiki Hava</string>
+    <string name="nav_menu_daily_forecast">Günlük Tahmin</string>
+    <string name="nav_menu_graphs">Grafikler</string>
+    <string name="nav_menu_settings">Ayarlar</string>
+    <string name="nav_feedback">Geri Bildirim</string>
+    <string name="nav_menu_bitcoin_donation">Bitcoin Bağışla</string>
+
+    <!-- Toast messages -->
+    <string name="connection_not_found">İnternet bağlantınızı kontrol edin</string>
+    <string name="toast_parse_error">Bir hata oluştu. Daha sonra deneyin!</string>
+
+    <!-- Weather icons -->
+
+    <!-- Units and Measurement-->
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="millimetre_label">mm</string>
+
+    <!-- Search Screen strings -->
+    <string name="hint_activity_search">Konum ara</string>
+
+    <!-- Preference Screen strings -->
+    <string name="title_activity_settings">Ayarlar</string>
+    <string name="pref_title_temperature">Sıcaklık</string>
+    <string name="preference_hide_desc">Hava açıklamasını gizle</string>
+    <string name="pref_title_category_notification">Bildirimler</string>
+    <string name="pref_title_notification">Bildirimleri Etkinleştir</string>
+    <string name="pref_title_notification_refresh_interval">Yenileme Aralığı</string>
+    <string name="update_period_15min">15 dakika</string>
+    <string name="update_period_30min">30 dakika</string>
+    <string name="update_period_1hour">Her saat</string>
+    <string name="update_period_3hours">3 saat</string>
+    <string name="update_period_6hours">6 saat</string>
+    <string name="update_period_12hours">12 saat</string>
+    <string name="update_period_24hours">24 saat</string>
+    <string name="pref_title_vibrate">Titret</string>
+    <string name="preference_widget_title_update_period">Güncelleme Sıklığı</string>
+    <string name="preference_title_activity_general">Genel ayarlar</string>
+    <string name="preference_title_activity_widget">Widget ayarları</string>
+    <string name="preference_widget_update_location">Konumu güncelle</string>
+    <string name="preference_widget_use_geocoder">Görüntüleme için konumu kullan</string>
+    <string name="preference_widget_theme_title">Widget teması</string>
+    <string name="theme_dark">Koyu</string>
+    <string name="theme_light">Açık</string>
+    <string name="theme_transparent">Şeffaf</string>
+    <string name="preference_title_category_display">Ekran</string>
+    <string name="pref_title_language">Dil</string>
+    <string name="pref_language_default">Sistem Dili</string>
+    <string name="pref_title_theme">Tema</string>
+    
+    <!-- Preference Screen About -->
+    <string name="preference_title_activity_about">Hakkında</string>
+    <string name="about_version_pref_title">Sürüm</string>
+    <string name="about_source_code_pref_title">Kaynak kodu</string>
+    <string name="about_app_license_pref_title">Lisans</string>
+    <string name="about_open_source_licenses_pref_title">Açık Kaynak lisansları</string>
+
+    <!-- Weather conditions label strings -->
+    <string name="wind_label">Rüzgar: %1$s %2$s</string>
+    <string name="rain_label">Yağmur: %1$s %2$s</string>
+    <string name="snow_label">Kar: %1$s %2$s</string>
+    <string name="humidity_label">Nem: %1$s%2$s</string>
+    <string name="pressure_label">Basınç: %1$s %2$s</string>
+    <string name="cloudiness_label">Kapalılık: %1$s%2$s</string>
+    <string name="last_update_label">Son güncelleme: %s</string>
+    <string name="sunrise_label">Gün doğumu: %s</string>
+    <string name="sunset_label">Gün batımı: %s</string>
+    <string name="temperature_morning_title">Sabah</string>
+    <string name="temperature_day_title">Gün</string>
+    <string name="temperature_evening_title">Akşam</string>
+    <string name="temperature_night_title">Gece</string>
+    <string name="label_temperature">Sıcaklık</string>
+    <string name="label_wind">Rüzgar</string>
+    <string name="label_rain">Yağmur</string>
+    <string name="label_snow">Kar</string>
+
+    <!-- Widgets strings -->
+    <string name="widget_weather_icon_description">Geçerli hava simgesi</string>
+    <string name="widget_refresh_button">Widget yenileme düğmesi</string>
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">Bağış Bitcoin QR kodu</string>
+    <string name="donation_bitcoin_copy_button">Bitcoin Adresini Kopyala</string>
+    <string name="donation_bitcoin_open_app">Bitcoin Uygulamasını Aç</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin adresi panoya kopyalandı</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction_north">K</string>
+    <string name="wind_direction_north_east">KD</string>
+    <string name="wind_direction_east">D</string>
+    <string name="wind_direction_south_east">GD</string>
+    <string name="wind_direction_south">G</string>
+    <string name="wind_direction_south_west">GB</string>
+    <string name="wind_direction_west">B</string>
+    <string name="wind_direction_north_west">KB</string>
+
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Şimdiki şehiri belirlemek için Konum İzinleri gerekli</string>
+    <string name="permission_not_granted">İzinler verilmedi!</string>
+    <string name="permission_available_location">Konum İzinleri verildi</string>
+    <string name="permission_location_need">Konum İzinlerini vermelisiziniz</string>
+
+    <!-- Dialog strings -->
+    <string name="restart_dialog_message">Lütfen yeni ayarları uygulamak için uygulamayı tekrar başlatın</string>
+</resources>

@@ -36,7 +36,6 @@
     <string name="preference_title_activity_about">O aplikacji</string>
     <string name="preference_title_activity_general">Ustawienia główne</string>
     <string name="preference_title_activity_widget">Ustawienia Widget</string>
-    <string name="preference_widget_light_theme">światło tematem</string>
     <string name="update_period_3hours">3 godziny</string>
     <string name="update_period_6hours">6 godzin</string>
     <string name="preference_widget_title_update_period">Okres aktualizacji</string>

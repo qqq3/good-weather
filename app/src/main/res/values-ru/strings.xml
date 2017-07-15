@@ -36,7 +36,6 @@
     <string name="preference_title_activity_about">О приложении</string>
     <string name="preference_title_activity_general">Главные настройки</string>
     <string name="preference_title_activity_widget">Настройки виджетов</string>
-    <string name="preference_widget_light_theme">Светлая тема</string>
     <string name="update_period_3hours">3 часа</string>
     <string name="update_period_6hours">6 часов</string>
     <string name="preference_widget_title_update_period">Интервал обновления</string>

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="enter_city_hint">Város megadása</string>
+    <string name="label_current_city">Jelenlegi város</string>
+    <string name="label_choose_city">Város választása</string>
+    <string name="alertDialog_gps_message">A GPS nincs bekapcsolva. Szeretné a beállításokat megnyitni?</string>
+    <string name="alertDialog_gps_positiveButton">Beállítások</string>
+    <string name="alertDialog_gps_negativeButton">Mégsem</string>
+    <string name="progressDialog_gps_locate">Jelenlegi pozíció megkeresése</string>
+    <string name="load_progress">Betöltés…</string>
+
+    <string name="title_activity_search">Pozíció keresése</string>
+    <string name="label_activity_main">Jelenlegi időjárás</string>
+    <string name="label_activity_weather_forecast">Napi előrejelzés</string>
+    <string name="label_activity_graphs">Időjárási diagramok</string>
+    <string name="title_activity_license">%s licensze</string>
+
+    <string name="toolbar_menu_refresh">Frissítés</string>
+    <string name="toolbar_menu_search_city">Város keresése</string>
+    <string name="toolbar_menu_detect_location">Pozíció meghatározása</string>
+    <string name="menu_action_toggle_values">Értékek állítása</string>
+    <string name="menu_action_toggle_yaxis">Y-tengely átállítása</string>
+
+    <string name="nav_menu_current_weather">Jelenlegi időjárás</string>
+    <string name="nav_menu_daily_forecast">Napi előrejelzés</string>
+    <string name="nav_menu_graphs">Diagramok</string>
+    <string name="nav_menu_settings">Beállítások</string>
+    <string name="nav_feedback">Visszajelzés</string>
+    <string name="nav_menu_bitcoin_donation">Bitcoin adományozása</string>
+
+    <string name="connection_not_found">Ellenőrizze az internet-kapcsolatot</string>
+    <string name="toast_parse_error">Hiba történt. Próbálja meg később!</string>
+
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="millimetre_label">mm</string>
+
+    <string name="hint_activity_search">Pozíció meghatározása</string>
+
+    <string name="title_activity_settings">Beállítások</string>
+    <string name="pref_title_temperature">Hőmérséklet</string>
+    <string name="preference_hide_desc">Időjárás leírásának elrejtése</string>
+    <string name="pref_title_category_notification">Figyelmeztetések</string>
+    <string name="pref_title_notification">Figyelmeztetések bekapcsolása</string>
+    <string name="pref_title_notification_refresh_interval">Frissítési időköz</string>
+    <string name="update_period_15min">15 perc</string>
+    <string name="update_period_30min">30 perc</string>
+    <string name="update_period_1hour">Óránként</string>
+    <string name="update_period_3hours">3 óránként</string>
+    <string name="update_period_6hours">6 óránként</string>
+    <string name="update_period_12hours">12 óránként</string>
+    <string name="update_period_24hours">24 óránként</string>
+    <string name="pref_title_vibrate">Rezgés</string>
+    <string name="preference_widget_title_update_period">Frissítési időköz</string>
+    <string name="preference_title_activity_general">Általános beállítások</string>
+    <string name="preference_title_activity_widget">Widget-beállítások</string>
+    <string name="preference_widget_update_location">Pozíció frissítése</string>
+    <string name="preference_widget_use_geocoder">Helymeghatározás használata a kijelzéshez</string>
+    <string name="preference_widget_theme_title">Widget kinézet</string>
+    <string name="theme_dark">Sötét</string>
+    <string name="theme_light">Világos</string>
+    <string name="theme_transparent">Átlátszó</string>
+    <string name="preference_title_category_display">Kijelzés</string>
+    <string name="pref_title_language">Nyelv</string>
+    <string name="pref_language_default">Alapértelmezett (rendszer)</string>
+    <string name="pref_title_theme">Kinézet</string>
+    
+    <string name="preference_title_activity_about">Az alkalmazásról</string>
+    <string name="about_version_pref_title">Verzió</string>
+    <string name="about_source_code_pref_title">Forráskód</string>
+    <string name="about_app_license_pref_title">Licensz</string>
+    <string name="about_open_source_licenses_pref_title">Nyílt forrású licenszek</string>
+
+    <string name="wind_label">Szélsebesség: %1$s %2$s</string>
+    <string name="rain_label">Eső: %1$s %2$s</string>
+    <string name="snow_label">Hó: %1$s %2$s</string>
+    <string name="humidity_label">Páratartalom: %1$s%2$s</string>
+    <string name="pressure_label">Légnyomás: %1$s %2$s</string>
+    <string name="cloudiness_label">Felhőzet: %1$s%2$s</string>
+    <string name="last_update_label">Legutóbb frissítve: %s</string>
+    <string name="sunrise_label">Napfelkelte: %s</string>
+    <string name="sunset_label">Naplemente: %s</string>
+    <string name="temperature_morning_title">Reggel</string>
+    <string name="temperature_day_title">Napközben</string>
+    <string name="temperature_evening_title">Este</string>
+    <string name="temperature_night_title">Éjjel</string>
+    <string name="label_temperature">Hőmérséklet</string>
+    <string name="label_wind">Szélsebesség</string>
+    <string name="label_rain">Eső</string>
+    <string name="label_snow">Hó</string>
+
+    <string name="widget_weather_icon_description">Aktuális időjárás ikon</string>
+    <string name="widget_refresh_button">\"Widget frissítés\" gomb</string>
+
+    <string name="donation_bitcoin_qr_description">Bitcoin adomány QR kód</string>
+    <string name="donation_bitcoin_copy_button">Bitcoin cím másolása</string>
+    <string name="donation_bitcoin_open_app">Bitcoin alkalmazás megnyitása</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin cím a vágólapra másolva</string>
+
+    <string name="wind_direction_north">É</string>
+    <string name="wind_direction_north_east">ÉK</string>
+    <string name="wind_direction_east">K</string>
+    <string name="wind_direction_south_east">DK</string>
+    <string name="wind_direction_south">D</string>
+    <string name="wind_direction_south_west">DNY</string>
+    <string name="wind_direction_west">NY</string>
+    <string name="wind_direction_north_west">ÉNY</string>
+
+    <string name="permission_location_rationale">Helymeghatározási engedély szükséges a jelenlegi város meghatározásához</string>
+    <string name="permission_not_granted">Az engedély nincs megadva!</string>
+    <string name="permission_available_location">Helymeghatározási engedély megadva</string>
+    <string name="permission_location_need">Kérem, adja meg az engedélyt a helymeghatározáshoz</string>
+
+    <string name="restart_dialog_message">Indítsa újra az alkalmazást, hogy az új beállítások aktiválódjanak</string>
+</resources>

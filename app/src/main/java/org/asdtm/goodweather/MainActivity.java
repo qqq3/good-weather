@@ -29,6 +29,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,8 +54,8 @@ import static org.asdtm.goodweather.utils.AppPreference.saveLastUpdateTimeMillis
 public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final String TAG = "MainActivity";
-    
-    private static final long LOCATION_TIMEOUT_IN_MS = 30000l;
+
+    private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
 
     private TextView mIconWeatherView;
     private TextView mTemperatureView;
@@ -82,7 +83,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private Menu mToolbarMenu;
     private BroadcastReceiver mWeatherUpdateReceiver;
 
-    private String mUnits;
     private String mSpeedScale;
     private String mIconWind;
     private String mIconHumidity;
@@ -100,14 +100,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     public static CitySearch mCitySearch;
 
     private static final int REQUEST_LOCATION = 0;
-    private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION};
-
+    private static final String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
+                                                          Manifest.permission.ACCESS_FINE_LOCATION};
     public Context storedContext;
     private Geocoder geocoder;
         
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        ((GoodWeatherApp) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -194,7 +194,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         }
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
-                    mWeather.location.getCountryCode());
+                mWeather.location.getCountryCode());
         configEditor.apply();
     }
 
@@ -238,8 +238,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     setUpdateButtonState(true);
                 } else {
                     Toast.makeText(MainActivity.this,
-                                   R.string.connection_not_found,
-                                   Toast.LENGTH_SHORT).show();
+                            R.string.connection_not_found,
+                            Toast.LENGTH_SHORT).show();
                     setUpdateButtonState(false);
                 }
                 return true;
@@ -275,7 +275,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
 
             mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                                                      Context.MODE_PRIVATE);
+                    Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putString(Constants.APP_SETTINGS_LATITUDE, latitude);
             editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
@@ -287,7 +287,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
             } else {
                 Toast.makeText(MainActivity.this, R.string.connection_not_found, Toast.LENGTH_SHORT)
-                     .show();
+                        .show();
             }
         }
 
@@ -316,15 +316,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         startService(new Intent(MainActivity.this, CurrentWeatherService.class));
                     } else {
                         Toast.makeText(MainActivity.this,
-                                       R.string.connection_not_found,
-                                       Toast.LENGTH_SHORT).show();
+                                R.string.connection_not_found,
+                                Toast.LENGTH_SHORT).show();
                         mSwipeRefresh.setRefreshing(false);
                     }
                 }
             };
 
     private void preLoadWeather() {
-        mUnits = AppPreference.getTemperatureUnit(this);
         mSpeedScale = Utils.getSpeedScale(this);
         String lastUpdate = Utils.setLastUpdateTime(this,
                 AppPreference.getLastUpdateTimeMillis(this));
@@ -337,7 +336,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         float pressurePref = mPrefWeather.getFloat(Constants.WEATHER_DATA_PRESSURE, 0);
         float windPref = mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0);
         int clouds = mPrefWeather.getInt(Constants.WEATHER_DATA_CLOUDS, 0);
-        
         long sunrisePref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNRISE, -1);
         long sunsetPref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNSET, -1);
 
@@ -408,27 +406,21 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mIconWindView = (TextView) findViewById(R.id.main_wind_icon);
         mIconWindView.setTypeface(weatherFontIcon);
         mIconWindView.setText(mIconWind);
-        mIconWindView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconHumidityView = (TextView) findViewById(R.id.main_humidity_icon);
         mIconHumidityView.setTypeface(weatherFontIcon);
         mIconHumidityView.setText(mIconHumidity);
-        mIconHumidityView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconPressureView = (TextView) findViewById(R.id.main_pressure_icon);
         mIconPressureView.setTypeface(weatherFontIcon);
         mIconPressureView.setText(mIconPressure);
-        mIconPressureView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconCloudinessView = (TextView) findViewById(R.id.main_cloudiness_icon);
         mIconCloudinessView.setTypeface(weatherFontIcon);
         mIconCloudinessView.setText(mIconCloudiness);
-        mIconCloudinessView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconSunriseView = (TextView) findViewById(R.id.main_sunrise_icon);
         mIconSunriseView.setTypeface(weatherFontIcon);
         mIconSunriseView.setText(mIconSunrise);
-        mIconSunriseView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mIconSunsetView = (TextView) findViewById(R.id.main_sunset_icon);
         mIconSunsetView.setTypeface(weatherFontIcon);
         mIconSunsetView.setText(mIconSunset);
-        mIconSunsetView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
     }
 
     private void weatherConditionsIcons() {
@@ -470,8 +462,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
                         Toast.makeText(MainActivity.this,
-                                       getString(R.string.toast_parse_error),
-                                       Toast.LENGTH_SHORT).show();
+                                getString(R.string.toast_parse_error),
+                                Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -483,7 +475,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
 
     FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
-                
         @Override
         public void onClick(View view) {
             String temperatureScale = Utils.getTemperatureScale(MainActivity.this);
@@ -501,9 +492,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             }
             temperature = String.format(Locale.getDefault(), "%.0f", mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
             description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION,
-                                                 "clear sky");
+                    "clear sky");
             wind = String.format(Locale.getDefault(), "%.1f",
-                                 mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
+                    mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
             sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
                     .getLong(Constants.WEATHER_DATA_SUNRISE, -1));
             sunset = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
@@ -522,8 +513,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 startActivity(Intent.createChooser(shareIntent, "Share Weather"));
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(MainActivity.this,
-                               "Communication app not found",
-                               Toast.LENGTH_LONG).show();
+                        "Communication app not found",
+                        Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -539,6 +530,16 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
+        mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    locationManager.removeUpdates(mLocationListener);
+                } catch (SecurityException e) {
+                    Log.e(TAG, "Cancellation error", e);
+                }
+            }
+        });
 
         if (isNetworkEnabled) {
             networkRequestLocation();
@@ -585,11 +586,18 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, mLocationListener, locationLooper);
             final Handler locationHandler = new Handler(locationLooper);
             locationHandler.postDelayed(new Runnable() {
-                 @Override
-                 public void run() {
-                     locationManager.removeUpdates(mLocationListener);
-                     mLocationListener.onLocationChanged(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-                 }
+                @Override
+                public void run() {
+                    locationManager.removeUpdates(mLocationListener);
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if (lastLocation != null) {
+                            mLocationListener.onLocationChanged(lastLocation);
+                        } else {
+                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+                        }
+                    }
+                }
             }, LOCATION_TIMEOUT_IN_MS);
         }
     }
@@ -599,26 +607,29 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 updateNetworkLocation();
         } else {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Looper locationLooper = Looper.myLooper();
-            locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, mLocationListener, locationLooper);
-            final Handler locationHandler = new Handler(locationLooper);
-            locationHandler.postDelayed(new Runnable() {
-                 @Override
-                 public void run() {
+                Looper locationLooper = Looper.myLooper();
+                locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, mLocationListener, locationLooper);
+                final Handler locationHandler = new Handler(locationLooper);
+                locationHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
                         locationManager.removeUpdates(mLocationListener);
-                        Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if((lastGpsLocation == null) && (lastNetworkLocation != null)) {
-                            mLocationListener.onLocationChanged(lastNetworkLocation);
-                        } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
-                            mLocationListener.onLocationChanged(lastGpsLocation);
-                        } else if ((lastGpsLocation != null) && (lastNetworkLocation != null)) {
-                            mLocationListener.onLocationChanged((lastGpsLocation.getElapsedRealtimeNanos() > lastNetworkLocation.getElapsedRealtimeNanos())?lastGpsLocation:lastNetworkLocation);
+                        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                            Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                            Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                            if ((lastGpsLocation == null) && (lastNetworkLocation != null)) {
+                                mLocationListener.onLocationChanged(lastNetworkLocation);
+                            } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
+                                mLocationListener.onLocationChanged(lastGpsLocation);
+                            } else {
+                                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
+                            }
                         }
                     }
-               }, LOCATION_TIMEOUT_IN_MS);
-           }
-       }
+                }, LOCATION_TIMEOUT_IN_MS);
+            }
+        }
     }
 
     private void updateNetworkLocation() {
@@ -637,7 +648,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
 
     private void requestLocationPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
             Snackbar.make(findViewById(android.R.id.content), R.string.permission_location_rationale, Snackbar.LENGTH_LONG)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override

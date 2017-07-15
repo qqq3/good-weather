@@ -14,7 +14,7 @@
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="@android:color/primary_text_light_nodisable"
+        android:textColor="?android:attr/textColorPrimary"
         android:textIsSelectable="true"/>
 
     <ImageView
