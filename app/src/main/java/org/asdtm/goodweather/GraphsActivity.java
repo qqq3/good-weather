@@ -27,8 +27,8 @@ import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.CustomValueFormatter;
 import org.asdtm.goodweather.utils.LanguageUtil;
 import org.asdtm.goodweather.utils.PreferenceUtil;
-import org.asdtm.goodweather.utils.XAxisValueFormatter;
 import org.asdtm.goodweather.utils.Utils;
+import org.asdtm.goodweather.utils.XAxisValueFormatter;
 import org.asdtm.goodweather.utils.YAxisValueFormatter;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,8 +50,8 @@ import static org.asdtm.goodweather.utils.Utils.getWeatherForecastUrl;
 
 public class GraphsActivity extends BaseActivity {
 
-    private ConnectionDetector mConnectionDetector;
     public List<WeatherForecast> mForecastList;
+    private ConnectionDetector mConnectionDetector;
     private LineChart mTemperatureChart;
     private LineChart mWindChart;
     private LineChart mRainChart;
@@ -116,7 +116,7 @@ public class GraphsActivity extends BaseActivity {
     }
 
     private void setTemperatureChart() {
-        mTemperatureChart.setDescription("");
+        //mTemperatureChart.setDescription("");
         mTemperatureChart.setDrawGridBackground(false);
         mTemperatureChart.setTouchEnabled(true);
         mTemperatureChart.setDragEnabled(true);
@@ -185,7 +185,7 @@ public class GraphsActivity extends BaseActivity {
     }
     
     private void setWindChart() {
-        mWindChart.setDescription("");
+        //mWindChart.setDescription("");
         mWindChart.setDrawGridBackground(false);
         mWindChart.setTouchEnabled(true);
         mWindChart.setDragEnabled(true);
@@ -254,7 +254,7 @@ public class GraphsActivity extends BaseActivity {
     }
 
     private void setRainChart() {
-        mRainChart.setDescription("");
+        //mRainChart.setDescription("");
         mRainChart.setDrawGridBackground(false);
         mRainChart.setTouchEnabled(true);
         mRainChart.setDragEnabled(true);
@@ -323,7 +323,7 @@ public class GraphsActivity extends BaseActivity {
     }
 
     private void setSnowChart() {
-        mSnowChart.setDescription("");
+        //mSnowChart.setDescription("");
         mSnowChart.setDrawGridBackground(false);
         mSnowChart.setTouchEnabled(true);
         mSnowChart.setDragEnabled(true);
