@@ -279,7 +279,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putString(Constants.APP_SETTINGS_LATITUDE, latitude);
             editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
-            Utils.getAndWriteAddressFromGeocoder(geocoder, address, latitude, longitude, editor);
+            boolean resolveAddressByOS = !"location_geocoder_unifiednlp".equals(AppPreference.getLocationGeocoderSource(storedContext));
+            Utils.getAndWriteAddressFromGeocoder(geocoder, address, latitude, longitude, resolveAddressByOS, editor);
             editor.apply();
 
             if (isNetworkAvailable) {

@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 
 public class ConnectionDetector {
 
-    private Context mContext;
+    private final Context mContext;
 
     public ConnectionDetector(Context context) {
         mContext = context;
@@ -17,7 +17,6 @@ public class ConnectionDetector {
                 = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        return networkInfo != null && networkInfo.isConnected();
+        return networkInfo != null && networkInfo.isAvailable();
     }
 }

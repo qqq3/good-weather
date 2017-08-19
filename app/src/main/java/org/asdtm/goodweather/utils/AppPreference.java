@@ -83,10 +83,23 @@ public class AppPreference {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false);
     }
-    
+        
     public static String getLocationGeocoderSource(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, "location_geocoder_system");
+    }
+    
+    public static String getUpdateSource(Context context) {
+        String updateDetailLevel = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UPDATE_DETAIL, "preference_display_update_nothing");
+        switch (updateDetailLevel) {
+            case "preference_display_update_value":
+            case "preference_display_update_location_source":
+                return context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0).getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "W");
+            case "preference_display_update_nothing":
+            default:
+                return "";
+        }
     }
     
     public static String getTheme(Context context) {
