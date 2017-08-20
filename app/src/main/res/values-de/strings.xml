@@ -2,7 +2,7 @@
 <resources>
     <string name="enter_city_hint">Stadt eingeben</string>
     <string name="label_current_city">Aktuelle Stadt</string>
-    <string name="label_choose_city">Wähle Stadt</string>
+    <string name="label_choose_city">Wähle deine Stadt aus</string>
     <string name="alertDialog_gps_message">GPS ist nicht aktiviert. Wollen Sie zu den Einstellungen?</string>
     <string name="alertDialog_gps_positiveButton">Einstellungen</string>
     <string name="alertDialog_gps_negativeButton">Abbrechen</string>
