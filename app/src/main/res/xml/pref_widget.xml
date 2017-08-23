@@ -9,6 +9,13 @@
         android:key="widget_use_geocoder_pref_key"
         android:title="@string/preference_widget_use_geocoder"/>
     <ListPreference
+        android:defaultValue="location_geocoder_system"
+        android:dialogTitle="@string/location_geocoder_title"
+        android:entries="@array/location_geocoder_source_entries"
+        android:entryValues="@array/location_geocoder_source_values"
+        android:key="location_geocoder_source"
+        android:title="@string/location_geocoder_title"/>
+    <ListPreference
         android:defaultValue="dark"
         android:dialogTitle="@string/preference_widget_theme_title"
         android:entries="@array/widget_theme_entries"
@@ -22,4 +29,11 @@
         android:entryValues="@array/widget_update_period_values"
         android:key="widget_update_period_pref_key"
         android:title="@string/preference_widget_title_update_period"/>
+    <ListPreference
+        android:defaultValue="preference_display_update_location_source"
+        android:dialogTitle="@string/preference_display_update_title"
+        android:entries="@array/preference_display_update_entries"
+        android:entryValues="@array/preference_display_update_values"
+        android:key="widget_update_details_pref_key"
+        android:title="@string/preference_display_update_title"/>
 </PreferenceScreen>

@@ -9,14 +9,18 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.text.format.DateFormat;
-
+import android.util.Log;
+import java.io.IOException;
 import org.asdtm.goodweather.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 
 public class Utils {
 
@@ -119,7 +123,7 @@ public class Utils {
 
     public static String setLastUpdateTime(Context context, long lastUpdate) {
         Date lastUpdateTime = new Date(lastUpdate);
-        return DateFormat.getTimeFormat(context).format(lastUpdateTime);
+        return DateFormat.getTimeFormat(context).format(lastUpdateTime) + " " + AppPreference.getUpdateSource(context);
     }
 
     public static long intervalMillisForAlarm(String intervalMinutes) {
@@ -174,6 +178,40 @@ public class Utils {
         return new URL(url);
     }
     
+    public static void getAndWriteAddressFromGeocoder(Geocoder geocoder,
+                                                      Address address,
+                                                      String latitude,
+                                                      String longitude,
+                                                      boolean resolveAddressByOS,
+                                                      SharedPreferences.Editor editor) {
+        try {
+            String latitudeEn = latitude.replace(",", ".");
+            String longitudeEn = longitude.replace(",", ".");
+            if (resolveAddressByOS) {
+                List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(latitudeEn), Double.parseDouble(longitudeEn), 1);
+                if((addresses != null) && (addresses.size() > 0)) {
+                    address = addresses.get(0);
+                }
+            }
+            if(address != null) {
+                if((address.getLocality() != null) && !"".equals(address.getLocality())) {
+                    editor.putString(Constants.APP_SETTINGS_GEO_CITY, address.getLocality());
+                } else {
+                    editor.putString(Constants.APP_SETTINGS_GEO_CITY, address.getSubAdminArea());
+                }
+                editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, address.getCountryName());
+                if(address.getAdminArea() != null) {
+                    editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, address.getAdminArea());
+                } else {
+                    editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, null);
+                }
+                editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, address.getSubLocality());
+            }
+        } catch (IOException | NumberFormatException ex) {
+            Log.e(Utils.class.getName(), "Unable to get address from latitude and longitude", ex);
+        }
+    }
+    
     public static String getCityAndCountry(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
         
@@ -185,16 +223,17 @@ public class Utils {
     }
         
     private static String getCityAndCountryFromGeolocation(SharedPreferences preferences) {
-        String geoCountryName = preferences.getString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "United Kingdom");
-        String geoCity = preferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London");
-        if("".equals(geoCity)) {
-            return geoCountryName;
-        }
+        String geoCountryName = preferences.getString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "");
+        String geoCity = preferences.getString(Constants.APP_SETTINGS_GEO_CITY, "");
         String geoDistrictOfCity = preferences.getString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, "");
         if ("".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
-            return geoCity + ", " + geoCountryName;
+            String geoCountryDistrict = preferences.getString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, "");
+            if ((geoCountryDistrict == null) || "".equals(geoCountryDistrict) || geoCity.equals(geoCountryDistrict)) {
+                return (("".equals(geoCity))?"":(geoCity + ", ")) + geoCountryName;
+            }
+            return (("".equals(geoCity))?"":(geoCity + ", ")) + geoCountryDistrict + ", " + geoCountryName;
         }
-        return geoCity + " - " + geoDistrictOfCity + ", " + geoCountryName;
+        return (("".equals(geoCity))?"":(geoCity + " - ")) + geoDistrictOfCity + ", " + geoCountryName;
     }
 
     private static String getCityAndCountryFromPreference(Context context) {

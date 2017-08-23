@@ -47,6 +47,26 @@
         <item>1440</item>
     </string-array>
     
+    <string-array name="location_geocoder_source_entries">
+        <item>@string/location_geocoder_system</item>
+        <item>@string/location_geocoder_unifiednlp</item>
+    </string-array>
+    <string-array name="location_geocoder_source_values">
+        <item>location_geocoder_system</item>
+        <item>location_geocoder_unifiednlp</item>
+    </string-array>
+    
+    <string-array name="preference_display_update_entries">
+        <item>@string/preference_display_update_nothing</item>
+        <item>@string/preference_display_update_value</item>
+        <item>@string/preference_display_update_location_source</item>
+    </string-array>
+    <string-array name="preference_display_update_values">
+        <item>preference_display_update_nothing</item>
+        <item>preference_display_update_value</item>
+        <item>preference_display_update_location_source</item>
+    </string-array>
+    
     <string-array name="widget_theme_entries">
         <item>@string/theme_dark</item>
         <item>@string/theme_light</item>

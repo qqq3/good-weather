@@ -37,7 +37,9 @@ public class LessWidgetProvider extends AppWidgetProvider {
         switch (intent.getAction()) {
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
                 if(AppPreference.isUpdateLocationEnabled(context)) {
-                    context.startService(new Intent(context, LocationUpdateService.class));
+                    Intent startLocationUpdateIntent = new Intent(context, LocationUpdateService.class);
+                    startLocationUpdateIntent.putExtra("updateSource", "LESS_WIDGET");
+                    context.startService(startLocationUpdateIntent);
                 } else {
                     context.startService(new Intent(context, LessWidgetService.class));
                 }

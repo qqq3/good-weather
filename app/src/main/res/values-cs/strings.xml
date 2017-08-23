@@ -67,6 +67,13 @@
     <string name="theme_dark">Tmavé</string>
     <string name="theme_light">Světlé</string>
     <string name="theme_transparent">Průsvitné</string>
+    <string name="location_geocoder_title">Zdroj informací o poloze a adrese</string>
+    <string name="preference_display_update_title">Zobrazení detailu aktualizace</string>
+    <string name="preference_display_update_nothing">Nic</string>
+    <string name="preference_display_update_value">Jen aktualizované hodnoty</string>
+    <string name="preference_display_update_location_source">Aktualizované hodnoty včetně zdroje pozice</string>
+    <string name="preference_display_update_value_info">W - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí</string>
+    <string name="preference_display_update_location_source_info">W - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nNc - aktualizována poloha z GSM sítě a počasí\nNw - aktualizována poloha z wifi sítí a počasí\nNcw - aktualizována poloha z GSM a wifi sítí, počasí</string>
 
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">O aplikaci</string>

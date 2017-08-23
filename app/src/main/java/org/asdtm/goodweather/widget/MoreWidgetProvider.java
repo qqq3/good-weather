@@ -36,7 +36,9 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         switch (intent.getAction()) {
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
                 if(AppPreference.isUpdateLocationEnabled(context)) {
-                    context.startService(new Intent(context, LocationUpdateService.class));
+                    Intent startLocationUpdateIntent = new Intent(context, LocationUpdateService.class);
+                    startLocationUpdateIntent.putExtra("updateSource", "MORE_WIDGET");
+                    context.startService(startLocationUpdateIntent);
                 } else {
                     context.startService(new Intent(context, MoreWidgetService.class));
                 }

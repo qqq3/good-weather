@@ -99,7 +99,16 @@
     <string name="preference_title_category_display">Display</string>
     <string name="pref_title_language">Language</string>
     <string name="pref_language_default">System Default</string>
+    <string name="location_geocoder_title">Location and address source</string>
+    <string name="location_geocoder_system">System</string>
+    <string name="location_geocoder_unifiednlp">UnifiedNLP</string>
     <string name="pref_title_theme">Theme</string>
+    <string name="preference_display_update_title">Display update summary</string>
+    <string name="preference_display_update_nothing">Nothing</string>
+    <string name="preference_display_update_value">Just updated value</string>
+    <string name="preference_display_update_location_source">Updated value with location source</string>
+    <string name="preference_display_update_value_info">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated</string>
+    <string name="preference_display_update_location_source_info">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nNc - location from cell network and weather updated\nNw - location from wifi networks and weather updated\nNcw - location from wifi and cell networks, weather updated</string>
     
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">About</string>

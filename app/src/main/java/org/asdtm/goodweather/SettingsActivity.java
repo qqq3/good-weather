@@ -234,11 +234,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 case Constants.KEY_PREF_WIDGET_THEME:
                     Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
                     getActivity().sendBroadcast(intent);
+                    setSummary(Constants.KEY_PREF_WIDGET_THEME);
                     break;
                 case Constants.KEY_PREF_WIDGET_UPDATE_PERIOD:
                     Intent intent1 = new Intent(Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED);
                     getActivity().sendBroadcast(intent1);
-                    setSummary();
+                    setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
                     break;
                 case Constants.KEY_PREF_WIDGET_UPDATE_LOCATION:
                     int fineLocationPermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
@@ -248,6 +249,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         updateLocation.setChecked(false);
                     }
                     break;
+                case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
+                    setSummary(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE);
+                    break;
+                case Constants.KEY_PREF_UPDATE_DETAIL:
+                    getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                    setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
+                    break;
             }
         }
 
@@ -256,7 +264,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onResume();
             getPreferenceScreen().getSharedPreferences()
                                  .registerOnSharedPreferenceChangeListener(this);
-            setSummary();
+            setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
+            setSummary(Constants.KEY_PREF_WIDGET_THEME);
+            setSummary(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE);
+            setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
         }
 
         @Override
@@ -265,11 +276,28 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
         }
-
-        private void setSummary() {
-            Preference updatePeriodPref = findPreference(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
-            ListPreference updatePeriodListPref = (ListPreference) updatePeriodPref;
-            updatePeriodPref.setSummary(updatePeriodListPref.getEntry());
+               
+        private void setDetailedSummary(CharSequence prefKey) {
+            Preference updatePref = findPreference(prefKey);
+            ListPreference updateListPref = (ListPreference) updatePref;
+            switch (updateListPref.getValue()) {
+                case "preference_display_update_value":
+                    updatePref.setSummary(R.string.preference_display_update_value_info);
+                    break;
+                case "preference_display_update_location_source":
+                    updatePref.setSummary(R.string.preference_display_update_location_source_info);
+                    break;
+                case "preference_display_update_nothing":
+                default:
+                    updatePref.setSummary(updateListPref.getEntry());
+                    break;
+            }
+        }
+        
+        private void setSummary(CharSequence prefKey) {
+            Preference updatePref = findPreference(prefKey);
+            ListPreference updateListPref = (ListPreference) updatePref;
+            updatePref.setSummary(updateListPref.getEntry());
         }
     }
 
