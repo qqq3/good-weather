@@ -3,23 +3,27 @@
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="widget_update_location_pref_key"
-        android:title="@string/preference_widget_update_location"/>
+        android:title="@string/preference_widget_update_location"
+        android:icon="@drawable/ic_place_black_24dp"/>
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="widget_use_geocoder_pref_key"
-        android:title="@string/preference_widget_use_geocoder"/>
+        android:title="@string/preference_widget_use_geocoder"
+        android:icon="@drawable/ic_my_location_black_24dp"/>
     <ListPreference
         android:defaultValue="dark"
         android:dialogTitle="@string/preference_widget_theme_title"
         android:entries="@array/widget_theme_entries"
         android:entryValues="@array/widget_theme_values"
         android:key="widget_theme_pref_key"
-        android:title="@string/preference_widget_theme_title"/>
+        android:title="@string/preference_widget_theme_title"
+        android:icon="@drawable/ic_palette_black_24dp"/>
     <ListPreference
         android:defaultValue="60"
         android:dialogTitle="@string/preference_widget_title_update_period"
         android:entries="@array/widget_update_period_entries"
         android:entryValues="@array/widget_update_period_values"
         android:key="widget_update_period_pref_key"
-        android:title="@string/preference_widget_title_update_period"/>
+        android:title="@string/preference_widget_title_update_period"
+        android:icon="@drawable/ic_access_time_black_24dp"/>
 </PreferenceScreen>
