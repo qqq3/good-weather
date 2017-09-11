@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="enter_city_hint">Informe a cidade</string>
+    <string name="label_current_city">Cidade atual</string>
+    <string name="label_choose_city">Selecione a cidade</string>
+    <string name="alertDialog_gps_message">O GPS não está habilitado. Gostaria de ir para o menu de configurações?</string>
+    <string name="alertDialog_gps_positiveButton">Configurações</string>
+    <string name="alertDialog_gps_negativeButton">Cancelar</string>
+    <string name="progressDialog_gps_locate">Encontrar localização atual</string>
+    <string name="load_progress">Carregando…</string>
+
+    <string name="title_activity_search">Procurar localização</string>
+    <string name="label_activity_main">Clima atual</string>
+    <string name="label_activity_weather_forecast">Previsão Diária</string>
+    <string name="label_activity_graphs">Gráficos de Clima</string>
+    <string name="title_activity_license">Licença para %s</string>
+
+    <string name="toolbar_menu_refresh">Menu da barra de ferramentas</string>
+    <string name="toolbar_menu_search_city">Procurar Cidade</string>
+    <string name="toolbar_menu_detect_location">Detectar Local</string>
+    <string name="menu_action_toggle_values">Alternar Valores</string>
+    <string name="menu_action_toggle_yaxis">Alternar eixo Y</string>
+
+    <string name="nav_menu_current_weather">Clima Atual</string>
+    <string name="nav_menu_daily_forecast">Previsão Diária</string>
+    <string name="nav_menu_graphs">Gráficos</string>
+    <string name="nav_menu_settings">Configurações</string>
+    <string name="nav_feedback">Comentários</string>
+    <string name="nav_menu_bitcoin_donation">Doar Bitcoin</string>
+
+    <string name="connection_not_found">Verifique sua conexão de internet</string>
+    <string name="toast_parse_error">Ocorreu um erro. Tente mais tarde!</string>
+
+    <string name="pressure_measurement">Pascal (hPa)</string>
+    <string name="wind_speed_meters">m/seg</string>
+    <string name="wind_speed_miles">milhas/h</string>
+    <string name="millimetre_label">milímetros</string>
+
+    <string name="hint_activity_search">Procurar local</string>
+
+    <string name="title_activity_settings">Configurações</string>
+    <string name="pref_title_temperature">Temperatura</string>
+    <string name="preference_hide_desc">Ocultar descrição do clima</string>
+    <string name="pref_title_category_notification">Notificações</string>
+    <string name="pref_title_notification">Habilitar Notificações</string>
+    <string name="pref_title_notification_refresh_interval">Intervalo de Atualizações</string>
+    <string name="update_period_15min">15 minutos</string>
+    <string name="update_period_30min">30 minutos</string>
+    <string name="update_period_1hour">A cada hora</string>
+    <string name="update_period_3hours">A cada 3 horas</string>
+    <string name="update_period_6hours">A cada 6 horas</string>
+    <string name="update_period_12hours">A cada 12 horas</string>
+    <string name="update_period_24hours">A cada 24 horas</string>
+    <string name="pref_title_vibrate">Vibrar</string>
+    <string name="preference_widget_title_update_period">Período de atualização</string>
+    <string name="preference_title_activity_general">Configurações Gerais</string>
+    <string name="preference_title_activity_widget">Configurações de Widgets</string>
+    <string name="preference_widget_update_location">Atualizar local</string>
+    <string name="preference_widget_use_geocoder">Usar geolocalização para exibir</string>
+    <string name="preference_widget_theme_title">Tema do Widget</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_transparent">Transparente</string>
+    <string name="preference_title_category_display">Exibir</string>
+    <string name="pref_title_language">Idioma</string>
+    <string name="pref_language_default">Padrão do Sistema</string>
+    <string name="pref_title_theme">Tema</string>
+    
+    <string name="preference_title_activity_about">Sobre</string>
+    <string name="about_version_pref_title">Versão</string>
+    <string name="about_source_code_pref_title">Código fonte</string>
+    <string name="about_app_license_pref_title">Licença</string>
+    <string name="about_open_source_licenses_pref_title">Licenças de open source</string>
+
+    <string name="wind_label">Vento: %1$s %2$s</string>
+    <string name="rain_label">"Chuva:  %1$s %2$s"</string>
+    <string name="snow_label">Neve: %1$s %2$s</string>
+    <string name="humidity_label">Humidade: %1$s%2$s</string>
+    <string name="pressure_label">Pressão: %1$s %2$s</string>
+    <string name="cloudiness_label">Nebulosidade: %1$s%2$s</string>
+    <string name="last_update_label">Última atualização: %s</string>
+    <string name="sunrise_label">Amanhecer: %s</string>
+    <string name="sunset_label">Crepúsculo: %s</string>
+    <string name="temperature_morning_title">Manhã</string>
+    <string name="temperature_day_title">Dia</string>
+    <string name="temperature_evening_title">Tarde</string>
+    <string name="temperature_night_title">Noite</string>
+    <string name="label_temperature">Temperatura</string>
+    <string name="label_wind">Vento</string>
+    <string name="label_rain">Chuva</string>
+    <string name="label_snow">Neve</string>
+
+    <string name="widget_weather_icon_description">Ícone do clima atual</string>
+    <string name="widget_refresh_button">Botão de atualização do Widget</string>
+
+    <string name="donation_bitcoin_qr_description">Código QR para doação de Bitcoin</string>
+    <string name="donation_bitcoin_copy_button">Copiar endereço Bitcoin</string>
+    <string name="donation_bitcoin_open_app">Abrir aplicativo Bitcoin</string>
+    <string name="donation_bitcoin_copy_message">O endereço Bitcoin foi copiado para o clipboard</string>
+
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_east">NE</string>
+    <string name="wind_direction_east">E</string>
+    <string name="wind_direction_south_east">SE</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_west">SW</string>
+    <string name="wind_direction_west">W</string>
+    <string name="wind_direction_north_west">NW</string>
+
+    <string name="permission_location_rationale">É necessário permissão de acesso à Localização para determinar a cidade atual</string>
+    <string name="permission_not_granted">Permissões não foram concedidas!</string>
+    <string name="permission_available_location">Permissão de Localização foi concedida</string>
+    <string name="permission_location_need">Você precisa conceder permissões de Localização</string>
+
+    <string name="restart_dialog_message">Por favor reinicie o aplicativo para aplicar as novas configurações</string>
+</resources>

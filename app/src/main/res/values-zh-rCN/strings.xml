@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="enter_city_hint">输入城市</string>
+    <string name="label_current_city">当前城市</string>
+    <string name="label_choose_city">请选择城市</string>
+    <string name="alertDialog_gps_message">不启用 GPS。你想要转到设置菜单？</string>
+    <string name="alertDialog_gps_positiveButton">设置</string>
+    <string name="alertDialog_gps_negativeButton">取消</string>
+    <string name="progressDialog_gps_locate">查找当前位置</string>
+    <string name="load_progress">正在加载…</string>
+
+    <string name="title_activity_search">搜索位置</string>
+    <string name="label_activity_main">当前天气</string>
+    <string name="label_activity_weather_forecast">每日预报</string>
+    <string name="label_activity_graphs">天气图</string>
+    <string name="title_activity_license">%s 的许可证</string>
+
+    <string name="toolbar_menu_refresh">更新</string>
+    <string name="toolbar_menu_search_city">搜索城市</string>
+    <string name="toolbar_menu_detect_location">检测位置</string>
+    <string name="menu_action_toggle_values">切换值</string>
+    <string name="menu_action_toggle_yaxis">切换 Y 轴</string>
+
+    <string name="nav_menu_current_weather">当前天气</string>
+    <string name="nav_menu_daily_forecast">每日预报</string>
+    <string name="nav_menu_graphs">图</string>
+    <string name="nav_menu_settings">设置</string>
+    <string name="nav_feedback">反馈</string>
+    <string name="nav_menu_bitcoin_donation">捐出比特币</string>
+
+    <string name="connection_not_found">请检查您的互联网连接</string>
+    <string name="toast_parse_error">发生错误。请重试！</string>
+
+    <string name="pressure_measurement">百帕</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">英里/小时</string>
+    <string name="millimetre_label">毫米</string>
+
+    <string name="hint_activity_search">搜索位置</string>
+
+    <string name="title_activity_settings">设置</string>
+    <string name="pref_title_temperature">温度</string>
+    <string name="preference_hide_desc">隐藏的天气描述</string>
+    <string name="pref_title_category_notification">通知</string>
+    <string name="pref_title_notification">启用通知</string>
+    <string name="pref_title_notification_refresh_interval">刷新间隔</string>
+    <string name="update_period_15min">15 分钟</string>
+    <string name="update_period_30min">30 分钟</string>
+    <string name="update_period_1hour">每小时</string>
+    <string name="update_period_3hours">3小时</string>
+    <string name="update_period_6hours">6 小时</string>
+    <string name="update_period_12hours">12小时</string>
+    <string name="update_period_24hours">24 小时</string>
+    <string name="pref_title_vibrate">震动</string>
+    <string name="preference_widget_title_update_period">更新周期</string>
+    <string name="preference_title_activity_general">常规设置</string>
+    <string name="preference_title_activity_widget">小部件设置</string>
+    <string name="preference_widget_update_location">更新位置</string>
+    <string name="preference_widget_use_geocoder">使用地理位置显示</string>
+    <string name="preference_widget_theme_title">小部件主题</string>
+    <string name="theme_dark">黑暗</string>
+    <string name="theme_light">明亮</string>
+    <string name="theme_transparent">透明</string>
+    <string name="preference_title_category_display">显示</string>
+    <string name="pref_title_language">语言</string>
+    <string name="pref_language_default">系统默认</string>
+    <string name="pref_title_theme">主题</string>
+    
+    <string name="preference_title_activity_about">关于</string>
+    <string name="about_version_pref_title">版本</string>
+    <string name="about_source_code_pref_title">源代码</string>
+    <string name="about_app_license_pref_title">许可证</string>
+    <string name="about_open_source_licenses_pref_title">开源许可证</string>
+
+    <string name="wind_label">风: %1$s %2$s</string>
+    <string name="rain_label">雨: %1$s %2$s</string>
+    <string name="snow_label">雪: %1$s %2$s</string>
+    <string name="humidity_label">"湿度: %1$s  %2$s"</string>
+    <string name="pressure_label">气压：%1$s %2$s</string>
+    <string name="cloudiness_label">云量: %1$s %2$s</string>
+    <string name="last_update_label">最后更新: %s</string>
+    <string name="sunrise_label">日出: %s</string>
+    <string name="sunset_label">日落: %s</string>
+    <string name="temperature_morning_title">早上</string>
+    <string name="temperature_day_title">天</string>
+    <string name="temperature_evening_title">傍晚</string>
+    <string name="temperature_night_title">晚上</string>
+    <string name="label_temperature">温度</string>
+    <string name="label_wind">风</string>
+    <string name="label_rain">雨</string>
+    <string name="label_snow">雪</string>
+
+    <string name="widget_weather_icon_description">当前天气图标</string>
+    <string name="widget_refresh_button">小部件刷新按钮</string>
+
+    <string name="donation_bitcoin_qr_description">捐赠比特币的二维码</string>
+    <string name="donation_bitcoin_copy_button">复制比特币地址</string>
+    <string name="donation_bitcoin_open_app">打开比特币应用程序</string>
+    <string name="donation_bitcoin_copy_message">比特币地址已经复制到剪贴板</string>
+
+    <string name="wind_direction_north">北</string>
+    <string name="wind_direction_north_east">东北</string>
+    <string name="wind_direction_east">东</string>
+    <string name="wind_direction_south_east">东南</string>
+    <string name="wind_direction_south">南</string>
+    <string name="wind_direction_south_west">西南</string>
+    <string name="wind_direction_west">西</string>
+    <string name="wind_direction_north_west">西北</string>
+
+    <string name="permission_location_rationale">确定当前的城市需要位置权限</string>
+    <string name="permission_not_granted">未授予权限 ！</string>
+    <string name="permission_available_location">位置权限</string>
+    <string name="permission_location_need">你必须授予位置权限</string>
+
+    <string name="restart_dialog_message">请重新启动应用程序以应用新的设置</string>
+</resources>

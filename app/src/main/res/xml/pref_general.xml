@@ -6,11 +6,13 @@
         android:entries="@array/pref_temperature_entries"
         android:entryValues="@array/pref_temperature_values"
         android:key="temperature_pref_key"
-        android:title="@string/pref_title_temperature"/>
+        android:title="@string/pref_title_temperature"
+        android:icon="@drawable/ic_thermometer" />
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="hide_desc_pref_key"
-        android:title="@string/preference_hide_desc"/>
+        android:title="@string/preference_hide_desc"
+        android:icon="@drawable/ic_visibility_off_black_24dp"/>
     <PreferenceCategory
         android:key="display_category_pref_key"
         android:title="@string/preference_title_category_display">
@@ -19,13 +21,15 @@
             android:dialogTitle="@string/pref_title_language"
             android:title="@string/pref_title_language"
             android:entries="@array/language_entries"
-            android:entryValues="@array/language_values"/>
+            android:entryValues="@array/language_values"
+            android:icon="@drawable/ic_language_black_24dp"/>
         <ListPreference
             android:key="theme_pref_key"
             android:dialogTitle="@string/pref_title_theme"
             android:title="@string/pref_title_theme"
             android:entries="@array/theme_entries"
-            android:entryValues="@array/theme_values"/>
+            android:entryValues="@array/theme_values"
+            android:icon="@drawable/ic_palette_black_24dp"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:key="notification_category_pref_key"
@@ -33,7 +37,8 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="notification_pref_key"
-            android:title="@string/pref_title_notification"/>
+            android:title="@string/pref_title_notification"
+            android:icon="@drawable/ic_notifications_black_24dp"/>
         <ListPreference
             android:defaultValue="60"
             android:dependency="notification_pref_key"
@@ -41,11 +46,13 @@
             android:entries="@array/notification_refresh_intervals_entries"
             android:entryValues="@array/notification_refresh_interval_values"
             android:key="notification_interval_pref_key"
-            android:title="@string/pref_title_notification_refresh_interval"/>
+            android:title="@string/pref_title_notification_refresh_interval"
+            android:icon="@drawable/ic_refresh_black_24dp"/>
         <SwitchPreference
             android:defaultValue="false"
             android:dependency="notification_pref_key"
             android:key="notification_vibrate_pref_key"
-            android:title="@string/pref_title_vibrate"/>
+            android:title="@string/pref_title_vibrate"
+            android:icon="@drawable/ic_vibration_black_24dp"/>
     </PreferenceCategory>
 </PreferenceScreen>
