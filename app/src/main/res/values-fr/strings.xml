@@ -1,12 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Entrer la ville</string>
     <string name="label_current_city">Ville actuelle</string>
     <string name="label_choose_city">Choisir la ville</string>
-    <string name="alertDialog_gps_message">GPS non actif. Voulez-vous allez au menu des paramètres?</string>
+    <string name="alertDialog_gps_message">GPS non actif. Voulez-vous allez au menu des paramètres ?</string>
     <string name="alertDialog_gps_positiveButton">Paramètres</string>
     <string name="alertDialog_gps_negativeButton">Annuler</string>
     <string name="progressDialog_gps_locate">Trouver la localisation actuelle</string>
-    <string name="load_progress">Chargement&#8230;</string>
+    <string name="load_progress">Chargement…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Chercher la Localisation</string>
@@ -27,12 +28,12 @@
     <string name="nav_menu_daily_forecast">Prévisions Quotidiennes</string>
     <string name="nav_menu_graphs">Graphiques</string>
     <string name="nav_menu_settings">Réglages</string>
-    <string name="nav_feedback">Réglages</string>
+    <string name="nav_feedback">Commentaires</string>
     <string name="nav_menu_bitcoin_donation">Donner en Bitcoin</string>
 
     <!-- Toast messages -->
     <string name="connection_not_found">Vérifiez votre connexion internet</string>
-    <string name="toast_parse_error">Une erreur s\'est produite. Essayez plus tard!</string>
+    <string name="toast_parse_error">Une erreur s\'est produite. Essayez plus tard !</string>
 
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
@@ -110,10 +111,20 @@
 
     <!-- Permission strings -->
     <string name="permission_location_rationale">Permissions de localisation requises pour déterminer la ville actuelle</string>
-    <string name="permission_not_granted">Permissions non accordées!</string>
+    <string name="permission_not_granted">Permissions non accordées !</string>
     <string name="permission_available_location">Permissions de localisation accordées</string>
     <string name="pref_language_default">System Default</string>
-    <string name="pref_title_language">La langue</string>
+    <string name="pref_title_language">Langue</string>
     <string name="preference_title_category_display">Affichage</string>
     <string name="restart_dialog_message">Redémarrez l\'application pour appliquer de nouveaux paramètres</string>
-</resources>
+<string name="preference_widget_update_location">Mise à jour de la localisation</string>
+    <string name="preference_widget_use_geocoder">Utiliser la géolocalisation pour l\'affichage</string>
+    <string name="preference_widget_theme_title">Thème du widget</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_transparent">Transparent</string>
+    <string name="pref_title_theme">Thème</string>
+    
+    <string name="permission_location_need">Vous devez donner les permissions de localisation</string>
+
+    </resources>
