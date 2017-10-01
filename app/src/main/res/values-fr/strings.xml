@@ -19,12 +19,12 @@
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Mettre à jour</string>
     <string name="toolbar_menu_search_city">Chercher la Ville</string>
-    <string name="toolbar_menu_detect_location">Détecter la Localisatio</string>
+    <string name="toolbar_menu_detect_location">Détecter la Localisation</string>
     <string name="menu_action_toggle_values">Basculer les Valeurs</string>
     <string name="menu_action_toggle_yaxis">Basculer l\'Axe des Y</string>
 
     <!-- Navigation drawer -->
-    <string name="nav_menu_current_weather">Météo Actuell</string>
+    <string name="nav_menu_current_weather">Météo Actuelle</string>
     <string name="nav_menu_daily_forecast">Prévisions Quotidiennes</string>
     <string name="nav_menu_graphs">Graphiques</string>
     <string name="nav_menu_settings">Réglages</string>
@@ -113,12 +113,12 @@
     <string name="permission_location_rationale">Permissions de localisation requises pour déterminer la ville actuelle</string>
     <string name="permission_not_granted">Permissions non accordées !</string>
     <string name="permission_available_location">Permissions de localisation accordées</string>
-    <string name="pref_language_default">System Default</string>
+    <string name="pref_language_default">Système par Défaut</string>
     <string name="pref_title_language">Langue</string>
     <string name="preference_title_category_display">Affichage</string>
-    <string name="restart_dialog_message">Redémarrez l\'application pour appliquer de nouveaux paramètres</string>
+    <string name="restart_dialog_message">Redémarrez l\'application pour appliquer les nouveaux réglages</string>
 <string name="preference_widget_update_location">Mise à jour de la localisation</string>
-    <string name="preference_widget_use_geocoder">Utiliser la géolocalisation pour l\'affichage</string>
+    <string name="preference_widget_use_geocoder">Utiliser la géolocalisation à l\'affichage</string>
     <string name="preference_widget_theme_title">Thème du widget</string>
     <string name="theme_dark">Sombre</string>
     <string name="theme_light">Clair</string>
