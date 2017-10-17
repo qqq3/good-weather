@@ -1,108 +1,24 @@
 package org.asdtm.goodweather.widget;
 
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
-import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
-import org.asdtm.goodweather.MainActivity;
 import org.asdtm.goodweather.R;
-import org.asdtm.goodweather.service.LocationUpdateService;
 import org.asdtm.goodweather.utils.AppPreference;
-import org.asdtm.goodweather.utils.AppWidgetProviderAlarm;
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.Utils;
 
 import java.util.Locale;
 
-public class MoreWidgetProvider extends AppWidgetProvider {
+public class MoreWidgetProvider extends AbstractWidgetProvider {
 
     private static final String TAG = "WidgetMoreInfo";
 
-    @Override
-    public void onEnabled(Context context) {
-        super.onEnabled(context);
-        AppWidgetProviderAlarm appWidgetProviderAlarm =
-                new AppWidgetProviderAlarm(context, MoreWidgetProvider.class);
-        appWidgetProviderAlarm.setAlarm();
-    }
+    private static final String WIDGET_NAME = "MORE_WIDGET";
 
     @Override
-    public void onReceive(Context context, Intent intent) {
-        switch (intent.getAction()) {
-            case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
-                if(AppPreference.isUpdateLocationEnabled(context)) {
-                    Intent startLocationUpdateIntent = new Intent(context, LocationUpdateService.class);
-                    startLocationUpdateIntent.putExtra("updateSource", "MORE_WIDGET");
-                    context.startService(startLocationUpdateIntent);
-                } else {
-                    context.startService(new Intent(context, MoreWidgetService.class));
-                }
-                break;
-            case Intent.ACTION_LOCALE_CHANGED:
-                context.startService(new Intent(context, MoreWidgetService.class));
-                break;
-            case Constants.ACTION_APPWIDGET_THEME_CHANGED:
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                ComponentName componentName = new ComponentName(context, MoreWidgetProvider.class);
-                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
-                onUpdate(context, appWidgetManager, appWidgetIds);
-                break;
-            case Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED:
-                AppWidgetProviderAlarm widgetProviderAlarm =
-                        new AppWidgetProviderAlarm(context, MoreWidgetProvider.class);
-                if (widgetProviderAlarm.isAlarmOff()) {
-                    break;
-                } else {
-                    widgetProviderAlarm.setAlarm();
-                }
-                break;
-            default:
-                super.onReceive(context, intent);
-        }
-    }
-
-    @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
-
-        for (int appWidgetId : appWidgetIds) {
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-                                                      R.layout.widget_more_3x3);
-
-            setWidgetTheme(context, remoteViews);
-            preLoadWeather(context, remoteViews);
-
-            Intent intentRefreshService = new Intent(context, MoreWidgetProvider.class);
-            intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                                                                     intentRefreshService, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widget_button_refresh, pendingIntent);
-
-            Intent intentStartActivity = new Intent(context, MainActivity.class);
-            PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
-                                                                     intentStartActivity, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widget_root, pendingIntent2);
-
-            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
-        }
-
-        context.startService(new Intent(context, MoreWidgetService.class));
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        super.onDisabled(context);
-        AppWidgetProviderAlarm appWidgetProviderAlarm =
-                new AppWidgetProviderAlarm(context, MoreWidgetProvider.class);
-        appWidgetProviderAlarm.cancelAlarm();
-    }
-
-    private void preLoadWeather(Context context, RemoteViews remoteViews) {
+    protected void preLoadWeather(Context context, RemoteViews remoteViews) {
         SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                                                                      Context.MODE_PRIVATE);
         String temperatureScale = Utils.getTemperatureScale(context);
@@ -154,7 +70,8 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }
 
-    private void setWidgetTheme(Context context, RemoteViews remoteViews) {
+    @Override
+    protected void setWidgetTheme(Context context, RemoteViews remoteViews) {
         int textColorId = AppPreference.getTextColor(context);
         int backgroundColorId = AppPreference.getBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
@@ -168,5 +85,20 @@ public class MoreWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextColor(R.id.widget_pressure, textColorId);
         remoteViews.setTextColor(R.id.widget_clouds, textColorId);
         remoteViews.setInt(R.id.header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+    }
+
+    @Override
+    protected int getWidgetLayout() {
+        return R.layout.widget_more_3x3;
+    }
+
+    @Override
+    protected Class<?> getWidgetClass() {
+        return MoreWidgetProvider.class;
+    }
+
+    @Override
+    protected String getWidgetName() {
+        return WIDGET_NAME;
     }
 }

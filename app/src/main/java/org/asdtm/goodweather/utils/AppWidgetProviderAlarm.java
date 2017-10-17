@@ -5,6 +5,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
+import org.asdtm.goodweather.service.LocationUpdateService;
+import org.asdtm.goodweather.widget.LessWidgetProvider;
+import org.asdtm.goodweather.widget.MoreWidgetProvider;
 
 public class AppWidgetProviderAlarm {
 
@@ -22,7 +25,7 @@ public class AppWidgetProviderAlarm {
         String updatePeriodStr = AppPreference.getWidgetUpdatePeriod(mContext);
         long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                                          SystemClock.elapsedRealtime() + updatePeriodMills,
                                          updatePeriodMills,
                                          getPendingIntent(mCls));
@@ -35,12 +38,27 @@ public class AppWidgetProviderAlarm {
     }
 
     private PendingIntent getPendingIntent(Class<?> cls) {
-        Intent intent = new Intent(mContext, cls);
-        intent.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-        return PendingIntent.getBroadcast(mContext,
-                                          0,
-                                          intent,
-                                          PendingIntent.FLAG_CANCEL_CURRENT);
+        if(AppPreference.isUpdateLocationEnabled(mContext)) {
+            Intent intent = new Intent(mContext, LocationUpdateService.class);
+            if (cls.getCanonicalName().equals(LessWidgetProvider.class.getCanonicalName())) {
+                intent.putExtra("updateSource", "LESS_WIDGET");
+            } else if (cls.getCanonicalName().equals(MoreWidgetProvider.class.getCanonicalName())) {
+                intent.putExtra("updateSource", "MORE_WIDGET");
+            } else {
+                intent.putExtra("updateSource", "EXT_LOC_WIDGET");
+            }
+            return PendingIntent.getService(mContext,
+                                            0,
+                                            intent,
+                                            PendingIntent.FLAG_CANCEL_CURRENT);
+        } else {
+            Intent intent = new Intent(mContext, cls);
+            intent.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+            return PendingIntent.getBroadcast(mContext,
+                                              0,
+                                              intent,
+                                              PendingIntent.FLAG_CANCEL_CURRENT);
+        }
     }
 
     public boolean isAlarmOff() {

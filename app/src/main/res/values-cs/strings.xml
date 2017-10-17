@@ -7,6 +7,7 @@
     <string name="alertDialog_gps_negativeButton">Zpět</string>
     <string name="progressDialog_gps_locate">Najít aktuální polohu</string>
     <string name="load_progress">Nahrávám&#8230;</string>
+    <string name="location_not_found">Poloha nenalezena</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Najít pozici</string>

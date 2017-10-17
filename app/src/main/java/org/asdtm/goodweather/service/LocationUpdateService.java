@@ -17,18 +17,25 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import org.asdtm.goodweather.MainActivity;
+import org.asdtm.goodweather.R;
 import org.asdtm.goodweather.utils.AppPreference;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import java.util.Calendar;
 import java.util.Locale;
 
 import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.Utils;
+import org.asdtm.goodweather.widget.ExtLocationWidgetProvider;
+import org.asdtm.goodweather.widget.ExtLocationWidgetService;
 import org.asdtm.goodweather.widget.LessWidgetService;
 import org.asdtm.goodweather.widget.MoreWidgetService;
+
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
 
 public class LocationUpdateService extends Service implements LocationListener {
 
@@ -56,29 +63,32 @@ public class LocationUpdateService extends Service implements LocationListener {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
+        
+        if (intent == null) {
+            return ret;
+        }
+
         if ("android.intent.action.LOCATION_UPDATE".equals(intent.getAction()) && (intent.getExtras() != null)) {
             Location location = (Location) intent.getExtras().getParcelable("location");
             Address addresses = (Address) intent.getExtras().getParcelable("addresses");
+            appendLog(getBaseContext(), TAG, "LOCATION_UPDATE recieved:" + location + ":" + addresses);
             onLocationChanged(location, addresses);
             return ret;
         }
         
         String currentUpdateSource = intent.getExtras().getString("updateSource");
         if(!TextUtils.isEmpty(currentUpdateSource)) {
-            updateSource = intent.getExtras().getString("updateSource");
+            updateSource = currentUpdateSource;
         }
         if(AppPreference.isUpdateLocationEnabled(this)) {
             if("location_geocoder_unifiednlp".equals(AppPreference.getLocationGeocoderSource(this))) {
+                appendLog(getBaseContext(), TAG, "Widget calls to update location");
                 updateNetworkLocation();
             } else {
                 requestLocation();
             }
         } else {
-            switch (updateSource) {
-                case "MAIN" : startService(new Intent(getBaseContext(), CurrentWeatherService.class));MainActivity.mProgressDialog.cancel();break;
-                case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
-                case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
-        }
+            requestWeatherCheck();
         }
         
         return ret;
@@ -90,17 +100,19 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
     
     public void onLocationChanged(Location location, Address address) {
-                
-        if(location == null) {
-            return;
-        }
         
         lastLocationUpdateTime = System.currentTimeMillis();
         timerHandler.removeCallbacks(timerRunnable);
+        removeUpdates(this);
+        
+        if(location == null) {
+            setNoLocationFound();
+            return;
+        }
+        
         String latitude = String.format("%1$.2f", location.getLatitude());
         String longitude = String.format("%1$.2f", location.getLongitude());
         Log.d(TAG, "Lat: " + latitude + "; Long: " + longitude);
-        locationManager.removeUpdates(this);
         SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
@@ -122,7 +134,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                 if (networkSource.contains("wifis")) {
                     networkSourceBuilder.append("w");
                 }
-                
+                appendLog(getBaseContext(), TAG, "send update source to " + networkSourceBuilder.toString());
                 editor.putString(Constants.APP_SETTINGS_UPDATE_SOURCE, networkSourceBuilder.toString());
             }
         }
@@ -135,12 +147,8 @@ public class LocationUpdateService extends Service implements LocationListener {
                                              editor);
         editor.apply();
         
-        removeUpdates(this);
-        switch (updateSource) {
-            case "MAIN" : startService(new Intent(getBaseContext(), CurrentWeatherService.class));MainActivity.mProgressDialog.cancel();break;
-            case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
-            case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
-        }
+        appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource " + updateSource);
+        requestWeatherCheck();
     }
 
     Handler timerHandler = new Handler();
@@ -153,12 +161,8 @@ public class LocationUpdateService extends Service implements LocationListener {
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putString(Constants.APP_SETTINGS_UPDATE_SOURCE, "W");
             editor.apply();
-            
-            switch (updateSource) {
-                case "MAIN" : startService(new Intent(getBaseContext(), CurrentWeatherService.class));MainActivity.mProgressDialog.cancel();break;
-                case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
-                case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
-            }
+            appendLog(getBaseContext(), TAG, "send update source to W - update weather only");
+            requestWeatherCheck();
         }
     };
     
@@ -175,11 +179,28 @@ public class LocationUpdateService extends Service implements LocationListener {
         removeUpdates(this);
     }
     
+    private void setNoLocationFound() {
+        SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(Constants.APP_SETTINGS_GEO_CITY, getString(R.string.location_not_found));
+        editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "");
+        editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, "");
+        editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, "");
+        long now = System.currentTimeMillis();
+        editor.putLong(Constants.LAST_UPDATE_TIME_IN_MS, now);
+        editor.apply();
+        updateWidgets();
+    }
+    
     private void updateNetworkLocation() {
         Intent sendIntent = new Intent("android.intent.action.START_LOCATION_UPDATE");
         sendIntent.setPackage("org.microg.nlp");
         sendIntent.putExtra("destinationPackageName", "org.asdtm.goodweather");
-        
+
+        if (!checkLocationProviderPermission()) {
+            return;
+        }
         Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         
         Calendar now = Calendar.getInstance();
@@ -198,9 +219,19 @@ public class LocationUpdateService extends Service implements LocationListener {
         
         sendIntent.putExtra("resolveAddress", true);
         startService(sendIntent);
+        appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:updatesource is N or G:" + sendIntent);
         timerHandler.postDelayed(timerRunnable, LOCATION_TIMEOUT_IN_MS);
     }
-    
+
+    private boolean checkLocationProviderPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+        return true;
+    }
+
     private void removeUpdates(LocationListener locationListener) {
         if("location_geocoder_system".equals(AppPreference.getLocationGeocoderSource(this))) {
             locationManager.removeUpdates(locationListener);
@@ -251,13 +282,37 @@ public class LocationUpdateService extends Service implements LocationListener {
                             }.start();
                         }
                     }
-                    switch (updateSource) {
-                        case "MAIN" : startService(new Intent(getBaseContext(), CurrentWeatherService.class));MainActivity.mProgressDialog.cancel();break;
-                        case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
-                        case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
-                    }
+                    requestWeatherCheck();
                 }
             }, LOCATION_TIMEOUT_IN_MS);
         }
+    }
+    
+    private void requestWeatherCheck() {
+        Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);
+        intentToCheckWeather.putExtra("updateSource", updateSource);
+        startService(intentToCheckWeather);
+        if ("MAIN".equals(updateSource)) {
+            MainActivity.mProgressDialog.cancel();
+        }
+    }
+    
+    private void updateWidgets() {
+        if (updateSource == null) {
+            return;
+        }
+        
+        switch (updateSource) {
+            case "MAIN" : sendIntentToMain();break;
+            case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
+            case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
+            case "EXT_LOC_WIDGET" : startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));break;
+        }
+    }
+    
+    private void sendIntentToMain() {
+        Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
+        intent.putExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT, CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 }

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -14,9 +15,11 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -30,14 +33,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.obsez.android.lib.filechooser.ChooserDialog;
+
 import org.asdtm.goodweather.service.NotificationService;
 import org.asdtm.goodweather.utils.Constants;
+import org.asdtm.goodweather.utils.LogToFile;
 
+import java.io.File;
 import java.util.List;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     private static final String TAG = "SettingsActivity";
+
+    public static final String KEY_DEBUG_FILE = "debug.log.file";
+    public static final String KEY_DEBUG_TO_FILE = "debug.to.file";
+    public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +89,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
+                || DebugOptionsPreferenceFragment.class.getName().equals(fragmentName)
                 || WidgetPreferenceFragment.class.getName().equals(fragmentName)
                 || AboutPreferenceFragment.class.getName().equals(fragmentName);
     }
@@ -298,6 +310,143 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             Preference updatePref = findPreference(prefKey);
             ListPreference updateListPref = (ListPreference) updatePref;
             updatePref.setSummary(updateListPref.getEntry());
+        }
+    }
+
+    public static class DebugOptionsPreferenceFragment extends PreferenceFragment {
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_debug);
+            initLogFileChooser();
+            initLogFileLasting();
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            Preference preference = findPreference(KEY_DEBUG_FILE);
+            preference.setSummary(preferences.getString(KEY_DEBUG_FILE,""));
+        }
+
+        private void initLogFileChooser() {
+
+            Preference logToFileCheckbox = findPreference(KEY_DEBUG_TO_FILE);
+            logToFileCheckbox.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(final Preference preference, Object value) {
+                    if (!checkWriteToSdcardPermission()) {
+                        return false;
+                    }
+                    boolean logToFile = (Boolean) value;
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    preferences.edit().putBoolean(KEY_DEBUG_TO_FILE, logToFile).apply();
+                    LogToFile.logToFileEnabled = logToFile;
+                    return true;
+                }
+            });
+
+            Preference buttonFileLog = findPreference(KEY_DEBUG_FILE);
+            buttonFileLog.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(final Preference preference) {
+                    new ChooserDialog().with(getActivity())
+                            .withFilter(true, false)
+                            .withStartFile("/mnt")
+                            .withChosenListener(new ChooserDialog.Result() {
+                                @Override
+                                public void onChoosePath(String path, File pathFile) {
+                                    String logFileName = path + "/log-goodweather.txt";
+                                    LogToFile.logFilePathname = logFileName;
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                    preferences.edit().putString(KEY_DEBUG_FILE, logFileName).apply();
+                                    preference.setSummary(preferences.getString(KEY_DEBUG_FILE,""));
+                                }
+                            })
+                            .build()
+                            .show();
+                    return true;
+                }
+            });
+        }
+
+        private boolean checkWriteToSdcardPermission() {
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                } else {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            123456);
+                }
+                return false;
+            }
+            return true;
+        }
+
+        private void initLogFileLasting() {
+            Preference logFileLasting = findPreference(KEY_DEBUG_FILE_LASTING_HOURS);
+            logFileLasting.setSummary(
+                    getLogFileLastingLabel(Integer.parseInt(
+                            PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(KEY_DEBUG_FILE_LASTING_HOURS, "24"))
+                    )
+            );
+            logFileLasting.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference logFileLasting, Object value) {
+                    String logFileLastingHoursTxt = (String) value;
+                    Integer logFileLastingHours = Integer.valueOf(logFileLastingHoursTxt);
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    preferences.edit().putString(KEY_DEBUG_FILE_LASTING_HOURS, logFileLastingHoursTxt).apply();
+                    logFileLasting.setSummary(getString(getLogFileLastingLabel(logFileLastingHours)));
+                    LogToFile.logFileHoursOfLasting = logFileLastingHours;
+                    return true;
+                }
+            });
+        }
+
+        private int getLogFileLastingLabel(int logFileLastingValue) {
+            int logFileLastingId;
+            switch (logFileLastingValue) {
+                case 12:
+                    logFileLastingId = R.string.log_file_12_label;
+                    break;
+                case 48:
+                    logFileLastingId = R.string.log_file_48_label;
+                    break;
+                case 72:
+                    logFileLastingId = R.string.log_file_72_label;
+                    break;
+                case 168:
+                    logFileLastingId = R.string.log_file_168_label;
+                    break;
+                case 720:
+                    logFileLastingId = R.string.log_file_720_label;
+                    break;
+                case 24:
+                default:
+                    logFileLastingId = R.string.log_file_24_label;
+                    break;
+            }
+            return logFileLastingId;
         }
     }
 

@@ -46,6 +46,7 @@ public class AppPreference {
         SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(Constants.WEATHER_DATA_WEATHER_ID, weather.currentWeather.getWeatherId());
         editor.putFloat(Constants.WEATHER_DATA_TEMPERATURE, weather.temperature.getTemp());
         if(!hideDescription(context))
         {
@@ -63,6 +64,29 @@ public class AppPreference {
         editor.putLong(Constants.WEATHER_DATA_SUNRISE, weather.sys.getSunrise());
         editor.putLong(Constants.WEATHER_DATA_SUNSET, weather.sys.getSunset());
         editor.apply();
+    }
+    
+    public static Weather getWeather(Context context) {
+        Weather weather = new Weather();
+        SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
+                                                                     Context.MODE_PRIVATE);
+        
+        weather.temperature.setTemp(preferences.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
+        if(!hideDescription(context)) {
+            weather.currentWeather.setDescription(preferences.getString(Constants.WEATHER_DATA_DESCRIPTION, ""));
+        }
+        else {
+            weather.currentWeather.setDescription(" ");
+        }
+        
+        weather.sys.setSunset(preferences.getLong(Constants.WEATHER_DATA_SUNSET, 0));
+        weather.sys.setSunrise(preferences.getLong(Constants.WEATHER_DATA_SUNRISE, 0));
+        weather.currentWeather.setIdIcon(preferences.getString(Constants.WEATHER_DATA_ICON, ""));
+        weather.cloud.setClouds(preferences.getInt(Constants.WEATHER_DATA_CLOUDS, 0));
+        weather.wind.setSpeed(preferences.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
+        weather.currentCondition.setHumidity(preferences.getInt(Constants.WEATHER_DATA_HUMIDITY, 0));
+        weather.currentCondition.setPressure(preferences.getFloat(Constants.WEATHER_DATA_PRESSURE, 0));
+        return weather;
     }
 
     public static String[] getCityAndCode(Context context) {

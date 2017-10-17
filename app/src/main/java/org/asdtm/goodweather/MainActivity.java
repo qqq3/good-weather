@@ -49,7 +49,7 @@ import org.asdtm.goodweather.utils.Utils;
 import java.util.Locale;
 import org.asdtm.goodweather.service.LocationUpdateService;
 
-import static org.asdtm.goodweather.utils.AppPreference.saveLastUpdateTimeMillis;
+import static org.asdtm.goodweather.utils.AppPreference.getLastUpdateTimeMillis;
 
 public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         String wind = String.format(Locale.getDefault(), "%.1f", mWeather.wind.getSpeed());
 
         String lastUpdate = Utils.setLastUpdateTime(MainActivity.this,
-                saveLastUpdateTimeMillis(MainActivity.this));
+                getLastUpdateTimeMillis(MainActivity.this));
         String sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunrise());
         String sunset = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunset());
 

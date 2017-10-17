@@ -36,6 +36,9 @@ public class Constants {
     public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";
     public static final String KEY_PREF_UPDATE_DETAIL = "widget_update_details_pref_key";
     public static final String PREF_THEME = "theme_pref_key";
+    public static final String KEY_DEBUG_FILE = "debug.log.file";
+    public static final String KEY_DEBUG_TO_FILE = "debug.to.file";
+    public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";
 
     /**
      * About preference screen constants
@@ -46,6 +49,7 @@ public class Constants {
     public static final String KEY_PREF_ABOUT_OPEN_SOURCE_LICENSES =
             "about_open_source_licenses_pref_key";
 
+    public static final String WEATHER_DATA_WEATHER_ID = "weatherId";
     public static final String WEATHER_DATA_TEMPERATURE = "temperature";
     public static final String WEATHER_DATA_DESCRIPTION = "description";
     public static final String WEATHER_DATA_PRESSURE = "pressure";
