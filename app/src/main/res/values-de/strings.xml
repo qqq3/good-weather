@@ -2,17 +2,17 @@
 <resources>
     <string name="enter_city_hint">Stadt eingeben</string>
     <string name="label_current_city">Aktuelle Stadt</string>
-    <string name="label_choose_city">Wähle deine Stadt aus</string>
-    <string name="alertDialog_gps_message">GPS ist nicht aktiviert. Wollen Sie zu den Einstellungen?</string>
+    <string name="label_choose_city">Stadt auswählen</string>
+    <string name="alertDialog_gps_message">GPS ist deaktiviert. Möchten Sie die Einstellungen öffnen?</string>
     <string name="alertDialog_gps_positiveButton">Einstellungen</string>
     <string name="alertDialog_gps_negativeButton">Abbrechen</string>
-    <string name="progressDialog_gps_locate">Aktuelle Position wird gesucht</string>
-    <string name="load_progress">Laden…</string>
+    <string name="progressDialog_gps_locate">Aktuellen Standort suchen</string>
+    <string name="load_progress">Wird geladen …</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Standortsuche</string>
     <string name="label_activity_main">Aktuelles Wetter</string>
-    <string name="label_activity_weather_forecast">Tagesvorhersage</string>
+    <string name="label_activity_weather_forecast">Tägliche Vorhersage</string>
     <string name="label_activity_graphs">Wetterdiagramme</string>
     <string name="title_activity_license">Lizenz für %s</string>
 
@@ -25,15 +25,15 @@
 
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Aktuelles Wetter</string>
-    <string name="nav_menu_daily_forecast">Tagesvorhersage</string>
-    <string name="nav_menu_graphs">Graphen</string>
+    <string name="nav_menu_daily_forecast">Tägliche Vorhersage</string>
+    <string name="nav_menu_graphs">Diagramme</string>
     <string name="nav_menu_settings">Einstellungen</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Bitcoin spenden</string>
 
     <!-- Toast messages -->
     <string name="connection_not_found"> Überprüfen Sie Ihre Internetverbindung</string>
-    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Versuche es später nochmal!</string>
+    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Versuchen Sie es später erneut!</string>
 
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
@@ -52,7 +52,7 @@
     <string name="pref_title_notification_refresh_interval">Aktualisierungsintervall</string>
     <string name="update_period_15min">15 Minuten</string>
     <string name="update_period_30min">30 Minuten</string>
-    <string name="update_period_1hour">Jede Stunde</string>
+    <string name="update_period_1hour">Stündlich</string>
     <string name="update_period_3hours">3 Stunden</string>
     <string name="update_period_6hours">6 Stunden</string>
     <string name="update_period_12hours">12 Stunden</string>
@@ -64,7 +64,7 @@
     <string name="preference_hide_desc">Wetterbeschreibung ausblenden</string>
 
     <!-- Preference Screen About -->
-    <string name="preference_title_activity_about">Über</string>
+    <string name="preference_title_activity_about">Über …</string>
     <string name="about_version_pref_title">Version</string>
     <string name="about_source_code_pref_title">Quellcode</string>
     <string name="about_app_license_pref_title">Lizenz</string>
@@ -74,13 +74,13 @@
     <string name="wind_label">Wind: %1$s %2$s</string>
     <string name="rain_label">Regen: %1$s %2$s</string>
     <string name="snow_label">Schnee:  %1$s %2$s</string>
-    <string name="humidity_label">Feuchtigkeit: %1$s%2$s</string>
+    <string name="humidity_label">Luftfeuchtigkeit: %1$s%2$s</string>
     <string name="pressure_label">Luftdruck: %1$s %2$s</string>
     <string name="cloudiness_label">Bewölkung: %1$s%2$s</string>
     <string name="last_update_label">Zuletzt aktualisiert: %s</string>
     <string name="sunrise_label">Sonnenaufgang: %s</string>
     <string name="sunset_label">Sonnenuntergang: %s</string>
-    <string name="temperature_morning_title">Morgen</string>
+    <string name="temperature_morning_title">Morgens</string>
     <string name="temperature_day_title">Tag</string>
     <string name="temperature_evening_title">Abend</string>
     <string name="temperature_night_title">Nacht</string>
@@ -90,13 +90,13 @@
     <string name="label_snow">Schnee</string>
 
     <!-- Widgets strings -->
-    <string name="widget_weather_icon_description">Momentanes Wetter Icon</string>
-    <string name="widget_refresh_button">\"Widget aktualisieren\" Button</string>
+    <string name="widget_weather_icon_description">Aktuelles Wettersymbol</string>
+    <string name="widget_refresh_button">Schaltfläche „Widget aktualisieren”</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
+    <string name="donation_bitcoin_qr_description">Bitcoin spenden - QR Code</string>
     <string name="donation_bitcoin_copy_button">Bitcoin-Adresse kopieren</string>
-    <string name="donation_bitcoin_open_app">Bitcoin App öffnen</string>
+    <string name="donation_bitcoin_open_app">Bitcoin-App öffnen</string>
     <string name="donation_bitcoin_copy_message">Bitcoin-Adresse wurde in die Zwischenablage kopiert</string>
 
     !-- Wind directions --&gt;
@@ -110,14 +110,14 @@
     <string name="wind_direction_north_west">NW</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Standortberechtigungen werden benötigt, um die aktuelle Stadt zu ermitteln</string>
-    <string name="permission_not_granted">Berechtigungen wurden nicht gewährt!</string>
-    <string name="permission_available_location">Standort Berechtigungen wurden erteilt</string>
-    <string name="pref_language_default">System Default</string>
+    <string name="permission_location_rationale">Standortberechtigungen werden benötigt, um die aktuellen Standort zu ermitteln</string>
+    <string name="permission_not_granted">Genehmigungen wurden nicht erteilt!</string>
+    <string name="permission_available_location">Standortberechtigungen wurden erteilt</string>
+    <string name="pref_language_default">Systemvoreinstellung</string>
     <string name="pref_title_language">Sprache</string>
     <string name="preference_title_category_display">Anzeige</string>
-    <string name="restart_dialog_message">Starten Sie die Anwendung neu, um neue Einstellungen anzuwenden</string>
-<string name="preference_widget_use_geocoder">Verwende Standort</string>
+    <string name="restart_dialog_message">Starten Sie die Anwendung neu, um die neuen Einstellungen zu übernehmen</string>
+<string name="preference_widget_use_geocoder">Geolokalisation zur Anzeige verwenden</string>
     <string name="preference_widget_update_location">Standort aktualisieren</string>
     <string name="preference_widget_theme_title">Widget Motiv</string>
     <string name="theme_dark">Dunkel</string>
@@ -125,6 +125,6 @@
     <string name="theme_transparent">Transparent</string>
     <string name="pref_title_theme">Motiv</string>
     
-    <string name="permission_location_need">Standortberechtigungen muss gewährt werden</string>
+    <string name="permission_location_need">Sie müssen Standortberechtigungen zulassen</string>
 
     </resources>
