@@ -70,8 +70,8 @@ public class Constants {
     public static final String GOOGLE_PLAY_WEB_URI =
             "http://play.google.com/store/apps/details?id=%s";
     public static final String F_DROID_WEB_URI = "https://f-droid.org/repository/browse/?fdid=%s";
-    public static final String WEATHER_ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
-    public static final String WEATHER_FORECAST_ENDPOINT = "http://api.openweathermap.org/data/2.5/forecast/daily";
+    public static final String WEATHER_ENDPOINT = "https://api.openweathermap.org/data/2.5/weather";
+    public static final String WEATHER_FORECAST_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast/daily";
 
     public static final String BITCOIN_ADDRESS = "1FV8m1MKqZ9ZKB8YNwpsjsuubHTznJSiT8";
 
