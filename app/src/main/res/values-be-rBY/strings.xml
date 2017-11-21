@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Uviadzicie horad</string>
+<string name="label_current_city">Ciapierašni horad</string>
+    <string name="label_choose_city">Vybrać horad</string>
+    <string name="alertDialog_gps_message">Služba GPS nie aktyŭnaja. Žadajecie pierajsci ŭ mieniu nalad?</string>
+    <string name="alertDialog_gps_positiveButton">Nalady</string>
+    <string name="alertDialog_gps_negativeButton">Admianić</string>
+    <string name="progressDialog_gps_locate">Vyznačajem ciapierašniaje miescaznachodžannie</string>
+    <string name="load_progress">Zahruzka…</string>
+
+    <string name="title_activity_search">Pošuk</string>
+    <string name="label_activity_main">Aktuaĺnaje nadvorje</string>
+    <string name="label_activity_weather_forecast">Štodzionny prahnoz</string>
+    <string name="label_activity_graphs">Hrafiki</string>
+    <string name="title_activity_license">Licenzija na %s</string>
+
+    <string name="toolbar_menu_refresh">Abnavić</string>
+    <string name="toolbar_menu_search_city">Znajsci horad</string>
+    <string name="toolbar_menu_detect_location">Vyznačyć miescaznachadžiennie</string>
+    <string name="menu_action_toggle_values">Pierakliučennie značenniaŭ</string>
+    <string name="menu_action_toggle_yaxis">Pierakliučennie vosi Y</string>
+
+    <string name="nav_menu_current_weather">Aktuaĺnaje nadvorje</string>
+    <string name="nav_menu_daily_forecast">Štodzionny prahnoz</string>
+    <string name="nav_menu_graphs">Hrafiki</string>
+    <string name="nav_menu_settings">Nalady</string>
+    <string name="nav_feedback">Zvarotnaja suviaź</string>
+    <string name="nav_menu_bitcoin_donation">Achviaravać Bitcoin</string>
+
+    <string name="connection_not_found">Adsutničaje padlučennie da Internetu</string>
+    <string name="toast_parse_error">Adbylasia pamylka. Pasprabujcie pazniej!</string>
+
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">miĺ/h</string>
+    <string name="millimetre_label">mm</string>
+
+    <string name="hint_activity_search">Pošuk miescaznachodžannia</string>
+
+    <string name="title_activity_settings">Nalady</string>
+    <string name="pref_title_temperature">Tempieratura</string>
+    <string name="preference_hide_desc">Schavać apisannie nadvorja</string>
+    <string name="pref_title_category_notification">Apaviaščenni</string>
+    <string name="pref_title_notification">Ukliučyć apaviaščenni</string>
+    <string name="pref_title_notification_refresh_interval">Interval abnaŭliennia</string>
+    <string name="update_period_15min">15 chvilin</string>
+    <string name="update_period_30min">30 chvilin</string>
+    <string name="update_period_1hour">Kožnuju hadzinu</string>
+    <string name="update_period_3hours">3 hadziny</string>
+    <string name="update_period_6hours">6 hadzin</string>
+    <string name="update_period_12hours">12 hadzin</string>
+    <string name="update_period_24hours">24 hadziny</string>
+    <string name="pref_title_vibrate">Vibracyja</string>
+    <string name="preference_widget_title_update_period">Interval abnaŭliennia</string>
+    <string name="preference_title_activity_general">Haloŭnyja nalady</string>
+    <string name="preference_title_activity_widget">Nalady vidžetaŭ</string>
+    <string name="preference_widget_update_location">Abnavić miescaznachodžannie</string>
+    <string name="preference_widget_use_geocoder">Vykarystoŭvać hiealakacyju dlia adliustravannia</string>
+    <string name="preference_widget_theme_title">Tema</string>
+    <string name="theme_dark">Ciomnaja</string>
+    <string name="theme_light">Svietlaja</string>
+    <string name="theme_transparent">Prazrystaja</string>
+    <string name="preference_title_category_display">Vyhliad</string>
+    <string name="pref_title_language">Mova</string>
+    <string name="pref_language_default">Ahadanaja sistemnaja</string>
+    <string name="pref_title_theme">Tema</string>
+    
+    <string name="preference_title_activity_about">Ab dadatku</string>
+    <string name="about_version_pref_title">Viersija</string>
+    <string name="about_source_code_pref_title">Zychodniki</string>
+    <string name="about_app_license_pref_title">Licenzija</string>
+    <string name="about_open_source_licenses_pref_title">Open Source licenzii</string>
+
+    <string name="wind_label">Viecier: %1$s %2$s</string>
+    <string name="rain_label">Doždž: %1$s %2$s</string>
+    <string name="snow_label">Snieh: %1$s %2$s</string>
+    <string name="humidity_label">Viĺhotnasć: %1$s%2$s</string>
+    <string name="pressure_label">Cisk: %1$s %2$s</string>
+    <string name="cloudiness_label">Voblačnasć: %1$s%2$s</string>
+    <string name="last_update_label">Apošniaje abnaŭliennie: %s</string>
+    <string name="sunrise_label">Uzychod: %s</string>
+    <string name="sunset_label">Zahod: %s</string>
+    <string name="temperature_morning_title">Ranica</string>
+    <string name="temperature_day_title">Dzień</string>
+    <string name="temperature_evening_title">Viečar</string>
+    <string name="temperature_night_title">Noč</string>
+    <string name="label_temperature">Tempieratura</string>
+    <string name="label_wind">Viecier</string>
+    <string name="label_rain">Doždž</string>
+    <string name="label_snow">Snieh</string>
+
+    <string name="widget_weather_icon_description">Značok nadvorja</string>
+    <string name="widget_refresh_button">Knopka abnaŭliennia</string>
+
+    <string name="donation_bitcoin_qr_description">Bitcoin QR-kod</string>
+    <string name="donation_bitcoin_copy_button">Skapijavać Bitcoin-adras</string>
+    <string name="donation_bitcoin_open_app">Adkryć Bitcoin-dadatak</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin-adras byŭ skapijavany ŭ bufier abmienu</string>
+
+    <string name="wind_direction_north">Pn</string>
+    <string name="wind_direction_north_east">PnŬ</string>
+    <string name="wind_direction_east">U</string>
+    <string name="wind_direction_south_east">PdŬ</string>
+    <string name="wind_direction_south">Pd</string>
+    <string name="wind_direction_south_west">PdZ</string>
+    <string name="wind_direction_west">Z</string>
+    <string name="wind_direction_north_west">PnZ</string>
+
+    <string name="permission_location_rationale">Dazvol na atrymannie miescaznachodžannia nieabchodny dlia vyznačennia horada</string>
+    <string name="permission_not_granted">Dazvol nie pradastaŭlieny!</string>
+    <string name="permission_available_location">Dazvol na atrymannie miescaznachodžannia byŭ pradastaŭlieny</string>
+    <string name="permission_location_need">Vy pavinny dać dazvol na atrymannia zviestak ab miescaznachodžanni</string>
+
+    <string name="restart_dialog_message">Kali laska, pierazapuscicie prahramu, kab skarystacca novymi naladami</string>
 </resources>
