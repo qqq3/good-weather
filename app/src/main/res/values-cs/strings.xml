@@ -51,6 +51,7 @@
     <string name="pref_title_category_notification">Upozornění</string>
     <string name="pref_title_notification">Povolit upozornění</string>
     <string name="pref_title_notification_refresh_interval">Interval obnovení</string>
+    <string name="update_period_by_sensors">Dle accelerometru</string>
     <string name="update_period_15min">15 minut</string>
     <string name="update_period_30min">30 minut</string>
     <string name="update_period_1hour">Každou hodinu</string>

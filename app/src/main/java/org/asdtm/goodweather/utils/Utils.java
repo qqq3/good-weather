@@ -336,7 +336,7 @@ public class Utils {
                                                       String latitude,
                                                       String longitude,
                                                       boolean resolveAddressByOS,
-                                                      SharedPreferences.Editor editor) {
+                                                      Context context) {
         try {
             String latitudeEn = latitude.replace(",", ".");
             String longitudeEn = longitude.replace(",", ".");
@@ -347,6 +347,10 @@ public class Utils {
                 }
             }
             if(address != null) {
+                SharedPreferences mSharedPreferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.putBoolean(Constants.APP_SETTINGS_ADDRESS_FOUND, true);
                 if((address.getLocality() != null) && !"".equals(address.getLocality())) {
                     editor.putString(Constants.APP_SETTINGS_GEO_CITY, address.getLocality());
                 } else {
@@ -359,12 +363,29 @@ public class Utils {
                     editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, null);
                 }
                 editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, address.getSubLocality());
+                editor.apply();
+            } else {
+                setNoLocationFound(context);
             }
         } catch (IOException | NumberFormatException ex) {
             Log.e(Utils.class.getName(), "Unable to get address from latitude and longitude", ex);
         }
     }
-    
+
+    public static void setNoLocationFound(Context context) {
+        SharedPreferences mSharedPreferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(Constants.APP_SETTINGS_ADDRESS_FOUND, false);
+        editor.putString(Constants.APP_SETTINGS_GEO_CITY, context.getString(R.string.location_not_found));
+        editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "");
+        editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, "");
+        editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, "");
+        long now = System.currentTimeMillis();
+        editor.putLong(Constants.LAST_UPDATE_TIME_IN_MS, now);
+        editor.apply();
+    }
+
     public static String getCityAndCountry(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
         
@@ -393,7 +414,10 @@ public class Utils {
         if (inputLocation.length() < 30) {
             return inputLocation;
         }
-        return inputLocation.replaceFirst(", ", "\n");
+        if (inputLocation.indexOf(",") < 30) {
+            inputLocation.replaceFirst(", ", "\n");
+        }
+        return inputLocation;
     }
     
     private static String getCityAndCountryFromPreference(Context context) {

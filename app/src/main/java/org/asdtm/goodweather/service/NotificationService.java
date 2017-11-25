@@ -28,6 +28,8 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.Locale;
 
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
+
 public class NotificationService extends IntentService {
 
     private static final String TAG = "NotificationsService";

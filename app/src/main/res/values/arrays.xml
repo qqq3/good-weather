@@ -29,6 +29,7 @@
     </string-array>
 
     <string-array name="widget_update_period_entries">
+        <item>@string/update_period_by_sensors</item>
         <item>@string/update_period_15min</item>
         <item>@string/update_period_30min</item>
         <item>@string/update_period_1hour</item>
@@ -38,6 +39,7 @@
         <item>@string/update_period_24hours</item>
     </string-array>
     <string-array name="widget_update_period_values" translatable="false">
+        <item>0</item>
         <item>15</item>
         <item>30</item>
         <item>60</item>

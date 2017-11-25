@@ -96,7 +96,6 @@
                 <action android:name="org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.asdtm.goodweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.asdtm.goodweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
@@ -110,7 +109,6 @@
                 <action android:name="org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.asdtm.goodweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.asdtm.goodweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
@@ -124,7 +122,6 @@
                 <action android:name="org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.asdtm.goodweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.asdtm.goodweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
@@ -140,6 +137,8 @@
         <service android:name=".service.LocationUpdateService" >
             <intent-filter>
                  <action android:name="android.intent.action.LOCATION_UPDATE" />
+                 <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
+                 <action android:name="android.intent.action.STOP_SENSOR_BASED_UPDATES" />
             </intent-filter>
         </service>
     </application>

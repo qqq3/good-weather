@@ -8,6 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,6 +45,8 @@ import org.asdtm.goodweather.utils.LogToFile;
 
 import java.io.File;
 import java.util.List;
+
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
@@ -225,6 +231,35 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_widget);
+
+            SensorManager senSensorManager  = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+            Sensor senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            boolean deviceHasAccelerometer = senSensorManager.registerListener(sensorListener, senAccelerometer , SensorManager.SENSOR_DELAY_FASTEST);
+            senSensorManager.unregisterListener(sensorListener);
+
+            Preference updateWidgetUpdatePref = findPreference(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
+            ListPreference updateListPref = (ListPreference) updateWidgetUpdatePref;
+            int accIndex = updateListPref.findIndexOfValue("0");
+
+            if (!deviceHasAccelerometer) {
+                CharSequence[] entries = updateListPref.getEntries();
+                CharSequence[] newEntries = new CharSequence[entries.length - 1];
+                int i = 0;
+                int j = 0;
+                for (CharSequence entry : entries) {
+                    if (i != accIndex) {
+                        newEntries[j] = entries[i];
+                        j++;
+                    }
+                    i++;
+                }
+                updateListPref.setEntries(newEntries);
+                if (updateListPref.getValue() == null) {
+                    updateListPref.setValueIndex(updateListPref.findIndexOfValue("60") - 1);
+                }
+            } else if (updateListPref.getValue() == null) {
+                updateListPref.setValueIndex(accIndex);
+            }
         }
 
         @Override
@@ -311,6 +346,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             ListPreference updateListPref = (ListPreference) updatePref;
             updatePref.setSummary(updateListPref.getEntry());
         }
+
+        private SensorEventListener sensorListener = new SensorEventListener() {
+
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
     }
 
     public static class DebugOptionsPreferenceFragment extends PreferenceFragment {

@@ -80,6 +80,7 @@
     <string name="pref_title_category_notification">Notifications</string>
     <string name="pref_title_notification">Enable Notifications</string>
     <string name="pref_title_notification_refresh_interval">Refresh Interval</string>
+    <string name="update_period_by_sensors">By accelerometer</string>
     <string name="update_period_15min">15 minutes</string>
     <string name="update_period_30min">30 minutes</string>
     <string name="update_period_1hour">Every hour</string>

@@ -3,6 +3,7 @@ package org.asdtm.goodweather.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,21 +17,38 @@ import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.AppWidgetProviderAlarm;
 import org.asdtm.goodweather.utils.Constants;
 
+import java.util.Calendar;
+
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
+
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
+
+    private static String TAG = "AbstractWidgetProvider";
+
+    volatile long lastUpdatedWeather = 0;
+
+    volatile boolean servicesStarted = false;
 
     @Override
     public void onEnabled(Context context) {
         super.onEnabled(context);
         AppWidgetProviderAlarm appWidgetProviderAlarm =
                 new AppWidgetProviderAlarm(context, getWidgetClass());
+        appWidgetProviderAlarm.cancelAlarm();
         appWidgetProviderAlarm.setAlarm();
-        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
-        context.getApplicationContext().registerReceiver(this, filter);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        appendLog(context, TAG, "intent:" + intent);
         switch (intent.getAction()) {
+            case "android.appwidget.action.APPWIDGET_UPDATE":
+                super.onReceive(context, intent);
+                if (!servicesStarted) {
+                    onEnabled(context);
+                    servicesStarted = true;
+                }
+                break;
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
                 if(AppPreference.isUpdateLocationEnabled(context)) {
                     Intent startLocationUpdateIntent = new Intent(context, LocationUpdateService.class);
@@ -44,6 +62,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 context.startService(new Intent(context, getWidgetClass()));
                 break;
             case Intent.ACTION_SCREEN_ON:
+                updateWather(context);
             case Constants.ACTION_APPWIDGET_THEME_CHANGED:
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 ComponentName componentName = new ComponentName(context, getWidgetClass());
@@ -51,13 +70,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 onUpdate(context, appWidgetManager, appWidgetIds);
                 break;
             case Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED:
-                AppWidgetProviderAlarm widgetProviderAlarm =
-                        new AppWidgetProviderAlarm(context, getWidgetClass());
-                if (widgetProviderAlarm.isAlarmOff()) {
-                    break;
-                } else {
-                    widgetProviderAlarm.setAlarm();
-                }
+                onEnabled(context);
                 break;
             default:
                 super.onReceive(context, intent);
@@ -98,6 +111,22 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         AppWidgetProviderAlarm appWidgetProviderAlarm =
                 new AppWidgetProviderAlarm(context, getWidgetClass());
         appWidgetProviderAlarm.cancelAlarm();
+    }
+
+    private void updateWather(Context context) {
+        long now = Calendar.getInstance().getTimeInMillis();
+        appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" + lastUpdatedWeather + ", now=" + now);
+        if (now < (lastUpdatedWeather + 900000)) {
+            return;
+        }
+        lastUpdatedWeather = now;
+        if(AppPreference.isUpdateLocationEnabled(context)) {
+            Intent startLocationUpdateIntent = new Intent(context, LocationUpdateService.class);
+            startLocationUpdateIntent.putExtra("updateSource", getWidgetName());
+            context.startService(startLocationUpdateIntent);
+        } else {
+            context.startService(new Intent(context, getWidgetClass()));
+        }
     }
 
     protected abstract void preLoadWeather(Context context, RemoteViews remoteViews);

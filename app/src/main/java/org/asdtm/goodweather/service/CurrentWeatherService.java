@@ -134,14 +134,14 @@ public class CurrentWeatherService extends Service {
         
                     Weather weather = WeatherJSONParser.getWeather(weatherRaw);
                     gettingWeatherStarted = false;
-                    timerHandler.removeCallbacks(timerRunnable);
+                    timerHandler.removeCallbacksAndMessages(null);
 
                     AppPreference.saveLastUpdateTimeMillis(context);
                     AppPreference.saveWeather(context, weather);
                     sendResult(ACTION_WEATHER_UPDATE_OK, weather);
                } catch (JSONException e) {
-                Log.e(TAG, "JSONException: " + requestResult);
-                sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                    Log.e(TAG, "JSONException: " + requestResult);
+                    sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
                 } catch (IOException ioe) {
                     Log.e(TAG, "IOException: " + requestResult);
                     sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
