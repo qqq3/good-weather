@@ -149,7 +149,7 @@ public class LocationUpdateService extends Service implements LocationListener {
             IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
             getApplication().registerReceiver(rc, filter);
             noLocationFound = !getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE).getBoolean(Constants.APP_SETTINGS_ADDRESS_FOUND, true);
-            return ret;
+            return START_STICKY;
         }
 
         if ("android.intent.action.STOP_SENSOR_BASED_UPDATES".equals(intent.getAction())) {
@@ -171,20 +171,22 @@ public class LocationUpdateService extends Service implements LocationListener {
             onLocationChanged(location, addresses);
             return ret;
         }
-        
-        String currentUpdateSource = intent.getExtras().getString("updateSource");
-        if(!TextUtils.isEmpty(currentUpdateSource)) {
-            updateSource = currentUpdateSource;
-        }
-        if(AppPreference.isUpdateLocationEnabled(this)) {
-            if("location_geocoder_unifiednlp".equals(AppPreference.getLocationGeocoderSource(this))) {
-                appendLog(getBaseContext(), TAG, "Widget calls to update location");
-                updateNetworkLocation();
-            } else {
-                requestLocation();
+
+        if ("android.intent.action.START_LOCATION_UPDATE".equals(intent.getAction()) && (intent.getExtras() != null)) {
+            String currentUpdateSource = intent.getExtras().getString("updateSource");
+            if (!TextUtils.isEmpty(currentUpdateSource)) {
+                updateSource = currentUpdateSource;
             }
-        } else {
-            requestWeatherCheck();
+            if (AppPreference.isUpdateLocationEnabled(this)) {
+                if ("location_geocoder_unifiednlp".equals(AppPreference.getLocationGeocoderSource(this))) {
+                    appendLog(getBaseContext(), TAG, "Widget calls to update location");
+                    updateNetworkLocation();
+                } else {
+                    requestLocation();
+                }
+            } else {
+                requestWeatherCheck();
+            }
         }
         
         return ret;
