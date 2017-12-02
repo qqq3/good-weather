@@ -130,6 +130,12 @@
         </receiver>
 
         <service android:name=".service.NotificationService"/>
+        <service android:name=".widget.WidgetRefreshIconService" >
+            <intent-filter>
+                <action android:name="android.intent.action.START_ROTATING_UPDATE" />
+                <action android:name="android.intent.action.STOP_ROTATING_UPDATE" />
+            </intent-filter>
+        </service>
         <service android:name=".widget.LessWidgetService"/>
         <service android:name=".widget.MoreWidgetService"/>
         <service android:name=".widget.ExtLocationWidgetService"/>
@@ -139,6 +145,7 @@
                  <action android:name="android.intent.action.LOCATION_UPDATE" />
                  <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
                  <action android:name="android.intent.action.STOP_SENSOR_BASED_UPDATES" />
+                 <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />
             </intent-filter>
         </service>
     </application>

@@ -42,7 +42,7 @@ public class AppPreference {
                 Constants.KEY_PREF_IS_NOTIFICATION_ENABLED, false);
     }
 
-    public static void saveWeather(Context context, Weather weather) {
+    public static void saveWeather(Context context, Weather weather, String updateSource) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -63,6 +63,11 @@ public class AppPreference {
         editor.putString(Constants.WEATHER_DATA_ICON, weather.currentWeather.getIdIcon());
         editor.putLong(Constants.WEATHER_DATA_SUNRISE, weather.sys.getSunrise());
         editor.putLong(Constants.WEATHER_DATA_SUNSET, weather.sys.getSunset());
+        editor.apply();
+        SharedPreferences mSharedPreferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                Context.MODE_PRIVATE);
+        editor = mSharedPreferences.edit();
+        editor.putString(Constants.APP_SETTINGS_UPDATE_SOURCE, updateSource);
         editor.apply();
     }
     

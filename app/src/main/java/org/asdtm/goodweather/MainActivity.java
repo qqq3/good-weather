@@ -150,7 +150,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
 
     private void updateCurrentWeather() {
-        AppPreference.saveWeather(MainActivity.this, mWeather);
+        AppPreference.saveWeather(MainActivity.this, mWeather, "W");
         mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor configEditor = mSharedPreferences.edit();
@@ -635,7 +635,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
 
     private void updateNetworkLocation() {
-        Intent startLocationUpdateIntent = new Intent(storedContext, LocationUpdateService.class);
+        Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        startLocationUpdateIntent.setPackage("org.asdtm.goodweather");
         startLocationUpdateIntent.putExtra("updateSource", "MAIN");
         storedContext.startService(startLocationUpdateIntent);
     }

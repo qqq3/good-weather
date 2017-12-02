@@ -8,6 +8,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import org.asdtm.goodweather.MainActivity;
@@ -50,12 +53,16 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 }
                 break;
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
-                if(AppPreference.isUpdateLocationEnabled(context)) {
-                    Intent startLocationUpdateIntent = new Intent(context, LocationUpdateService.class);
-                    startLocationUpdateIntent.putExtra("updateSource", getWidgetName());
-                    context.startService(startLocationUpdateIntent);
-                } else {
-                    context.startService(new Intent(context, getWidgetClass()));
+                if (!WidgetRefreshIconService.isRotationActive) {
+                    if (AppPreference.isUpdateLocationEnabled(context)) {
+                        Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+                        startLocationUpdateIntent.setPackage("org.asdtm.goodweather");
+                        startLocationUpdateIntent.putExtra("updateSource", getWidgetName());
+                        context.startService(startLocationUpdateIntent);
+                        appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
+                    } else {
+                        context.startService(new Intent(context, getWidgetClass()));
+                    }
                 }
                 break;
             case Intent.ACTION_LOCALE_CHANGED:
@@ -121,7 +128,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
         lastUpdatedWeather = now;
         if(AppPreference.isUpdateLocationEnabled(context)) {
-            Intent startLocationUpdateIntent = new Intent(context, LocationUpdateService.class);
+            Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+            startLocationUpdateIntent.setPackage("org.asdtm.goodweather");
             startLocationUpdateIntent.putExtra("updateSource", getWidgetName());
             context.startService(startLocationUpdateIntent);
         } else {

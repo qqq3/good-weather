@@ -70,7 +70,8 @@ public class AppWidgetProviderAlarm {
 
     private PendingIntent getPendingIntent(Class<?> cls) {
         if(AppPreference.isUpdateLocationEnabled(mContext)) {
-            Intent intent = new Intent(mContext, LocationUpdateService.class);
+            Intent intent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+            intent.setPackage("org.asdtm.goodweather");
             if (cls.getCanonicalName().equals(LessWidgetProvider.class.getCanonicalName())) {
                 intent.putExtra("updateSource", "LESS_WIDGET");
             } else if (cls.getCanonicalName().equals(MoreWidgetProvider.class.getCanonicalName())) {

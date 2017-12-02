@@ -72,7 +72,7 @@ public class CurrentWeatherService extends Service {
             SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                 Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mSharedPreferences.edit();
-            String originalUpdateState = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "L");
+            String originalUpdateState = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");
             appendLog(getBaseContext(), TAG, "originalUpdateState:" + originalUpdateState);
             String newUpdateState = originalUpdateState;
             if (originalUpdateState.contains("N")) {
@@ -115,7 +115,7 @@ public class CurrentWeatherService extends Service {
         gettingWeatherStarted = true;
         timerHandler.postDelayed(timerRunnable, 20000);
         final Context context = this;
-        
+        startRefreshRotation();
         new Thread(new Runnable(){
 
             @Override
@@ -137,7 +137,14 @@ public class CurrentWeatherService extends Service {
                     timerHandler.removeCallbacksAndMessages(null);
 
                     AppPreference.saveLastUpdateTimeMillis(context);
-                    AppPreference.saveWeather(context, weather);
+                    SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                    String updateSource = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");
+                    if ("-".equals(updateSource)) {
+                        updateSource = "W";
+                    }
+                    AppPreference.saveWeather(context, weather, updateSource);
                     sendResult(ACTION_WEATHER_UPDATE_OK, weather);
                } catch (JSONException e) {
                     Log.e(TAG, "JSONException: " + requestResult);
@@ -152,7 +159,7 @@ public class CurrentWeatherService extends Service {
     }
 
     public void sendResult(String result, Weather weather) {
-                
+        stopRefreshRotation();
         if (updateSource == null) {
             return;
         }
@@ -174,5 +181,17 @@ public class CurrentWeatherService extends Service {
             intent.putExtra(ACTION_WEATHER_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
         }
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+
+    private void startRefreshRotation() {
+        Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
+        sendIntent.setPackage("org.asdtm.goodweather");
+        startService(sendIntent);
+    }
+
+    private void stopRefreshRotation() {
+        Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
+        sendIntent.setPackage("org.asdtm.goodweather");
+        startService(sendIntent);
     }
 }
