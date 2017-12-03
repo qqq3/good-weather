@@ -17,6 +17,10 @@ import org.asdtm.goodweather.R;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
 
 public class WidgetRefreshIconService extends IntentService {
 
@@ -71,7 +75,7 @@ public class WidgetRefreshIconService extends IntentService {
     }
 
     private void startRotatingUpdateIcon() {
-        if (isRotationActive) {
+        if (isRotationActive || timerRotateIconHandler.hasMessages(0)) {
             return;
         }
         isRotationActive = true;
@@ -111,18 +115,20 @@ public class WidgetRefreshIconService extends IntentService {
 
         @Override
         public void run() {
-            if (!powerManager.isScreenOn() || !isRotationActive()) {
+            if (!powerManager.isScreenOn() || !isRotationActive() || timerRotateIconHandler.hasMessages(0)) {
                 return;
             }
             rotateRefreshButtonOneStep();
             timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
         }
+
+
     };
 
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!isRotationActive()) {
+            if (!isRotationActive() || timerRotateIconHandler.hasMessages(0)) {
                 return;
             }
             rotateRefreshButtonOneStep();
