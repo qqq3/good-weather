@@ -103,4 +103,13 @@
     <string name="permission_location_need">Du må gi tilgang til plassering</string>
 
     <string name="restart_dialog_message">Start programmet på nytt for å legge til nye innstillinger</string>
-</resources>
+<string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="preference_widget_use_geocoder">Bruk geografisk plassering for visning av</string>
+    <string name="preference_title_category_display">Visning</string>
+    <string name="cloudiness_label">Skydekke: %1$s%2$s</string>
+    <string name="donation_bitcoin_qr_description">QR-kode for donasjon av bitcoin</string>
+    <string name="permission_location_rationale">Plasseringstilgang trengs for å bestemme gjeldende by</string>
+    <string name="permission_not_granted">Tilganger ble ikke gitt.</string>
+    <string name="permission_available_location"></string>
+    </resources>
