@@ -1,2 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="enter_city_hint">Sekcem tamdint</string>
+    <string name="label_current_city">Tamdint tamirant</string>
+    <string name="label_choose_city">Fren tamdint</string>
+    <string name="alertDialog_gps_message">GPS ur yermid ara. Tebɣiḍ ad ad tedduɣ ar wumuɣ n iɣewwaṛen?</string>
+    <string name="alertDialog_gps_positiveButton">Iɣewwaṛen</string>
+    <string name="alertDialog_gps_negativeButton">Sefsex</string>
+    <string name="progressDialog_gps_locate">Af-d adeg amiran</string>
+    <string name="load_progress">Asali…</string>
+
+    <string name="title_activity_search">Nadi adeg</string>
+    <string name="label_activity_main">Tagnawt tamirant</string>
+    <string name="label_activity_weather_forecast">Arid n wass</string>
+    <string name="label_activity_graphs">Idlifen n tegnawt</string>
+    <string name="title_activity_license">Turagt i %s</string>
+
+    <string name="toolbar_menu_refresh">Leqqem</string>
+    <string name="toolbar_menu_search_city">Nadi tamdint</string>
+    <string name="toolbar_menu_detect_location">Ṭṭef-d adeg</string>
+    <string name="menu_action_toggle_values">Sembaddel azalen</string>
+    <string name="menu_action_toggle_yaxis">Sembaddel agellus Y</string>
+
+    <string name="nav_menu_current_weather">Tagnawt tamirant</string>
+    <string name="nav_menu_daily_forecast">Arid s wass</string>
+    <string name="nav_menu_graphs">Idlifen</string>
+    <string name="nav_menu_settings">Iγewwaṛen</string>
+    <string name="nav_feedback">Tikti</string>
+    <string name="nav_menu_bitcoin_donation">Mudd s Bitcoin</string>
+
+    <string name="connection_not_found">Senqed tuqqna-ik internet</string>
+    <string name="toast_parse_error">Teḍra-d tuccḍa. Ɛreḍ tikelt nniḍen!</string>
+
+    <string name="pressure_measurement">sr/Pa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">m/tasint</string>
+    <string name="millimetre_label">mm</string>
+
+    <string name="hint_activity_search">Nadi adeg</string>
+
+    <string name="title_activity_settings">Iγewwaṛen</string>
+    <string name="pref_title_temperature">Lḥamu</string>
+    <string name="preference_hide_desc">Ffer aglam n tegnawt</string>
+    <string name="pref_title_category_notification">Ilγa</string>
+    <string name="pref_title_notification">Rmed ulɣu</string>
+    <string name="pref_title_notification_refresh_interval">Azilal n usmiren</string>
+    <string name="update_period_15min">15 n tisdatin</string>
+    <string name="update_period_30min">30 n tisdatin</string>
+    <string name="update_period_1hour">Yal asrag</string>
+    <string name="update_period_3hours">3 n isragen</string>
+    <string name="update_period_6hours">6 n isragen</string>
+    <string name="update_period_12hours">12 n isragen</string>
+    <string name="update_period_24hours">24 n isragen</string>
+    <string name="pref_title_vibrate">Senhez</string>
+    <string name="preference_widget_title_update_period">Tawala n uleqqem</string>
+    <string name="preference_title_activity_general">Iγewwaren imuta</string>
+    <string name="preference_title_activity_widget">Iɣewwaṛen n usfaylurar</string>
+    <string name="preference_widget_update_location">Leqqem adeg</string>
+    <string name="preference_widget_use_geocoder">"Seqdec asideg aseknakalan  i uskan"</string>
+    <string name="preference_widget_theme_title">Asentel n usfaylurar</string>
+    <string name="theme_dark">Aberkan</string>
+    <string name="theme_light">Aceɛlal</string>
+    <string name="theme_transparent">Afrawan</string>
+    <string name="preference_title_category_display">Askan</string>
+    <string name="pref_title_language">Tutlayt</string>
+    <string name="pref_language_default">Amezwer n unagraw</string>
+    <string name="pref_title_theme">Asentel</string>
+    
+    <string name="preference_title_activity_about">Γef</string>
+    <string name="about_version_pref_title">Lqem</string>
+    <string name="about_source_code_pref_title">Tangalt taɣbalut</string>
+    <string name="about_app_license_pref_title">Turagt</string>
+    <string name="about_open_source_licenses_pref_title">Turagt n uɣbalu yeldin</string>
+
+    <string name="wind_label">Adu: %1$s %2$s</string>
+    <string name="rain_label">Ageffur: %1$s %2$s</string>
+    <string name="snow_label">Adfel: %1$s %2$s</string>
+    <string name="humidity_label">Agri: %1$s%2$s</string>
+    <string name="pressure_label">Asuded: %1$s %2$s</string>
+    <string name="cloudiness_label">Asigna: %1$s%2$s</string>
+    <string name="last_update_label">Asedγi aneggaru : %s</string>
+    <string name="sunrise_label">Alluy n yiṭij: %s</string>
+    <string name="sunset_label">Aɣelluy n yiṭij: %s</string>
+    <string name="temperature_morning_title">Azal</string>
+    <string name="temperature_day_title">Ass</string>
+    <string name="temperature_evening_title">Tameddit</string>
+    <string name="temperature_night_title">Iḍ</string>
+    <string name="label_temperature">Tifestiniwin n lḥamu</string>
+    <string name="label_wind">Aḍu</string>
+    <string name="label_rain">Ageffur</string>
+    <string name="label_snow">Adfel</string>
+
+    <string name="widget_weather_icon_description">Tignit n tegnawt tamirant</string>
+    <string name="widget_refresh_button">Taqeffalt n usmiren n Usfaylurar</string>
+
+    <string name="donation_bitcoin_qr_description">Tangalt QR n Bitcoin n tewsa</string>
+    <string name="donation_bitcoin_copy_button">Nɣel tansa Bitcoin</string>
+    <string name="donation_bitcoin_open_app">Ldi asnas Bitcoin</string>
+    <string name="donation_bitcoin_copy_message">Tansa Bitcoin tettwanɣel ɣef afus</string>
+
+    <string name="wind_direction_north">G</string>
+    <string name="wind_direction_north_east">GS</string>
+    <string name="wind_direction_east">S</string>
+    <string name="wind_direction_south_east">NS</string>
+    <string name="wind_direction_south">N</string>
+    <string name="wind_direction_south_west">NM</string>
+    <string name="wind_direction_west">M</string>
+    <string name="wind_direction_north_west">GM</string>
+
+    <string name="permission_location_rationale">Tisirag n wadig laqent i tifin n temdint tamirant</string>
+    <string name="permission_not_granted">Tisiragt ur ttunefken ara!</string>
+    <string name="permission_available_location">Tisirag n wadeg ttunefkent</string>
+    <string name="permission_location_need">Yessef ad tmuddeḍ tisira n wadeg</string>
+
+    <string name="restart_dialog_message">Ma ulac aɣilif, ales asenker n usnas akken ad ddun iɣewwaṛen imaynuten</string>
+</resources>
