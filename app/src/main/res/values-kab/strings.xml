@@ -41,7 +41,7 @@
     <string name="pref_title_temperature">Lḥamu</string>
     <string name="preference_hide_desc">Ffer aglam n tegnawt</string>
     <string name="pref_title_category_notification">Ilγa</string>
-    <string name="pref_title_notification">Rmed ulɣu</string>
+    <string name="pref_title_notification">Rmed ilɣa</string>
     <string name="pref_title_notification_refresh_interval">Azilal n usmiren</string>
     <string name="update_period_15min">15 n tisdatin</string>
     <string name="update_period_30min">30 n tisdatin</string>
@@ -92,7 +92,7 @@
     <string name="widget_weather_icon_description">Tignit n tegnawt tamirant</string>
     <string name="widget_refresh_button">Taqeffalt n usmiren n Usfaylurar</string>
 
-    <string name="donation_bitcoin_qr_description">Tangalt QR n Bitcoin n tewsa</string>
+    <string name="donation_bitcoin_qr_description">Tangalt QR n tawsa s Bitcoin</string>
     <string name="donation_bitcoin_copy_button">Nɣel tansa Bitcoin</string>
     <string name="donation_bitcoin_open_app">Ldi asnas Bitcoin</string>
     <string name="donation_bitcoin_copy_message">Tansa Bitcoin tettwanɣel ɣef afus</string>
@@ -106,10 +106,10 @@
     <string name="wind_direction_west">M</string>
     <string name="wind_direction_north_west">GM</string>
 
-    <string name="permission_location_rationale">Tisirag n wadig laqent i tifin n temdint tamirant</string>
-    <string name="permission_not_granted">Tisiragt ur ttunefken ara!</string>
+    <string name="permission_location_rationale">Tisirag n wadeg laqent i tifin n temdint tamirant</string>
+    <string name="permission_not_granted">Tisiragt ur ttunefkent ara!</string>
     <string name="permission_available_location">Tisirag n wadeg ttunefkent</string>
-    <string name="permission_location_need">Yessef ad tmuddeḍ tisira n wadeg</string>
+    <string name="permission_location_need">Yessefk ad tmuddeḍ tisirag n wadeg</string>
 
     <string name="restart_dialog_message">Ma ulac aɣilif, ales asenker n usnas akken ad ddun iɣewwaṛen imaynuten</string>
 </resources>
