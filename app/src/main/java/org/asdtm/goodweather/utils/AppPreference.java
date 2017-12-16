@@ -42,10 +42,11 @@ public class AppPreference {
                 Constants.KEY_PREF_IS_NOTIFICATION_ENABLED, false);
     }
 
-    public static void saveWeather(Context context, Weather weather) {
+    public static void saveWeather(Context context, Weather weather, String updateSource) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(Constants.WEATHER_DATA_WEATHER_ID, weather.currentWeather.getWeatherId());
         editor.putFloat(Constants.WEATHER_DATA_TEMPERATURE, weather.temperature.getTemp());
         if(!hideDescription(context))
         {
@@ -63,6 +64,34 @@ public class AppPreference {
         editor.putLong(Constants.WEATHER_DATA_SUNRISE, weather.sys.getSunrise());
         editor.putLong(Constants.WEATHER_DATA_SUNSET, weather.sys.getSunset());
         editor.apply();
+        SharedPreferences mSharedPreferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                Context.MODE_PRIVATE);
+        editor = mSharedPreferences.edit();
+        editor.putString(Constants.APP_SETTINGS_UPDATE_SOURCE, updateSource);
+        editor.apply();
+    }
+    
+    public static Weather getWeather(Context context) {
+        Weather weather = new Weather();
+        SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
+                                                                     Context.MODE_PRIVATE);
+        
+        weather.temperature.setTemp(preferences.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
+        if(!hideDescription(context)) {
+            weather.currentWeather.setDescription(preferences.getString(Constants.WEATHER_DATA_DESCRIPTION, ""));
+        }
+        else {
+            weather.currentWeather.setDescription(" ");
+        }
+        
+        weather.sys.setSunset(preferences.getLong(Constants.WEATHER_DATA_SUNSET, 0));
+        weather.sys.setSunrise(preferences.getLong(Constants.WEATHER_DATA_SUNRISE, 0));
+        weather.currentWeather.setIdIcon(preferences.getString(Constants.WEATHER_DATA_ICON, ""));
+        weather.cloud.setClouds(preferences.getInt(Constants.WEATHER_DATA_CLOUDS, 0));
+        weather.wind.setSpeed(preferences.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
+        weather.currentCondition.setHumidity(preferences.getInt(Constants.WEATHER_DATA_HUMIDITY, 0));
+        weather.currentCondition.setPressure(preferences.getFloat(Constants.WEATHER_DATA_PRESSURE, 0));
+        return weather;
     }
 
     public static String[] getCityAndCode(Context context) {
@@ -78,9 +107,28 @@ public class AppPreference {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_USE_GEOCODER, false);
     }
+    
     public static boolean isUpdateLocationEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false);
+    }
+        
+    public static String getLocationGeocoderSource(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, "location_geocoder_system");
+    }
+    
+    public static String getUpdateSource(Context context) {
+        String updateDetailLevel = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UPDATE_DETAIL, "preference_display_update_nothing");
+        switch (updateDetailLevel) {
+            case "preference_display_update_value":
+            case "preference_display_update_location_source":
+                return context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0).getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "W");
+            case "preference_display_update_nothing":
+            default:
+                return "";
+        }
     }
     
     public static String getTheme(Context context) {

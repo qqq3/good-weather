@@ -3,64 +3,31 @@ package org.asdtm.goodweather.widget;
 import android.app.IntentService;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.RemoteViews;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 
-import org.asdtm.goodweather.ConnectionDetector;
 import org.asdtm.goodweather.R;
-import org.asdtm.goodweather.WeatherJSONParser;
-import org.asdtm.goodweather.WeatherRequest;
 import org.asdtm.goodweather.model.Weather;
 import org.asdtm.goodweather.utils.AppPreference;
 import org.asdtm.goodweather.utils.Constants;
-import org.asdtm.goodweather.utils.LanguageUtil;
-import org.asdtm.goodweather.utils.PreferenceUtil;
 import org.asdtm.goodweather.utils.Utils;
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.Locale;
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
 
 public class MoreWidgetService extends IntentService {
 
     private static final String TAG = "UpdateMoreWidgetService";
-
+    
     public MoreWidgetService() {
         super(TAG);
     }
-
+    
     @Override
     protected void onHandleIntent(Intent intent) {
-        ConnectionDetector checkNetwork = new ConnectionDetector(this);
-        if (!checkNetwork.isNetworkAvailableAndConnected()) {
-            return;
-        }
-
-        SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-        String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
-        String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-        String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(this));
-        String units = AppPreference.getTemperatureUnit(this);
-
-        try {
-            String weatherRaw = new WeatherRequest().getItems(latitude, longitude, units,
-                                                              locale);
-            Weather weather;
-            weather = WeatherJSONParser.getWeather(weatherRaw);
-            AppPreference.saveWeather(this, weather);
-            updateWidget(weather);
-        } catch (IOException | JSONException e) {
-            Log.e(TAG, "Error get weather", e);
-            stopSelf();
-        }
-    }
-    
-    private void updateWidget(Weather weather) {
+        appendLog(this, TAG, "updateWidgetstart");
+        Weather weather = AppPreference.getWeather(this);
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(this);
         ComponentName widgetComponent = new ComponentName(this, MoreWidgetProvider.class);
 
@@ -90,7 +57,7 @@ public class MoreWidgetService extends IntentService {
             String iconId = weather.currentWeather.getIdIcon();
             String weatherIcon = Utils.getStrIcon(this, iconId);
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
-                    .saveLastUpdateTimeMillis(this));
+                    .getLastUpdateTimeMillis(this));
 
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                                                       R.layout.widget_more_3x3);
@@ -110,5 +77,6 @@ public class MoreWidgetService extends IntentService {
 
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
+        appendLog(getBaseContext(), TAG, "updateWidgetend");
     }
 }

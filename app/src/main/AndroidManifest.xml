@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".GoodWeatherApp"
@@ -113,11 +115,38 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_more"/>
         </receiver>
+        <receiver android:name=".widget.ExtLocationWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.asdtm.goodweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.asdtm.goodweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.asdtm.goodweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_ext_loc"/>
+        </receiver>
 
         <service android:name=".service.NotificationService"/>
+        <service android:name=".widget.WidgetRefreshIconService" >
+            <intent-filter>
+                <action android:name="android.intent.action.START_ROTATING_UPDATE" />
+                <action android:name="android.intent.action.STOP_ROTATING_UPDATE" />
+            </intent-filter>
+        </service>
         <service android:name=".widget.LessWidgetService"/>
         <service android:name=".widget.MoreWidgetService"/>
+        <service android:name=".widget.ExtLocationWidgetService"/>
         <service android:name=".service.CurrentWeatherService"/>
-        <service android:name=".service.LocationUpdateService" />
+        <service android:name=".service.LocationUpdateService" >
+            <intent-filter>
+                 <action android:name="android.intent.action.LOCATION_UPDATE" />
+                 <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
+                 <action android:name="android.intent.action.STOP_SENSOR_BASED_UPDATES" />
+                 <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>

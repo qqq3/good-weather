@@ -28,6 +28,8 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.Locale;
 
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
+
 public class NotificationService extends IntentService {
 
     private static final String TAG = "NotificationsService";
@@ -55,7 +57,7 @@ public class NotificationService extends IntentService {
             weather = WeatherJSONParser.getWeather(weatherRaw);
 
             AppPreference.saveLastUpdateTimeMillis(this);
-            AppPreference.saveWeather(this, weather);
+            AppPreference.saveWeather(this, weather, "W");
             weatherNotification(weather);
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error get weather", e);

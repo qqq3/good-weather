@@ -50,4 +50,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.obsez.android.lib.filechooser:filechooser:1.1.5'
 }

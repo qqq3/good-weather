@@ -14,11 +14,14 @@ public class Constants {
      */
     public static final String APP_SETTINGS_LATITUDE = "latitude";
     public static final String APP_SETTINGS_LONGITUDE = "longitude";
+    public static final String APP_SETTINGS_ADDRESS_FOUND = "address_found";
     public static final String APP_SETTINGS_CITY = "city";
     public static final String APP_SETTINGS_COUNTRY_CODE = "country_code";
     public static final String APP_SETTINGS_GEO_COUNTRY_NAME = "geo_country_name";
     public static final String APP_SETTINGS_GEO_DISTRICT_OF_CITY = "geo_district_name";
+    public static final String APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY = "geo_district_country";
     public static final String APP_SETTINGS_GEO_CITY = "geo_city_name";
+    public static final String APP_SETTINGS_UPDATE_SOURCE = "update_source";
     public static final String LAST_UPDATE_TIME_IN_MS = "last_update";
     
     public static final String KEY_PREF_IS_NOTIFICATION_ENABLED = "notification_pref_key";
@@ -31,7 +34,12 @@ public class Constants {
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";
     public static final String KEY_PREF_WIDGET_UPDATE_PERIOD = "widget_update_period_pref_key";
     public static final String PREF_LANGUAGE = "language_pref_key";
+    public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";
+    public static final String KEY_PREF_UPDATE_DETAIL = "widget_update_details_pref_key";
     public static final String PREF_THEME = "theme_pref_key";
+    public static final String KEY_DEBUG_FILE = "debug.log.file";
+    public static final String KEY_DEBUG_TO_FILE = "debug.to.file";
+    public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";
 
     /**
      * About preference screen constants
@@ -42,6 +50,7 @@ public class Constants {
     public static final String KEY_PREF_ABOUT_OPEN_SOURCE_LICENSES =
             "about_open_source_licenses_pref_key";
 
+    public static final String WEATHER_DATA_WEATHER_ID = "weatherId";
     public static final String WEATHER_DATA_TEMPERATURE = "temperature";
     public static final String WEATHER_DATA_DESCRIPTION = "description";
     public static final String WEATHER_DATA_PRESSURE = "pressure";

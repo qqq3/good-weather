@@ -49,6 +49,7 @@ public class Weather {
 
         private String mDescription;
         private String mIdIcon;
+        private Integer mWeatherId;
 
         public String getDescription() {
             return mDescription;
@@ -64,6 +65,14 @@ public class Weather {
 
         public void setIdIcon(String idIcon) {
             mIdIcon = idIcon;
+        }
+
+        public Integer getWeatherId() {
+            return mWeatherId;
+        }
+
+        public void setWeatherId(Integer mWeatherId) {
+            this.mWeatherId = mWeatherId;
         }
     }
 

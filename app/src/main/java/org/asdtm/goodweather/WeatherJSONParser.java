@@ -25,6 +25,9 @@ public class WeatherJSONParser {
         if (weatherObj.has("icon")) {
             weather.currentWeather.setIdIcon(weatherObj.getString("icon"));
         }
+        if (weatherObj.has("id")) {
+            weather.currentWeather.setWeatherId(weatherObj.getInt("id"));
+        }
 
         JSONObject mainObj = weatherData.getJSONObject("main");
         if (mainObj.has("temp")) {

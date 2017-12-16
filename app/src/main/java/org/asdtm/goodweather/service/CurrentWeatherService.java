@@ -1,10 +1,22 @@
 package org.asdtm.goodweather.service;
 
-import android.app.IntentService;
+import android.app.Service;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.RemoteViews;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 import org.asdtm.goodweather.ConnectionDetector;
 import org.asdtm.goodweather.utils.AppPreference;
@@ -12,133 +24,156 @@ import org.asdtm.goodweather.utils.Constants;
 import org.asdtm.goodweather.utils.LanguageUtil;
 import org.asdtm.goodweather.utils.PreferenceUtil;
 import org.asdtm.goodweather.utils.Utils;
-import org.json.JSONArray;
+import org.asdtm.goodweather.widget.ExtLocationWidgetProvider;
+import org.asdtm.goodweather.widget.ExtLocationWidgetService;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import static org.asdtm.goodweather.MainActivity.mCitySearch;
 import static org.asdtm.goodweather.MainActivity.mWeather;
+import org.asdtm.goodweather.R;
+import org.asdtm.goodweather.WeatherJSONParser;
+import org.asdtm.goodweather.WeatherRequest;
+import org.asdtm.goodweather.model.Weather;
+import org.asdtm.goodweather.widget.LessWidgetProvider;
+import org.asdtm.goodweather.widget.LessWidgetService;
+import org.asdtm.goodweather.widget.MoreWidgetService;
 
-public class CurrentWeatherService extends IntentService {
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
+
+public class CurrentWeatherService extends Service {
 
     private static final String TAG = "WeatherService";
 
     public static final String ACTION_WEATHER_UPDATE_OK = "org.asdtm.goodweather.action.WEATHER_UPDATE_OK";
     public static final String ACTION_WEATHER_UPDATE_FAIL = "org.asdtm.goodweather.action.WEATHER_UPDATE_FAIL";
     public static final String ACTION_WEATHER_UPDATE_RESULT = "org.asdtm.goodweather.action.WEATHER_UPDATE_RESULT";
-
-    public CurrentWeatherService() {
-        super(TAG);
+    
+    private String updateSource;
+    private boolean gettingWeatherStarted;
+    
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+                        
+            if (!gettingWeatherStarted) {
+                return;
+            }
+            
+            SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            String originalUpdateState = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");
+            appendLog(getBaseContext(), TAG, "originalUpdateState:" + originalUpdateState);
+            String newUpdateState = originalUpdateState;
+            if (originalUpdateState.contains("N")) {
+                appendLog(getBaseContext(), TAG, "originalUpdateState contains N");
+                newUpdateState = originalUpdateState.replace("N", "L");
+            } else if (!originalUpdateState.contains("L")) {
+                newUpdateState = "L";
+            }
+            appendLog(getBaseContext(), TAG, "newUpdateState:" + newUpdateState);
+            editor.putString(Constants.APP_SETTINGS_UPDATE_SOURCE, newUpdateState);
+            editor.apply();
+            
+            Utils.setLastUpdateTime(getBaseContext(), AppPreference
+                    .saveLastUpdateTimeMillis(getBaseContext()));
+            
+            sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+        }
+    };
+    
     @Override
-    protected void onHandleIntent(Intent intent) {
+    public int onStartCommand(Intent intent, int flags, final int startId) {
+        int ret = super.onStartCommand(intent, flags, startId);
+        
+        if (intent == null) {
+            return ret;
+        }
+        
+        if (intent.getExtras() != null) {
+            String currentUpdateSource = intent.getExtras().getString("updateSource");
+            if(!TextUtils.isEmpty(currentUpdateSource)) {
+                updateSource = currentUpdateSource;
+            }
+        }
+        
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
+            return ret;
+        }
+
+        gettingWeatherStarted = true;
+        timerHandler.postDelayed(timerRunnable, 20000);
+        final Context context = this;
+        startRefreshRotation();
+        new Thread(new Runnable(){
+
+            @Override
+            public void run() {
+                String requestResult = "";
+                try {
+                    SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
+                    String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
+                    String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
+                    String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(context));
+                    String units = AppPreference.getTemperatureUnit(context);
+
+                    String weatherRaw = new WeatherRequest().getItems(latitude, longitude, units,
+                                                                      locale);
+                    appendLog(context, TAG, "weather got, result:" + weatherRaw);
+        
+                    Weather weather = WeatherJSONParser.getWeather(weatherRaw);
+                    gettingWeatherStarted = false;
+                    timerHandler.removeCallbacksAndMessages(null);
+
+                    AppPreference.saveLastUpdateTimeMillis(context);
+                    SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                    String updateSource = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");
+                    if ("-".equals(updateSource)) {
+                        updateSource = "W";
+                    }
+                    AppPreference.saveWeather(context, weather, updateSource);
+                    sendResult(ACTION_WEATHER_UPDATE_OK, weather);
+               } catch (JSONException e) {
+                    Log.e(TAG, "JSONException: " + requestResult);
+                    sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                } catch (IOException ioe) {
+                    Log.e(TAG, "IOException: " + requestResult);
+                    sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                }
+            }
+        }).start();
+        return ret;
+    }
+
+    public void sendResult(String result, Weather weather) {
+        stopRefreshRotation();
+        if (updateSource == null) {
             return;
         }
-
-        SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-        String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
-        String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-        String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(this));
-        String units = AppPreference.getTemperatureUnit(this);
-
-        String requestResult = "";
-        HttpURLConnection connection = null;
-        try {
-            URL url = Utils.getWeatherForecastUrl(Constants.WEATHER_ENDPOINT, latitude, longitude, units, locale);
-            connection = (HttpURLConnection) url.openConnection();
-
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-                InputStream inputStream = connection.getInputStream();
-
-                int bytesRead;
-                byte[] buffer = new byte[1024];
-                while ((bytesRead = inputStream.read(buffer)) > 0) {
-                    byteArray.write(buffer, 0, bytesRead);
-                }
-                byteArray.close();
-                requestResult = byteArray.toString();
-                AppPreference.saveLastUpdateTimeMillis(this);
-            }
-
-        } catch (IOException e) {
-            Log.e(TAG, "IOException: " + requestResult);
-
-        } finally {
-            if (connection != null) {
-                connection.disconnect();
-            }
-        }
-        parseWeather(requestResult);
-    }
-
-    public void parseWeather(String data) {
-        try {
-            JSONObject jsonObject = new JSONObject(data);
-
-            JSONArray weatherArray = jsonObject.getJSONArray("weather");
-            JSONObject weatherObject = weatherArray.getJSONObject(0);
-            if (weatherObject.has("description")) {
-                mWeather.currentWeather.setDescription(weatherObject.getString("description"));
-            }
-            if (weatherObject.has("icon")) {
-                mWeather.currentWeather.setIdIcon(weatherObject.getString("icon"));
-            }
-
-            JSONObject mainObj = jsonObject.getJSONObject("main");
-            if (mainObj.has("temp")) {
-                mWeather.temperature.setTemp(Float.parseFloat(mainObj.getString("temp")));
-            }
-            if (mainObj.has("pressure")) {
-                mWeather.currentCondition.setPressure(
-                        Float.parseFloat(mainObj.getString("pressure")));
-            }
-            if (mainObj.has("humidity")) {
-                mWeather.currentCondition.setHumidity(mainObj.getInt("humidity"));
-            }
-
-            JSONObject windObj = jsonObject.getJSONObject("wind");
-            if (windObj.has("speed")) {
-                mWeather.wind.setSpeed(Float.parseFloat(windObj.getString("speed")));
-            }
-            if (windObj.has("deg")) {
-                mWeather.wind.setDirection(Float.parseFloat(windObj.getString("deg")));
-            }
-
-            JSONObject cloudsObj = jsonObject.getJSONObject("clouds");
-            if (cloudsObj.has("all")) {
-                mWeather.cloud.setClouds(cloudsObj.getInt("all"));
-            }
-
-            if (jsonObject.has("name")) {
-                mCitySearch.setCityName(jsonObject.getString("name"));
-            }
-
-            JSONObject sysObj = jsonObject.getJSONObject("sys");
-            if (sysObj.has("country")) {
-                mCitySearch.setCountryCode(sysObj.getString("country"));
-            }
-            mWeather.sys.setSunrise(sysObj.getLong("sunrise"));
-            mWeather.sys.setSunset(sysObj.getLong("sunset"));
-
-            mWeather.location = mCitySearch;
-            sendResult(ACTION_WEATHER_UPDATE_OK);
-        } catch (JSONException e) {
-            Log.e(TAG, "Error parsing JSON");
-            sendResult(ACTION_WEATHER_UPDATE_FAIL);
+        
+        switch (updateSource) {
+            case "MAIN" : sendIntentToMain(result, weather);break;
+            case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
+            case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
+            case "EXT_LOC_WIDGET" : startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));break;
         }
     }
-
-    public void sendResult(String result) {
+    
+    private void sendIntentToMain(String result, Weather weather) {
+        mWeather = weather;
         Intent intent = new Intent(ACTION_WEATHER_UPDATE_RESULT);
         if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(ACTION_WEATHER_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);
@@ -146,5 +181,17 @@ public class CurrentWeatherService extends IntentService {
             intent.putExtra(ACTION_WEATHER_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
         }
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+
+    private void startRefreshRotation() {
+        Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
+        sendIntent.setPackage("org.asdtm.goodweather");
+        startService(sendIntent);
+    }
+
+    private void stopRefreshRotation() {
+        Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
+        sendIntent.setPackage("org.asdtm.goodweather");
+        startService(sendIntent);
     }
 }

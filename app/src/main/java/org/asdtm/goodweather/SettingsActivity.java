@@ -4,9 +4,14 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,9 +19,11 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -30,14 +37,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.obsez.android.lib.filechooser.ChooserDialog;
+
 import org.asdtm.goodweather.service.NotificationService;
 import org.asdtm.goodweather.utils.Constants;
+import org.asdtm.goodweather.utils.LogToFile;
 
+import java.io.File;
 import java.util.List;
+
+import static org.asdtm.goodweather.utils.LogToFile.appendLog;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     private static final String TAG = "SettingsActivity";
+
+    public static final String KEY_DEBUG_FILE = "debug.log.file";
+    public static final String KEY_DEBUG_TO_FILE = "debug.to.file";
+    public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +95,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
+                || DebugOptionsPreferenceFragment.class.getName().equals(fragmentName)
                 || WidgetPreferenceFragment.class.getName().equals(fragmentName)
                 || AboutPreferenceFragment.class.getName().equals(fragmentName);
     }
@@ -213,6 +231,35 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_widget);
+
+            SensorManager senSensorManager  = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+            Sensor senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            boolean deviceHasAccelerometer = senSensorManager.registerListener(sensorListener, senAccelerometer , SensorManager.SENSOR_DELAY_FASTEST);
+            senSensorManager.unregisterListener(sensorListener);
+
+            Preference updateWidgetUpdatePref = findPreference(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
+            ListPreference updateListPref = (ListPreference) updateWidgetUpdatePref;
+            int accIndex = updateListPref.findIndexOfValue("0");
+
+            if (!deviceHasAccelerometer) {
+                CharSequence[] entries = updateListPref.getEntries();
+                CharSequence[] newEntries = new CharSequence[entries.length - 1];
+                int i = 0;
+                int j = 0;
+                for (CharSequence entry : entries) {
+                    if (i != accIndex) {
+                        newEntries[j] = entries[i];
+                        j++;
+                    }
+                    i++;
+                }
+                updateListPref.setEntries(newEntries);
+                if (updateListPref.getValue() == null) {
+                    updateListPref.setValueIndex(updateListPref.findIndexOfValue("60") - 1);
+                }
+            } else if (updateListPref.getValue() == null) {
+                updateListPref.setValueIndex(accIndex);
+            }
         }
 
         @Override
@@ -234,11 +281,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 case Constants.KEY_PREF_WIDGET_THEME:
                     Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
                     getActivity().sendBroadcast(intent);
+                    setSummary(Constants.KEY_PREF_WIDGET_THEME);
                     break;
                 case Constants.KEY_PREF_WIDGET_UPDATE_PERIOD:
                     Intent intent1 = new Intent(Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED);
                     getActivity().sendBroadcast(intent1);
-                    setSummary();
+                    setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
                     break;
                 case Constants.KEY_PREF_WIDGET_UPDATE_LOCATION:
                     int fineLocationPermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
@@ -248,6 +296,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         updateLocation.setChecked(false);
                     }
                     break;
+                case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
+                    setSummary(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE);
+                    break;
+                case Constants.KEY_PREF_UPDATE_DETAIL:
+                    getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                    setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
+                    break;
             }
         }
 
@@ -256,7 +311,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onResume();
             getPreferenceScreen().getSharedPreferences()
                                  .registerOnSharedPreferenceChangeListener(this);
-            setSummary();
+            setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
+            setSummary(Constants.KEY_PREF_WIDGET_THEME);
+            setSummary(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE);
+            setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
         }
 
         @Override
@@ -265,11 +323,176 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
         }
+               
+        private void setDetailedSummary(CharSequence prefKey) {
+            Preference updatePref = findPreference(prefKey);
+            ListPreference updateListPref = (ListPreference) updatePref;
+            switch (updateListPref.getValue()) {
+                case "preference_display_update_value":
+                    updatePref.setSummary(R.string.preference_display_update_value_info);
+                    break;
+                case "preference_display_update_location_source":
+                    updatePref.setSummary(R.string.preference_display_update_location_source_info);
+                    break;
+                case "preference_display_update_nothing":
+                default:
+                    updatePref.setSummary(updateListPref.getEntry());
+                    break;
+            }
+        }
+        
+        private void setSummary(CharSequence prefKey) {
+            Preference updatePref = findPreference(prefKey);
+            ListPreference updateListPref = (ListPreference) updatePref;
+            updatePref.setSummary(updateListPref.getEntry());
+        }
 
-        private void setSummary() {
-            Preference updatePeriodPref = findPreference(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
-            ListPreference updatePeriodListPref = (ListPreference) updatePeriodPref;
-            updatePeriodPref.setSummary(updatePeriodListPref.getEntry());
+        private SensorEventListener sensorListener = new SensorEventListener() {
+
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
+    }
+
+    public static class DebugOptionsPreferenceFragment extends PreferenceFragment {
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_debug);
+            initLogFileChooser();
+            initLogFileLasting();
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            Preference preference = findPreference(KEY_DEBUG_FILE);
+            preference.setSummary(preferences.getString(KEY_DEBUG_FILE,""));
+        }
+
+        private void initLogFileChooser() {
+
+            Preference logToFileCheckbox = findPreference(KEY_DEBUG_TO_FILE);
+            logToFileCheckbox.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(final Preference preference, Object value) {
+                    if (!checkWriteToSdcardPermission()) {
+                        return false;
+                    }
+                    boolean logToFile = (Boolean) value;
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    preferences.edit().putBoolean(KEY_DEBUG_TO_FILE, logToFile).apply();
+                    LogToFile.logToFileEnabled = logToFile;
+                    return true;
+                }
+            });
+
+            Preference buttonFileLog = findPreference(KEY_DEBUG_FILE);
+            buttonFileLog.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(final Preference preference) {
+                    new ChooserDialog().with(getActivity())
+                            .withFilter(true, false)
+                            .withStartFile("/mnt")
+                            .withChosenListener(new ChooserDialog.Result() {
+                                @Override
+                                public void onChoosePath(String path, File pathFile) {
+                                    String logFileName = path + "/log-goodweather.txt";
+                                    LogToFile.logFilePathname = logFileName;
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                    preferences.edit().putString(KEY_DEBUG_FILE, logFileName).apply();
+                                    preference.setSummary(preferences.getString(KEY_DEBUG_FILE,""));
+                                }
+                            })
+                            .build()
+                            .show();
+                    return true;
+                }
+            });
+        }
+
+        private boolean checkWriteToSdcardPermission() {
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                } else {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            123456);
+                }
+                return false;
+            }
+            return true;
+        }
+
+        private void initLogFileLasting() {
+            Preference logFileLasting = findPreference(KEY_DEBUG_FILE_LASTING_HOURS);
+            logFileLasting.setSummary(
+                    getLogFileLastingLabel(Integer.parseInt(
+                            PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(KEY_DEBUG_FILE_LASTING_HOURS, "24"))
+                    )
+            );
+            logFileLasting.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference logFileLasting, Object value) {
+                    String logFileLastingHoursTxt = (String) value;
+                    Integer logFileLastingHours = Integer.valueOf(logFileLastingHoursTxt);
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    preferences.edit().putString(KEY_DEBUG_FILE_LASTING_HOURS, logFileLastingHoursTxt).apply();
+                    logFileLasting.setSummary(getString(getLogFileLastingLabel(logFileLastingHours)));
+                    LogToFile.logFileHoursOfLasting = logFileLastingHours;
+                    return true;
+                }
+            });
+        }
+
+        private int getLogFileLastingLabel(int logFileLastingValue) {
+            int logFileLastingId;
+            switch (logFileLastingValue) {
+                case 12:
+                    logFileLastingId = R.string.log_file_12_label;
+                    break;
+                case 48:
+                    logFileLastingId = R.string.log_file_48_label;
+                    break;
+                case 72:
+                    logFileLastingId = R.string.log_file_72_label;
+                    break;
+                case 168:
+                    logFileLastingId = R.string.log_file_168_label;
+                    break;
+                case 720:
+                    logFileLastingId = R.string.log_file_720_label;
+                    break;
+                case 24:
+                default:
+                    logFileLastingId = R.string.log_file_24_label;
+                    break;
+            }
+            return logFileLastingId;
         }
     }
 
