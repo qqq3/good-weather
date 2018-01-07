@@ -40,7 +40,7 @@
     <string name="update_period_6hours">6 ساعات</string>
     <string name="update_period_12hours">12 ساعة</string>
     <string name="update_period_24hours">24 ساعة</string>
-    <string name="preference_title_activity_general">الاعدادات العامة</string>
+    <string name="preference_title_activity_general">الإعدادات العامة</string>
     <string name="theme_transparent">شفاف</string>
     <string name="preference_title_category_display">عرض</string>
     <string name="pref_title_language">اللغة</string>
@@ -69,7 +69,7 @@
     <string name="wind_direction_west">الغرب</string>
     <string name="wind_direction_north_west">شمال غرب</string>
 
-    <string name="restart_dialog_message">الرجاء إعادة تشغيل التطبيق قصد تثبيت الإعدادات الجديدة</string>
+    <string name="restart_dialog_message">الرجاء إعادة تشغيل التطبيق قصد تطبيق الإعدادات الجديدة</string>
 <string name="wind_speed_meters">متر في الثانية</string>
     <string name="wind_speed_miles">ميل في الساعة</string>
     <string name="millimetre_label">ميليمتر</string>
@@ -86,4 +86,14 @@
     <string name="theme_light">فاتح</string>
     <string name="pref_language_default">النظام الافتراضي</string>
     <string name="about_version_pref_title">الإصدار</string>
+    <string name="wind_label">الرياح: %1$s %2$s</string>
+    <string name="rain_label">المطر: %1$s %2$s</string>
+    <string name="snow_label">الثلج: %1$s %2$s</string>
+    <string name="humidity_label">الرطوبة: %1$s%2$s</string>
+    <string name="pressure_label">الضغط: %1$s %2$s</string>
+    <string name="cloudiness_label">السحاب: %1$s%2$s</string>
+    <string name="last_update_label">آخر تحديث: %s</string>
+    <string name="sunrise_label">الشروق: %s</string>
+    <string name="sunset_label">الغروب: %s</string>
+    <string name="widget_weather_icon_description">أيقونة الطقس الحالية</string>
     </resources>
