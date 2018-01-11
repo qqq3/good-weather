@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Sekcem tamdint</string>
+<resources><string name="enter_city_hint">Cidade</string>
     <string name="label_current_city">Tamdint tamirant</string>
     <string name="label_choose_city">Fren tamdint</string>
     <string name="alertDialog_gps_message">GPS ur yermid ara. Tebɣiḍ ad ad tedduɣ ar wumuɣ n iɣewwaṛen?</string>
