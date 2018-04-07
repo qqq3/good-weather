@@ -111,5 +111,5 @@
     <string name="donation_bitcoin_qr_description">QR-kode for donasjon av bitcoin</string>
     <string name="permission_location_rationale">Plasseringstilgang trengs for å bestemme gjeldende by</string>
     <string name="permission_not_granted">Tilganger ble ikke gitt.</string>
-    <string name="permission_available_location"></string>
+    <string name="permission_available_location">Plasseringstilgang har blitt innvilget</string>
     </resources>
