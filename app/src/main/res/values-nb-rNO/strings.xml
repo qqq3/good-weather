@@ -28,7 +28,7 @@
     <string name="nav_menu_bitcoin_donation">Doner bitcoin</string>
 
     <string name="connection_not_found">Sjekk din internettilknytning</string>
-    <string name="toast_parse_error">Fail inntraff. Prøv senere.</string>
+    <string name="toast_parse_error">En feil inntraff. Prøv senere.</string>
 
     <string name="wind_speed_meters">m/s</string>
     <string name="millimetre_label">mm</string>
@@ -110,6 +110,6 @@
     <string name="cloudiness_label">Skydekke: %1$s%2$s</string>
     <string name="donation_bitcoin_qr_description">QR-kode for donasjon av bitcoin</string>
     <string name="permission_location_rationale">Plasseringstilgang trengs for å bestemme gjeldende by</string>
-    <string name="permission_not_granted">Tilganger ble ikke gitt.</string>
+    <string name="permission_not_granted">Tilganger ble ikke innvilget.</string>
     <string name="permission_available_location">Plasseringstilgang har blitt innvilget</string>
     </resources>
