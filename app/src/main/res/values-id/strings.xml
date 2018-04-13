@@ -1,2 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="enter_city_hint">Masukkan nama kota</string>
+    <string name="label_current_city">Kota sekarang</string>
+    <string name="label_choose_city">Pilih kota</string>
+    <string name="alertDialog_gps_message">GPS tidak dinyalakan. Apakah anda ingin membuka menu pengaturan ?</string>
+    <string name="alertDialog_gps_positiveButton">Pengaturan</string>
+    <string name="alertDialog_gps_negativeButton">Batal</string>
+    <string name="progressDialog_gps_locate">Temukan lokasi sekarang</string>
+    <string name="load_progress">Memuat…</string>
+
+    <string name="title_activity_search">Mencari Lokasi</string>
+    <string name="label_activity_main">Cuaca Sekarang</string>
+    <string name="label_activity_weather_forecast">Prakiraan Harian</string>
+    <string name="label_activity_graphs">Grafik Cuaca</string>
+    <string name="title_activity_license">Lisensi untuk %s</string>
+
+    <string name="toolbar_menu_refresh">Pemutakhiran</string>
+    <string name="toolbar_menu_search_city">Cari Kota</string>
+    <string name="toolbar_menu_detect_location">Deteksi Lokasi</string>
+    <string name="menu_action_toggle_values">Beralih Nilai</string>
+    <string name="menu_action_toggle_yaxis">Beralih Sumbu-Y</string>
+
+    <string name="nav_menu_current_weather">Cuaca Sekarang</string>
+    <string name="nav_menu_daily_forecast">Prakiraan Harian</string>
+    <string name="nav_menu_graphs">Grafik</string>
+    <string name="nav_menu_settings">Pengaturan</string>
+    <string name="nav_feedback">Umpan balik</string>
+    <string name="nav_menu_bitcoin_donation">Donasi Bitcoin</string>
+
+    <string name="connection_not_found">Cek koneksi internet anda</string>
+    <string name="toast_parse_error">Terjadi error. Coba lagi nanti!</string>
+
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">meter/detik</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="millimetre_label">mm</string>
+
+    <string name="hint_activity_search">Mencari Lokasi</string>
+
+    <string name="title_activity_settings">Pengaturan</string>
+    <string name="pref_title_temperature">Suhu</string>
+    <string name="preference_hide_desc">Sembunyikan deskripsi cuaca</string>
+    <string name="pref_title_category_notification">Pemberitahuan</string>
+    <string name="pref_title_notification">Nyalakan Pemberitahuan</string>
+    <string name="pref_title_notification_refresh_interval">"Segarkan Interval "</string>
+    <string name="update_period_15min">15 menit</string>
+    <string name="update_period_30min">30 menit</string>
+    <string name="update_period_1hour">Setiap jam</string>
+    <string name="update_period_3hours">3 jam</string>
+    <string name="update_period_6hours">6 jam</string>
+    <string name="update_period_12hours">12 jam</string>
+    <string name="update_period_24hours">24 jam</string>
+    <string name="pref_title_vibrate">Getar</string>
+    <string name="preference_widget_title_update_period">Waktu Pembaruan</string>
+    <string name="preference_title_activity_general">Pengaturan Umum</string>
+    <string name="preference_title_activity_widget">Pengaturan Widget</string>
+    <string name="preference_widget_update_location">Pembaruan Lokasi</string>
+    <string name="preference_widget_use_geocoder">Gunakan geolokasi untuk menampilkan</string>
+    <string name="preference_widget_theme_title">Tema widget</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="theme_light">Terang</string>
+    <string name="theme_transparent">Transparan</string>
+    <string name="preference_title_category_display">Tampilan</string>
+    <string name="pref_title_language">Bahasa</string>
+    <string name="pref_language_default">Bawaan Sistem</string>
+    <string name="pref_title_theme">Tema</string>
+    
+    <string name="preference_title_activity_about">Tentang</string>
+    <string name="about_version_pref_title">Versi</string>
+    <string name="about_source_code_pref_title">Kode sumber</string>
+    <string name="about_app_license_pref_title">Lisensi</string>
+    <string name="about_open_source_licenses_pref_title">Lisensi sumber terbuka</string>
+
+    <string name="wind_label">Angin: %1$s %2$s</string>
+    <string name="rain_label">Hujan: %1$s %2$s</string>
+    <string name="snow_label">Salju: %1$s %2$s</string>
+    <string name="humidity_label">Kelembaban: %1$s%2$s</string>
+    <string name="pressure_label">Tekanan: %1$s %2$s</string>
+    <string name="cloudiness_label">Berawan: %1$s %2$s</string>
+    <string name="last_update_label">Pembaruan terakhir: %s</string>
+    </resources>
