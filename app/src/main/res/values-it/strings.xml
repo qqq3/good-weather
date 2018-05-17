@@ -65,10 +65,10 @@
     <string name="preference_widget_update_location">Aggiorna la posizione</string>
     <string name="preference_widget_use_geocoder">Utilizza la geolocalizzazione</string>
     <string name="preference_widget_theme_title">Tema del widget</string>
-    <string name="theme_dark">Dark</string>
-    <string name="theme_light">Light</string>
+    <string name="theme_dark">Scuro</string>
+    <string name="theme_light">Chiaro</string>
     <string name="theme_transparent">Trasparente</string>
-    <string name="preference_title_category_display">Display</string>
+    <string name="preference_title_category_display">Schermo</string>
     <string name="pref_title_language">Lingua</string>
     <string name="pref_language_default">Default del sistema</string>
     <string name="pref_title_theme">Tema</string>
