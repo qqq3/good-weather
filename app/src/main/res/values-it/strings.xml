@@ -1,12 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Inserisci città</string>
-    <string name="label_current_city">Città corrente</string>
+    <string name="label_current_city">Città attuale</string>
     <string name="label_choose_city">Scegli la città</string>
     <string name="alertDialog_gps_message">Il GPS non è abilitato. Vuoi andare al menu delle impostazioni?</string>
     <string name="alertDialog_gps_positiveButton">Impostazioni</string>
     <string name="alertDialog_gps_negativeButton">Annulla</string>
     <string name="progressDialog_gps_locate">Trova la posizione corrente</string>
-    <string name="load_progress">Caricamento in corso&#8230;</string>
+    <string name="load_progress">Caricamento in corso…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Ricerca località</string>
