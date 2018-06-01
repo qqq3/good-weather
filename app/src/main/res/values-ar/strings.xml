@@ -108,7 +108,7 @@
     <string name="donation_bitcoin_copy_message">تم نسخ عنوان Bitcoin إلى الحافظة</string>
 
     <string name="permission_location_rationale">مطلوب أذونات الموقع لتحديد المدينة الحالية</string>
-    <string name="permission_not_granted">لم يتم منح أذونات الموقع</string>
+    <string name="permission_not_granted">لم يتم منح أذونات الموقع!</string>
     <string name="permission_available_location">تم منح أذونات الموقع</string>
     <string name="permission_location_need">يجب عليك منح أذونات الحصول على الموقع</string>
 
