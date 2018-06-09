@@ -1,46 +1,46 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Shyiramo umujyi</string>
-    <string name="label_current_city">Aho uhehererye ubu</string>
-    <string name="label_choose_city">Hitamo umujyi</string>
-    <string name="alertDialog_gps_message">GPS ntago iri gukora. ushaka kuyemeza?</string>
-    <string name="alertDialog_gps_positiveButton">Gushyira k\'umurongo</string>
-    <string name="alertDialog_gps_negativeButton">Bireke</string>
-    <string name="progressDialog_gps_locate">Shaka aho mperereye</string>
-    <string name="load_progress">Birigukorwa.....</string>
+<resources><string name="enter_city_hint">Weka Mji</string>
+    <string name="label_current_city">Mji Wako</string>
+    <string name="label_choose_city">Chagua Mji</string>
+    <string name="alertDialog_gps_message">Mfumo wa kujua ulipo haujaruhusiwa. Ungependa kuuruhusu?</string>
+    <string name="alertDialog_gps_positiveButton">Mipangilio</string>
+    <string name="alertDialog_gps_negativeButton">Katisha</string>
+    <string name="progressDialog_gps_locate">Gundua ulipo</string>
+    <string name="load_progress">Tafuta.…</string>
 
-    <string name="title_activity_search">Shaka ahantu</string>
-    <string name="label_activity_main">Iteganyagihe ryaka kanya</string>
-    <string name="label_activity_weather_forecast">Iteaganyagihe rya buri munsi</string>
-    <string name="label_activity_graphs">Igisgushanyo</string>
-    <string name="title_activity_license">License for %s</string>
+    <string name="title_activity_search">Tafuta eneo</string>
+    <string name="label_activity_main">Hali ya hewa ya sasa</string>
+    <string name="label_activity_weather_forecast">Utabili wa kila siku</string>
+    <string name="label_activity_graphs">Ramani za hali ya hewa</string>
+    <string name="title_activity_license">"Leseni kwa ajili ya  %s"</string>
 
-    <string name="toolbar_menu_refresh">Ibishya</string>
-    <string name="toolbar_menu_search_city">Shaka umujyi</string>
-    <string name="toolbar_menu_detect_location">Bona umujyi</string>
-    <string name="menu_action_toggle_values">Agaciro</string>
-    <string name="menu_action_toggle_yaxis">Y-Axis</string>
+    <string name="toolbar_menu_refresh">Sasisha</string>
+    <string name="toolbar_menu_search_city">Tafuta Mji</string>
+    <string name="toolbar_menu_detect_location">Gundua ulipo</string>
+    <string name="menu_action_toggle_values">Badili namba</string>
+    <string name="menu_action_toggle_yaxis">Badili Mhilimili Y</string>
 
-    <string name="nav_menu_current_weather">Iteganyagihe ryaka kanya</string>
-    <string name="nav_menu_daily_forecast">Iteganyagihe rya buri munsi</string>
-    <string name="nav_menu_graphs">Igishushanyo</string>
-    <string name="nav_menu_settings">Gushyira k\'umurongo</string>
-    <string name="nav_feedback">Twandikire</string>
-    <string name="nav_menu_bitcoin_donation">Fasha</string>
+    <string name="nav_menu_current_weather">Hali ya hewa ya sasa</string>
+    <string name="nav_menu_daily_forecast">Utabili wa kila siku</string>
+    <string name="nav_menu_graphs">Majedwali</string>
+    <string name="nav_menu_settings">Mipangilio</string>
+    <string name="nav_feedback">Maoni</string>
+    <string name="nav_menu_bitcoin_donation">Changia kwa Bitcoin</string>
 
-    <string name="connection_not_found">Reba neza ni murandasi iriho</string>
-    <string name="toast_parse_error">Hari ikibazo kibaye, ongera</string>
+    <string name="connection_not_found">Angalia muunganisho wako wa mtandao</string>
+    <string name="toast_parse_error">Tatizo limetokea. Jaribu baadae!</string>
 
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
     <string name="millimetre_label">mm</string>
 
-    <string name="hint_activity_search">Search location</string>
+    <string name="hint_activity_search">Tafuta eneo</string>
 
-    <string name="title_activity_settings">Gushyira k\'umurongo</string>
-    <string name="pref_title_temperature">Ubushyuhe</string>
-    <string name="preference_hide_desc">Hisha ibivuga kwitaganyihe</string>
-    <string name="pref_title_category_notification">itangazo</string>
+    <string name="title_activity_settings">Mipangilio</string>
+    <string name="pref_title_temperature">Joto</string>
+    <string name="preference_hide_desc">Ficha maelezo ya hali ya hewa</string>
+    <string name="pref_title_category_notification">Matangazo</string>
     <string name="pref_title_notification">Emeza amatangazo</string>
     <string name="pref_title_notification_refresh_interval">ibishya mu gihe</string>
     <string name="update_period_15min">Iminota 15</string>
