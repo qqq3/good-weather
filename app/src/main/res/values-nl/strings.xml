@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Voer stad in</string>
+<resources><string name="enter_city_hint">Voer stadsnaam in</string>
     <string name="label_current_city">Huidige stad</string>
     <string name="label_choose_city">Stad kiezen</string>
-    <string name="alertDialog_gps_message">GPS is niet ingeschakeld. Wilt u naar het instellingenmenu gaan?</string>
+    <string name="alertDialog_gps_message">GPS is niet ingeschakeld. Wil je naar het instellingenmenu gaan?</string>
     <string name="alertDialog_gps_positiveButton">Instellingen</string>
     <string name="alertDialog_gps_negativeButton">Annuleren</string>
-    <string name="progressDialog_gps_locate">Huidige locatie vinden</string>
+    <string name="progressDialog_gps_locate">Huidige locatie gebruiken</string>
     <string name="load_progress">Bezig met laden…</string>
 
     <string name="title_activity_search">Locatie zoeken</string>
@@ -20,15 +20,15 @@
     <string name="menu_action_toggle_values">Waarden in-/uitschakelen</string>
     <string name="menu_action_toggle_yaxis">Y-as schakelen</string>
 
-    <string name="nav_menu_current_weather">Huidig weer</string>
+    <string name="nav_menu_current_weather">Huidige weersomstandigheden</string>
     <string name="nav_menu_daily_forecast">Dagelijkse weersvoorspelling</string>
     <string name="nav_menu_graphs">Grafieken</string>
     <string name="nav_menu_settings">Instellingen</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Bitcoins doneren</string>
 
-    <string name="connection_not_found">Controleer uw internetverbinding</string>
-    <string name="toast_parse_error">Er is een fout opgetreden. Probeer het later opnieuw!</string>
+    <string name="connection_not_found">Controleer je internetverbinding</string>
+    <string name="toast_parse_error">Er is een fout opgetreden; probeer het later opnieuw!</string>
 
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
@@ -53,10 +53,10 @@
     <string name="pref_title_vibrate">Trillen</string>
     <string name="preference_widget_title_update_period">Bijwerkperiode</string>
     <string name="preference_title_activity_general">Algemene instellingen</string>
-    <string name="preference_title_activity_widget">Widget-instellingen</string>
+    <string name="preference_title_activity_widget">Widgetinstellingen</string>
     <string name="preference_widget_update_location">Locatie bijwerken</string>
-    <string name="preference_widget_use_geocoder">Geolocatie gebruiken voor weergave</string>
-    <string name="preference_widget_theme_title">Widget-thema</string>
+    <string name="preference_widget_use_geocoder">Huidige locatie gebruiken</string>
+    <string name="preference_widget_theme_title">Widgetthema</string>
     <string name="theme_dark">Donker</string>
     <string name="theme_light">Licht</string>
     <string name="theme_transparent">Doorzichtig</string>
@@ -75,8 +75,8 @@
     <string name="rain_label">Regen: %1$s %2$s</string>
     <string name="snow_label">Sneeuw: %1$s %2$s</string>
     <string name="humidity_label">Luchtvochtigheid: %1$s%2$s</string>
-    <string name="pressure_label">Druk: %1$s %2$s</string>
-    <string name="cloudiness_label">Bewolktheid: %1$s%2$s</string>
+    <string name="pressure_label">Luchtdruk: %1$s %2$s</string>
+    <string name="cloudiness_label">Bewolking: %1$s%2$s</string>
     <string name="last_update_label">Laatst bijgewerkt: %s</string>
     <string name="sunrise_label">Zonsopkomst: %s</string>
     <string name="sunset_label">Zonsondergang: %s</string>
@@ -95,7 +95,7 @@
     <string name="donation_bitcoin_qr_description">Bitcoin-donatie QR-code</string>
     <string name="donation_bitcoin_copy_button">Bitcoinadres kopiëren</string>
     <string name="donation_bitcoin_open_app">Bitcoin-app openen</string>
-    <string name="donation_bitcoin_copy_message">Het Bitcoinadres is gekopieerd naar het klembord</string>
+    <string name="donation_bitcoin_copy_message">Het bitcoinadres is gekopieerd naar het klembord</string>
 
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NO</string>
@@ -106,10 +106,10 @@
     <string name="wind_direction_west">W</string>
     <string name="wind_direction_north_west">NW</string>
 
-    <string name="permission_location_rationale">Locatierechten zijn nodig om de huidige stad vast te kunnen stellen</string>
-    <string name="permission_not_granted">Rechten zijn niet toegekend!</string>
-    <string name="permission_available_location">Locatierechten zijn toegekend</string>
-    <string name="permission_location_need">U moet locatierechten toekennen</string>
+    <string name="permission_location_rationale">Locatiemachtiging moet worden verleend om de huidige stad vast te kunnen stellen</string>
+    <string name="permission_not_granted">Machtiging is niet verleend!</string>
+    <string name="permission_available_location">Locatiemachtiging is verleend</string>
+    <string name="permission_location_need">Je moet de locatiemachtiging verlenen</string>
 
     <string name="restart_dialog_message">Herstart de applicatie om de nieuwe instellingen toe te passen</string>
 </resources>
