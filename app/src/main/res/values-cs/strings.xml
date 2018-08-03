@@ -19,7 +19,7 @@
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Aktualizace</string>
     <string name="toolbar_menu_search_city">Najít město</string>
-    <string name="toolbar_menu_detect_location">Detect Location</string>
+    <string name="toolbar_menu_detect_location">Určit polohu</string>
     <string name="menu_action_toggle_values">Přepnout hodnoty</string>
     <string name="menu_action_toggle_yaxis">Přepnout osu Y</string>
 
