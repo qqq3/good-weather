@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="enter_city_hint">Zadejte město</string>
     <string name="label_current_city">Aktuální město</string>
@@ -6,7 +7,7 @@
     <string name="alertDialog_gps_positiveButton">Nastavení</string>
     <string name="alertDialog_gps_negativeButton">Zpět</string>
     <string name="progressDialog_gps_locate">Najít aktuální polohu</string>
-    <string name="load_progress">Nahrávám&#8230;</string>
+    <string name="load_progress">Nahrávám…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Najít pozici</string>
@@ -117,5 +118,13 @@
     <!-- Permission strings -->
     <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
     <string name="permission_not_granted">Oprávnění nejsou udělena!</string>
-    <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy.</string>
+    <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy</string>
+<string name="preference_title_category_display">Zobrazení</string>
+    <string name="pref_title_language">Jazyk</string>
+    <string name="pref_language_default">Jazyk systému</string>
+    <string name="pref_title_theme">Motiv</string>
+    
+    <string name="permission_location_need">Je třeba udělit Oprávnění Umístění</string>
+
+    <string name="restart_dialog_message">Restartujte aplikaci pro uplatnění změn</string>
 </resources>
