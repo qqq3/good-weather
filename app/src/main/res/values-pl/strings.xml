@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="nav_menu_settings">Ustawienia</string>
     <string name="alertDialog_gps_message">GPS nie jest włączony. Czy chcesz, aby przejść do menu ustawień?</string>
@@ -31,8 +31,8 @@
     <string name="update_period_1hour">Co godzinę</string>
     <string name="update_period_24hours">24 godziny</string>
     <string name="update_period_30min">30 minut</string>
-    <string name="widget_weather_icon_description">Current weather icon</string>
-    <string name="widget_refresh_button">Widget refresh button</string>
+    <string name="widget_weather_icon_description">Ikona Aktualna pogoda</string>
+    <string name="widget_refresh_button">Przycisk odświeżania widżetu</string>
     <string name="preference_title_activity_about">O aplikacji</string>
     <string name="preference_title_activity_general">Ustawienia główne</string>
     <string name="preference_title_activity_widget">Ustawienia Widget</string>
@@ -71,7 +71,7 @@
     <string name="label_activity_main">Aktualna pogoda</string>
     <string name="label_activity_weather_forecast">Dzienna prognoza</string>
     <string name="nav_menu_graphs">Wykresy</string>
-    <string name="load_progress">Załadunek&#8230;</string>
+    <string name="load_progress">Załadunek…</string>
     <string name="millimetre_label">mm</string>
     <string name="snow_label">Śnieg: %1$s %2$s</string>
     <string name="rain_label">Deszcz: %1$s %2$s</string>
@@ -93,4 +93,14 @@
     <string name="pref_title_language">Język</string>
     <string name="preference_title_category_display">Widok</string>
     <string name="restart_dialog_message">Proszę ponownie uruchomić aplikację, aby zastosować nowe ustawienia</string>
-</resources>
+<string name="preference_widget_update_location">Aktualizuj lokalizację</string>
+    <string name="preference_widget_use_geocoder">Użyj geolokacji do wyświetlenia</string>
+    <string name="preference_widget_theme_title">Motyw widżetu</string>
+    <string name="theme_dark">Ciemny</string>
+    <string name="theme_light">Jasny</string>
+    <string name="theme_transparent">Przezroczysty</string>
+    <string name="pref_title_theme">Motyw</string>
+    
+    <string name="permission_location_need">Musisz przyznać uprawnienia do lokalizacji</string>
+
+    </resources>
