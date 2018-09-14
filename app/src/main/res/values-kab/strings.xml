@@ -2,26 +2,26 @@
 <resources><string name="enter_city_hint">Cidade</string>
     <string name="label_current_city">Tamdint tamirant</string>
     <string name="label_choose_city">Fren tamdint</string>
-    <string name="alertDialog_gps_message">GPS ur yermid ara. Tebɣiḍ ad ad tedduɣ ar wumuɣ n iɣewwaṛen?</string>
+    <string name="alertDialog_gps_message">GPS ur yermid ara. Tebɣiḍ ad ad tedduḍ ar wumuɣ n iɣewwaṛen?</string>
     <string name="alertDialog_gps_positiveButton">Iɣewwaṛen</string>
     <string name="alertDialog_gps_negativeButton">Sefsex</string>
     <string name="progressDialog_gps_locate">Af-d adeg amiran</string>
     <string name="load_progress">Asali…</string>
 
     <string name="title_activity_search">Nadi adeg</string>
-    <string name="label_activity_main">Tagnawt tamirant</string>
+    <string name="label_activity_main">Tagnawt Tamirant</string>
     <string name="label_activity_weather_forecast">Arid n wass</string>
-    <string name="label_activity_graphs">Idlifen n tegnawt</string>
+    <string name="label_activity_graphs">Idlifen n Tegnawt</string>
     <string name="title_activity_license">Turagt i %s</string>
 
     <string name="toolbar_menu_refresh">Leqqem</string>
-    <string name="toolbar_menu_search_city">Nadi tamdint</string>
-    <string name="toolbar_menu_detect_location">Ṭṭef-d adeg</string>
+    <string name="toolbar_menu_search_city">Nadi Tamdint</string>
+    <string name="toolbar_menu_detect_location">Tuṭfa n wadeg</string>
     <string name="menu_action_toggle_values">Sembaddel azalen</string>
     <string name="menu_action_toggle_yaxis">Sembaddel agellus Y</string>
 
-    <string name="nav_menu_current_weather">Tagnawt tamirant</string>
-    <string name="nav_menu_daily_forecast">Arid s wass</string>
+    <string name="nav_menu_current_weather">Tagnawt Tamirant</string>
+    <string name="nav_menu_daily_forecast">Arid s Wass</string>
     <string name="nav_menu_graphs">Idlifen</string>
     <string name="nav_menu_settings">Iγewwaṛen</string>
     <string name="nav_feedback">Tikti</string>
