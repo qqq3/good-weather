@@ -1,2 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="enter_city_hint">Rho ddinas</string>
+    <string name="label_current_city">Dinas presennol</string>
+    <string name="label_choose_city">Dewisa ddinas</string>
+    <string name="alertDialog_gps_message">Dyw GPS heb ei alluogi. Wyt ti am fynd i\'r gosodiadau?</string>
+    <string name="alertDialog_gps_positiveButton">Gosodiadau</string>
+    <string name="alertDialog_gps_negativeButton">Diddymu</string>
+    <string name="progressDialog_gps_locate">Canfod lleoliad presennol</string>
+    <string name="load_progress">Yn llwytho…</string>
+
+    <string name="title_activity_search">Chwilio Lleoliad</string>
+    <string name="label_activity_main">Tywydd Nawr</string>
+    <string name="label_activity_weather_forecast">Rhagolwg Dyddiol</string>
+    <string name="label_activity_graphs">Graffiau Tywydd</string>
+    <string name="title_activity_license">Trwydded ar gyfer %s</string>
+
+    <string name="toolbar_menu_refresh">Diweddaru</string>
+    <string name="toolbar_menu_search_city">Chwilio Lleoliad</string>
+    <string name="toolbar_menu_detect_location">Synhwyro Lleoliad</string>
+    <string name="menu_action_toggle_values">Toglo Gwerthoedd</string>
+    <string name="menu_action_toggle_yaxis">Toglo Echelin-Y</string>
+
+    <string name="nav_menu_current_weather">Tywydd ar Hyn o Bryd</string>
+    <string name="nav_menu_daily_forecast">Rhagolwg Dyddiol</string>
+    <string name="nav_menu_graphs">Graffiau</string>
+    <string name="nav_menu_settings">Gosodiadau</string>
+    <string name="nav_feedback">Adborth</string>
+    <string name="nav_menu_bitcoin_donation">Rhoddi Bitcoin</string>
+
+    <string name="connection_not_found">Gwiria dy gysylltiad rhyngrwyd</string>
+    <string name="toast_parse_error">Bu gwall. Rho gynnig arall arni\'n hwyrach!</string>
+
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/e</string>
+    <string name="wind_speed_miles">mya</string>
+    <string name="millimetre_label">mm</string>
+
+    <string name="hint_activity_search">Chwilio lleoliad</string>
+
+    <string name="title_activity_settings">Gosodiadau</string>
+    <string name="pref_title_temperature">Tymheredd</string>
+    <string name="preference_hide_desc">Cuddio disgrifiadau tywydd</string>
+    <string name="pref_title_category_notification">Hysbysiadau</string>
+    <string name="pref_title_notification">Galluogi Hysbysiadau</string>
+    <string name="pref_title_notification_refresh_interval">Amlder Ail-lwytho</string>
+    <string name="update_period_15min">15 munud</string>
+    <string name="update_period_30min">30 munud</string>
+    <string name="update_period_1hour">Pob awr</string>
+    <string name="update_period_3hours">3 awr</string>
+    <string name="update_period_6hours">6 awr</string>
+    <string name="update_period_12hours">12 awr</string>
+    <string name="update_period_24hours">24 awr</string>
+    <string name="pref_title_vibrate">Dirgrynu</string>
+    <string name="preference_widget_title_update_period">Cyfnod Diweddaru</string>
+    <string name="preference_title_activity_general">Gosodiadau cyffredinol</string>
+    <string name="preference_title_activity_widget">Gosodiadau teclyn</string>
+    <string name="preference_widget_update_location">Diweddaru lleoliad</string>
+    <string name="preference_widget_use_geocoder">Defnyddio geoleoliad ar gyfer dangos</string>
+    <string name="preference_widget_theme_title">Thema\'r teclyn</string>
+    <string name="theme_dark">Tywydd</string>
+    <string name="theme_light">Golau</string>
+    <string name="theme_transparent">Tryloyw</string>
+    <string name="preference_title_category_display">Dangosiad</string>
+    <string name="pref_title_language">Iaith</string>
+    <string name="pref_language_default">Rhagosodiad System</string>
+    <string name="pref_title_theme">Thema</string>
+    
+    <string name="preference_title_activity_about">Ynghylch</string>
+    <string name="about_version_pref_title">Fersiwn</string>
+    <string name="about_source_code_pref_title">Cod</string>
+    <string name="about_app_license_pref_title">Trwydded</string>
+    <string name="about_open_source_licenses_pref_title">Trwyddedau cod agored</string>
+
+    <string name="wind_label">Gwynt: %1$s %2$s</string>
+    <string name="rain_label">Glaw: %1$s %2$s</string>
+    <string name="snow_label">Eira: %1$s %2$s</string>
+    <string name="humidity_label">Lleithder: %1$s%2$s</string>
+    <string name="pressure_label">Gwasgedd: %1$s %2$s</string>
+    <string name="cloudiness_label">Cymylau: %1$s%2$s</string>
+    <string name="last_update_label">Diweddariad diwethaf: %s</string>
+    <string name="sunrise_label">Gwawr: %s</string>
+    <string name="sunset_label">Machlud: %s</string>
+    <string name="temperature_morning_title">Bore</string>
+    <string name="temperature_day_title">Dydd</string>
+    <string name="temperature_evening_title">Noswaith</string>
+    <string name="temperature_night_title">Nos</string>
+    <string name="label_temperature">Tymheredd</string>
+    <string name="label_wind">Gwynt</string>
+    <string name="label_rain">Glaw</string>
+    <string name="label_snow">Eira</string>
+
+    <string name="widget_weather_icon_description">Eicon tywydd ar hyn o bryd</string>
+    <string name="widget_refresh_button">Botwm ail-lwytho\'r teclyn</string>
+
+    <string name="donation_bitcoin_qr_description">Cod QR i roddi Bitcoin</string>
+    <string name="donation_bitcoin_copy_button">Copïo Cyfeiriad Bitcoin</string>
+    <string name="donation_bitcoin_open_app">Agor ap Bitcoin</string>
+    <string name="donation_bitcoin_copy_message">Cafodd cyfeiriad Bitcoin ei gopïo i\'r clipfwrdd</string>
+
+    <string name="wind_direction_north">G</string>
+    <string name="wind_direction_north_east">GDn</string>
+    <string name="wind_direction_east">Dn</string>
+    <string name="wind_direction_south_east">DDn</string>
+    <string name="wind_direction_south">D</string>
+    <string name="wind_direction_south_west">DGn</string>
+    <string name="wind_direction_west">Gn</string>
+    <string name="wind_direction_north_west">GGn</string>
+
+    <string name="permission_location_rationale">Rhaid caniatáu canfod lleoliad er mwyn adnabod dy leoliad cyfredol</string>
+    <string name="permission_not_granted">Ni roddwyd caniatâd!</string>
+    <string name="permission_available_location">Rhoddwyd caniatâd i ganfod lleoliad</string>
+    <string name="permission_location_need">Rhaid caniatáu canfod lleoliad</string>
+
+    <string name="restart_dialog_message">Ail-ddechreua\'r ap i roi\'r gosodiadau newydd ar waith</string>
+</resources>
