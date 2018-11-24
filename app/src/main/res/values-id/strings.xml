@@ -78,4 +78,38 @@
     <string name="pressure_label">Tekanan: %1$s %2$s</string>
     <string name="cloudiness_label">Berawan: %1$s %2$s</string>
     <string name="last_update_label">Pembaruan terakhir: %s</string>
-    </resources>
+    <string name="sunrise_label">Matahari terbit: %s</string>
+    <string name="sunset_label">Matahari terbenam: %s</string>
+    <string name="temperature_morning_title">Pagi</string>
+    <string name="temperature_day_title">Siang</string>
+    <string name="temperature_evening_title">Sore</string>
+    <string name="temperature_night_title">Malam</string>
+    <string name="label_temperature">Temperatur</string>
+    <string name="label_wind">Angin</string>
+    <string name="label_rain">Hujan</string>
+    <string name="label_snow">Salju</string>
+
+    <string name="widget_weather_icon_description">Ikon cuaca saat ini</string>
+    <string name="widget_refresh_button">Tombol widget segarkan</string>
+
+    <string name="donation_bitcoin_qr_description">Donasi kode QR Bitcoin</string>
+    <string name="donation_bitcoin_copy_button">Salin Alamat Bitcoin</string>
+    <string name="donation_bitcoin_open_app">Buka Aplikasi Bitcoin</string>
+    <string name="donation_bitcoin_copy_message">Alamat Bitcoin disalin ke papan klip</string>
+
+    <string name="wind_direction_north">U</string>
+    <string name="wind_direction_north_east">TL</string>
+    <string name="wind_direction_east">T</string>
+    <string name="wind_direction_south_east">TE</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_west">BD</string>
+    <string name="wind_direction_west">B</string>
+    <string name="wind_direction_north_west">BL</string>
+
+    <string name="permission_location_rationale">Izin lokasi dibutuhkan untuk menentukan kota saat ini</string>
+    <string name="permission_not_granted">Izin tidak diberi!</string>
+    <string name="permission_available_location">Izin lokasi telah diberi</string>
+    <string name="permission_location_need">Anda harus memberi Izin Lokasi</string>
+
+    <string name="restart_dialog_message">Silahkan mulai ulang aplikasi untuk menerapkan pengaturan yang baru</string>
+</resources>
