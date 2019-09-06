@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="enter_city_hint">Introduza a cidade</string>
+    <string name="enter_city_hint">Inserir cidade</string>
     <string name="label_current_city">Cidade atual</string>
-    <string name="label_choose_city">Escolha a cidade</string>
+    <string name="label_choose_city">Escolher cidade</string>
     <string name="alertDialog_gps_message">O GPS não está ativado. Quer ir ao menu de configurações\?</string>
     <string name="alertDialog_gps_positiveButton">Configurações</string>
     <string name="alertDialog_gps_negativeButton">Cancelar</string>
