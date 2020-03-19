@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="enter_city_hint">Entrer la ville</string>
     <string name="label_current_city">Ville actuelle</string>
@@ -8,49 +8,42 @@
     <string name="alertDialog_gps_negativeButton">Annuler</string>
     <string name="progressDialog_gps_locate">Trouver la localisation actuelle</string>
     <string name="load_progress">Chargement…</string>
-
     <!-- Activity names -->
-    <string name="title_activity_search">Chercher la Localisation</string>
-    <string name="label_activity_main">Météo Actuelle</string>
-    <string name="label_activity_weather_forecast">Prévisions Quotidiennes</string>
-    <string name="label_activity_graphs">Graphiques Météo</string>
+    <string name="title_activity_search">Chercher la localisation</string>
+    <string name="label_activity_main">Météo actuelle</string>
+    <string name="label_activity_weather_forecast">Prévisions quotidiennes</string>
+    <string name="label_activity_graphs">Graphiques météo</string>
     <string name="title_activity_license">Licence pour %s</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Mettre à jour</string>
-    <string name="toolbar_menu_search_city">Chercher la Ville</string>
-    <string name="toolbar_menu_detect_location">Détecter la Localisation</string>
-    <string name="menu_action_toggle_values">Basculer les Valeurs</string>
-    <string name="menu_action_toggle_yaxis">Basculer l\'Axe des Y</string>
-
+    <string name="toolbar_menu_search_city">Chercher la ville</string>
+    <string name="toolbar_menu_detect_location">Détecter la localisation</string>
+    <string name="menu_action_toggle_values">Basculer les valeurs</string>
+    <string name="menu_action_toggle_yaxis">Basculer l\'axe des Y</string>
     <!-- Navigation drawer -->
-    <string name="nav_menu_current_weather">Météo Actuelle</string>
-    <string name="nav_menu_daily_forecast">Prévisions Quotidiennes</string>
+    <string name="nav_menu_current_weather">Météo actuelle</string>
+    <string name="nav_menu_daily_forecast">Prévisions quotidiennes</string>
     <string name="nav_menu_graphs">Graphiques</string>
     <string name="nav_menu_settings">Réglages</string>
     <string name="nav_feedback">Commentaires</string>
     <string name="nav_menu_bitcoin_donation">Donner en Bitcoin</string>
-
     <!-- Toast messages -->
     <string name="connection_not_found">Vérifiez votre connexion internet</string>
     <string name="toast_parse_error">Une erreur s\'est produite. Essayez plus tard !</string>
-
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
     <string name="millimetre_label">mm</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Chercher la localisation</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Réglages</string>
     <string name="pref_title_temperature">Température</string>
     <string name="preference_hide_desc">Cacher la description météo</string>
     <string name="pref_title_category_notification">Notifications</string>
-    <string name="pref_title_notification">Activer les Notifications</string>
-    <string name="pref_title_notification_refresh_interval">Intervalle d\'Actualisation</string>
+    <string name="pref_title_notification">Activer les notifications</string>
+    <string name="pref_title_notification_refresh_interval">Intervalle d\'actualisation</string>
     <string name="update_period_15min">15 minutes</string>
     <string name="update_period_30min">30 minutes</string>
     <string name="update_period_1hour">Chaque heure</string>
@@ -59,27 +52,25 @@
     <string name="update_period_12hours">12 heures</string>
     <string name="update_period_24hours">24 heures</string>
     <string name="pref_title_vibrate">Vibrer</string>
-    <string name="preference_widget_title_update_period">Période de Mise à jour</string>
+    <string name="preference_widget_title_update_period">Période de mise à jour</string>
     <string name="preference_title_activity_general">Réglages généraux</string>
     <string name="preference_title_activity_widget">Réglages du widget</string>
-
     <!-- Preference Screen About -->
-    <string name="preference_title_activity_about">A propos</string>
+    <string name="preference_title_activity_about">À propos</string>
     <string name="about_version_pref_title">Version</string>
     <string name="about_source_code_pref_title">Code source</string>
     <string name="about_app_license_pref_title">Licence</string>
     <string name="about_open_source_licenses_pref_title">Licences Open Source</string>
-
     <!-- Weather conditions label strings -->
-    <string name="wind_label">Vent: %1$s %2$s</string>
-    <string name="rain_label">Pluie: %1$s %2$s</string>
-    <string name="snow_label">Neige: %1$s %2$s</string>
-    <string name="humidity_label">Humidité: %1$s%2$s</string>
-    <string name="pressure_label">Pression: %1$s %2$s</string>
-    <string name="cloudiness_label">Nébulosité: %1$s%2$s</string>
-    <string name="last_update_label">Dernière màj: %s</string>
-    <string name="sunrise_label">Lever: %s</string>
-    <string name="sunset_label">Coucher: %s</string>
+    <string name="wind_label">Vent : %1$s %2$s</string>
+    <string name="rain_label">Pluie : %1$s %2$s</string>
+    <string name="snow_label">Neige : %1$s %2$s</string>
+    <string name="humidity_label">Humidité : %1$s%2$s</string>
+    <string name="pressure_label">Pression : %1$s %2$s</string>
+    <string name="cloudiness_label">Nébulosité : %1$s%2$s</string>
+    <string name="last_update_label">Dernière màj : %s</string>
+    <string name="sunrise_label">Aube : %s</string>
+    <string name="sunset_label">Crépuscule : %s</string>
     <string name="temperature_morning_title">Matin</string>
     <string name="temperature_day_title">Jour</string>
     <string name="temperature_evening_title">Soir</string>
@@ -88,17 +79,14 @@
     <string name="label_wind">Vent</string>
     <string name="label_rain">Pluie</string>
     <string name="label_snow">Neige</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Icône de météo actuelle</string>
     <string name="widget_refresh_button">Bouton d\'actualisation du widget</string>
-
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">QR code de Donation en Bitcoin</string>
-    <string name="donation_bitcoin_copy_button">Copier l\'Adresse Bitcoin</string>
-    <string name="donation_bitcoin_open_app">Ouvrir l\'App Bitcoin</string>
+    <string name="donation_bitcoin_qr_description">Code QR de donation en Bitcoin</string>
+    <string name="donation_bitcoin_copy_button">Copier l\'adresse Bitcoin</string>
+    <string name="donation_bitcoin_open_app">Ouvrir l\'appli Bitcoin</string>
     <string name="donation_bitcoin_copy_message">Adresse Bitcoin copiée dans le presse-papiers</string>
-
     <!-- Wind directions -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NE</string>
@@ -108,23 +96,20 @@
     <string name="wind_direction_south_west">SO</string>
     <string name="wind_direction_west">O</string>
     <string name="wind_direction_north_west">NO</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Permissions de localisation requises pour déterminer la ville actuelle</string>
     <string name="permission_not_granted">Permissions non accordées !</string>
     <string name="permission_available_location">Permissions de localisation accordées</string>
-    <string name="pref_language_default">Système par Défaut</string>
+    <string name="pref_language_default">Système par défaut</string>
     <string name="pref_title_language">Langue</string>
     <string name="preference_title_category_display">Affichage</string>
     <string name="restart_dialog_message">Redémarrez l\'application pour appliquer les nouveaux réglages</string>
-<string name="preference_widget_update_location">Mise à jour de la localisation</string>
+    <string name="preference_widget_update_location">Mise à jour de la localisation</string>
     <string name="preference_widget_use_geocoder">Utiliser la géolocalisation à l\'affichage</string>
     <string name="preference_widget_theme_title">Thème du widget</string>
     <string name="theme_dark">Sombre</string>
     <string name="theme_light">Clair</string>
     <string name="theme_transparent">Transparent</string>
     <string name="pref_title_theme">Thème</string>
-    
     <string name="permission_location_need">Vous devez donner les permissions de localisation</string>
-
-    </resources>
+</resources>
