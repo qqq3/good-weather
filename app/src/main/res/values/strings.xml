@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Good Weather</string>
     <string name="enter_city_hint">Enter city</string>
-    <string name="label_current_city">Current city</string>
+    <string name="label_current_city">"Current city  "</string>
     <string name="label_choose_city">Choose city</string>
     <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
     <string name="alertDialog_gps_title" translatable="false">GPS is settings</string>
@@ -11,21 +11,18 @@
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
     <string name="load_progress">Loading…</string>
-
     <!-- Activity names -->
     <string name="title_activity_search">Search Location</string>
     <string name="label_activity_main">Current Weather</string>
     <string name="label_activity_weather_forecast">Daily Forecast</string>
     <string name="label_activity_graphs">Graphs Weather</string>
     <string name="title_activity_license">License for %s</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Update</string>
     <string name="toolbar_menu_search_city">Search City</string>
     <string name="toolbar_menu_detect_location">Detect Location</string>
     <string name="menu_action_toggle_values">Toggle Values</string>
     <string name="menu_action_toggle_yaxis">Toggle Y-Axis</string>
-
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
@@ -35,11 +32,9 @@
     <string name="nav_menu_settings">Settings</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Donate Bitcoin</string>
-
     <!-- Toast messages -->
     <string name="connection_not_found">Check your internet connection</string>
     <string name="toast_parse_error">An error has occurred. Try later!</string>
-
     <!-- Weather icons -->
     <string name="icon_clear_sky_day" translatable="false"></string>
     <string name="icon_clear_sky_night" translatable="false"></string>
@@ -60,7 +55,6 @@
     <string name="icon_cloudiness" translatable="false"></string>
     <string name="icon_sunrise" translatable="false"></string>
     <string name="icon_sunset" translatable="false"></string>
-
     <!-- Units and Measurement-->
     <string name="percent_sign" translatable="false">\u0025</string>
     <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
@@ -68,10 +62,8 @@
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
     <string name="millimetre_label">mm</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Search location</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Settings</string>
     <string name="pref_title_temperature">Temperature</string>
@@ -100,7 +92,6 @@
     <string name="pref_title_language">Language</string>
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_theme">Theme</string>
-    
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">About</string>
     <string name="about_version_pref_title">Version</string>
@@ -109,7 +100,6 @@
     <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
     <string name="about_google_play_pref_title" translatable="false">Google Play</string>
     <string name="about_open_source_licenses_pref_title">Open Source licenses</string>
-
     <!-- Weather conditions label strings -->
     <string name="wind_label">Wind: %1$s %2$s</string>
     <string name="rain_label">Rain: %1$s %2$s</string>
@@ -129,17 +119,14 @@
     <string name="label_wind">Wind</string>
     <string name="label_rain">Rain</string>
     <string name="label_snow">Snow</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Current weather icon</string>
     <string name="widget_refresh_button">Widget refresh button</string>
-
     <!-- Donation Bitcoin dialog -->
     <string name="donation_bitcoin_qr_description">Donation Bitcoin QR code</string>
     <string name="donation_bitcoin_copy_button">Copy Bitcoin Address</string>
     <string name="donation_bitcoin_open_app">Open Bitcoin App</string>
     <string name="donation_bitcoin_copy_message">Bitcoin address was copied to the clipboard</string>
-
     <!-- Wind directions -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NE</string>
@@ -149,15 +136,12 @@
     <string name="wind_direction_south_west">SW</string>
     <string name="wind_direction_west">W</string>
     <string name="wind_direction_north_west">NW</string>
-
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Location Permissions are needed to determine the current city</string>
     <string name="permission_not_granted">Permissions were not granted!</string>
     <string name="permission_available_location">Location Permissions have been granted</string>
     <string name="permission_location_need">You must grant Location Permissions</string>
-
     <!-- Dialog strings -->
     <string name="restart_dialog_message">Please restart application to apply new settings</string>
 </resources>
