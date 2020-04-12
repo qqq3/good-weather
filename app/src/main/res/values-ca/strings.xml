@@ -2,20 +2,20 @@
 <resources>
     <string name="enter_city_hint">Introduïu ciutat</string>
     <string name="label_current_city">Ciutat actual</string>
-    <string name="label_choose_city">Escull ciutat</string>
+    <string name="label_choose_city">Tria ciutat</string>
     <string name="alertDialog_gps_message">El GPS no està habilitat. Voleu anar al menú de configuració\?</string>
     <string name="alertDialog_gps_positiveButton">Paràmetres</string>
-    <string name="alertDialog_gps_negativeButton">Cancel\·lar</string>
+    <string name="alertDialog_gps_negativeButton">Cancel·lar</string>
     <string name="progressDialog_gps_locate">Troba la ubicació actual</string>
     <string name="load_progress">Càrrega…</string>
     <!-- Activity names -->
     <string name="title_activity_search">Cerca ubicació</string>
     <string name="label_activity_main">Temps actual</string>
     <string name="label_activity_weather_forecast">Pronòstic diari</string>
-    <string name="label_activity_graphs">Gràfics del clima</string>
+    <string name="label_activity_graphs">Gràfics del temps</string>
     <string name="title_activity_license">Llicència per %s</string>
     <!-- Toolbar menu -->
-    <string name="toolbar_menu_refresh">Actualitzar</string>
+    <string name="toolbar_menu_refresh">Actualitza</string>
     <string name="toolbar_menu_search_city">Cerca ciutat</string>
     <string name="toolbar_menu_detect_location">Detecta ubicació</string>
     <string name="menu_action_toggle_values">Intercanvia valors</string>
