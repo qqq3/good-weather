@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Nhập Tên Thành Phố</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_city_hint">Nhập Tên Thành Phố</string>
     <string name="label_current_city">Thành phố hiện tại</string>
     <string name="label_choose_city">Chọn thành phố</string>
     <string name="alertDialog_gps_message">GPS không được kích hoạt. Bạn có muốn đi đến menu cài đặt?</string>
@@ -7,18 +8,15 @@
     <string name="alertDialog_gps_negativeButton">Hủy</string>
     <string name="progressDialog_gps_locate">Tìm thấy vị trí hiện tại</string>
     <string name="load_progress">Đang tải…</string>
-
     <string name="title_activity_search">Tìm kiếm</string>
     <string name="label_activity_main">Thời tiết hiện tại</string>
     <string name="label_activity_weather_forecast">Dự báo hằng ngày</string>
     <string name="label_activity_graphs">Đồ thị thời tiết</string>
     <string name="title_activity_license">Giấy phép cho %s</string>
-
     <string name="toolbar_menu_refresh">Cập Nhật</string>
     <string name="toolbar_menu_search_city">Tìm thành phố</string>
     <string name="menu_action_toggle_values">Bật tắt</string>
     <string name="menu_action_toggle_yaxis">Trục Y</string>
-
     <string name="nav_menu_current_weather">Thời tiết hiện tại</string>
     <string name="nav_menu_daily_forecast">Dự báo hằng ngay</string>
     <string name="nav_menu_graphs">Đồ thị</string>
@@ -26,14 +24,11 @@
     <string name="nav_feedback">Phản hồi</string>
     <string name="connection_not_found">Kiểm tra kết nối internet của bạn</string>
     <string name="toast_parse_error">Đã xảy ra lỗi</string>
-
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">Mph</string>
     <string name="millimetre_label">mm</string>
-
     <string name="hint_activity_search">Tìm vị trí</string>
-
     <string name="title_activity_settings">Cài đặt</string>
     <string name="pref_title_temperature">Nhiệt độ</string>
     <string name="preference_hide_desc">Ẩn mô tả thời tiết</string>
@@ -61,19 +56,17 @@
     <string name="pref_title_language">Ngôn ngữ</string>
     <string name="pref_language_default">Mặc định hệ thống</string>
     <string name="pref_title_theme">Chủ đề</string>
-    
     <string name="preference_title_activity_about">Giới thiệu</string>
     <string name="about_version_pref_title">Phiên bản</string>
     <string name="about_source_code_pref_title">Mã nguồn</string>
     <string name="about_app_license_pref_title">Giấy phép</string>
     <string name="about_open_source_licenses_pref_title">Giấy phép mã nguồn</string>
-
     <string name="wind_label">Gió: %1$ s %2$ s</string>
     <string name="rain_label">Mưa: %1$s %2$s</string>
     <string name="snow_label">Tuyết: %1$ s %2$ s</string>
-    <string name="humidity_label">Độ ẩm: %1$ s %2$ s</string>
+    <string name="humidity_label">Độ ẩm: %1$s%2$s</string>
     <string name="pressure_label">Áp suất: %1$ s %2$ s</string>
-    <string name="cloudiness_label">Mây: %1$ s %2$ s</string>
+    <string name="cloudiness_label">Mây: %1$s%2$s</string>
     <string name="last_update_label">Cập Nhật lần cuối: %s</string>
     <string name="sunrise_label">Bình minh: %s</string>
     <string name="sunset_label">Hoàng hôn: %s</string>
@@ -85,12 +78,25 @@
     <string name="label_wind">Gió</string>
     <string name="label_rain">Mưa</string>
     <string name="label_snow">Tuyết</string>
-
     <string name="widget_weather_icon_description">Biểu tượng thời tiết hiện tại</string>
     <string name="permission_location_rationale">Bật ví trí để xác định thành phố hiện tại</string>
     <string name="permission_not_granted">Quyền không được cấp !</string>
     <string name="permission_available_location">Vị trí cho phép đã được cấp</string>
     <string name="permission_location_need">Bạn phải cấp quyền truy cập địa điểm</string>
-
     <string name="restart_dialog_message">Xin vui lòng khởi động lại ứng dụng để áp dụng cài đặt mới</string>
+    <string name="donation_bitcoin_qr_description">Mã QR ủng hộ Bitcoin</string>
+    <string name="widget_refresh_button">Nút làm mới Widget</string>
+    <string name="wind_direction_north_west">Tây bắc</string>
+    <string name="wind_direction_west">Tây</string>
+    <string name="wind_direction_south_west">Tây nam</string>
+    <string name="wind_direction_south">Nam</string>
+    <string name="wind_direction_south_east">Đông nam</string>
+    <string name="wind_direction_east">Đông</string>
+    <string name="wind_direction_north_east">Đông bắc</string>
+    <string name="wind_direction_north">Bắc</string>
+    <string name="donation_bitcoin_copy_message">Địa chỉ Bitcoin đã được copy vào bộ đệm</string>
+    <string name="donation_bitcoin_open_app">Mở ứng dụng Bitcoin</string>
+    <string name="donation_bitcoin_copy_button">Sao chép địa chỉ Bitcoin</string>
+    <string name="nav_menu_bitcoin_donation">Ủng hộ bằng Bitcoin</string>
+    <string name="toolbar_menu_detect_location">Xác định khu vực</string>
 </resources>
