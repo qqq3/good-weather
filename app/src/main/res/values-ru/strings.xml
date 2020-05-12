@@ -71,7 +71,7 @@
     <string name="label_activity_main">Текущая погода</string>
     <string name="label_activity_weather_forecast">Прогноз погоды</string>
     <string name="nav_menu_graphs">Графики</string>
-    <string name="load_progress">Загрузка&#8230;</string>
+    <string name="load_progress">Загрузка…</string>
     <string name="millimetre_label">мм</string>
     <string name="rain_label">Дождь: %1$s %2$s</string>
     <string name="snow_label">Снег: %1$s %2$s</string>
@@ -84,13 +84,19 @@
     <string name="sunrise_label">Восход: %s</string>
     <string name="title_activity_license">Лицензия на %s</string>
     <string name="preference_hide_desc">Убрать описание погоды</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Разрешения "Получение местонахождения" необходимы для определения текущего города</string>
     <string name="permission_not_granted">Разрешения не продоставлены!</string>
     <string name="permission_available_location">Разрешения "Получение местонахождения" были продоставлены</string>
-    <string name="pref_language_default">System Default</string>
+    <string name="pref_language_default">Установленный системой</string>
     <string name="pref_title_language">Язык</string>
     <string name="preference_title_category_display">Вид</string>
     <string name="restart_dialog_message">Пожалуйста, перезапустите приложение, чтобы применить новые настройки</string>
+    <string name="theme_transparent">Прозрачная</string>
+    <string name="pref_title_theme">Тема</string>
+    <string name="preference_widget_update_location">Обновление местоположения</string>
+    <string name="preference_widget_use_geocoder">Использовать геолокацию для отображения</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="preference_widget_theme_title">Тема виджета</string>
 </resources>
