@@ -96,7 +96,7 @@
     <string name="pref_title_theme">Тема</string>
     <string name="preference_widget_update_location">Обновление местоположения</string>
     <string name="preference_widget_use_geocoder">Использовать геолокацию для отображения</string>
-    <string name="theme_light">Светлая</string>
+    <string name="theme_light">Тёмная</string>
     <string name="theme_dark">Тёмная</string>
     <string name="preference_widget_theme_title">Тема виджета</string>
 </resources>
