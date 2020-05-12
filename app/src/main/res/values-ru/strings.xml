@@ -87,16 +87,17 @@
     <!-- Permission strings -->
     <string name="permission_location_rationale">Разрешения "Получение местонахождения" необходимы для определения текущего города</string>
     <string name="permission_not_granted">Разрешения не продоставлены!</string>
-    <string name="permission_available_location">Разрешения "Получение местонахождения" были продоставлены</string>
+    <string name="permission_available_location">Разрешения на доступ к местонахождению были продоставлены</string>
     <string name="pref_language_default">Установленный системой</string>
     <string name="pref_title_language">Язык</string>
     <string name="preference_title_category_display">Вид</string>
     <string name="restart_dialog_message">Пожалуйста, перезапустите приложение, чтобы применить новые настройки</string>
     <string name="theme_transparent">Прозрачная</string>
     <string name="pref_title_theme">Тема</string>
-    <string name="preference_widget_update_location">Обновление местоположения</string>
+    <string name="preference_widget_update_location">Обновлять местоположение</string>
     <string name="preference_widget_use_geocoder">Использовать геолокацию для отображения</string>
-    <string name="theme_light">Тёмная</string>
+    <string name="theme_light">Светлая</string>
     <string name="theme_dark">Тёмная</string>
     <string name="preference_widget_theme_title">Тема виджета</string>
+    <string name="permission_location_need">Вы должны предоставить разрешния на доступ к местоположению</string>
 </resources>
