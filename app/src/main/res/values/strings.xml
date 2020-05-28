@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name" translatable="false">Good Weather</string>
     <string name="enter_city_hint">Enter city</string>
-    <string name="label_current_city">"Current city  "</string>
+    <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
     <string name="feedback_email" translatable="false">asdtm.mobile@gmail.com</string>
     <string name="alertDialog_gps_title" translatable="false">GPS is settings</string>
