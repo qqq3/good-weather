@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Masukkan nama kota</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_city_hint">Masukkan kota</string>
     <string name="label_current_city">Kota sekarang</string>
     <string name="label_choose_city">Pilih kota</string>
     <string name="alertDialog_gps_message">GPS tidak dinyalakan. Apakah anda ingin membuka menu pengaturan ?</string>
@@ -7,36 +8,29 @@
     <string name="alertDialog_gps_negativeButton">Batal</string>
     <string name="progressDialog_gps_locate">Temukan lokasi sekarang</string>
     <string name="load_progress">Memuat…</string>
-
     <string name="title_activity_search">Mencari Lokasi</string>
     <string name="label_activity_main">Cuaca Sekarang</string>
     <string name="label_activity_weather_forecast">Prakiraan Harian</string>
     <string name="label_activity_graphs">Grafik Cuaca</string>
     <string name="title_activity_license">Lisensi untuk %s</string>
-
     <string name="toolbar_menu_refresh">Pemutakhiran</string>
     <string name="toolbar_menu_search_city">Cari Kota</string>
     <string name="toolbar_menu_detect_location">Deteksi Lokasi</string>
     <string name="menu_action_toggle_values">Beralih Nilai</string>
     <string name="menu_action_toggle_yaxis">Beralih Sumbu-Y</string>
-
     <string name="nav_menu_current_weather">Cuaca Sekarang</string>
     <string name="nav_menu_daily_forecast">Prakiraan Harian</string>
     <string name="nav_menu_graphs">Grafik</string>
     <string name="nav_menu_settings">Pengaturan</string>
     <string name="nav_feedback">Umpan balik</string>
     <string name="nav_menu_bitcoin_donation">Donasi Bitcoin</string>
-
     <string name="connection_not_found">Cek koneksi internet anda</string>
     <string name="toast_parse_error">Terjadi error. Coba lagi nanti!</string>
-
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">meter/detik</string>
     <string name="wind_speed_miles">mph</string>
     <string name="millimetre_label">mm</string>
-
     <string name="hint_activity_search">Mencari Lokasi</string>
-
     <string name="title_activity_settings">Pengaturan</string>
     <string name="pref_title_temperature">Suhu</string>
     <string name="preference_hide_desc">Sembunyikan deskripsi cuaca</string>
@@ -64,13 +58,11 @@
     <string name="pref_title_language">Bahasa</string>
     <string name="pref_language_default">Bawaan Sistem</string>
     <string name="pref_title_theme">Tema</string>
-    
     <string name="preference_title_activity_about">Tentang</string>
     <string name="about_version_pref_title">Versi</string>
     <string name="about_source_code_pref_title">Kode sumber</string>
     <string name="about_app_license_pref_title">Lisensi</string>
     <string name="about_open_source_licenses_pref_title">Lisensi sumber terbuka</string>
-
     <string name="wind_label">Angin: %1$s %2$s</string>
     <string name="rain_label">Hujan: %1$s %2$s</string>
     <string name="snow_label">Salju: %1$s %2$s</string>
@@ -88,15 +80,12 @@
     <string name="label_wind">Angin</string>
     <string name="label_rain">Hujan</string>
     <string name="label_snow">Salju</string>
-
     <string name="widget_weather_icon_description">Ikon cuaca saat ini</string>
     <string name="widget_refresh_button">Tombol widget segarkan</string>
-
     <string name="donation_bitcoin_qr_description">Donasi kode QR Bitcoin</string>
     <string name="donation_bitcoin_copy_button">Salin Alamat Bitcoin</string>
     <string name="donation_bitcoin_open_app">Buka Aplikasi Bitcoin</string>
     <string name="donation_bitcoin_copy_message">Alamat Bitcoin disalin ke papan klip</string>
-
     <string name="wind_direction_north">U</string>
     <string name="wind_direction_north_east">TL</string>
     <string name="wind_direction_east">T</string>
@@ -105,11 +94,9 @@
     <string name="wind_direction_south_west">BD</string>
     <string name="wind_direction_west">B</string>
     <string name="wind_direction_north_west">BL</string>
-
     <string name="permission_location_rationale">Izin lokasi dibutuhkan untuk menentukan kota saat ini</string>
     <string name="permission_not_granted">Izin tidak diberi!</string>
     <string name="permission_available_location">Izin lokasi telah diberi</string>
     <string name="permission_location_need">Anda harus memberi Izin Lokasi</string>
-
     <string name="restart_dialog_message">Silahkan mulai ulang aplikasi untuk menerapkan pengaturan yang baru</string>
 </resources>
