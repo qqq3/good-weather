@@ -1,2 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="pref_title_notification">Võta teavitused kasutusele</string>
+    <string name="pref_title_category_notification">Teavitused</string>
+    <string name="preference_hide_desc">Peida ilmakirjeldus</string>
+    <string name="pref_title_vibrate">Vibreeri</string>
+    <string name="update_period_24hours">24 tundi</string>
+    <string name="update_period_12hours">12 tundi</string>
+    <string name="update_period_6hours">6 tundi</string>
+    <string name="update_period_3hours">3 tundi</string>
+    <string name="update_period_1hour">Kord tunnis</string>
+    <string name="update_period_30min">30 minutit</string>
+    <string name="update_period_15min">15 minutit</string>
+    <string name="pref_title_notification_refresh_interval">Andmete värskenduse välp</string>
+    <string name="pref_title_temperature">Temperatuur</string>
+    <string name="title_activity_settings">Seadistused</string>
+    <string name="hint_activity_search">Otsi asukohta</string>
+    <string name="millimetre_label">mm</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="pressure_measurement">hPa</string>
+    <string name="toast_parse_error">Tekkis viga. Palun proovi hiljem!</string>
+    <string name="connection_not_found">Kontrolli oma Interneti-ühendust</string>
+    <string name="nav_menu_bitcoin_donation">Anneta Bitcoine</string>
+    <string name="nav_feedback">Tagasiside</string>
+    <string name="nav_menu_settings">Seadistused</string>
+    <string name="nav_menu_graphs">Graafikud</string>
+    <string name="nav_menu_daily_forecast">Järgmiste päevade ennustus</string>
+    <string name="nav_menu_current_weather">Praegune ilm</string>
+    <string name="toolbar_menu_detect_location">Tuvasta asukoht</string>
+    <string name="toolbar_menu_search_city">Otsi linna</string>
+    <string name="toolbar_menu_refresh">Värskenda</string>
+    <string name="title_activity_license">%s litsents</string>
+    <string name="label_activity_graphs">Ilmaennustus graafikutena</string>
+    <string name="label_activity_weather_forecast">Järgmiste päevade ennustus</string>
+    <string name="label_activity_main">Praegune ilm</string>
+    <string name="title_activity_search">Otsi asukohta</string>
+    <string name="load_progress">Laen…</string>
+    <string name="progressDialog_gps_locate">Leia praegune asukoht</string>
+    <string name="alertDialog_gps_negativeButton">Tühista</string>
+    <string name="alertDialog_gps_positiveButton">Seadistused</string>
+    <string name="alertDialog_gps_message">GPS pole sisse lülitatud. Kas soovid minna seadistuste vaatesse\?</string>
+    <string name="label_choose_city">Vali linn</string>
+    <string name="enter_city_hint">Sisesta linn</string>
+</resources>
