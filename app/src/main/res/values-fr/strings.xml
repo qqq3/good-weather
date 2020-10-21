@@ -3,7 +3,7 @@
     <string name="enter_city_hint">Entrer la ville</string>
     <string name="label_current_city">Ville actuelle</string>
     <string name="label_choose_city">Choisir la ville</string>
-    <string name="alertDialog_gps_message">GPS non actif. Voulez-vous allez au menu des paramètres ?</string>
+    <string name="alertDialog_gps_message">GPS non actif. Voulez-vous allez au menu des paramètres \?</string>
     <string name="alertDialog_gps_positiveButton">Paramètres</string>
     <string name="alertDialog_gps_negativeButton">Annuler</string>
     <string name="progressDialog_gps_locate">Trouver la localisation actuelle</string>
