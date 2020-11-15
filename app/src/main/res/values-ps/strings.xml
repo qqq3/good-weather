@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="preference_widget_use_geocoder">د ښودلو لپاره جيولوکېشن کارول</string>
+    <string name="preference_widget_use_geocoder">د ښوولو لپاره جيولوکېشن کارول</string>
     <string name="pref_title_vibrate">لړزه</string>
     <string name="pref_title_notification_refresh_interval">تاندونې لارغه</string>
     <string name="menu_action_toggle_yaxis">د y څاښ ونجول</string>
@@ -50,7 +50,7 @@
     <string name="pref_title_theme">ويینه</string>
     <string name="pref_language_default">د غونډال تلواله ژبه</string>
     <string name="pref_title_language">ژبه</string>
-    <string name="preference_title_category_display">ښودل</string>
+    <string name="preference_title_category_display">ښوونه</string>
     <string name="theme_transparent">روڼ</string>
     <string name="theme_light">رڼا</string>
     <string name="theme_dark">تياره</string>
