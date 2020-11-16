@@ -2,4 +2,6 @@
 <resources>
     <string name="label_choose_city">शहर चुनें</string>
     <string name="enter_city_hint">शहर का नाम दर्ज करें</string>
+    <string name="update_period_24hours">२४ घंटे</string>
+    <string name="pref_title_temperature">तापमान</string>
 </resources>
