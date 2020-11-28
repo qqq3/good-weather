@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Εισαγωγή Πόλης</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_city_hint">Εισαγωγή Πόλης</string>
     <string name="label_current_city">Τωρινή Πόλη</string>
     <string name="label_choose_city">Επέλεξε Πόλη</string>
     <string name="alertDialog_gps_message">Δεν είναι ενεργοποιημένο το GPS. Θέλεις να μεταβείς στην επιλογή των ρυθμίσεων;</string>
@@ -7,35 +8,28 @@
     <string name="alertDialog_gps_negativeButton">Ακύρωση</string>
     <string name="progressDialog_gps_locate">Εύρεση τωρινής τοποθεσίας</string>
     <string name="load_progress">Φορτώνεται…</string>
-
     <string name="title_activity_search">Αναζήτηση Τοποθεσίας</string>
     <string name="label_activity_main">Τωρινός Καιρός</string>
     <string name="label_activity_weather_forecast">Ημερήσια Πρόβλεψη</string>
     <string name="label_activity_graphs">Γραφικός Καιρός</string>
     <string name="title_activity_license">Η άδεια για το %s</string>
-
     <string name="toolbar_menu_refresh">Ενημέρωση</string>
     <string name="toolbar_menu_search_city">Αναζήτηση Πόλης</string>
     <string name="toolbar_menu_detect_location">Εντοπισμός Τοποθεσίας</string>
     <string name="menu_action_toggle_values">Εναλλαγή των Τιμών</string>
     <string name="menu_action_toggle_yaxis">Εναλλαγή του Άξονα Υ</string>
-
     <string name="nav_menu_current_weather">Τωρινός Καιρός</string>
     <string name="nav_menu_daily_forecast">Ημερήσια Πρόβλεψη</string>
     <string name="nav_menu_graphs">Γραφικά</string>
     <string name="nav_menu_settings">Ρυθμίσεις</string>
     <string name="nav_menu_bitcoin_donation">Δωρεά σε Bitcoin</string>
-
     <string name="connection_not_found">Έλεγξε την σύνδεσή σου στο διαδίκτυο</string>
-    <string name="toast_parse_error">Παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπάθησε αργότερα.</string>
-
+    <string name="toast_parse_error">Παρουσιάστηκε κάποιο σφάλμα. Προσπαθήστε αργότερα!</string>
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">μ/δευτ.</string>
     <string name="wind_speed_miles">μίλια/ώρα</string>
     <string name="millimetre_label">χιλιοστά</string>
-
     <string name="hint_activity_search">Αναζήτηση τοποθεσίας</string>
-
     <string name="title_activity_settings">Ρυθμίσεις</string>
     <string name="pref_title_temperature">Θερμοκρασία</string>
     <string name="preference_hide_desc">Απόκρυψη της περιγραφής του καιρού</string>
@@ -60,7 +54,7 @@
     <string name="preference_title_category_display">Προβολή</string>
     <string name="pref_title_language">Γλώσσα</string>
     <string name="pref_language_default">Προεπιλογή του Συστήματος</string>
-    <string name="preference_title_activity_about">Σχετικά με...</string>
+    <string name="preference_title_activity_about">Σχετικά με</string>
     <string name="about_version_pref_title">Έκδοση</string>
     <string name="about_source_code_pref_title">Πηγαίος Κώδικας</string>
     <string name="about_app_license_pref_title">Άδεια</string>
@@ -81,7 +75,6 @@
     <string name="label_wind">Άνεμος</string>
     <string name="label_rain">Βροχή</string>
     <string name="label_snow">Χιόνι</string>
-
     <string name="wind_direction_north">Β</string>
     <string name="wind_direction_north_east">ΒΑ</string>
     <string name="wind_direction_east">Α</string>
@@ -90,26 +83,20 @@
     <string name="wind_direction_south_west">ΝΔ</string>
     <string name="wind_direction_west">Δ</string>
     <string name="wind_direction_north_west">ΒΔ</string>
-
-    <string name="restart_dialog_message">Παρακαλώ, επανεκκίνησε την εφαρμογή, ώστε να έχουν εφαρμογή οι νέες ρυθμίσεις.</string>
-<string name="permission_location_rationale">Απαιτούνται Δικαιώματα Εντοπισμού της Τοποθεσίας, για να προσδιοριστεί η τωρινή πόλη.</string>
-    <string name="permission_not_granted">Τα Δικαιώματα δεν δόθηκαν.</string>
+    <string name="restart_dialog_message">Παρακαλούμε, επανεκκίνησε την εφαρμογή, για εφαρμογή των νέων ρυθμίσεων</string>
+    <string name="permission_location_rationale">Απαιτούνται δικαιώματα εντοπισμού τοποθεσίας, για να προσδιοριστεί η τωρινή πόλη.</string>
+    <string name="permission_not_granted">Τα δικαιώματα δεν δόθηκαν!</string>
     <string name="permission_available_location">Δόθηκαν Δικαιώματα Εντοπισμού της Τοποθεσίας</string>
     <string name="permission_location_need">Θα πρέπει να παραχωρήσεις Δικαιώματα Εντοπισμού της Τοποθεσίας</string>
-
     <string name="preference_widget_use_geocoder">Χρήση γεωντοπισμού για την προβολή</string>
     <string name="about_open_source_licenses_pref_title">Άδειες Ανοιχτού Κώδικα</string>
-
     <string name="donation_bitcoin_qr_description">QR κώδικας για δωρεά σε Μπιτκόνια</string>
     <string name="donation_bitcoin_copy_button">Αντιγραφή της Μπιτκοϊνικής Διεύθυνσης</string>
     <string name="donation_bitcoin_open_app">Άνοιγμα της Μπιτκοϊνικής Εφαρμογής</string>
     <string name="donation_bitcoin_copy_message">Η Μπιτκοϊνική διεύθυνση αντιγράφτηκε στο πρόχειρο</string>
-
     <string name="nav_feedback">Γνώμη</string>
     <string name="preference_widget_theme_title">Θέμα Γραφικού Στοιχείου</string>
     <string name="pref_title_theme">Θέμα</string>
-    
     <string name="widget_weather_icon_description">Εικονίδιο τωρινού καιρού</string>
     <string name="widget_refresh_button">Πλήκτρο ανανέωσης του γραφικού στοιχείου</string>
-
-    </resources>
+</resources>
