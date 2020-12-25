@@ -5,13 +5,13 @@
     <string name="permission_available_location">Sijainnin käyttöoikeudet on myönnetty</string>
     <string name="permission_not_granted">Käyttöoikeuksia ei myönnetty!</string>
     <string name="permission_location_rationale">Sijaintiluvat tarvitaan nykyisen kaupungin määrittämiseen</string>
-    <string name="wind_direction_north_west">LU (PL)</string>
+    <string name="wind_direction_north_west">LU</string>
     <string name="wind_direction_west">L</string>
-    <string name="wind_direction_south_west">LO (EL)</string>
+    <string name="wind_direction_south_west">LO</string>
     <string name="wind_direction_south">E</string>
-    <string name="wind_direction_south_east">KA (EI)</string>
+    <string name="wind_direction_south_east">KA</string>
     <string name="wind_direction_east">I</string>
-    <string name="wind_direction_north_east">KO (PI)</string>
+    <string name="wind_direction_north_east">KO</string>
     <string name="wind_direction_north">P</string>
     <string name="donation_bitcoin_copy_message">Bitcoin-osoite kopioitiin leikepöydälle</string>
     <string name="donation_bitcoin_open_app">Avaa Bitcoin-sovellus</string>
