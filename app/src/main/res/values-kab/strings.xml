@@ -3,7 +3,7 @@
     <string name="enter_city_hint">Anekcum n iɣrem</string>
     <string name="label_current_city">Tamdint tamirant</string>
     <string name="label_choose_city">Fren tamdint</string>
-    <string name="alertDialog_gps_message">GPS ur yermid ara. Tebɣiḍ ad ad tedduḍ ar wumuɣ n iɣewwaṛen?</string>
+    <string name="alertDialog_gps_message">GPS ur yermid ara. Tebɣiḍ ad tedduḍ ar wumuɣ n yiɣewwaṛen\?</string>
     <string name="alertDialog_gps_positiveButton">Iɣewwaṛen</string>
     <string name="alertDialog_gps_negativeButton">Sefsex</string>
     <string name="progressDialog_gps_locate">Af-d adeg amiran</string>
@@ -49,7 +49,7 @@
     <string name="preference_title_activity_general">Iγewwaren imuta</string>
     <string name="preference_title_activity_widget">Iɣewwaṛen n usfaylurar</string>
     <string name="preference_widget_update_location">Leqqem adeg</string>
-    <string name="preference_widget_use_geocoder">"Seqdec asideg aseknakalan  i uskan"</string>
+    <string name="preference_widget_use_geocoder">Seqdec asideg aseknakalan i uskan</string>
     <string name="preference_widget_theme_title">Asentel n usfaylurar</string>
     <string name="theme_dark">Aberkan</string>
     <string name="theme_light">Aceɛlal</string>
