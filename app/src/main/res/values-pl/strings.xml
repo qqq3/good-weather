@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="nav_menu_settings">Ustawienia</string>
     <string name="alertDialog_gps_message">GPS nie jest włączony. Czy chcesz, aby przejść do menu ustawień?</string>
-    <string name="alertDialog_gps_negativeButton">Anulować</string>
+    <string name="alertDialog_gps_negativeButton">Anuluj</string>
     <string name="alertDialog_gps_positiveButton">Ustawienia</string>
     <string name="connection_not_found"> Sprawdź swoje połączenie z internetem</string>
     <string name="enter_city_hint">Wpisz miasto</string>
@@ -84,7 +84,6 @@
     <string name="sunrise_label">Wschód słońca: %s</string>
     <string name="title_activity_license">Licencja dla %s</string>
     <string name="preference_hide_desc">Ukryj opis pogody</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Potrzebne są Lokalizacja Uprawnienia do określenia obecnego miasta</string>
     <string name="permission_not_granted">Uprawnienia nie zostały przyznane!</string>
@@ -93,14 +92,12 @@
     <string name="pref_title_language">Język</string>
     <string name="preference_title_category_display">Widok</string>
     <string name="restart_dialog_message">Proszę ponownie uruchomić aplikację, aby zastosować nowe ustawienia</string>
-<string name="preference_widget_update_location">Aktualizuj lokalizację</string>
+    <string name="preference_widget_update_location">Aktualizuj lokalizację</string>
     <string name="preference_widget_use_geocoder">Użyj geolokacji do wyświetlenia</string>
     <string name="preference_widget_theme_title">Motyw widżetu</string>
     <string name="theme_dark">Ciemny</string>
     <string name="theme_light">Jasny</string>
     <string name="theme_transparent">Przezroczysty</string>
     <string name="pref_title_theme">Motyw</string>
-    
     <string name="permission_location_need">Musisz przyznać uprawnienia do lokalizacji</string>
-
-    </resources>
+</resources>
