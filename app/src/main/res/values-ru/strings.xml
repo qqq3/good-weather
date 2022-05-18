@@ -48,7 +48,7 @@
     <string name="donation_bitcoin_copy_button">Скопировать Bitcoin адрес</string>
     <string name="donation_bitcoin_copy_message">Bitcoin адрес добавлен в буфер обмена</string>
     <string name="donation_bitcoin_open_app">Открыть Bitcoin кошелёк</string>
-    <string name="donation_bitcoin_qr_description">QR код Bitcoin пожертвования</string>
+    <string name="donation_bitcoin_qr_description">QR-код Bitcoin пожертвования</string>
     <string name="nav_menu_bitcoin_donation">Пожертвовать Bitcoin</string>
     <string name="toolbar_menu_detect_location">Определить местоположение</string>
     <string name="toolbar_menu_refresh">Обновить</string>
@@ -85,9 +85,9 @@
     <string name="title_activity_license">Лицензия на %s</string>
     <string name="preference_hide_desc">Убрать описание погоды</string>
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Разрешения "Получение местонахождения" необходимы для определения текущего города</string>
-    <string name="permission_not_granted">Разрешения не продоставлены!</string>
-    <string name="permission_available_location">Разрешения на доступ к местонахождению были продоставлены</string>
+    <string name="permission_location_rationale">Разрешение \"Получение местонахождения\" необходимо для определения текущего города</string>
+    <string name="permission_not_granted">Разрешения не предоставлены!</string>
+    <string name="permission_available_location">Разрешения на доступ к местонахождению были предоставлены</string>
     <string name="pref_language_default">Установленный системой</string>
     <string name="pref_title_language">Язык</string>
     <string name="preference_title_category_display">Вид</string>
@@ -99,5 +99,5 @@
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Тёмная</string>
     <string name="preference_widget_theme_title">Тема виджета</string>
-    <string name="permission_location_need">Вы должны предоставить разрешния на доступ к местоположению</string>
+    <string name="permission_location_need">Вы должны предоставить разрешения на доступ к местоположению</string>
 </resources>
