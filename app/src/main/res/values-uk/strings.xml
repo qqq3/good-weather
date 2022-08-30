@@ -1,2 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="enter_city_hint">Введіть місто</string>
+    <string name="label_choose_city">Виберіть місто</string>
+    <string name="alertDialog_gps_positiveButton">Налаштування</string>
+    <string name="alertDialog_gps_message">GPS не ввімкнено. Ви хочете перейти до меню налаштувань\?</string>
+    <string name="alertDialog_gps_negativeButton">Скасувати</string>
+    <string name="progressDialog_gps_locate">Визначаємо поточне розташування</string>
+    <string name="load_progress">Завантаження…</string>
+    <string name="title_activity_search">Пошук місцезнаходження</string>
+    <string name="label_activity_main">Поточна погода</string>
+    <string name="label_activity_weather_forecast">Щоденний прогноз</string>
+    <string name="label_activity_graphs">Графіки погоди</string>
+    <string name="title_activity_license">Ліцензія на %s</string>
+    <string name="toolbar_menu_refresh">Оновити</string>
+    <string name="toolbar_menu_search_city">Знайти місто</string>
+    <string name="toolbar_menu_detect_location">Виявити місце розташування</string>
+    <string name="menu_action_toggle_values">Показувати значення</string>
+    <string name="menu_action_toggle_yaxis">Показувати вісь Y</string>
+    <string name="nav_menu_current_weather">Поточна погода</string>
+    <string name="nav_menu_daily_forecast">Щоденний прогноз</string>
+    <string name="nav_menu_graphs">Графіки</string>
+    <string name="nav_menu_settings">Налаштування</string>
+    <string name="nav_feedback">Відгук</string>
+    <string name="toast_parse_error">Сталася помилка. Спробуйте пізніше!</string>
+    <string name="nav_menu_bitcoin_donation">Дарувати біткойн</string>
+    <string name="connection_not_found">Перевірте підключення до Інтернету</string>
+</resources>
