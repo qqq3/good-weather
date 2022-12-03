@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">أدخل اسم المدينة</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_city_hint">أدخل اسم المدينة</string>
     <string name="label_current_city">المدينة الحالية</string>
     <string name="label_choose_city">اختر المدينة</string>
     <string name="alertDialog_gps_message">نظام التموضع العالمي غير مفعل. هل تريد أن تذهب إلى قائمة الإعدادات؟</string>
@@ -7,13 +8,11 @@
     <string name="alertDialog_gps_negativeButton">إلغاء</string>
     <string name="progressDialog_gps_locate">البحث عن الموقع الحالي</string>
     <string name="load_progress">جار التحميل…</string>
-
     <string name="title_activity_search">بحث عن مكان</string>
     <string name="label_activity_main">الطقس الحالي</string>
     <string name="label_activity_weather_forecast">توقعات يومية</string>
     <string name="label_activity_graphs">الرسوم البيانية للطقس</string>
     <string name="title_activity_license">ترخيص ل%</string>
-
     <string name="toolbar_menu_refresh">تحديث</string>
     <string name="toolbar_menu_search_city">ابحث عن مدينة</string>
     <string name="toolbar_menu_detect_location">تحديد الموقع</string>
@@ -24,10 +23,8 @@
     <string name="nav_menu_settings">إعدادات</string>
     <string name="nav_feedback">ردود الفعل</string>
     <string name="nav_menu_bitcoin_donation">تبرع بيتكوين</string>
-
     <string name="connection_not_found">تحقق من اتصالك بالإنترنت</string>
     <string name="toast_parse_error">حدث خطأ. حاول لاحقا!</string>
-
     <string name="pressure_measurement">هكتوبسكال</string>
     <string name="title_activity_settings">الإعدادات</string>
     <string name="pref_title_temperature">الحرارة</string>
@@ -45,16 +42,13 @@
     <string name="preference_title_category_display">عرض</string>
     <string name="pref_title_language">اللغة</string>
     <string name="pref_title_theme">القالب</string>
-    
     <string name="about_source_code_pref_title">شفرة المصدر</string>
     <string name="about_app_license_pref_title">الترخيص</string>
     <string name="about_open_source_licenses_pref_title">تراخيص مفتوحة المصدر</string>
-
     <string name="label_temperature">الحرارة</string>
     <string name="label_wind">الرياح</string>
     <string name="label_rain">أمطار</string>
     <string name="label_snow">ثلوج</string>
-
     <string name="preference_title_activity_about">حول التطبيق</string>
     <string name="temperature_morning_title">الصباح</string>
     <string name="temperature_day_title">يوم</string>
@@ -68,14 +62,11 @@
     <string name="wind_direction_south_west">جنوب غرب</string>
     <string name="wind_direction_west">الغرب</string>
     <string name="wind_direction_north_west">شمال غرب</string>
-
     <string name="restart_dialog_message">الرجاء إعادة تشغيل التطبيق قصد تطبيق الإعدادات الجديدة</string>
-<string name="wind_speed_meters">متر في الثانية</string>
+    <string name="wind_speed_meters">متر في الثانية</string>
     <string name="wind_speed_miles">ميل في الساعة</string>
     <string name="millimetre_label">ميليمتر</string>
-
     <string name="hint_activity_search">ابحث عن مكان</string>
-
     <string name="preference_hide_desc">إخفاء وصف الطقس</string>
     <string name="pref_title_notification_refresh_interval">تحديث الفاصل الزمني</string>
     <string name="pref_title_vibrate">اهتزاز</string>
@@ -96,20 +87,16 @@
     <string name="sunrise_label">الشروق: %s</string>
     <string name="sunset_label">الغروب: %s</string>
     <string name="widget_weather_icon_description">أيقونة الطقس الحالية</string>
-    <string name="menu_action_toggle_yaxis">تبديل Y- المحور</string>
-
+    <string name="menu_action_toggle_yaxis">غير محور الإحداثيات الصيفي ؟</string>
     <string name="preference_title_activity_widget">اعدادات الويدجيت</string>
     <string name="preference_widget_theme_title">ثيم الويدجيت</string>
     <string name="widget_refresh_button">زر تحديث الويدجيت</string>
-
     <string name="donation_bitcoin_qr_description">التبرع بيتكوين رمز الاستجابة السريعة</string>
     <string name="donation_bitcoin_copy_button">قم بنسخ عنوان Bitcoin</string>
     <string name="donation_bitcoin_open_app">افتح تطبيق Bitcoin</string>
     <string name="donation_bitcoin_copy_message">تم نسخ عنوان Bitcoin إلى الحافظة</string>
-
     <string name="permission_location_rationale">مطلوب أذونات الموقع لتحديد المدينة الحالية</string>
     <string name="permission_not_granted">لم يتم منح أذونات الموقع!</string>
     <string name="permission_available_location">تم منح أذونات الموقع</string>
     <string name="permission_location_need">يجب عليك منح أذونات الحصول على الموقع</string>
-
-    </resources>
+</resources>
