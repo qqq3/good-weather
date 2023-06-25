@@ -12,7 +12,7 @@
     <string name="label_activity_main">الطقس الحالي</string>
     <string name="label_activity_weather_forecast">توقعات يومية</string>
     <string name="label_activity_graphs">الرسوم البيانية للطقس</string>
-    <string name="title_activity_license">ترخيص ل%</string>
+    <string name="title_activity_license">ترخيص لـ ‪%s</string>
     <string name="toolbar_menu_refresh">تحديث</string>
     <string name="toolbar_menu_search_city">ابحث عن مدينة</string>
     <string name="toolbar_menu_detect_location">تحديد الموقع</string>
@@ -87,7 +87,7 @@
     <string name="sunrise_label">الشروق: %s</string>
     <string name="sunset_label">الغروب: %s</string>
     <string name="widget_weather_icon_description">أيقونة الطقس الحالية</string>
-    <string name="menu_action_toggle_yaxis">غير محور الإحداثيات الصيفي ؟</string>
+    <string name="menu_action_toggle_yaxis">تغيير محور الاحداتياث</string>
     <string name="preference_title_activity_widget">اعدادات الويدجيت</string>
     <string name="preference_widget_theme_title">ثيم الويدجيت</string>
     <string name="widget_refresh_button">زر تحديث الويدجيت</string>
