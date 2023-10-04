@@ -25,7 +25,7 @@
     <string name="title_activity_settings">Postavke</string>
     <string name="about_app_license_pref_title">Licenca</string>
     <string name="theme_transparent">Prozirno</string>
-    <string name="preference_widget_title_update_period">Interval aktualiziranja</string>
+    <string name="preference_widget_title_update_period">Vrijeme aktualiziranja</string>
     <string name="update_period_24hours">24 sata</string>
     <string name="nav_menu_settings">Postavke</string>
     <string name="label_rain">Kiša</string>
