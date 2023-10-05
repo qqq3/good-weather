@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Zadajte mesto</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_city_hint">Zadajte mesto</string>
     <string name="label_current_city">Aktuálne mesto</string>
     <string name="label_choose_city">Vyberte mesto</string>
     <string name="alertDialog_gps_message">GPS nie je povolené. Chcete otvoriť nastavenia?</string>
@@ -7,36 +8,29 @@
     <string name="alertDialog_gps_negativeButton">Zrušiť</string>
     <string name="progressDialog_gps_locate">Nájsť aktuálnu polohu</string>
     <string name="load_progress">Nahrávanie…</string>
-
     <string name="title_activity_search">Nájsť polohu</string>
     <string name="label_activity_main">Aktuálne počasie</string>
     <string name="label_activity_weather_forecast">Denná predpoveď</string>
     <string name="label_activity_graphs">Počasie v grafoch</string>
     <string name="title_activity_license">Licencia pre %s</string>
-
     <string name="toolbar_menu_refresh">Aktualizácia</string>
     <string name="toolbar_menu_search_city">Nájsť mesto</string>
     <string name="toolbar_menu_detect_location">Zistiť polohu</string>
     <string name="menu_action_toggle_values">Zobrazenie hodnôt</string>
     <string name="menu_action_toggle_yaxis">Zobrazenie osy Y</string>
-
     <string name="nav_menu_current_weather">Aktuálne počasie</string>
     <string name="nav_menu_daily_forecast">Denná predpoveď</string>
     <string name="nav_menu_graphs">Grafy</string>
     <string name="nav_menu_settings">Nastavenia</string>
     <string name="nav_feedback">Spätná väzba</string>
     <string name="nav_menu_bitcoin_donation">Darovať Bitcoiny</string>
-
     <string name="connection_not_found">Skontrolujte vaše internetové pripojenie</string>
     <string name="toast_parse_error">Vyskytla sa chyba. Skúste to neskôr!</string>
-
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mi/h</string>
     <string name="millimetre_label">mm</string>
-
-    <string name="hint_activity_search">Nájsť polohu</string>
-
+    <string name="hint_activity_search">Vyhľadať polohu</string>
     <string name="title_activity_settings">Nastavenia</string>
     <string name="pref_title_temperature">Teplota</string>
     <string name="preference_hide_desc">Skryť popis počasia</string>
@@ -64,13 +58,11 @@
     <string name="pref_title_language">Jazyk</string>
     <string name="pref_language_default">Jazyk systému</string>
     <string name="pref_title_theme">Motív</string>
-    
     <string name="preference_title_activity_about">O aplikácii</string>
     <string name="about_version_pref_title">Verzia</string>
     <string name="about_source_code_pref_title">Zdrojový kód</string>
     <string name="about_app_license_pref_title">Licencia</string>
     <string name="about_open_source_licenses_pref_title">Licencie s otvoreným zdrojovým kódom</string>
-
     <string name="wind_label">Vietor: %1$s %2$s</string>
     <string name="rain_label">Dážď: %1$s %2$s</string>
     <string name="snow_label">Sneh: %1$s %2$s</string>
@@ -88,15 +80,12 @@
     <string name="label_wind">Vietor</string>
     <string name="label_rain">Dážď</string>
     <string name="label_snow">Sneh</string>
-
     <string name="widget_weather_icon_description">Aktuálna ikona počasia</string>
     <string name="widget_refresh_button">Tlačidlo obnovenia v miniaplikácii</string>
-
     <string name="donation_bitcoin_qr_description">QR kód pre Bitcoin príspevok</string>
     <string name="donation_bitcoin_copy_button">Kopírovať Bitcoin adresu</string>
     <string name="donation_bitcoin_open_app">Otvoriť Bitcoin aplikáciu</string>
     <string name="donation_bitcoin_copy_message">Bitcoin adresa bola skopírovaná do schránky</string>
-
     <string name="wind_direction_north">S</string>
     <string name="wind_direction_north_east">SV</string>
     <string name="wind_direction_east">V</string>
@@ -105,12 +94,9 @@
     <string name="wind_direction_south_west">JZ</string>
     <string name="wind_direction_west">Z</string>
     <string name="wind_direction_north_west">SZ</string>
-
-    <string name="permission_location_rationale">Pre určenie aktuálneho mesta je potreba oprávnenie pre získanie polohy
-\n</string>
+    <string name="permission_location_rationale">Pre určenie aktuálneho mesta je potreba oprávnenie pre získanie polohy</string>
     <string name="permission_not_granted">Povolenie nebolo udelené!</string>
     <string name="permission_available_location">Povolenie pre určenie polohy bolo udelené</string>
     <string name="permission_location_need">Musíte udeliť Povolenie pre Umiesnenie</string>
-
     <string name="restart_dialog_message">Reštartujte aplikáciu pre uplatnenie zmien</string>
 </resources>
