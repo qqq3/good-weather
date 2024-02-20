@@ -35,7 +35,7 @@
     <string name="label_activity_weather_forecast">Järgmiste päevade ennustus</string>
     <string name="label_activity_main">Praegune ilm</string>
     <string name="title_activity_search">Otsi asukohta</string>
-    <string name="load_progress">Laadin…</string>
+    <string name="load_progress">Laadime andmeid…</string>
     <string name="progressDialog_gps_locate">Leia praegune asukoht</string>
     <string name="alertDialog_gps_negativeButton">Tühista</string>
     <string name="alertDialog_gps_positiveButton">Seadistused</string>
