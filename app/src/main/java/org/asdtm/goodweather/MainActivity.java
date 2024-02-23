@@ -57,7 +57,12 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private static final String TAG = "MainActivity";
 
     private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
-
+    private static final int REQUEST_LOCATION = 0;
+    public static Weather mWeather;
+    public static CitySearch mCitySearch;
+    private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION};
+    public Context storedContext;
     private TextView mIconWeatherView;
     private TextView mTemperatureView;
     private TextView mDescriptionView;
@@ -75,7 +80,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private TextView mIconCloudinessView;
     private TextView mIconSunriseView;
     private TextView mIconSunsetView;
-
     private ConnectionDetector connectionDetector;
     private Boolean isNetworkAvailable;
     private ProgressDialog mProgressDialog;
@@ -83,7 +87,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private SwipeRefreshLayout mSwipeRefresh;
     private Menu mToolbarMenu;
     private BroadcastReceiver mWeatherUpdateReceiver;
-
     private String mSpeedScale;
     private String mIconWind;
     private String mIconHumidity;
@@ -93,18 +96,108 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private String mIconSunset;
     private String mPercentSign;
     private String mPressureMeasurement;
-
     private SharedPreferences mPrefWeather;
+    FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String temperatureScale = Utils.getTemperatureScale(MainActivity.this);
+            mSpeedScale = Utils.getSpeedScale(MainActivity.this);
+            String weather;
+            String temperature;
+            String description;
+            String wind;
+            String sunrise;
+            String sunset;
+            temperature = String.format(Locale.getDefault(), "%.0f", mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
+            description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION,
+                    "clear sky");
+            wind = String.format(Locale.getDefault(), "%.1f",
+                    mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
+            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
+                    .getLong(Constants.WEATHER_DATA_SUNRISE, -1));
+            sunset = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
+                    .getLong(Constants.WEATHER_DATA_SUNSET, -1));
+            weather = "City: " + Utils.getCityAndCountry(storedContext) +
+                    "\nTemperature: " + temperature + temperatureScale +
+                    "\nDescription: " + description +
+                    "\nWind: " + wind + " " + mSpeedScale +
+                    "\nSunrise: " + sunrise +
+                    "\nSunset: " + sunset;
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, weather);
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            try {
+                startActivity(Intent.createChooser(shareIntent, "Share Weather"));
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(MainActivity.this,
+                        "Communication app not found",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+    };
     private SharedPreferences mSharedPreferences;
+    private LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            mProgressDialog.cancel();
+            String latitude = String.format("%1$.2f", location.getLatitude());
+            String longitude = String.format("%1$.2f", location.getLongitude());
 
-    public static Weather mWeather;
-    public static CitySearch mCitySearch;
+            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                locationManager.removeUpdates(mLocationListener);
+            }
 
-    private static final int REQUEST_LOCATION = 0;
-    private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION};
+            connectionDetector = new ConnectionDetector(MainActivity.this);
+            isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
 
-    public Context storedContext;
+            mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putString(Constants.APP_SETTINGS_LATITUDE, latitude);
+            editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
+            getAndWriteAddressFromGeocoder(latitude, longitude, editor);
+            editor.apply();
+
+            if (isNetworkAvailable) {
+                startService(new Intent(MainActivity.this, CurrentWeatherService.class));
+                sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+            } else {
+                Toast.makeText(MainActivity.this, R.string.connection_not_found, Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+    private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
+            new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
+                    if (isNetworkAvailable) {
+                        startService(new Intent(MainActivity.this, CurrentWeatherService.class));
+                    } else {
+                        Toast.makeText(MainActivity.this,
+                                R.string.connection_not_found,
+                                Toast.LENGTH_SHORT).show();
+                        mSwipeRefresh.setRefreshing(false);
+                    }
+                }
+            };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -246,53 +339,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         return super.onOptionsItemSelected(item);
     }
 
-    private LocationListener mLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            mProgressDialog.cancel();
-            String latitude = String.format("%1$.2f", location.getLatitude());
-            String longitude = String.format("%1$.2f", location.getLongitude());
-
-            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                locationManager.removeUpdates(mLocationListener);
-            }
-
-            connectionDetector = new ConnectionDetector(MainActivity.this);
-            isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
-
-            mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                    Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putString(Constants.APP_SETTINGS_LATITUDE, latitude);
-            editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
-            getAndWriteAddressFromGeocoder(latitude, longitude, editor);
-            editor.apply();
-
-            if (isNetworkAvailable) {
-                startService(new Intent(MainActivity.this, CurrentWeatherService.class));
-                sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
-            } else {
-                Toast.makeText(MainActivity.this, R.string.connection_not_found, Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    };
-
     private void getAndWriteAddressFromGeocoder(String latitude, String longitude, SharedPreferences.Editor editor) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
@@ -307,22 +353,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             Log.e(TAG, "Unable to get address from latitude and longitude", ex);
         }
     }
-
-    private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
-            new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
-                    if (isNetworkAvailable) {
-                        startService(new Intent(MainActivity.this, CurrentWeatherService.class));
-                    } else {
-                        Toast.makeText(MainActivity.this,
-                                R.string.connection_not_found,
-                                Toast.LENGTH_SHORT).show();
-                        mSwipeRefresh.setRefreshing(false);
-                    }
-                }
-            };
 
     private void preLoadWeather() {
         mSpeedScale = Utils.getSpeedScale(this);
@@ -468,48 +498,13 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        mSwipeRefresh.setEnabled(verticalOffset == 0);
-    }
-
-    FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            String temperatureScale = Utils.getTemperatureScale(MainActivity.this);
-            mSpeedScale = Utils.getSpeedScale(MainActivity.this);
-            String weather;
-            String temperature;
-            String description;
-            String wind;
-            String sunrise;
-            String sunset;
-            temperature = String.format(Locale.getDefault(), "%.0f", mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0));
-            description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION,
-                    "clear sky");
-            wind = String.format(Locale.getDefault(), "%.1f",
-                    mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
-            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
-                    .getLong(Constants.WEATHER_DATA_SUNRISE, -1));
-            sunset = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
-                    .getLong(Constants.WEATHER_DATA_SUNSET, -1));
-            weather = "City: " + Utils.getCityAndCountry(storedContext) +
-                    "\nTemperature: " + temperature + temperatureScale +
-                    "\nDescription: " + description +
-                    "\nWind: " + wind + " " + mSpeedScale +
-                    "\nSunrise: " + sunrise +
-                    "\nSunset: " + sunset;
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, weather);
-            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            try {
-                startActivity(Intent.createChooser(shareIntent, "Share Weather"));
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(MainActivity.this,
-                        "Communication app not found",
-                        Toast.LENGTH_LONG).show();
-            }
+        if (verticalOffset == 0) {
+            mSwipeRefresh.setEnabled(true);
+        } else {
+            mSwipeRefresh.setRefreshing(false);
+            mSwipeRefresh.setEnabled(false);
         }
-    };
+    }
 
     private void detectLocation() {
         boolean isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
