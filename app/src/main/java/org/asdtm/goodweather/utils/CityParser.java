@@ -19,7 +19,7 @@ import java.util.List;
 public class CityParser {
 
     private static final String TAG = "CityParser";
-    private static final String ENDPOINT = "http://api.openweathermap.org/data/2.5/find";
+    private static final String ENDPOINT = "https://api.openweathermap.org/data/2.5/find";
     private static final String APPID = ApiKeys.OPEN_WEATHER_MAP_API_KEY;
 
     public static List<CitySearch> getCity(String query) {
