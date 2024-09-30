@@ -67,7 +67,7 @@
     <string name="label_rain">Vihm</string>
     <string name="label_wind">Tuul</string>
     <string name="label_temperature">Temperatuur</string>
-    <string name="about_open_source_licenses_pref_title">Kasutatud vaba tarkvara litsentsid</string>
+    <string name="about_open_source_licenses_pref_title">Kasutatud avatud lähtekoodiga tarkvara litsentsid</string>
     <string name="about_app_license_pref_title">Litsents</string>
     <string name="about_source_code_pref_title">Lähtekood</string>
     <string name="about_version_pref_title">Versioon</string>
