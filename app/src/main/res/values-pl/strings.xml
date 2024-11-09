@@ -10,7 +10,7 @@
     <string name="label_current_city">Aktualne miasto</string>
     <string name="label_temperature">Temperatura</string>
     <string name="nav_feedback">Sprzężenie zwrotne</string>
-    <string name="progressDialog_gps_locate"> Znajdź bieżącej lokalizacji</string>
+    <string name="progressDialog_gps_locate"> Znajdź bieżącą lokalizację</string>
     <string name="wind_speed_miles">mil na godzinę</string>
     <string name="wind_speed_meters">metrów na sekundę</string>
     <string name="hint_activity_search">Szukanie</string>
@@ -35,7 +35,7 @@
     <string name="widget_refresh_button">Przycisk odświeżania widżetu</string>
     <string name="preference_title_activity_about">O aplikacji</string>
     <string name="preference_title_activity_general">Ustawienia główne</string>
-    <string name="preference_title_activity_widget">Ustawienia Widget</string>
+    <string name="preference_title_activity_widget">Ustawienia Widgetu</string>
     <string name="update_period_3hours">3 godziny</string>
     <string name="update_period_6hours">6 godzin</string>
     <string name="preference_widget_title_update_period">Okres aktualizacji</string>
@@ -52,7 +52,7 @@
     <string name="nav_menu_bitcoin_donation">Wpłać Bitcoin</string>
     <string name="toolbar_menu_detect_location">Wykrywanie Lokalizacja</string>
     <string name="toolbar_menu_refresh">Aktualizacja</string>
-    <string name="toolbar_menu_search_city">Szukaj Miasto</string>
+    <string name="toolbar_menu_search_city">Szukaj Miasta</string>
     <string name="nav_menu_current_weather">Aktualna pogoda</string>
     <string name="nav_menu_daily_forecast">Dzienna prognoza</string>
     <string name="temperature_day_title">Dzień</string>
@@ -71,7 +71,7 @@
     <string name="label_activity_main">Aktualna pogoda</string>
     <string name="label_activity_weather_forecast">Dzienna prognoza</string>
     <string name="nav_menu_graphs">Wykresy</string>
-    <string name="load_progress">Załadunek…</string>
+    <string name="load_progress">Ładowanie…</string>
     <string name="millimetre_label">mm</string>
     <string name="snow_label">Śnieg: %1$s %2$s</string>
     <string name="rain_label">Deszcz: %1$s %2$s</string>
@@ -85,7 +85,7 @@
     <string name="title_activity_license">Licencja dla %s</string>
     <string name="preference_hide_desc">Ukryj opis pogody</string>
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Potrzebne są Lokalizacja Uprawnienia do określenia obecnego miasta</string>
+    <string name="permission_location_rationale">Potrzebny jest dostęp do lokalizacji by określić obecne miasto</string>
     <string name="permission_not_granted">Uprawnienia nie zostały przyznane!</string>
     <string name="permission_available_location">Lokalizacja uprawnienia zostały przyznane</string>
     <string name="pref_language_default">System Default</string>
