@@ -9,7 +9,7 @@ Open source weather app for Android.
 [<img src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' alt='Get it on Google Play' width='210' heigh='80'>](https://play.google.com/store/apps/details?id=org.asdtm.goodweather)
 
 ## Features
-* Different languages: Basque, Belarusian, Czech, English, French, German, Japanese, Spanish, Polish, Russian
+* Different languages: Basque, Belarusian, Croatian, Czech, English, French, German, Japanese, Spanish, Polish, Russian
 * Current weather
 * 7 day forecast
 * Many locations
