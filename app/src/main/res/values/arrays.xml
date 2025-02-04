@@ -87,6 +87,7 @@
         <item name="basque">Euskara (Basque)</item>
         <item name="belarusian">Беларуская (Belarusian)</item>
         <item name="catalan">Català (Catalan)</item>
+        <item name="chinese">中文 (Chinese)</item>
         <item name="czech">Čeština (Czech)</item>
         <item name="french">Français (French)</item>
         <item name="italian">Italiano (Italian)</item>
@@ -103,6 +104,7 @@
         <item name="basque">eu</item>
         <item name="belarusian">be</item>
         <item name="catalan">ca</item>
+        <item name="chinese">zh-rCN</item>
         <item name="czech">cs</item>
         <item name="french">fr</item>
         <item name="italian">it</item>
