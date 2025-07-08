@@ -21,7 +21,7 @@
     <string name="nav_menu_current_weather">Tagnawt Tamirant</string>
     <string name="nav_menu_daily_forecast">Arid s Wass</string>
     <string name="nav_menu_graphs">Idlifen</string>
-    <string name="nav_menu_settings">Iγewwaṛen</string>
+    <string name="nav_menu_settings">Iɣewwaren</string>
     <string name="nav_feedback">Tikti</string>
     <string name="nav_menu_bitcoin_donation">Mudd s Bitcoin</string>
     <string name="connection_not_found">Senqed tuqqna-ik internet</string>
@@ -31,10 +31,10 @@
     <string name="wind_speed_miles">m/tasint</string>
     <string name="millimetre_label">mm</string>
     <string name="hint_activity_search">Nadi adeg</string>
-    <string name="title_activity_settings">Iγewwaṛen</string>
+    <string name="title_activity_settings">Iɣewwaren</string>
     <string name="pref_title_temperature">Lḥamu</string>
     <string name="preference_hide_desc">Ffer aglam n tegnawt</string>
-    <string name="pref_title_category_notification">Ilγa</string>
+    <string name="pref_title_category_notification">Ilɣa</string>
     <string name="pref_title_notification">Rmed ilɣa</string>
     <string name="pref_title_notification_refresh_interval">Azilal n usmiren</string>
     <string name="update_period_15min">15 n tisdatin</string>
@@ -46,7 +46,7 @@
     <string name="update_period_24hours">24 n isragen</string>
     <string name="pref_title_vibrate">Senhez</string>
     <string name="preference_widget_title_update_period">Tawala n uleqqem</string>
-    <string name="preference_title_activity_general">Iγewwaren imuta</string>
+    <string name="preference_title_activity_general">Iɣewwaren imuta</string>
     <string name="preference_title_activity_widget">Iɣewwaṛen n usfaylurar</string>
     <string name="preference_widget_update_location">Leqqem adeg</string>
     <string name="preference_widget_use_geocoder">Seqdec asideg aseknakalan i uskan</string>
@@ -58,7 +58,7 @@
     <string name="pref_title_language">Tutlayt</string>
     <string name="pref_language_default">Amezwer n unagraw</string>
     <string name="pref_title_theme">Asentel</string>
-    <string name="preference_title_activity_about">Γef</string>
+    <string name="preference_title_activity_about">Ɣef</string>
     <string name="about_version_pref_title">Lqem</string>
     <string name="about_source_code_pref_title">Tangalt taɣbalut</string>
     <string name="about_app_license_pref_title">Turagt</string>
@@ -69,7 +69,7 @@
     <string name="humidity_label">Agri: %1$s%2$s</string>
     <string name="pressure_label">Asuded: %1$s %2$s</string>
     <string name="cloudiness_label">Asigna: %1$s%2$s</string>
-    <string name="last_update_label">Asedγi aneggaru : %s</string>
+    <string name="last_update_label">Lqem aneggaru : %s</string>
     <string name="sunrise_label">Alluy n yiṭij: %s</string>
     <string name="sunset_label">Aɣelluy n yiṭij: %s</string>
     <string name="temperature_morning_title">Azal</string>
