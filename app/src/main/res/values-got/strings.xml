@@ -1,3 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="enter_city_hint">𐌼𐌴𐌻𐌴𐌹 𐌱𐌰𐌿𐍂𐌲</string>
+    <string name="label_current_city">𐌰𐌽𐌳𐍅𐌰𐌹𐍂𐌸𐌰 𐌱𐌰𐌿𐍂𐌲𐍃</string>
+    <string name="label_choose_city">𐌱𐌰𐌿𐍂𐌲 𐍅𐌰𐌻𐌾𐌰𐌽</string>
+    <string name="alertDialog_gps_positiveButton">𐌻𐌰𐌲𐌴𐌹𐌽𐍉𐍃</string>
+    <string name="alertDialog_gps_negativeButton">𐍃𐍅𐌴𐌹𐌱𐌰𐌽</string>
+    <string name="progressDialog_gps_locate">𐌱𐌹𐌲𐌹𐍄 𐌰𐌽𐌳𐍅𐌰𐌹𐍂𐌸𐌰𐌽𐌰 𐍃𐍄𐌰𐌸</string>
+    <string name="toolbar_menu_search_city">𐌱𐌰𐌿𐍂𐌲 𐍃𐍉𐌺𐌾𐌰𐌽</string>
+    <string name="nav_menu_settings">𐌻𐌰𐌲𐌴𐌹𐌽𐍉𐍃</string>
+    <string name="nav_menu_bitcoin_donation">𐌰𐌽𐌳𐍃𐍄𐌰𐌻𐌳𐌰𐌽 𐌱𐌹𐍄𐌺𐌰𐌿𐌾𐌽</string>
+    <string name="toast_parse_error">𐌰𐌹𐍂𐌶𐌴𐌹 𐍅𐌰𐍂𐌸. 𐌱𐌹𐌸𐌴 𐍃𐍉𐌺𐌴𐌹!</string>
+    <string name="update_period_15min">15 𐌼𐌹𐌽𐌿𐍄𐌾𐌿𐍃</string>
+    <string name="update_period_30min">30 𐌼𐌹𐌽𐌿𐍄𐌾𐌿𐍃</string>
+    <string name="update_period_1hour">𐍈𐌰𐍂𐌾𐍉𐌷 𐍈𐌴𐌹𐌻𐌰</string>
+    <string name="update_period_3hours">3 𐍈𐌴𐌹𐌻𐍉</string>
+    <string name="update_period_6hours">6 𐍈𐌴𐌹𐌻𐍉</string>
+    <string name="update_period_12hours">12 𐍈𐌴𐌹𐌻𐍉</string>
+    <string name="update_period_24hours">24 𐍈𐌴𐌹𐌻𐍉</string>
+    <string name="theme_dark">𐍂𐌹𐌵𐌹𐌶𐌴𐌹𐌽</string>
+    <string name="theme_light">𐌻𐌹𐌿𐌷𐍄</string>
+    <string name="theme_transparent">𐌰𐌽𐌰𐍃𐌹𐌿𐌽</string>
+    <string name="pref_title_language">𐍂𐌰𐌶𐌳𐌰</string>
+    <string name="preference_title_activity_about">𐌱𐌹</string>
+    <string name="about_version_pref_title">𐌿𐍃𐌼𐌴𐍂𐌹</string>
+    <string name="about_source_code_pref_title">𐌺𐍉𐌳𐌿𐍃 𐌱𐍂𐌿𐌽𐌽𐌹𐌽𐍃</string>
+    <string name="rain_label">𐍂𐌹𐌲𐌽: %1$s%2$s</string>
+    <string name="snow_label">𐍃𐌽𐌰𐌹𐍅𐍃: %1$s%2$s</string>
+    <string name="wind_label">𐍅𐌹𐌽𐌳𐍃: %1$s%2$s</string>
+    <string name="temperature_morning_title">𐌼𐌰𐌿𐍂𐌲𐌹𐌽𐍃</string>
+    <string name="temperature_day_title">𐌳𐌰𐌲𐍃</string>
+    <string name="temperature_evening_title">𐌰𐌽𐌳𐌰𐌽𐌰𐌷𐍄𐌹</string>
+    <string name="temperature_night_title">𐌽𐌰𐌷𐍄𐍃</string>
+    <string name="label_wind">𐍅𐌹𐌽𐌳𐍃</string>
+    <string name="label_rain">𐍂𐌹𐌲𐌽</string>
+    <string name="label_snow">𐍃𐌽𐌰𐌹𐍅𐍃</string>
+    <string name="toolbar_menu_refresh">𐌰𐌽𐌰𐌽𐌹𐌿𐌾𐌹𐌸𐌰</string>
+    <string name="label_activity_main">𐌰𐌽𐌳𐍅𐌰𐌹𐍂𐌸 𐍅𐌹𐌸𐍂</string>
+    <string name="label_activity_weather_forecast">𐍆𐌰𐌿𐍂𐌰𐍃𐍀𐌹𐌻𐌻 𐍃𐌹𐌽𐍄𐌴𐌹𐌽</string>
+    <string name="title_activity_settings">𐌻𐌰𐌲𐌴𐌹𐌽𐍉𐍃</string>
+    <string name="pref_title_vibrate">𐍂𐌴𐌹𐍂𐍉𐌽</string>
+    <string name="preference_widget_title_update_period">𐌼𐌴𐌻 𐌰𐌽𐌰𐌽𐌹𐌿𐌾𐌰𐌽</string>
 </resources>
