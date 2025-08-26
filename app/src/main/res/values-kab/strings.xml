@@ -4,7 +4,7 @@
     <string name="label_current_city">Tamdint tamirant</string>
     <string name="label_choose_city">Fren tamdint</string>
     <string name="alertDialog_gps_message">GPS ur yermid ara. Tebɣiḍ ad tedduḍ ar wumuɣ n yiɣewwaṛen\?</string>
-    <string name="alertDialog_gps_positiveButton">Iɣewwaṛen</string>
+    <string name="alertDialog_gps_positiveButton">Iɣewwaren</string>
     <string name="alertDialog_gps_negativeButton">Sefsex</string>
     <string name="progressDialog_gps_locate">Af-d adeg amiran</string>
     <string name="load_progress">Asali…</string>
