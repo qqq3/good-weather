@@ -44,7 +44,7 @@
     <string name="nav_menu_bitcoin_donation">பிட்காயின் நன்கொடை</string>
     <string name="connection_not_found">உங்கள் இணைய இணைப்பை சரிபார்க்கவும்</string>
     <string name="toast_parse_error">பிழை ஏற்பட்டது. பின்னர் முயற்சிக்கவும்!</string>
-    <string name="pressure_measurement">HPA</string>
+    <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">எம்/கள்</string>
     <string name="wind_speed_miles">எம்.பி.எச்</string>
     <string name="millimetre_label">மிமீ</string>
